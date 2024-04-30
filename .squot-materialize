@@ -1,0 +1,10 @@
+[
+	SquotTonelMapper {
+		#package : MCPackage {
+			#name : 'PixelEditor'
+		},
+		#path : FSAbsolutePath [
+			'src'
+		]
+	}
+]
