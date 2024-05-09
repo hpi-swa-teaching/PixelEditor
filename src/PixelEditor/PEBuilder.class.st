@@ -1,5 +1,5 @@
 Class {
-	#name : #PleaseDeleteMe,
+	#name : #PEBuilder,
 	#superclass : #Object,
 	#category : #PixelEditor
 }
