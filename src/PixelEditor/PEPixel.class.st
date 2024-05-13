@@ -6,20 +6,23 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 5/9/2024 16:33'
+	#'squeak_changestamp' : 'GLE 5/13/2024 18:29'
 }
 PEPixel class >> pixelSize [
 	
-	^ 10.
+	^ 100
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 5/9/2024 16:41'
+	#'squeak_changestamp' : 'GLE 5/13/2024 18:37'
 }
 PEPixel >> initialize [
-
+	super initialize.
 	self color: Color transparent;
-		extent: self pixelSize @ self pixelSize
+		extent: PEPixel pixelSize @ PEPixel pixelSize.
+	World addMorphFront: self
+	
+		
 		
 ]

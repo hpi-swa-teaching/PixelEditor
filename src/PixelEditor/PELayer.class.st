@@ -6,24 +6,39 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 5/9/2024 16:56'
+	#'squeak_changestamp' : 'GLE 5/13/2024 18:36'
 }
 PELayer >> createPixelsWidth: aWidth andHeight: aHeight [
 
 	| pixelSize |
 
 	pixelSize := PEPixel pixelSize.
-	self extent: aWidth @ aHeight.
-	0 to: aHeight-pixelSize by: pixelSize do: [:eachHeight |
-		0 to: aWidth-pixelSize by: pixelSize do: [:eachWidth | 
+	self extent: (aWidth * pixelSize) @ (aHeight * pixelSize).
+	0 to: (aHeight * pixelSize)-pixelSize by: pixelSize do: [:eachHeight | 
+		Transcript showln: 1.
+		0 to: (aWidth * pixelSize) - pixelSize by: pixelSize do: [:eachWidth | 
+			Transcript showln: 1.
 			self insertPixelAt: eachWidth @ eachHeight]]
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 5/9/2024 16:59'
+	#'squeak_changestamp' : 'GLE 5/13/2024 18:34'
+}
+PELayer >> initialize [
+
+	super initialize.
+	self position: 500 @ 500;
+		openInWorld;
+		color: Color white
+	
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 5/13/2024 18:31'
 }
 PELayer >> insertPixelAt: aPoint [
 
-	self addMorph: (PEPixel new position: aPoint; yourself)
+	self addMorph: (PEPixel new position: self positionInWorld + aPoint; yourself)
 ]
