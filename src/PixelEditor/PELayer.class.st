@@ -21,14 +21,16 @@ PELayer >> createPixelsWidth: aWidth andHeight: aHeight [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 18:34'
+	#'squeak_changestamp' : 'GLE 5/14/2024 12:30'
 }
 PELayer >> initialize [
 
 	super initialize.
 	self position: 500 @ 500;
 		openInWorld;
-		color: Color white
+		color: Color white;
+		borderWidth: 1;
+		borderColor: Color red
 	
 ]
 
