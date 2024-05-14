@@ -21,24 +21,24 @@ PELayer >> createPixelsWidth: aWidth andHeight: aHeight [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/14/2024 12:30'
+	#'squeak_changestamp' : 'GLE 5/14/2024 14:16'
 }
 PELayer >> initialize [
 
 	super initialize.
-	self position: 500 @ 500;
+	self position: 500 @ 300;
 		openInWorld;
 		color: Color white;
-		borderWidth: 1;
-		borderColor: Color red
+		borderWidth: 5;
+		borderColor: Color black
 	
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 18:31'
+	#'squeak_changestamp' : 'GLE 5/14/2024 13:57'
 }
 PELayer >> insertPixelAt: aPoint [
 
-	self addMorph: (PEPixel new position: self positionInWorld + aPoint; yourself)
+	self addMorphFront: (PEPixel new position: self positionInWorld + aPoint; yourself)
 ]

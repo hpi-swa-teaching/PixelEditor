@@ -9,6 +9,24 @@ Class {
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 5/14/2024 13:56'
+}
+PEPixel class >> borderColor [
+	
+	^ Color lightGray
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 5/14/2024 13:59'
+}
+PEPixel class >> borderSize [
+	
+	^ 1
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/13/2024 18:29'
 }
 PEPixel class >> pixelSize [
@@ -18,7 +36,7 @@ PEPixel class >> pixelSize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 19:28'
+	#'squeak_changestamp' : 'GLE 5/14/2024 14:08'
 }
 PEPixel >> handlesMouseDown: anEvent [
 
@@ -27,31 +45,15 @@ PEPixel >> handlesMouseDown: anEvent [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 19:35'
-}
-PEPixel >> handlesMouseOver: anEvent [
-
-	^true
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 19:40'
-}
-PEPixel >> handlesMouseOverDragging: anEvent [
-
-	^true
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 19:29'
+	#'squeak_changestamp' : 'GLE 5/14/2024 14:08'
 }
 PEPixel >> initialize [
 	super initialize.
 	self color: Color transparent;
-		extent: PEPixel pixelSize @ PEPixel pixelSize.
-	World addMorphFront: self
+		extent: PEPixel pixelSize @ PEPixel pixelSize;
+		borderWidth: PEPixel borderSize;
+		borderColor: PEPixel borderColor
+		
 	
 		
 		
@@ -77,12 +79,12 @@ PEPixel >> mouseEnter: anEvent [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 19:41'
+	#'squeak_changestamp' : 'GLE 5/14/2024 14:06'
 }
 PEPixel >> mouseEnterDragging: anEvent [
 
-	"self color: self selectedColor"
-	Transcript showln: 1
+	self color: self selectedColor
+	
 ]
 
 {
