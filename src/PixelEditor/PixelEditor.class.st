@@ -5,7 +5,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #'instance creation',
 	#'squeak_changestamp' : 'Corvin 5/14/2024 12:28'
 }
 PixelEditor class >> open [
@@ -20,7 +20,7 @@ PixelEditor class >> open [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialization,
 	#'squeak_changestamp' : 'Corvin 5/14/2024 12:20'
 }
 PixelEditor >> initialize [
