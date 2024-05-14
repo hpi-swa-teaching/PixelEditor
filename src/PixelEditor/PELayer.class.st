@@ -6,7 +6,7 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 18:36'
+	#'squeak_changestamp' : 'GLE 5/13/2024 19:05'
 }
 PELayer >> createPixelsWidth: aWidth andHeight: aHeight [
 
@@ -15,10 +15,8 @@ PELayer >> createPixelsWidth: aWidth andHeight: aHeight [
 	pixelSize := PEPixel pixelSize.
 	self extent: (aWidth * pixelSize) @ (aHeight * pixelSize).
 	0 to: (aHeight * pixelSize)-pixelSize by: pixelSize do: [:eachHeight | 
-		Transcript showln: 1.
 		0 to: (aWidth * pixelSize) - pixelSize by: pixelSize do: [:eachWidth | 
-			Transcript showln: 1.
-			self insertPixelAt: eachWidth @ eachHeight]]
+			self insertPixelAt: eachWidth @ eachHeight]].
 ]
 
 {
