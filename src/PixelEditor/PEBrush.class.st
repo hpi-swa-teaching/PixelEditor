@@ -11,6 +11,15 @@ Class {
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 5/16/2024 10:41'
+}
+PEBrush >> basicType [
+
+	^#PEBrush
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/13/2024 19:51'
 }
 PEBrush >> brush [

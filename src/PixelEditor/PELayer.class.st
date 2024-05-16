@@ -6,6 +6,15 @@ Class {
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 5/16/2024 10:41'
+}
+PELayer >> basicType [
+	
+	^#PELayer
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/13/2024 19:05'
 }
 PELayer >> createPixelsWidth: aWidth andHeight: aHeight [
