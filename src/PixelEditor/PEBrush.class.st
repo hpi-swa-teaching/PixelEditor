@@ -70,22 +70,22 @@ PEBrush >> initialize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 19:51'
+	#'squeak_changestamp' : 'GLE 5/17/2024 18:18'
 }
 PEBrush >> mouseDown: anEvent [
 
 	eraser ifTrue: [self brush]
-			ifFalse:[self eraser]
+			ifFalse: [self eraser]
 	
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 19:01'
+	#'squeak_changestamp' : 'GLE 5/17/2024 18:18'
 }
 PEBrush >> pixelCollection [
 
-	^pixelCollection
+	^ pixelCollection
 ]
 
 {
@@ -99,11 +99,11 @@ PEBrush >> pixelCollection: aCollection [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 19:48'
+	#'squeak_changestamp' : 'GLE 5/17/2024 18:18'
 }
 PEBrush >> selectedColor [
 	
-	^selectedColor
+	^ selectedColor
 ]
 
 {

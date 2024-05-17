@@ -6,7 +6,7 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/16/2024 10:35'
+	#'squeak_changestamp' : 'GLE 5/17/2024 15:25'
 }
 PECanvasBuilder >> buildScreen [
 
@@ -17,5 +17,6 @@ PECanvasBuilder >> buildScreen [
 	brush := PEBrush new pixelCollection: layer submorphs;
 		changeSelectedColor: Color black.
 	screen addMorphFront: layer;
-		addMorphFront: brush
+		addMorphFront: brush.
+	^ screen
 ]

@@ -9,41 +9,24 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/16/2024 12:14'
+	#'squeak_changestamp' : 'GLE 5/17/2024 10:42'
 }
 PEScreen >> addToSaveCollection: aSubmorphCollection [
 
 	aSubmorphCollection do: [:submorph | self savingCollection addLast: (self getRGBFrom: submorph)].
-	Transcript show: self savingCollection.
-	self createFile: 'hallo.txt'
+	self savingCollection addLast: '!'
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/16/2024 11:56'
+	#'squeak_changestamp' : 'GLE 5/17/2024 14:18'
 }
-PEScreen >> createFile [
-
-	(StandardFileStream forceNewFileNamed: 'name.txt') nextPutAll: (self savingCollection asStringWithCr);
-		close. 
-	self savingCollection removeAll
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/16/2024 12:24'
-}
-PEScreen >> createFile: aFileName [
-
-	| fileStream |
+PEScreen >> checkIfFileExists: aFileName [
 	
 	(StandardFileStream isAFileNamed: (StandardFileStream fullName: aFileName)) 
-		ifTrue: [fileStream := StandardFileStream forceNewFileNamed: aFileName.
-			Transcript showln: 'file exists']
-		ifFalse: [fileStream := StandardFileStream newFileNamed: aFileName].
-		fileStream nextPutAll: self savingCollection asStringWithCr; 
-			close.
-	self savingCollection removeAll
+		ifFalse: [self writeFile: aFileName stream: (StandardFileStream newFileNamed: aFileName)]
+		ifTrue: [self fileExists: aFileName]
+	
 	
 ]
 
@@ -68,11 +51,31 @@ PEScreen >> eventToCharacter: anEvent [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/16/2024 10:49'
+	#'squeak_changestamp' : 'GLE 5/17/2024 14:18'
+}
+PEScreen >> fileExists: aFileName [
+
+	| UserInputBox |
+	
+	UserInputBox := UserDialogBoxMorph new.
+	UserInputBox label: 'File exists already. Do you want to replace it?';
+		openInWorld.
+	UserInputBox createAcceptButton action: [
+		self writeFile: aFileName stream: (StandardFileStream forceNewFileNamed: aFileName).
+		UserInputBox delete].
+	UserInputBox createCancelButton action: [
+		self savingCollection removeAll.
+		UserInputBox delete]
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 5/17/2024 17:13'
 }
 PEScreen >> getLayerSubmorphs [
 
-self submorphs do: [:each | each basicType = #PELayer ifTrue: [self addToSaveCollection: each submorphs]]
+	self submorphs do: [:each | each basicType = #PELayer 
+		ifTrue: [self addToSaveCollection: each submorphs]]
 ]
 
 {
@@ -93,7 +96,7 @@ PEScreen >> getRGBFrom: aMorph [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/16/2024 10:50'
+	#'squeak_changestamp' : 'GLE 5/17/2024 17:13'
 }
 PEScreen >> handleKeyDown: anEvent [
 
@@ -101,14 +104,14 @@ PEScreen >> handleKeyDown: anEvent [
 	key := self eventToCharacter: anEvent.
 	keyDictionary := Dictionary new.
 	keyDictionary at: 'x' put: #abandon.
-	keyDictionary at: 's' put: #getLayerSubmorphs.
+	keyDictionary at: 's' put: #save.
 	self perform: (keyDictionary at: key ifAbsent: #doNothing)
 
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/16/2024 10:28'
+	#'squeak_changestamp' : 'GLE 5/17/2024 17:15'
 }
 PEScreen >> initialize [
 
@@ -120,17 +123,45 @@ PEScreen >> initialize [
 ]
 
 {
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 5/17/2024 17:13'
+}
+PEScreen >> save [
+
+	| fileName |
+	
+	self getLayerSubmorphs.
+	fileName := Project uiManager request: 'Choose a File Name'.
+	fileName isEmpty 
+		ifFalse: [self checkIfFileExists: '.\Testing\', fileName]
+]
+
+{
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 5/16/2024 10:25'
+	#'squeak_changestamp' : 'GLE 5/17/2024 11:07'
 }
 PEScreen >> savingCollection [
+
 	^ savingCollection
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 5/16/2024 10:25'
+	#'squeak_changestamp' : 'GLE 5/17/2024 11:07'
 }
 PEScreen >> savingCollection: anObject [
+
 	savingCollection := anObject
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 5/17/2024 11:02'
+}
+PEScreen >> writeFile: aFileName stream: aFileStream [
+
+	aFileStream nextPutAll: self savingCollection asStringWithCr; 
+		close.
+	self savingCollection removeAll
+	
 ]
