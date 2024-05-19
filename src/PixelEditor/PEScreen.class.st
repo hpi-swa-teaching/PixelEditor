@@ -51,7 +51,7 @@ PEScreen >> eventToCharacter: anEvent [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 14:18'
+	#'squeak_changestamp' : 'GLE 5/17/2024 18:26'
 }
 PEScreen >> fileExists: aFileName [
 
@@ -59,7 +59,8 @@ PEScreen >> fileExists: aFileName [
 	
 	UserInputBox := UserDialogBoxMorph new.
 	UserInputBox label: 'File exists already. Do you want to replace it?';
-		openInWorld.
+		openInWorld;
+		position: self center.
 	UserInputBox createAcceptButton action: [
 		self writeFile: aFileName stream: (StandardFileStream forceNewFileNamed: aFileName).
 		UserInputBox delete].
@@ -80,17 +81,18 @@ PEScreen >> getLayerSubmorphs [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/16/2024 11:04'
+	#'squeak_changestamp' : 'GLE 5/17/2024 20:49'
 }
 PEScreen >> getRGBFrom: aMorph [
 
-| red blue green morphColor|
+| red blue green morphColor alpha |
 	morphColor := aMorph color.
-	morphColor = Color transparent ifTrue: [^ {-1.-1.-1}].
+	morphColor = Color transparent ifTrue: [^ {-1.-1.-1.0}].
 	red := morphColor privateRed.
 	blue := morphColor privateBlue.
 	green := morphColor privateGreen.
-	^ {red.blue.green}
+	alpha := morphColor alpha.
+	^ {red.blue.green.alpha}
 
 ]
 
@@ -111,6 +113,15 @@ PEScreen >> handleKeyDown: anEvent [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 5/17/2024 20:47'
+}
+PEScreen >> handlesMouseDown: anEvent [
+
+	^ true
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/17/2024 17:15'
 }
 PEScreen >> initialize [
@@ -124,16 +135,25 @@ PEScreen >> initialize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 17:13'
+	#'squeak_changestamp' : 'GLE 5/17/2024 20:47'
+}
+PEScreen >> mouseDown: anEvent [
+
+	self doNothing
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 5/17/2024 20:39'
 }
 PEScreen >> save [
 
 	| fileName |
 	
-	self getLayerSubmorphs.
 	fileName := Project uiManager request: 'Choose a File Name'.
 	fileName isEmpty 
-		ifFalse: [self checkIfFileExists: '.\Testing\', fileName]
+		ifFalse: [self getLayerSubmorphs.
+			self checkIfFileExists: '.\Saved-Images\', fileName]
 ]
 
 {

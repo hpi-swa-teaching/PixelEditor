@@ -6,17 +6,15 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 15:25'
+	#'squeak_changestamp' : 'GLE 5/17/2024 21:07'
 }
 PECanvasBuilder >> buildScreen [
 
-	| layer brush screen |
-	
-	screen := PEScreen new.
-	layer := PELayer new createPixelsWidth: 10 andHeight: 10.
+	| layer brush |
+	PECanvas pixelGridWidth: 10 andHeight: 10.
+	layer := PELayer new createPixels.
 	brush := PEBrush new pixelCollection: layer submorphs;
 		changeSelectedColor: Color black.
-	screen addMorphFront: layer;
-		addMorphFront: brush.
-	^ screen
+	^ PEScreen new addMorph: layer; 
+		addMorphBack: brush
 ]

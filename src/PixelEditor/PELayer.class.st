@@ -15,16 +15,18 @@ PELayer >> basicType [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 19:05'
+	#'squeak_changestamp' : 'GLE 5/17/2024 21:12'
 }
-PELayer >> createPixelsWidth: aWidth andHeight: aHeight [
+PELayer >> createPixels [
 
-	| pixelSize |
-
+	| pixelSize width height |
+	
+	width := PECanvas pixelGridWidth.
+	height := PECanvas pixelGridHeight.
 	pixelSize := PEPixel pixelSize.
-	self extent: (aWidth * pixelSize) @ (aHeight * pixelSize).
-	0 to: (aHeight * pixelSize)-pixelSize by: pixelSize do: [:eachHeight | 
-		0 to: (aWidth * pixelSize) - pixelSize by: pixelSize do: [:eachWidth | 
+	self extent: ( width * pixelSize) @ (height * pixelSize).
+	0 to: (height * pixelSize)-pixelSize by: pixelSize do: [:eachHeight | 
+		0 to: (width * pixelSize) - pixelSize by: pixelSize do: [:eachWidth | 
 			self insertPixelAt: eachWidth @ eachHeight]].
 ]
 

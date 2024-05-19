@@ -3,8 +3,7 @@ Class {
 	#superclass : #PETools,
 	#instVars : [
 		'pixelCollection',
-		'selectedColor',
-		'eraser'
+		'selectedColor'
 	],
 	#category : #PixelEditor
 }
@@ -20,15 +19,6 @@ PEBrush >> basicType [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 19:51'
-}
-PEBrush >> brush [
-	eraser:= false.
-	self changeSelectedColor: self selectedColor
-]
-
-{
-	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/13/2024 19:02'
 }
 PEBrush >> changeSelectedColor: aColor [
@@ -38,45 +28,12 @@ PEBrush >> changeSelectedColor: aColor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 19:51'
+	#'squeak_changestamp' : 'GLE 5/17/2024 19:50'
 }
-PEBrush >> eraser [
- 	eraser:= true.
-	self changeSelectedColor: Color transparent
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 19:49'
-}
-PEBrush >> handlesMouseDown: anEvent [
-
-	^true
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 19:52'
-}
-PEBrush >> initialize [
+PEBrush >> initialize [ 
 	
 	super initialize.
-	self extent: 50 @ 50;
-		openInWorld;
-		position: 100@100;
-		selectedColor: Color black.
-		eraser:= false
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 18:18'
-}
-PEBrush >> mouseDown: anEvent [
-
-	eraser ifTrue: [self brush]
-			ifFalse: [self eraser]
-	
+	self color: Color transparent
 ]
 
 {
