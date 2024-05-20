@@ -19,6 +19,16 @@ PEBrush >> basicType [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GT 5/20/2024 17:56'
+}
+PEBrush >> changeButtonColor: aButton [
+
+	PEColorPalette new colorButton: aButton
+	
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/13/2024 19:02'
 }
 PEBrush >> changeSelectedColor: aColor [

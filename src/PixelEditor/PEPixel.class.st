@@ -27,7 +27,7 @@ PEPixel class >> borderSize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 18:29'
+	#'squeak_changestamp' : 'GT 5/20/2024 14:19'
 }
 PEPixel class >> pixelSize [
 	

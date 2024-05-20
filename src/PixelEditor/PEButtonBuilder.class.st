@@ -51,7 +51,7 @@ PEButtonBuilder class >> colorButtonSize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 19:45'
+	#'squeak_changestamp' : 'GT 5/20/2024 18:43'
 }
 PEButtonBuilder class >> colorsForButtons [
 
@@ -60,7 +60,9 @@ PEButtonBuilder class >> colorsForButtons [
 		Color blue.
 		Color yellow.
 		Color red.
-		Color green}
+		Color green.
+		Color magenta.
+		Color cyan}
 ]
 
 {

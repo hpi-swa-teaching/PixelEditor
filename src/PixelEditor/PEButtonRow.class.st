@@ -28,12 +28,11 @@ PEButtonRow >> addMorphNext: aMorph [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 17:51'
+	#'squeak_changestamp' : 'GT 5/20/2024 15:35'
 }
 PEButtonRow >> initialize [
 
 	super initialize. 
 	self borderWidth: 2;
-		borderColor: Color black;
 		color: Color transparent
 ]

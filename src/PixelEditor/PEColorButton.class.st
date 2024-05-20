@@ -33,6 +33,16 @@ PEColorButton >> doActionLeft [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GT 5/20/2024 17:56'
+}
+PEColorButton >> doActionRight [
+
+	self anObject changeButtonColor: self
+	
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/17/2024 14:56'
 }
 PEColorButton >> initialize [
