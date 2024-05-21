@@ -21,6 +21,16 @@ PixelEditor class >> open [
 ]
 
 {
+	#category : #initialization,
+	#'squeak_changestamp' : 'Corvin 5/21/2024 11:52'
+}
+PixelEditor class >> register [
+	"register the editor to the apps dropdown"
+	
+	TheWorldMenu registerOpenCommand: {'PixelEditor'. {PixelEditor. #open}}
+]
+
+{
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'Corvin 5/14/2024 12:20'
 }
