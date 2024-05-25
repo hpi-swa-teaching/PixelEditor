@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'actionLeft',
 		'actionRight',
-		'anObject'
+		'anObject',
+		'labelText'
 	],
 	#category : #PixelEditor
 }
@@ -74,20 +75,25 @@ PEButton >> anObject: aObject [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 15:05'
+	#'squeak_changestamp' : 'LW 5/24/2024 23:24'
 }
 PEButton >> doActionLeft [
 
-	self anObject perform: self actionLeft
+	"self arguments 
+		ifNil: ["self anObject perform: self actionLeft"]
+		ifNotNil: [self anObject perform: self actionLeft withArguments: self arguments]"
+	
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 15:05'
+	#'squeak_changestamp' : 'LW 5/24/2024 23:25'
 }
 PEButton >> doActionRight [
 
-	self anObject perform: self actionRight
+	"self arguments 
+		ifNil: ["self anObject perform: self actionRight"] 
+		ifNotNil: [self anObject perform: self actionRight withArguments: self arguments]"
 ]
 
 {
@@ -113,13 +119,23 @@ PEButton >> initialize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 17:50'
+	#'squeak_changestamp' : 'LW 5/24/2024 23:24'
 }
 PEButton >> label: aString [
 
-	self addMorph: (PEButtonText new contents: aString;
+	label := (PEButtonText new contents: aString;
 		center: self center;
-		yourself)
+		yourself).
+	self addMorph: label
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'LW 5/24/2024 23:23'
+}
+PEButton >> labelText [
+
+	^ labelText
 ]
 
 {
