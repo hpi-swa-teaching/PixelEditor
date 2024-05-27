@@ -4,6 +4,11 @@ Class {
 	#instVars : [
 		'selectedColor'
 	],
+
+	#classInstVars : [
+		'pixelSize'
+	],
+
 	#category : #PixelEditor
 }
 
@@ -27,11 +32,22 @@ PEPixel class >> borderSize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GT 5/20/2024 14:19'
+
+	#'squeak_changestamp' : 'LW 5/24/2024 22:33'
 }
 PEPixel class >> pixelSize [
 	
-	^ 100
+	^ pixelSize
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'LW 5/24/2024 22:32'
+}
+PEPixel class >> pixelSize: aSize [
+
+	pixelSize := aSize
+
 ]
 
 {
@@ -70,6 +86,7 @@ PEPixel >> mouseDown: anEvent [
 
 {
 	#category : #'as yet unclassified',
+
 	#'squeak_changestamp' : 'GLE 5/13/2024 18:53'
 }
 PEPixel >> selectedColor [

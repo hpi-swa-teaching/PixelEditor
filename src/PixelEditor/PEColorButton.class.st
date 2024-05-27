@@ -1,11 +1,13 @@
 Class {
 	#name : #PEColorButton,
+
 	#superclass : #PEUI,
 	#instVars : [
 		'actionRight',
 		'actionLeft',
 		'anObject'
 	],
+  
 	#category : #PixelEditor
 }
 
@@ -29,6 +31,7 @@ PEColorButton class >> borderSize [
 
 {
 	#category : #'as yet unclassified',
+
 	#'squeak_changestamp' : 'GLE 5/17/2024 15:04'
 }
 PEColorButton >> actionLeft [
@@ -92,15 +95,19 @@ PEColorButton >> doActionLeft [
 
 {
 	#category : #'as yet unclassified',
+
 	#'squeak_changestamp' : 'GLE 5/27/2024 10:56'
+
 }
 PEColorButton >> doActionRight [
 
 	self anObject changeButtonColor: self
+
 ]
 
 {
 	#category : #'as yet unclassified',
+
 	#'squeak_changestamp' : 'GLE 5/17/2024 14:57'
 }
 PEColorButton >> handlesMouseDown: anEvent [
@@ -111,11 +118,12 @@ PEColorButton >> handlesMouseDown: anEvent [
 {
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/27/2024 10:47'
+  
 }
 PEColorButton >> initialize [
 	
 	super initialize.
-	self borderColor: Color black;
+	self borderColor: PEColorButton borderColor;
 		borderWidth: PEColorButton borderSize.
 ]
 

@@ -105,6 +105,7 @@ PEColorPalette >> adjustColor [
 
 {
 	#category : #accessing,
+
 	#'squeak_changestamp' : 'GLE 5/27/2024 11:11'
 }
 PEColorPalette >> buildAcceptButton [
@@ -119,6 +120,7 @@ PEColorPalette >> buildAcceptButton [
 
 {
 	#category : #accessing,
+
 	#'squeak_changestamp' : 'GLE 5/27/2024 11:11'
 }
 PEColorPalette >> buildCloseButton [
