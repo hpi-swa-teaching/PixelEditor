@@ -1,5 +1,5 @@
 Class {
-	#name : #PEButton,
+	#name : #PEButtonWorks,
 	#superclass : #PEUI,
 	#instVars : [
 		'actionLeft',
@@ -14,7 +14,7 @@ Class {
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/17/2024 17:43'
 }
-PEButton class >> buttonBorderSize [
+PEButtonWorks class >> buttonBorderSize [
 
 	^ 1
 ]
@@ -23,7 +23,7 @@ PEButton class >> buttonBorderSize [
 	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 5/17/2024 15:04'
 }
-PEButton >> actionLeft [
+PEButtonWorks >> actionLeft [
 
 	^ actionLeft
 ]
@@ -32,7 +32,7 @@ PEButton >> actionLeft [
 	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 5/17/2024 15:04'
 }
-PEButton >> actionLeft: aCodeBlock [
+PEButtonWorks >> actionLeft: aCodeBlock [
 
 	actionLeft := aCodeBlock
 ]
@@ -41,7 +41,7 @@ PEButton >> actionLeft: aCodeBlock [
 	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 5/17/2024 15:05'
 }
-PEButton >> actionRight [
+PEButtonWorks >> actionRight [
 
 	^ actionRight
 ]
@@ -50,7 +50,7 @@ PEButton >> actionRight [
 	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 5/17/2024 15:04'
 }
-PEButton >> actionRight: aCodeBlock [
+PEButtonWorks >> actionRight: aCodeBlock [
 
 	actionRight := aCodeBlock
 ]
@@ -59,7 +59,7 @@ PEButton >> actionRight: aCodeBlock [
 	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 5/17/2024 14:49'
 }
-PEButton >> anObject [
+PEButtonWorks >> anObject [
 
 	^ anObject
 ]
@@ -68,7 +68,7 @@ PEButton >> anObject [
 	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 5/17/2024 14:49'
 }
-PEButton >> anObject: aObject [
+PEButtonWorks >> anObject: aObject [
 
 	anObject := aObject
 ]
@@ -77,7 +77,7 @@ PEButton >> anObject: aObject [
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'LW 5/24/2024 23:24'
 }
-PEButton >> doActionLeft [
+PEButtonWorks >> doActionLeft [
 
 	"self arguments 
 		ifNil: ["self anObject perform: self actionLeft"]
@@ -89,7 +89,7 @@ PEButton >> doActionLeft [
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'LW 5/24/2024 23:25'
 }
-PEButton >> doActionRight [
+PEButtonWorks >> doActionRight [
 
 	"self arguments 
 		ifNil: ["self anObject perform: self actionRight"] 
@@ -100,7 +100,7 @@ PEButton >> doActionRight [
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/17/2024 14:57'
 }
-PEButton >> handlesMouseDown: anEvent [
+PEButtonWorks >> handlesMouseDown: anEvent [
 
 	^ true
 ]
@@ -109,7 +109,7 @@ PEButton >> handlesMouseDown: anEvent [
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/17/2024 17:44'
 }
-PEButton >> initialize [
+PEButtonWorks >> initialize [
 	
 	super initialize.
 	self color: Color transparent;
@@ -119,21 +119,21 @@ PEButton >> initialize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 5/25/2024 16:54'
+	#'squeak_changestamp' : 'LW 5/24/2024 23:24'
 }
-PEButton >> label: aString [
+PEButtonWorks >> label: aString [
 
-	labelText := (PEButtonText new contents: aString;
+	label := (PEButtonText new contents: aString;
 		center: self center;
 		yourself).
-	self addMorph: labelText
+	self addMorph: label
 ]
 
 {
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'LW 5/24/2024 23:23'
 }
-PEButton >> labelText [
+PEButtonWorks >> labelText [
 
 	^ labelText
 ]
@@ -142,7 +142,7 @@ PEButton >> labelText [
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/17/2024 15:08'
 }
-PEButton >> mouseDown: anEvent [
+PEButtonWorks >> mouseDown: anEvent [
 
 	anEvent redButtonPressed ifTrue: [self doActionLeft].
 	anEvent yellowButtonPressed ifTrue: [self doActionRight]

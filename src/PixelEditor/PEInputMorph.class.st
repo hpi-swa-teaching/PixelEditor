@@ -10,11 +10,11 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 5/23/2024 18:35'
+	#'squeak_changestamp' : 'LW 5/25/2024 19:04'
 }
 PEInputMorph >> initialize [
 
-	self inputField: (Morph new extent: 200@50; color: Color veryLightGray).
+	self inputField: (Morph new extent: 200@50; color: Color veryLightGray). "Hier besser ein PluggableTextMorph"
 	self textInput: (TextMorph new borderWidth: 1; borderColor: Color black; contents: ' '; extent: self inputField extent).
 	self inputField addMorph: self textInput.
 ]
