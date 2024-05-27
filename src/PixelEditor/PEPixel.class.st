@@ -70,25 +70,6 @@ PEPixel >> mouseDown: anEvent [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 19:36'
-}
-PEPixel >> mouseEnter: anEvent [
-
-	Transcript showln: anEvent
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/14/2024 14:06'
-}
-PEPixel >> mouseEnterDragging: anEvent [
-
-	self color: self selectedColor
-	
-]
-
-{
-	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/13/2024 18:53'
 }
 PEPixel >> selectedColor [
