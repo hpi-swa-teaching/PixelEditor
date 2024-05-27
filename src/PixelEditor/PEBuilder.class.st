@@ -1,10 +1,12 @@
 Class {
 	#name : #PEBuilder,
 	#superclass : #Object,
+
 	#instVars : [
 		'buttonBuilder',
 		'canvasBuilder'
 	],
+
 	#category : #PixelEditor
 }
 

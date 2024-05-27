@@ -105,31 +105,31 @@ PEColorPalette >> adjustColor [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/20/2024 16:54'
+
+	#'squeak_changestamp' : 'GLE 5/27/2024 11:11'
 }
 PEColorPalette >> buildAcceptButton [
 
-	^ PEButton new anObject: self;
-		actionRight: #doNothing;
-		actionLeft: #adjustColor;
+	^ PluggableButtonMorph new target: self;
+		action: #adjustColor;
 		color: Color yellow;
-		extent: PEColorPalette textBoxSize;
 		label: 'Accept';
+		extent: PEColorPalette textBoxSize;
 		yourself
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/20/2024 16:41'
+
+	#'squeak_changestamp' : 'GLE 5/27/2024 11:11'
 }
 PEColorPalette >> buildCloseButton [
 
-	^ PEButton new anObject: self;
-		actionRight: #doNothing;
-		actionLeft: #abandon;
+	^ PluggableButtonMorph new target: self;
+		action: #abandon;
 		color: Color yellow;
-		extent: PEColorPalette textBoxSize;
 		label: 'Close';
+		extent: PEColorPalette textBoxSize;
 		yourself
 ]
 
