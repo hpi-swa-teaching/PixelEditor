@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'actionLeft',
 		'actionRight',
-		'anObject'
+		'anObject',
+		'labelText'
 	],
 	#category : #PixelEditor
 }
@@ -79,6 +80,7 @@ PEButton >> anObject: aObject [
 PEButton >> doActionLeft [
 
 	self anObject perform: self actionLeft
+
 ]
 
 {
@@ -120,6 +122,7 @@ PEButton >> label: aString [
 	self addMorph: (PEButtonText new contents: aString;
 		center: self center;
 		yourself)
+
 ]
 
 {

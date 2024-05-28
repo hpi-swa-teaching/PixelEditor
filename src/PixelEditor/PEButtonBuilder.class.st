@@ -24,6 +24,15 @@ PEButtonBuilder class >> buttonRowPosition [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'LW 5/21/2024 21:28'
+}
+PEButtonBuilder class >> canvasSizeButtonSize [
+
+	^ 80 @ 50
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/17/2024 17:55'
 }
 PEButtonBuilder class >> colorButtonRowExtent [
@@ -86,7 +95,8 @@ PEButtonBuilder >> buildButtonRows: aScreen [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 19:36'
+	#'squeak_changestamp' : 'GLE 5/27/2024 10:57'
+
 }
 PEButtonBuilder >> buildColorButton: aScreen color: aColor [
 
@@ -121,14 +131,16 @@ PEButtonBuilder >> buildColorButtonRow: aScreen [
 {
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/17/2024 17:48'
+
 }
 PEButtonBuilder >> buildSaveButton: aScreen [
 
 	
-	^ PEButton new anObject: aScreen;
-		actionLeft: #save;
-		extent: (PEButtonBuilder saveButtonSize);
+
+	^ PluggableButtonMorph new target: aScreen;
+		action: #save;
 		label: 'Save';
+		extent: (PEButtonBuilder saveButtonSize);
 		yourself
 
 		

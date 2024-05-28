@@ -4,6 +4,11 @@ Class {
 	#instVars : [
 		'brushSelectedColor'
 	],
+
+	#classInstVars : [
+		'pixelSize'
+	],
+
 	#category : #PixelEditor
 }
 
@@ -26,20 +31,13 @@ PEPixel class >> borderSize [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GT 5/20/2024 14:19'
-}
-PEPixel class >> pixelSize [
-	
-	^ 100
-]
-
-{
 	#category : #accessing,
 	#'squeak_changestamp' : 'GT 5/25/2024 17:13'
 }
 PEPixel >> brushSelectedColor [
+  
 	^ brushSelectedColor
+  
 ]
 
 {
@@ -47,7 +45,26 @@ PEPixel >> brushSelectedColor [
 	#'squeak_changestamp' : 'GT 5/25/2024 17:13'
 }
 PEPixel >> brushSelectedColor: anObject [
+  
 	brushSelectedColor := anObject
+
+]
+
+	#'squeak_changestamp' : 'LW 5/24/2024 22:33'
+}
+PEPixel class >> pixelSize [
+	
+	^ pixelSize
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'LW 5/24/2024 22:32'
+}
+PEPixel class >> pixelSize: aSize [
+
+	pixelSize := aSize
+
 ]
 
 {
@@ -82,15 +99,7 @@ PEPixel >> initialize [
 PEPixel >> mouseDown: anEvent [
 
 	self color: self brushSelectedColor
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 19:36'
-}
-PEPixel >> mouseEnter: anEvent [
-
-	Transcript showln: anEvent
+  
 ]
 
 {
