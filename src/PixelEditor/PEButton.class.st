@@ -75,25 +75,21 @@ PEButton >> anObject: aObject [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 5/24/2024 23:24'
+	#'squeak_changestamp' : 'GLE 5/17/2024 15:05'
 }
 PEButton >> doActionLeft [
 
-	"self arguments 
-		ifNil: ["self anObject perform: self actionLeft"]
-		ifNotNil: [self anObject perform: self actionLeft withArguments: self arguments]"
-	
+	self anObject perform: self actionLeft
+
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 5/24/2024 23:25'
+	#'squeak_changestamp' : 'GLE 5/17/2024 15:05'
 }
 PEButton >> doActionRight [
 
-	"self arguments 
-		ifNil: ["self anObject perform: self actionRight"] 
-		ifNotNil: [self anObject perform: self actionRight withArguments: self arguments]"
+	self anObject perform: self actionRight
 ]
 
 {
@@ -119,23 +115,14 @@ PEButton >> initialize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 5/25/2024 16:54'
+	#'squeak_changestamp' : 'GLE 5/17/2024 17:50'
 }
 PEButton >> label: aString [
 
-	labelText := (PEButtonText new contents: aString;
+	self addMorph: (PEButtonText new contents: aString;
 		center: self center;
-		yourself).
-	self addMorph: labelText
-]
+		yourself)
 
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 5/24/2024 23:23'
-}
-PEButton >> labelText [
-
-	^ labelText
 ]
 
 {

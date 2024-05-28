@@ -2,7 +2,7 @@ Class {
 	#name : #PEPixel,
 	#superclass : #Morph,
 	#instVars : [
-		'selectedColor'
+		'brushSelectedColor'
 	],
 
 	#classInstVars : [
@@ -31,7 +31,24 @@ PEPixel class >> borderSize [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
+	#'squeak_changestamp' : 'GT 5/25/2024 17:13'
+}
+PEPixel >> brushSelectedColor [
+  
+	^ brushSelectedColor
+  
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GT 5/25/2024 17:13'
+}
+PEPixel >> brushSelectedColor: anObject [
+  
+	brushSelectedColor := anObject
+
+]
 
 	#'squeak_changestamp' : 'LW 5/24/2024 22:33'
 }
@@ -77,28 +94,20 @@ PEPixel >> initialize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 19:29'
+	#'squeak_changestamp' : 'GT 5/25/2024 17:12'
 }
 PEPixel >> mouseDown: anEvent [
 
-	self color: self selectedColor
+	self color: self brushSelectedColor
+  
 ]
 
 {
 	#category : #'as yet unclassified',
-
-	#'squeak_changestamp' : 'GLE 5/13/2024 18:53'
+	#'squeak_changestamp' : 'GT 5/25/2024 17:13'
 }
-PEPixel >> selectedColor [
+PEPixel >> mouseEnterDragging: anEvent [
 
-	^selectedColor
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/13/2024 18:53'
-}
-PEPixel >> selectedColor: aColor [
-
-	selectedColor:= aColor
+	self color: self brushSelectedColor
+	
 ]
