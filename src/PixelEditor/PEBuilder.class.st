@@ -23,6 +23,23 @@ PEBuilder >> buildPixelEditor [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 5/31/2024 15:33'
+}
+PEBuilder >> buildPixelEditorWithJson: aJson [
+
+	| buttonBuilder canvasBuilder |
+	
+	self setUpSavingDirectory.
+	buttonBuilder := PEButtonBuilder new.
+	canvasBuilder := PECanvasBuilder new.
+	buttonBuilder buildButtonRows: (canvasBuilder buildScreenWithJson: aJson)
+	
+	
+	 
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/17/2024 20:39'
 }
 PEBuilder >> setUpSavingDirectory [
