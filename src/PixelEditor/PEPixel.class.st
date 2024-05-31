@@ -4,11 +4,9 @@ Class {
 	#instVars : [
 		'brushSelectedColor'
 	],
-
 	#classInstVars : [
 		'pixelSize'
 	],
-
 	#category : #PixelEditor
 }
 
@@ -31,6 +29,26 @@ PEPixel class >> borderSize [
 ]
 
 {
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 5/31/2024 11:11'
+}
+PEPixel class >> pixelSize [
+
+	^ pixelSize 
+
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'LW 5/24/2024 22:32'
+}
+PEPixel class >> pixelSize: aSize [
+
+	pixelSize := aSize
+
+]
+
+{
 	#category : #accessing,
 	#'squeak_changestamp' : 'GT 5/25/2024 17:13'
 }
@@ -47,23 +65,6 @@ PEPixel >> brushSelectedColor [
 PEPixel >> brushSelectedColor: anObject [
   
 	brushSelectedColor := anObject
-
-]
-
-	#'squeak_changestamp' : 'LW 5/24/2024 22:33'
-}
-PEPixel class >> pixelSize [
-	
-	^ pixelSize
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 5/24/2024 22:32'
-}
-PEPixel class >> pixelSize: aSize [
-
-	pixelSize := aSize
 
 ]
 

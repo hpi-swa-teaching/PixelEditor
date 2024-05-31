@@ -1,6 +1,5 @@
 Class {
 	#name : #PEColorButton,
-
 	#superclass : #PEUI,
 	#instVars : [
 		'actionRight',
@@ -94,7 +93,6 @@ PEColorButton >> doActionLeft [
 {
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/27/2024 10:56'
-
 }
 PEColorButton >> doActionRight [
 
@@ -104,7 +102,6 @@ PEColorButton >> doActionRight [
 
 {
 	#category : #'as yet unclassified',
-
 	#'squeak_changestamp' : 'GLE 5/17/2024 14:57'
 }
 PEColorButton >> handlesMouseDown: anEvent [
@@ -115,7 +112,6 @@ PEColorButton >> handlesMouseDown: anEvent [
 {
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/27/2024 10:47'
-  
 }
 PEColorButton >> initialize [
 	

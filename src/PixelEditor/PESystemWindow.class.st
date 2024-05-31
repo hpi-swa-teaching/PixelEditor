@@ -52,6 +52,20 @@ PESystemWindow >> checkSizeCorrectnessfor: aHeight andWith: aWidth andSize: aSiz
 ]
 
 {
+	#category : #initialization,
+	#'squeak_changestamp' : 'GLE 5/31/2024 11:10'
+}
+PESystemWindow >> createPixelEditor [
+
+	super initialize.
+	self initializeWindow; 
+		initializeInputLines;
+		initializeSubmitButton; "addmorph dann einfach returnen"
+		initializeText.
+	self openInWorld
+]
+
+{
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'LW 5/27/2024 11:56'
 }
@@ -83,20 +97,6 @@ PESystemWindow >> heightInput: aHeight [
 PESystemWindow >> initialExtent [
 
 	^ PESystemWindow initialExtent
-]
-
-{
-	#category : #initialization,
-	#'squeak_changestamp' : 'LW 5/27/2024 12:02'
-}
-PESystemWindow >> initialize [
-
-	super initialize.
-	self initializeWindow; 
-		initializeInputLines;
-		initializeSubmitButton; "addmorph dann einfach returnen"
-		initializeText.
-	self openInWorld
 ]
 
 {

@@ -4,7 +4,6 @@ Class {
 	#instVars : [
 		'pixelCollection',
 		'brushSelectedColor'
-
 	],
 	#category : #PixelEditor
 }

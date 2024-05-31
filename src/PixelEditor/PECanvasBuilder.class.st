@@ -7,7 +7,6 @@ Class {
 {
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/17/2024 21:07'
-
 }
 PECanvasBuilder >> buildScreen [
 

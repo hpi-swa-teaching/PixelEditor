@@ -96,7 +96,6 @@ PEButtonBuilder >> buildButtonRows: aScreen [
 {
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/27/2024 10:57'
-
 }
 PEButtonBuilder >> buildColorButton: aScreen color: aColor [
 
@@ -131,7 +130,6 @@ PEButtonBuilder >> buildColorButtonRow: aScreen [
 {
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/17/2024 17:48'
-
 }
 PEButtonBuilder >> buildSaveButton: aScreen [
 

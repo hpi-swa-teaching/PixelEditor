@@ -220,7 +220,6 @@ PEColorPalette >> colorButton [
 {
 	#category : #accessing,
 	#'squeak_changestamp' : 'GT 5/25/2024 17:41'
-
 }
 PEColorPalette >> colorButton: anObject [
 
