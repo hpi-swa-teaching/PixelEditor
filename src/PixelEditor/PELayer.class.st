@@ -102,12 +102,3 @@ PELayer >> insertPixelAt: aPoint withColor: aColor [
 		position: self positionInWorld + aPoint; 
 		yourself)
 ]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/31/2024 14:28'
-}
-PELayer >> jsonFromString: aString [
-
-	^ Json readFromString: aString
-]

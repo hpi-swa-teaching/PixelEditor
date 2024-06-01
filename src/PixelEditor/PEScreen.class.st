@@ -37,16 +37,6 @@ PEScreen >> addToJsonString: aCollection [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 10:42'
-}
-PEScreen >> addToSaveCollection: aSubmorphCollection [
-
-	aSubmorphCollection do: [:submorph | self savingCollection addLast: (self getRGBFrom: submorph)].
-	self savingCollection addLast: '!'
-]
-
-{
-	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/17/2024 14:18'
 }
 PEScreen >> checkIfFileExists: aFileName [
@@ -111,33 +101,6 @@ PEScreen >> fileExists: aFileName [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 17:13'
-}
-PEScreen >> getLayerSubmorphs [
-
-	self submorphs do: [:each | each basicType = #PELayer 
-		ifTrue: [self addToSaveCollection: each submorphs]]
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 20:49'
-}
-PEScreen >> getRGBFrom: aMorph [
-
-| red blue green morphColor alpha |
-	morphColor := aMorph color.
-	morphColor = Color transparent ifTrue: [^ {-1.-1.-1.0}].
-	red := morphColor privateRed.
-	blue := morphColor privateBlue.
-	green := morphColor privateGreen.
-	alpha := morphColor alpha.
-	^ {red.blue.green.alpha}
-
-]
-
-{
-	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/31/2024 12:11'
 }
 PEScreen >> handleKeyDown: anEvent [
@@ -163,7 +126,7 @@ PEScreen >> handlesMouseDown: anEvent [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/31/2024 19:00'
+	#'squeak_changestamp' : 'GLE 6/1/2024 11:40'
 }
 PEScreen >> initialize [
 
@@ -171,7 +134,6 @@ PEScreen >> initialize [
 	self extent: World extent;
 		openInWorld;
 		color: Color white;
-		savingCollection: OrderedCollection new;
 		jsonString: String new
 ]
 
@@ -195,15 +157,17 @@ PEScreen >> jsonString: anObject [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/31/2024 15:35'
+	#'squeak_changestamp' : 'GLE 6/1/2024 12:30'
 }
 PEScreen >> load [
 	
 	| fileName |
 	
-	fileName := Project uiManager request: 'Choose a File Name'.
-	PEBuilder new buildPixelEditorWithJson: (self loadFile: '.\Saved-Images\', fileName).
-	self abandon.
+	fileName := PEFileSaver new windowTitle: 'Load File'; getUserResponse.
+	fileName isNil ifFalse: [
+		PEBuilder new buildPixelEditorWithJson: (self loadFile: fileName).
+		self abandon]
+	
 	
 ]
 
@@ -228,33 +192,15 @@ PEScreen >> mouseDown: anEvent [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/31/2024 11:29'
+	#'squeak_changestamp' : 'GLE 6/1/2024 12:29'
 }
 PEScreen >> save [
 
 	| fileName |
 	
-	fileName := Project uiManager request: 'Choose a File Name'.
-	fileName isEmpty 
-		ifFalse: [self checkIfFileExists: '.\Saved-Images\', fileName]
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 5/17/2024 11:07'
-}
-PEScreen >> savingCollection [
-
-	^ savingCollection
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 5/17/2024 11:07'
-}
-PEScreen >> savingCollection: anObject [
-
-	savingCollection := anObject
+	fileName := PEFileSaver new getUserResponse.
+	fileName isNil
+		ifFalse: [self checkIfFileExists: fileName]
 ]
 
 {

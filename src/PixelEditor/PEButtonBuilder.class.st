@@ -150,11 +150,33 @@ PEButtonBuilder >> buildSaveButton: aScreen [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 19:53'
+	#'squeak_changestamp' : 'GLE 6/1/2024 12:00'
 }
 PEButtonBuilder >> buildSettingsButtonRow: aScreen [
 	
-	aScreen addMorph: (PEButtonRow new addMorphNext: (self buildSaveButton: aScreen);
-		position: PEButtonBuilder buttonRowPosition;
-		extent: PEButtonBuilder buttonRowExtent)
+	aScreen addMorph: (PEButtonRow new extent: PEButtonBuilder buttonRowExtent;
+		addMorphNext: (self buildSaveButton: aScreen);
+		addMorphNext: (self buildloadButton: aScreen);
+		position: PEButtonBuilder buttonRowPosition)
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/1/2024 11:58'
+}
+PEButtonBuilder >> buildloadButton: aScreen [
+
+	
+
+	^ PluggableButtonMorph new target: aScreen;
+		action: #load;
+		label: 'Load';
+		extent: (PEButtonBuilder saveButtonSize);
+		yourself
+
+		
+		
+	
+
+	
 ]
