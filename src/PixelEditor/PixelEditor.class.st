@@ -63,7 +63,7 @@ PixelEditor >> createCanvasMorph [
 
 {
 	#category : #toolbuilder,
-	#'squeak_changestamp' : 'Corvin 6/1/2024 12:20'
+	#'squeak_changestamp' : 'Corvin 6/1/2024 12:47'
 }
 PixelEditor >> createCanvasPanelWithBuilder: aBuilder [ 
 	^ aBuilder pluggablePanelSpec new model: self;
@@ -71,7 +71,7 @@ PixelEditor >> createCanvasPanelWithBuilder: aBuilder [
 		 frame: (LayoutFrame new leftFraction: 0.33;
 			 topFraction: 0;
 			 rightFraction: 1;
-			 bottomFraction: 0.45)
+			 bottomFraction: 1)
 ]
 
 {
