@@ -1,6 +1,6 @@
 Class {
 	#name : #PECanvas,
-	#superclass : #Morph,
+	#superclass : #PasteUpMorph,
 	#category : #PixelEditor
 }
 

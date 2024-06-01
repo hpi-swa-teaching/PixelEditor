@@ -1,8 +1,8 @@
 Class {
 	#name : #PixelEditor,
-	#superclass : #Object,
+	#superclass : #Model,
 	#instVars : [
-		'playground'
+		'canvas'
 	],
 	#category : #PixelEditor
 }
@@ -55,6 +55,22 @@ PixelEditor >> buildWith: aBuilder [
 
 {
 	#category : #toolbuilder,
+	#'squeak_changestamp' : 'Corvin 6/1/2024 13:07'
+}
+PixelEditor >> canvas [
+	^ canvas
+]
+
+{
+	#category : #toolbuilder,
+	#'squeak_changestamp' : 'Corvin 6/1/2024 13:09'
+}
+PixelEditor >> canvas: aPECanvas [
+	canvas := aPECanvas
+]
+
+{
+	#category : #toolbuilder,
 	#'squeak_changestamp' : 'Corvin 6/1/2024 11:07'
 }
 PixelEditor >> createCanvasMorph [
@@ -76,11 +92,11 @@ PixelEditor >> createCanvasPanelWithBuilder: aBuilder [
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Corvin 6/1/2024 12:19'
+	#'squeak_changestamp' : 'Corvin 6/1/2024 13:10'
 }
 PixelEditor >> initialize [
 	super initialize.
-	self playground: MotuPlayground new.
+	self canvas: PECanvas new.
 ]
 
 {
@@ -110,26 +126,10 @@ PixelEditor >> open [
 
 {
 	#category : #toolbuilder,
-	#'squeak_changestamp' : 'Corvin 6/1/2024 12:19'
-}
-PixelEditor >> playground [
-	^ playground
-]
-
-{
-	#category : #toolbuilder,
-	#'squeak_changestamp' : 'Corvin 6/1/2024 12:19'
-}
-PixelEditor >> playground: aMotuPlayground [
-	playground := aMotuPlayground
-]
-
-{
-	#category : #toolbuilder,
-	#'squeak_changestamp' : 'Corvin 6/1/2024 12:22'
+	#'squeak_changestamp' : 'Corvin 6/1/2024 13:06'
 }
 PixelEditor >> playgroundInCollection [
-	^ {self playground}
+	^ {self canvas}
 ]
 
 {
