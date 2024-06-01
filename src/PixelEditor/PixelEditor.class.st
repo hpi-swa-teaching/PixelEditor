@@ -54,7 +54,7 @@ PixelEditor >> buildWith: aBuilder [
 ]
 
 {
-	#category : #toolbuilder,
+	#category : #accessing,
 	#'squeak_changestamp' : 'Corvin 6/1/2024 13:07'
 }
 PixelEditor >> canvas [
@@ -62,7 +62,7 @@ PixelEditor >> canvas [
 ]
 
 {
-	#category : #toolbuilder,
+	#category : #accessing,
 	#'squeak_changestamp' : 'Corvin 6/1/2024 13:09'
 }
 PixelEditor >> canvas: aPECanvas [
@@ -70,7 +70,7 @@ PixelEditor >> canvas: aPECanvas [
 ]
 
 {
-	#category : #toolbuilder,
+	#category : #canvas,
 	#'squeak_changestamp' : 'Corvin 6/1/2024 11:07'
 }
 PixelEditor >> createCanvasMorph [
@@ -100,7 +100,7 @@ PixelEditor >> initialize [
 ]
 
 {
-	#category : #toolbuilder,
+	#category : #accessing,
 	#'squeak_changestamp' : 'Corvin 6/1/2024 12:16'
 }
 PixelEditor >> labelString [
@@ -117,7 +117,7 @@ PixelEditor >> onClose [
 ]
 
 {
-	#category : #toolbuilder,
+	#category : #'initialize-release',
 	#'squeak_changestamp' : 'Corvin 6/1/2024 12:19'
 }
 PixelEditor >> open [
@@ -125,7 +125,7 @@ PixelEditor >> open [
 ]
 
 {
-	#category : #toolbuilder,
+	#category : #accessing,
 	#'squeak_changestamp' : 'Corvin 6/1/2024 13:06'
 }
 PixelEditor >> playgroundInCollection [
@@ -133,7 +133,7 @@ PixelEditor >> playgroundInCollection [
 ]
 
 {
-	#category : #toolbuilder,
+	#category : #styles,
 	#'squeak_changestamp' : 'Corvin 6/1/2024 12:45'
 }
 PixelEditor >> windowColorToUse [
