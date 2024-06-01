@@ -134,17 +134,17 @@ PixelEditor >> playgroundInCollection [
 
 {
 	#category : #toolbuilder,
-	#'squeak_changestamp' : 'Corvin 6/1/2024 11:04'
+	#'squeak_changestamp' : 'Corvin 6/1/2024 12:45'
 }
 PixelEditor >> windowColorToUse [
 	^ Color
 		colorFrom: (Model useColorfulWindows
 				ifTrue: [self userInterfaceTheme customWindowColor
 						ifNil: [Color
-								r: 0.9
-								g: 0.75
-								b: 0.45
-								alpha: 0.5]]
+								r: 0.8
+								g: 0.65
+								b: 0.35
+								alpha: 1.0]]
 				ifFalse: [self userInterfaceTheme uniformWindowColor
 						ifNil: [Color veryVeryLightGray]])
 ]
