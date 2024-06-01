@@ -2,10 +2,26 @@ Class {
 	#name : #PixelEditor,
 	#superclass : #Object,
 	#instVars : [
-		'window'
+		'playground'
 	],
 	#category : #PixelEditor
 }
+
+{
+	#category : #initialization,
+	#'squeak_changestamp' : 'Corvin 6/1/2024 12:20'
+}
+PixelEditor class >> defaultExtent [
+	^ 800@600
+]
+
+{
+	#category : #initialization,
+	#'squeak_changestamp' : 'Corvin 6/1/2024 12:17'
+}
+PixelEditor class >> defaultLabel [
+	^ 'Pixel Editor'
+]
 
 {
 	#category : #initialization,
@@ -26,33 +42,53 @@ PixelEditor class >> register [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 5/28/2024 11:01'
+	#category : #toolbuilder,
+	#'squeak_changestamp' : 'Corvin 6/1/2024 12:21'
 }
-PixelEditor >> buildWith: builder [ 
-	| newMorph |
-	newMorph := builder build: (builder pluggableWindowSpec new model: self;
-					 label: 'Pixel Editor';
-					 children: {};
-					 closeAction: #onClose;
-					 minimumExtent: 550 @ 400).
-	""
-	"self
-	
-	
+PixelEditor >> buildWith: aBuilder [ 
+	^ aBuilder build: (aBuilder pluggableWindowSpec new model: self;
+			 label: #labelString;
+			 extent: self class defaultExtent;
+			 children: {self createCanvasPanelWithBuilder: aBuilder};
+			 yourself)
+]
 
-	createCommandBarWithBuilder:
-	builder "
-	""
-	^ newMorph
+{
+	#category : #toolbuilder,
+	#'squeak_changestamp' : 'Corvin 6/1/2024 11:07'
+}
+PixelEditor >> createCanvasMorph [
+	^ (PECanvas new) name: 'canvas'; yourself.
+]
+
+{
+	#category : #toolbuilder,
+	#'squeak_changestamp' : 'Corvin 6/1/2024 12:20'
+}
+PixelEditor >> createCanvasPanelWithBuilder: aBuilder [ 
+	^ aBuilder pluggablePanelSpec new model: self;
+		 children: #playgroundInCollection;
+		 frame: (LayoutFrame new leftFraction: 0.33;
+			 topFraction: 0;
+			 rightFraction: 1;
+			 bottomFraction: 0.45)
 ]
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Corvin 5/28/2024 11:00'
+	#'squeak_changestamp' : 'Corvin 6/1/2024 12:19'
 }
 PixelEditor >> initialize [
 	super initialize.
+	self playground: MotuPlayground new.
+]
+
+{
+	#category : #toolbuilder,
+	#'squeak_changestamp' : 'Corvin 6/1/2024 12:16'
+}
+PixelEditor >> labelString [
+	^ self class defaultLabel
 ]
 
 {
@@ -62,4 +98,53 @@ PixelEditor >> initialize [
 PixelEditor >> onClose [
 	"TODO"
 	^ ''
+]
+
+{
+	#category : #toolbuilder,
+	#'squeak_changestamp' : 'Corvin 6/1/2024 12:19'
+}
+PixelEditor >> open [
+	^ ToolBuilder open: self
+]
+
+{
+	#category : #toolbuilder,
+	#'squeak_changestamp' : 'Corvin 6/1/2024 12:19'
+}
+PixelEditor >> playground [
+	^ playground
+]
+
+{
+	#category : #toolbuilder,
+	#'squeak_changestamp' : 'Corvin 6/1/2024 12:19'
+}
+PixelEditor >> playground: aMotuPlayground [
+	playground := aMotuPlayground
+]
+
+{
+	#category : #toolbuilder,
+	#'squeak_changestamp' : 'Corvin 6/1/2024 12:22'
+}
+PixelEditor >> playgroundInCollection [
+	^ {self playground}
+]
+
+{
+	#category : #toolbuilder,
+	#'squeak_changestamp' : 'Corvin 6/1/2024 11:04'
+}
+PixelEditor >> windowColorToUse [
+	^ Color
+		colorFrom: (Model useColorfulWindows
+				ifTrue: [self userInterfaceTheme customWindowColor
+						ifNil: [Color
+								r: 0.9
+								g: 0.75
+								b: 0.45
+								alpha: 0.5]]
+				ifFalse: [self userInterfaceTheme uniformWindowColor
+						ifNil: [Color veryVeryLightGray]])
 ]
