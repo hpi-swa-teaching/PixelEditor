@@ -1,6 +1,10 @@
 Class {
 	#name : #PECanvas,
 	#superclass : #PasteUpMorph,
+	#classInstVars : [
+		'pixelGridWidth',
+		'pixelGridHeight'
+	],
 	#category : #PixelEditor
 }
 
@@ -28,7 +32,15 @@ PECanvas >> initialize [
 		 setUpBackground;
 		 placePixel: width // 2 @ height // 2;
 		 placePixel: 100 @ 0
-	
+]
+
+{
+  #category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 5/17/2024 21:06'
+}
+PECanvas class >> pixelGridHeight [
+
+	^ pixelGridHeight
 ]
 
 {
@@ -54,6 +66,15 @@ PECanvas >> setUpBackground [
 		ifNil: [self color: Preferences defaultWorldColor  ] 
 		ifNotNil: [ self setAsBackground: theme linenblue ]
 ]
+  
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 5/17/2024 21:06'
+}
+PECanvas class >> pixelGridWidth [
+
+	^ pixelGridWidth
+]
 
 {
 	#category : #'as yet unclassified',
@@ -62,4 +83,15 @@ PECanvas >> setUpBackground [
 PECanvas >> wantsDroppedMorph: aMorph event: evt [
 
 	^ false
+  
+]
+
+{
+  #category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 5/17/2024 21:07'
+}
+PECanvas class >> pixelGridWidth: aWidth andHeight: aHeight [
+
+	pixelGridWidth := aWidth.
+	pixelGridHeight := aHeight 
 ]

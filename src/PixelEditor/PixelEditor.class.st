@@ -33,11 +33,10 @@ PixelEditor class >> open [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'Corvin 5/21/2024 11:52'
+	#'squeak_changestamp' : 'GLE 5/31/2024 11:10'
 }
 PixelEditor class >> register [
 	"register the editor to the apps dropdown"
-	
 	TheWorldMenu registerOpenCommand: {'PixelEditor'. {PixelEditor. #open}}
 ]
 
@@ -146,5 +145,6 @@ PixelEditor >> windowColorToUse [
 								b: 0.35
 								alpha: 1.0]]
 				ifFalse: [self userInterfaceTheme uniformWindowColor
-						ifNil: [Color veryVeryLightGray]])
+						ifNil: [Color veryVeryLightGray]])	
+
 ]
