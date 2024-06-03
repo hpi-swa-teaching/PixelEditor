@@ -129,11 +129,41 @@ PEButtonBuilder >> buildColorButtonRow: aScreen [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 17:48'
+	#'squeak_changestamp' : 'GLE 6/3/2024 14:21'
 }
-PEButtonBuilder >> buildSaveButton: aScreen [
+PEButtonBuilder >> buildColorButtons: aCanvas [
+
+	| buttonCollection |
+	
+	buttonCollection := OrderedCollection new.
+	PEButtonBuilder colorsForButtons do: [:nextColor | 
+		buttonCollection add: (self buildColorButton: aCanvas color: nextColor)].
+	^  buttonCollection
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/3/2024 14:19'
+}
+PEButtonBuilder >> buildColorButtons: aCanvas color: aColor [
+
+	"The brush added to the end of aScreen submorphs. We can access it by calling last on the submorph 	array of aScreen"
+	
+	^ PEColorButton new anObject: aCanvas submorphs last;
+		extent: (PEButtonBuilder colorButtonSize);
+		color: aColor;
+		yourself
+		
+	
 
 	
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/3/2024 10:39'
+}
+PEButtonBuilder >> buildSaveButton: aScreen [
 
 	^ PluggableButtonMorph new target: aScreen;
 		action: #save;
@@ -162,11 +192,9 @@ PEButtonBuilder >> buildSettingsButtonRow: aScreen [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/1/2024 11:58'
+	#'squeak_changestamp' : 'GLE 6/3/2024 10:39'
 }
 PEButtonBuilder >> buildloadButton: aScreen [
-
-	
 
 	^ PluggableButtonMorph new target: aScreen;
 		action: #load;

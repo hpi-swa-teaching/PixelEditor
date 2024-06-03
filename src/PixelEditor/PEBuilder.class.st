@@ -6,16 +6,29 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 20:28'
+	#'squeak_changestamp' : 'GLE 6/3/2024 10:15'
 }
 PEBuilder >> buildPixelEditor [
 
-	| buttonBuilder canvasBuilder |
+	|  canvas |
 	
 	self setUpSavingDirectory.
-	buttonBuilder := PEButtonBuilder new.
-	canvasBuilder := PECanvasBuilder new.
-	buttonBuilder buildButtonRows: canvasBuilder buildScreen
+	canvas := PECanvasBuilder new buildCanvas.
+	PEButtonBuilder new buildButtonRows: canvas.
+	^ canvas
+	
+	
+	 
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/3/2024 13:48'
+}
+PEBuilder >> buildPixelEditorOld [
+	
+	self setUpSavingDirectory.
+	PEButtonBuilder new buildButtonRows: PECanvasBuilder new buildScreen.
 	
 	
 	 

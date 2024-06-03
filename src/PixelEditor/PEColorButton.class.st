@@ -2,8 +2,6 @@ Class {
 	#name : #PEColorButton,
 	#superclass : #PEUI,
 	#instVars : [
-		'actionRight',
-		'actionLeft',
 		'anObject'
 	],
 	#category : #PixelEditor
@@ -29,42 +27,6 @@ PEColorButton class >> borderSize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 15:04'
-}
-PEColorButton >> actionLeft [
-
-	^ actionLeft
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 15:04'
-}
-PEColorButton >> actionLeft: aCodeBlock [
-
-	actionLeft := aCodeBlock
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 15:05'
-}
-PEColorButton >> actionRight [
-
-	^ actionRight
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 15:04'
-}
-PEColorButton >> actionRight: aCodeBlock [
-
-	actionRight := aCodeBlock
-]
-
-{
-	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/17/2024 14:49'
 }
 PEColorButton >> anObject [
@@ -83,7 +45,7 @@ PEColorButton >> anObject: aObject [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/27/2024 10:56'
+	#'squeak_changestamp' : 'GLE 6/3/2024 14:38'
 }
 PEColorButton >> doActionLeft [
 

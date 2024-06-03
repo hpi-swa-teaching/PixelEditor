@@ -260,18 +260,23 @@ PESystemWindow >> inputLines: anArray [
 
 {
 	#category : #inputProcessing,
-	#'squeak_changestamp' : 'LW 5/27/2024 12:03'
+	#'squeak_changestamp' : 'GLE 6/3/2024 19:28'
 }
 PESystemWindow >> processHeight: aHeight andWidth: aWidth andSize: aSize [
 
-	| numericValueHeight 	numericValueWidth numericValuePixelSize |
+	| numericValueHeight 	numericValueWidth numericValuePixelSize pixelEditor |
 		
 	numericValueHeight := aHeight getNumericValue.
 	numericValueWidth := aWidth getNumericValue.
 	numericValuePixelSize := aSize getNumericValue.
 	(self checkSizeCorrectnessfor: numericValueHeight andWith: numericValueWidth andSize: numericValuePixelSize)
-		ifTrue: [PECanvas pixelGridWidth: numericValueHeight andHeight: numericValueWidth. PEPixel pixelSize: 				numericValuePixelSize. PEBuilder new buildPixelEditor. self abandon]
-		ifFalse: [self addedText emphasis: 4. self addedText changed]
+		ifTrue: [PECanvas pixelGridWidth: numericValueHeight andHeight: numericValueWidth. 
+			PEPixel pixelSize: numericValuePixelSize. 
+			pixelEditor := PixelEditor open. 
+			self abandon]
+		ifFalse: [self addedText emphasis: 4. 
+			self addedText changed].
+	PixelEditor resizeColorButtons
 ]
 
 {

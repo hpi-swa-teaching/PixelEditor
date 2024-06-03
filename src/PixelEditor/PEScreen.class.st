@@ -101,11 +101,12 @@ PEScreen >> fileExists: aFileName [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/31/2024 12:11'
+	#'squeak_changestamp' : 'GLE 6/3/2024 13:53'
 }
 PEScreen >> handleKeyDown: anEvent [
 
 	| keyDictionary key |
+	
 	key := self eventToCharacter: anEvent.
 	keyDictionary := Dictionary new.
 	keyDictionary at: 'x' put: #abandon.
