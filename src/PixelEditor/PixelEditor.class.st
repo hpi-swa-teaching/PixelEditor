@@ -25,10 +25,13 @@ PixelEditor class >> defaultLabel [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'Corvin 5/28/2024 11:00'
+	#'squeak_changestamp' : 'Corvin 6/2/2024 16:41'
 }
 PixelEditor class >> open [
-	ToolBuilder open: self new.
+	| instance |
+	instance := self new.
+	ToolBuilder open: instance.
+	^ instance
 ]
 
 {
@@ -70,20 +73,20 @@ PixelEditor >> canvas: aPECanvas [
 ]
 
 {
-	#category : #canvas,
-	#'squeak_changestamp' : 'Corvin 6/1/2024 11:07'
+	#category : #accessing,
+	#'squeak_changestamp' : 'Corvin 6/2/2024 16:54'
 }
-PixelEditor >> createCanvasMorph [
-	^ (PECanvas new) name: 'canvas'; yourself.
+PixelEditor >> canvasInCollection [
+	^ {self canvas}
 ]
 
 {
 	#category : #toolbuilder,
-	#'squeak_changestamp' : 'Corvin 6/1/2024 12:47'
+	#'squeak_changestamp' : 'Corvin 6/2/2024 16:54'
 }
 PixelEditor >> createCanvasPanelWithBuilder: aBuilder [ 
 	^ aBuilder pluggablePanelSpec new model: self;
-		 children: #playgroundInCollection;
+		 children: #canvasInCollection;
 		 frame: (LayoutFrame new leftFraction: 0.33;
 			 topFraction: 0;
 			 rightFraction: 1;
@@ -92,11 +95,13 @@ PixelEditor >> createCanvasPanelWithBuilder: aBuilder [
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Corvin 6/1/2024 13:10'
+	#'squeak_changestamp' : 'Corvin 6/3/2024 08:56'
 }
 PixelEditor >> initialize [
 	super initialize.
-	self canvas: PECanvas new.
+	canvas := PECanvas new.
+	"TODO remove following"
+	self positionPixel: 0 @0
 ]
 
 {
@@ -105,6 +110,15 @@ PixelEditor >> initialize [
 }
 PixelEditor >> labelString [
 	^ self class defaultLabel
+]
+
+{
+	#category : #canvas,
+	#'squeak_changestamp' : 'Corvin 6/2/2024 17:00'
+}
+PixelEditor >> nameCanvasMorph [
+	^ canvas name: 'canvas';
+		 yourself
 ]
 
 {
@@ -125,11 +139,11 @@ PixelEditor >> open [
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'Corvin 6/1/2024 13:06'
+	#category : #canvas,
+	#'squeak_changestamp' : 'Corvin 6/2/2024 17:22'
 }
-PixelEditor >> playgroundInCollection [
-	^ {self canvas}
+PixelEditor >> positionPixel: aPosition [ 
+	canvas positionPixel: aPosition
 ]
 
 {

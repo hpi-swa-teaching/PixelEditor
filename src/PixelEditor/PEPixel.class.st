@@ -16,11 +16,8 @@ PEPixel >> initialize [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'Corvin 6/1/2024 20:08'
+	#'squeak_changestamp' : 'Corvin 6/2/2024 17:17'
 }
 PEPixel >> positionPixel: aPosition [ 
-	| x y |
-	x := aPosition x - ( self width / 2).
-	y := aPosition y - ( self height / 2).
-	self position: x@y
+	self position: aPosition
 ]

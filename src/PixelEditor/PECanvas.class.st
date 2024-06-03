@@ -14,7 +14,16 @@ PECanvas >> clear [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/1/2024 20:09'
+	#'squeak_changestamp' : 'Corvin 6/3/2024 09:09'
+}
+PECanvas >> extent: aPoint [ 
+	super extent: aPoint.
+	self positionPixel: self extent.
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Corvin 6/2/2024 16:36'
 }
 PECanvas >> initialize [
 	| width height |
@@ -24,21 +33,18 @@ PECanvas >> initialize [
 	self
 		layoutFrame: (LayoutFrame
 				fractions: (0 @ 0 rect: 1 @ 1));
-			beSticky;
-		 setUpBackground;
-		 placePixel: width // 2 @ height // 2;
-		 placePixel: 100 @ 0
-	
+		 beSticky;
+		 setUpBackground.
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/1/2024 19:46'
+	#'squeak_changestamp' : 'Corvin 6/2/2024 17:19'
 }
-PECanvas >> placePixel: aCoordinate [ 
+PECanvas >> positionPixel: aPosition [
 	| pixel |
 	pixel := PEPixel new.
-	 pixel position: aCoordinate.
+	pixel position: aPosition.
 	self addMorph: pixel
 ]
 
