@@ -10,6 +10,19 @@ Class {
 	#category : #PixelEditor
 }
 
+
+
+{
+	#category : #initialization,
+	#'squeak_changestamp' : 'Corvin 6/1/2024 20:08'
+}
+PEPixel >> positionPixel: aPosition [ 
+	| x y |
+	x := aPosition x - ( self width / 2).
+	y := aPosition y - ( self height / 2).
+	self position: x@y
+]
+
 {
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/14/2024 13:56'
