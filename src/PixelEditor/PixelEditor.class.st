@@ -95,13 +95,11 @@ PixelEditor >> createCanvasPanelWithBuilder: aBuilder [
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Corvin 6/3/2024 08:56'
+	#'squeak_changestamp' : 'Corvin 6/3/2024 17:11'
 }
 PixelEditor >> initialize [
 	super initialize.
 	canvas := PECanvas new.
-	"TODO remove following"
-	self positionPixel: 0 @0
 ]
 
 {
@@ -136,14 +134,6 @@ PixelEditor >> onClose [
 }
 PixelEditor >> open [
 	^ ToolBuilder open: self
-]
-
-{
-	#category : #canvas,
-	#'squeak_changestamp' : 'Corvin 6/2/2024 17:22'
-}
-PixelEditor >> positionPixel: aPosition [ 
-	canvas positionPixel: aPosition
 ]
 
 {

@@ -14,16 +14,15 @@ PECanvas >> clear [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/3/2024 09:09'
+	#'squeak_changestamp' : 'Corvin 6/3/2024 17:19'
 }
 PECanvas >> extent: aPoint [ 
-	super extent: aPoint.
-	self positionPixel: self extent.
+	super extent: aPoint. self positionCenterPixel
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/2/2024 16:36'
+	#'squeak_changestamp' : 'Corvin 6/3/2024 17:14'
 }
 PECanvas >> initialize [
 	| width height |
@@ -34,18 +33,20 @@ PECanvas >> initialize [
 		layoutFrame: (LayoutFrame
 				fractions: (0 @ 0 rect: 1 @ 1));
 		 beSticky;
-		 setUpBackground.
+		 setUpBackground;
+		 clipSubmorphs: false;
+		 addMorph: PEPixel new
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/2/2024 17:19'
+	#'squeak_changestamp' : 'Corvin 6/3/2024 18:10'
 }
-PECanvas >> positionPixel: aPosition [
-	| pixel |
-	pixel := PEPixel new.
-	pixel position: aPosition.
-	self addMorph: pixel
+PECanvas >> positionCenterPixel [
+	| canvasCenter pixelCenter |
+	canvasCenter := self bounds center.
+	pixelCenter := self submorphs first bounds center.
+	self submorphs first position: canvasCenter // 2 - pixelCenter
 ]
 
 {
