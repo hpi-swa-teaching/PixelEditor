@@ -1,6 +1,9 @@
 Class {
 	#name : #PECanvas,
 	#superclass : #PasteUpMorph,
+	#instVars : [
+		'originPixel'
+	],
 	#category : #PixelEditor
 }
 
@@ -13,7 +16,7 @@ PECanvas >> clear [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'Corvin 6/3/2024 17:19'
 }
 PECanvas >> extent: aPoint [ 
@@ -21,32 +24,33 @@ PECanvas >> extent: aPoint [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/3/2024 17:14'
+	#category : #'initialize-release',
+	#'squeak_changestamp' : 'Corvin 6/4/2024 11:22'
 }
 PECanvas >> initialize [
-	| width height |
 	super initialize.
-	width := self bounds width.
-	height := self bounds height.
+	originPixel := PEPixel new.
+	originPixel color: Color orange.
 	self
 		layoutFrame: (LayoutFrame
 				fractions: (0 @ 0 rect: 1 @ 1));
 		 beSticky;
 		 setUpBackground;
 		 clipSubmorphs: false;
-		 addMorph: PEPixel new
+		 addMorph: originPixel
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/3/2024 18:10'
+	#'squeak_changestamp' : 'Corvin 6/4/2024 11:22'
 }
 PECanvas >> positionCenterPixel [
-	| canvasCenter pixelCenter |
+	| canvasCenter pixelCenter newPosition centerOffset |
 	canvasCenter := self bounds center.
-	pixelCenter := self submorphs first bounds center.
-	self submorphs first position: canvasCenter // 2 - pixelCenter
+	pixelCenter := originPixel bounds center.
+	centerOffset := originPixel extent // 2 negated.
+	newPosition := canvasCenter + centerOffset.
+	originPixel position: newPosition.
 ]
 
 {

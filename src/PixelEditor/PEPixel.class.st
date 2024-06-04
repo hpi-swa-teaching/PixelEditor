@@ -6,10 +6,10 @@ Class {
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'Corvin 6/1/2024 20:09'
+	#'squeak_changestamp' : 'Corvin 6/4/2024 10:55'
 }
 PEPixel >> initialize [
 	super initialize.
 	self extent: 30 @ 30;
-		 sticky: true
+	sticky: true.
 ]
