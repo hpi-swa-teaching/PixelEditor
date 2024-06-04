@@ -25,9 +25,11 @@ PECanvas >> extent: aPoint [
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Corvin 6/4/2024 11:22'
+	#'squeak_changestamp' : 'Corvin 6/4/2024 11:38'
 }
 PECanvas >> initialize [
+	| pixel |
+	pixel := PEPixel new.
 	super initialize.
 	originPixel := PEPixel new.
 	originPixel color: Color orange.
@@ -37,7 +39,10 @@ PECanvas >> initialize [
 		 beSticky;
 		 setUpBackground;
 		 clipSubmorphs: false;
-		 addMorph: originPixel
+		 addMorph: originPixel;
+		addMorph: pixel.
+	pixel
+		position: (self translateCoordinates: 0 @ 1)
 ]
 
 {
@@ -64,6 +69,21 @@ PECanvas >> setUpBackground [
 	theme
 		ifNil: [self color: Preferences defaultWorldColor  ] 
 		ifNotNil: [ self setAsBackground: theme linenblue ]
+]
+
+{
+	#category : #'initialize-release',
+	#'squeak_changestamp' : 'Corvin 6/4/2024 11:26'
+}
+PECanvas >> setupPixelGrid [
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Corvin 6/4/2024 11:44'
+}
+PECanvas >> translateCoordinates: aCoordinate [ 
+	^ originPixel position
 ]
 
 {
