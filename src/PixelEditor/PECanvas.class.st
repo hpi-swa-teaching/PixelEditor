@@ -2,10 +2,31 @@ Class {
 	#name : #PECanvas,
 	#superclass : #PasteUpMorph,
 	#instVars : [
-		'originPixel'
+		'originPixel',
+		'matrix'
 	],
 	#category : #PixelEditor
 }
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Corvin 6/4/2024 15:14'
+}
+PECanvas class >> defaultPixelColor [
+	^ [Color
+		r: 0.1
+		g: 0.1
+		b: 0.1
+		alpha: 1.0]
+]
+
+{
+	#category : #pixels,
+	#'squeak_changestamp' : 'Corvin 6/4/2024 15:23'
+}
+PECanvas >> addPixel: aCoordinate [ 
+	self matrix at: aCoordinate put: PEPixel new
+]
 
 {
 	#category : #'as yet unclassified',
@@ -24,25 +45,46 @@ PECanvas >> extent: aPoint [
 ]
 
 {
+	#category : #accessing,
+	#'squeak_changestamp' : 'Corvin 6/4/2024 14:19'
+}
+PECanvas >> getPixel: aCoordinate [ 
+	^ self matrix at: aCoordinate ifAbsent: [self addPixel: aCoordinate]
+]
+
+{
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Corvin 6/4/2024 11:38'
+	#'squeak_changestamp' : 'Corvin 6/4/2024 14:07'
 }
 PECanvas >> initialize [
-	| pixel |
-	pixel := PEPixel new.
 	super initialize.
 	originPixel := PEPixel new.
 	originPixel color: Color orange.
+	matrix := Dictionary new.
+	"TODO: Set clipSubMorphs to true"
 	self
 		layoutFrame: (LayoutFrame
 				fractions: (0 @ 0 rect: 1 @ 1));
 		 beSticky;
 		 setUpBackground;
 		 clipSubmorphs: false;
-		 addMorph: originPixel;
-		addMorph: pixel.
-	pixel
-		position: (self translateCoordinates: 0 @ 1)
+		 addMorph: originPixel
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Corvin 6/4/2024 14:09'
+}
+PECanvas >> matrix [
+^matrix
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Corvin 6/4/2024 14:09'
+}
+PECanvas >> matrix: aMatrix [
+matrix := aMatrix
 ]
 
 {
@@ -69,13 +111,6 @@ PECanvas >> setUpBackground [
 	theme
 		ifNil: [self color: Preferences defaultWorldColor  ] 
 		ifNotNil: [ self setAsBackground: theme linenblue ]
-]
-
-{
-	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Corvin 6/4/2024 11:26'
-}
-PECanvas >> setupPixelGrid [
 ]
 
 {
