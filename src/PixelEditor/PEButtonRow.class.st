@@ -20,20 +20,15 @@ PEButtonRow >> addMorphBelow: aMorph [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 18:27'
+	#'squeak_changestamp' : 'GLE 6/3/2024 20:42'
 }
 PEButtonRow >> addMorphCollection: aMorphCollection [
 
-	| counter lowerCollection upperCollection|
-	counter := 0.
-	lowerCollection := OrderedCollection new.
-	upperCollection := OrderedCollection new.
-	aMorphCollection do: [:each | counter >= (aMorphCollection size / 2) 
-		ifTrue: [upperCollection add: each]
-		ifFalse: [lowerCollection add: each].
-		counter := counter + 1].
-	self addMorphCollectionUpper: upperCollection;
-		addMorphCollectionLower: lowerCollection
+	| collection |
+	
+	collection := self splitCollection: aMorphCollection.
+	self addMorphCollectionUpper: (collection at: 1);
+		addMorphCollectionLower: (collection at: 2)
 ]
 
 {
@@ -73,7 +68,7 @@ PEButtonRow >> addMorphNext: aMorph [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 18:59'
+	#'squeak_changestamp' : 'GLE 6/3/2024 20:21'
 }
 PEButtonRow >> extent: anExtent [
 
@@ -83,14 +78,16 @@ PEButtonRow >> extent: anExtent [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 18:53'
+	#'squeak_changestamp' : 'GLE 6/3/2024 20:50'
 }
 PEButtonRow >> fitSubmorphs [
 
-	| collection |
+	| collection splitCollection|
 	
 	self submorphs do: [:each | each extent: self newExtent].
-	collection := self submorphs.
+	splitCollection := self splitCollection: self submorphs.
+	collection := splitCollection at: 2.
+	(splitCollection at: 1) addAllFirstTo: collection. 
 	self removeAllMorphs.
 	self addMorphCollection: collection.
 	
@@ -98,14 +95,14 @@ PEButtonRow >> fitSubmorphs [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 16:46'
+	#'squeak_changestamp' : 'GLE 6/3/2024 20:16'
 }
 PEButtonRow >> initialize [
 
 	super initialize. 
 	self borderWidth: 2;
 		color: Color transparent;
-		yCoordinate: 0
+		submorphs: OrderedCollection new
 ]
 
 {
@@ -118,17 +115,28 @@ PEButtonRow >> newExtent [
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/3/2024 16:46'
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/3/2024 20:41'
 }
-PEButtonRow >> yCoordinate [
-	^ yCoordinate
+PEButtonRow >> splitCollection: aCollection [
+
+	| counter lowerCollection upperCollection|
+	
+	counter := 0.
+	lowerCollection := OrderedCollection new.
+	upperCollection := OrderedCollection new.
+	aCollection do: [:each | counter >= (aCollection size / 2) 
+		ifTrue: [upperCollection add: each]
+		ifFalse: [lowerCollection add: each].
+		counter := counter + 1].
+	^ {	upperCollection . lowerCollection }
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/3/2024 16:46'
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/3/2024 20:16'
 }
-PEButtonRow >> yCoordinate: anObject [
-	yCoordinate := anObject
+PEButtonRow >> submorphs: aCollection [
+
+	submorphs := aCollection
 ]

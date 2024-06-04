@@ -1,32 +1,30 @@
 Class {
-	#name : #PEScreen,
-	#superclass : #Morph,
+	#name : #PESettingsButton,
+	#superclass : #PluggableButtonMorph,
 	#instVars : [
-		'savingCollection',
-		'jsonString',
-		'pixelID'
+		'jsonString'
 	],
 	#category : #PixelEditor
 }
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/31/2024 13:31'
+	#'squeak_changestamp' : 'GLE 6/4/2024 00:58'
 }
-PEScreen >> addToJson [
+PESettingsButton >> addToJson [
 	
 	self jsonString: self jsonString, ('"width" : "', PECanvas pixelGridWidth, ' ", ').
 	self jsonString: self jsonString, ('"height" : "', PECanvas pixelGridHeight, ' ", ').
 	self jsonString: self jsonString, ('"pixelSize" : "', PEPixel pixelSize, ' " ').
-	self submorphs do: [:each | each basicType = #PELayer 
+	self target canvas submorphs do: [:each | each basicType = #PELayer 
 		ifTrue: [self addToJsonString: each submorphs]]
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/31/2024 18:59'
+	#'squeak_changestamp' : 'GLE 6/4/2024 00:41'
 }
-PEScreen >> addToJsonString: aCollection [
+PESettingsButton >> addToJsonString: aCollection [
 
 	| pixelID |
 	pixelID := 1.
@@ -37,9 +35,9 @@ PEScreen >> addToJsonString: aCollection [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 14:18'
+	#'squeak_changestamp' : 'GLE 6/4/2024 00:41'
 }
-PEScreen >> checkIfFileExists: aFileName [
+PESettingsButton >> checkIfFileExists: aFileName [
 	
 	(StandardFileStream isAFileNamed: (StandardFileStream fullName: aFileName)) 
 		ifFalse: [self writeFile: aFileName stream: (StandardFileStream newFileNamed: aFileName)]
@@ -50,9 +48,9 @@ PEScreen >> checkIfFileExists: aFileName [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/31/2024 19:04'
+	#'squeak_changestamp' : 'GLE 6/4/2024 00:41'
 }
-PEScreen >> colorForJson: aColor [
+PESettingsButton >> colorForJson: aColor [
 
 	| stringRed stringGreen stringBlue |
 	aColor = Color transparent ifTrue: [^ '"#r# : #-1#"'].
@@ -64,35 +62,24 @@ PEScreen >> colorForJson: aColor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/14/2024 12:23'
+	#'squeak_changestamp' : 'GLE 6/4/2024 00:41'
 }
-PEScreen >> doNothing [
+PESettingsButton >> doNothing [
 
 	"Nothing"
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/14/2024 11:33'
+	#'squeak_changestamp' : 'GLE 6/4/2024 01:22'
 }
-PEScreen >> eventToCharacter: anEvent [ 
- 
-	^ anEvent keyCharacter asString asLowercase
-	
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/31/2024 11:07'
-}
-PEScreen >> fileExists: aFileName [
+PESettingsButton >> fileExists: aFileName [
 
 	| UserInputBox |
 	
 	UserInputBox := UserDialogBoxMorph new.
 	UserInputBox label: 'File exists already. Do you want to replace it?';
-		openInWorld;
-		position: self center.
+		openInWorld.
 	UserInputBox createAcceptButton action: [
 		self writeFile: aFileName stream: (StandardFileStream forceNewFileNamed: aFileName).
 		UserInputBox delete].
@@ -101,80 +88,52 @@ PEScreen >> fileExists: aFileName [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 13:53'
+	#'squeak_changestamp' : 'GLE 6/4/2024 00:55'
 }
-PEScreen >> handleKeyDown: anEvent [
-
-	| keyDictionary key |
-	
-	key := self eventToCharacter: anEvent.
-	keyDictionary := Dictionary new.
-	keyDictionary at: 'x' put: #abandon.
-	keyDictionary at: 's' put: #save.
-	keyDictionary at: 'l' put: #load.
-	self perform: (keyDictionary at: key ifAbsent: #doNothing)
-
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 20:47'
-}
-PEScreen >> handlesMouseDown: anEvent [
-
-	^ true
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:38'
-}
-PEScreen >> initialize [
+PESettingsButton >> initialize [
 
 	super initialize.
-	self beTransparent;
-		jsonString: String new
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 5/31/2024 11:29'
-}
-PEScreen >> jsonString [
-
-	^ jsonString
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 5/31/2024 11:29'
-}
-PEScreen >> jsonString: anObject [
-
-	jsonString := anObject
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/1/2024 12:30'
+	#'squeak_changestamp' : 'GLE 6/4/2024 00:54'
 }
-PEScreen >> load [
+PESettingsButton >> jsonString [
+
+	^ self target jsonString
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/4/2024 00:54'
+}
+PESettingsButton >> jsonString: anObject [
+
+	self target jsonString: anObject
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/4/2024 01:35'
+}
+PESettingsButton >> load [
 	
 	| fileName |
 	
 	fileName := PEFileSaver new windowTitle: 'Load File'; getUserResponse.
 	fileName isNil ifFalse: [
 		PEBuilder new buildPixelEditorWithJson: (self loadFile: fileName).
-		self abandon]
+		self target systemWindow abandon]
 	
 	
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/31/2024 16:06'
+	#'squeak_changestamp' : 'GLE 6/4/2024 00:43'
 }
-PEScreen >> loadFile: afileName [
+PESettingsButton >> loadFile: afileName [
 	
 	^ Json readFromString: (self stringFromStream: (StandardFileStream oldFileNamed: afileName))
 	
@@ -182,18 +141,18 @@ PEScreen >> loadFile: afileName [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 20:47'
+	#'squeak_changestamp' : 'GLE 6/4/2024 00:53'
 }
-PEScreen >> mouseDown: anEvent [
+PESettingsButton >> mouseDown: anEvent [
 
-	self doNothing
+	self doAction
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/1/2024 12:29'
+	#'squeak_changestamp' : 'GLE 6/4/2024 00:43'
 }
-PEScreen >> save [
+PESettingsButton >> save [
 
 	| fileName |
 	
@@ -204,9 +163,9 @@ PEScreen >> save [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/31/2024 13:26'
+	#'squeak_changestamp' : 'GLE 6/4/2024 00:43'
 }
-PEScreen >> stringFromStream: aStream [
+PESettingsButton >> stringFromStream: aStream [
 
 	| string |
 	
@@ -218,9 +177,9 @@ PEScreen >> stringFromStream: aStream [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/31/2024 19:00'
+	#'squeak_changestamp' : 'GLE 6/4/2024 00:43'
 }
-PEScreen >> writeFile: aFileName stream: aFileStream [
+PESettingsButton >> writeFile: aFileName stream: aFileStream [
 
 	self addToJson.
 	aFileStream nextPutAll: self jsonString; 

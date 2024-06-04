@@ -3,7 +3,9 @@ Class {
 	#superclass : #Model,
 	#instVars : [
 		'canvas',
-		'colorButtonContainer'
+		'colorButtonContainer',
+		'jsonString',
+		'settingsButtonContainer'
 	],
 	#category : #PixelEditor
 }
@@ -35,6 +37,19 @@ PixelEditor class >> open [
 	| instance |
 	
 	instance := self new.
+	ToolBuilder open: instance.
+	^ instance
+]
+
+{
+	#category : #initialization,
+	#'squeak_changestamp' : 'GLE 6/4/2024 01:25'
+}
+PixelEditor class >> openWithCanvas: aCanvas [
+
+	| instance |
+	
+	instance := self new canvas: aCanvas.
 	ToolBuilder open: instance.
 	^ instance
 ]
@@ -145,36 +160,54 @@ PixelEditor >> createColorButtonPanelWithBuilder: aBuilder [
 
 {
 	#category : #toolbuilder,
-	#'squeak_changestamp' : 'GLE 6/3/2024 19:19'
+	#'squeak_changestamp' : 'GLE 6/4/2024 01:16'
 }
 PixelEditor >> createPanelsWith: aBuilder [
 
 	^ {	self createCanvasPanelWithBuilder: aBuilder.
-		self createColorButtonPanelWithBuilder: aBuilder}
+		self createColorButtonPanelWithBuilder: aBuilder.
+		self createSettingsButtonPanelWithBuilder: aBuilder}
 ]
 
 {
 	#category : #toolbuilder,
-	#'squeak_changestamp' : 'GLE 6/3/2024 13:55'
+	#'squeak_changestamp' : 'GLE 6/4/2024 01:19'
 }
 PixelEditor >> createSettingsButtonPanelWithBuilder: aBuilder [ 
 
 	^ aBuilder pluggablePanelSpec new model: self;
-		 children: #playgroundInCollection;
-		 frame: (LayoutFrame new rightFraction: 0.66;
+		 children: #settingsButtonPanel;
+		 frame: (LayoutFrame new rightFraction: 0.33;
 			 topFraction: 0;
-			 rightFraction: 1;
-			 bottomFraction: 1)
+			 leftFraction: 0;
+			 bottomFraction: 0.2)
 ]
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'GLE 6/3/2024 10:16'
+	#'squeak_changestamp' : 'GLE 6/4/2024 01:21'
 }
 PixelEditor >> initialize [
 
 	super initialize.
-	self canvas: PECanvasBuilder new buildCanvas
+	self canvas: PECanvasBuilder new buildCanvas;
+		jsonString: String new
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/4/2024 00:53'
+}
+PixelEditor >> jsonString [
+	^ jsonString
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/4/2024 00:53'
+}
+PixelEditor >> jsonString: anObject [
+	jsonString := anObject
 ]
 
 {
@@ -225,11 +258,48 @@ PixelEditor >> resizeColorButtons [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/3/2024 14:00'
+	#'squeak_changestamp' : 'GLE 6/4/2024 01:12'
 }
 PixelEditor >> settingsButtonCollection [
 
-	^ {self canvas}
+	^ PEButtonBuilder new buildSettingsButtons: self
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/4/2024 01:12'
+}
+PixelEditor >> settingsButtonContainer [
+
+	^ settingsButtonContainer
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/4/2024 01:12'
+}
+PixelEditor >> settingsButtonContainer: anObject [
+
+	settingsButtonContainer := anObject
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/4/2024 01:15'
+}
+PixelEditor >> settingsButtonPanel [
+	
+	self settingsButtonContainer: (PEButtonRow new addMorphCollection: self settingsButtonCollection).
+	^ { self settingsButtonContainer }
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/4/2024 01:36'
+}
+PixelEditor >> systemWindow [
+
+	self dependents do: [:each | each className = 'PluggableSystemWindow' ifTrue: [^ each]].
 ]
 
 {

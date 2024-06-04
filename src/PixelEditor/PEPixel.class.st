@@ -30,11 +30,22 @@ PEPixel class >> borderSize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/31/2024 11:11'
+	#'squeak_changestamp' : 'GLE 6/3/2024 23:16'
+}
+PEPixel class >> defaultPixelSize [
+
+	^ 50
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/3/2024 23:16'
 }
 PEPixel class >> pixelSize [
 
-	^ pixelSize 
+	pixelSize 
+		ifNil: [^ self defaultPixelSize]
+		ifNotNil: [^ pixelSize]
 
 ]
 
@@ -69,12 +80,12 @@ PEPixel >> brushSelectedColor: anObject [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/14/2024 14:08'
+	#category : #initialization,
+	#'squeak_changestamp' : 'GLE 6/3/2024 23:34'
 }
-PEPixel >> handlesMouseDown: anEvent [
+PEPixel >> changeColor [
 
-	^true
+	self color: self brushSelectedColor
 ]
 
 {
@@ -95,22 +106,12 @@ PEPixel >> initialize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GT 5/25/2024 17:12'
+	#'squeak_changestamp' : 'GLE 6/3/2024 23:34'
 }
 PEPixel >> mouseDown: anEvent [
 
-	self color: self brushSelectedColor
+	self changeColor
   
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GT 5/25/2024 17:13'
-}
-PEPixel >> mouseEnterDragging: anEvent [
-
-	self color: self brushSelectedColor
-	
 ]
 
 {

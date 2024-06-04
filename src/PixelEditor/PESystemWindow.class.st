@@ -260,7 +260,7 @@ PESystemWindow >> inputLines: anArray [
 
 {
 	#category : #inputProcessing,
-	#'squeak_changestamp' : 'GLE 6/3/2024 19:28'
+	#'squeak_changestamp' : 'GLE 6/3/2024 19:40'
 }
 PESystemWindow >> processHeight: aHeight andWidth: aWidth andSize: aSize [
 
@@ -276,7 +276,7 @@ PESystemWindow >> processHeight: aHeight andWidth: aWidth andSize: aSize [
 			self abandon]
 		ifFalse: [self addedText emphasis: 4. 
 			self addedText changed].
-	PixelEditor resizeColorButtons
+	pixelEditor resizeColorButtons
 ]
 
 {

@@ -36,16 +36,12 @@ PEBuilder >> buildPixelEditorOld [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/1/2024 11:57'
+	#'squeak_changestamp' : 'GLE 6/4/2024 01:25'
 }
 PEBuilder >> buildPixelEditorWithJson: aJson [
 
-	| buttonBuilder canvasBuilder |
-
 	self setUpSavingDirectory.
-	buttonBuilder := PEButtonBuilder new.
-	canvasBuilder := PECanvasBuilder new.
-	buttonBuilder buildButtonRows: (canvasBuilder buildScreenWithJson: aJson)
+	PixelEditor openWithCanvas: (PECanvasBuilder new buildCanvasFromJson: aJson)
 	
 	
 	 

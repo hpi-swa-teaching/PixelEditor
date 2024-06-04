@@ -161,11 +161,11 @@ PEButtonBuilder >> buildColorButtons: aCanvas color: aColor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 10:39'
+	#'squeak_changestamp' : 'GLE 6/4/2024 01:11'
 }
-PEButtonBuilder >> buildSaveButton: aScreen [
+PEButtonBuilder >> buildSaveButton: aPixelEditor [
 
-	^ PluggableButtonMorph new target: aScreen;
+	^ PESaveButton new target: aPixelEditor;
 		action: #save;
 		label: 'Save';
 		extent: (PEButtonBuilder saveButtonSize);
@@ -192,11 +192,21 @@ PEButtonBuilder >> buildSettingsButtonRow: aScreen [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 10:39'
+	#'squeak_changestamp' : 'GLE 6/4/2024 01:12'
 }
-PEButtonBuilder >> buildloadButton: aScreen [
+PEButtonBuilder >> buildSettingsButtons: aPixelEditor [
+	
+	^ { self buildSaveButton: aPixelEditor . self buildloadButton: aPixelEditor }
+	
+]
 
-	^ PluggableButtonMorph new target: aScreen;
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/4/2024 01:11'
+}
+PEButtonBuilder >> buildloadButton: aPixelEditor [
+
+	^ PELoadButton new target: aPixelEditor;
 		action: #load;
 		label: 'Load';
 		extent: (PEButtonBuilder saveButtonSize);
