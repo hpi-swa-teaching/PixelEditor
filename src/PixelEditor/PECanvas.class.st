@@ -22,6 +22,19 @@ PECanvas class >> defaultPixelColor [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Corvin 6/7/2024 19:58'
+}
+PECanvas >> addPixelAt: aCoordinate [ 
+	| pixel |
+	pixel := PEPixel new.
+	pixel coordinate: aCoordinate;
+	originPixel: self originPixel.
+	self addMorph: pixel.
+	pixel calculatePosition
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'Corvin 6/1/2024 12:12'
 }
 PECanvas >> clear [
@@ -69,6 +82,22 @@ PECanvas >> matrix [
 }
 PECanvas >> matrix: aMatrix [
 matrix := aMatrix
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Corvin 6/7/2024 19:57'
+}
+PECanvas >> originPixel [
+ ^originPixel
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Corvin 6/7/2024 19:57'
+}
+PECanvas >> originPixel: aPixel [ 
+	originPixel := aPixel
 ]
 
 {

@@ -111,15 +111,6 @@ PixelEditor >> labelString [
 ]
 
 {
-	#category : #canvas,
-	#'squeak_changestamp' : 'Corvin 6/2/2024 17:00'
-}
-PixelEditor >> nameCanvasMorph [
-	^ canvas name: 'canvas';
-		 yourself
-]
-
-{
 	#category : #'lifecycle hooks',
 	#'squeak_changestamp' : 'Corvin 5/28/2024 11:02'
 }
