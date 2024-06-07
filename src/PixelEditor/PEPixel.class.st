@@ -39,12 +39,14 @@ PEPixel >> coordinate: aCoordinate [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'Corvin 6/7/2024 19:54'
+	#'squeak_changestamp' : 'Corvin 6/7/2024 22:29'
 }
 PEPixel >> initialize [
 	super initialize.
 	self extent: 30 @ 30;
-		 sticky: true
+		 sticky: true;
+		borderColor: Color white;
+		borderWidth: 1
 ]
 
 {

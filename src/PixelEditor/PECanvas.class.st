@@ -22,14 +22,15 @@ PECanvas class >> defaultPixelColor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/7/2024 19:58'
+	#'squeak_changestamp' : 'Corvin 6/7/2024 21:44'
 }
 PECanvas >> addPixelAt: aCoordinate [ 
 	| pixel |
 	pixel := PEPixel new.
 	pixel coordinate: aCoordinate;
-	originPixel: self originPixel.
+		 originPixel: self originPixel.
 	self addMorph: pixel.
+	self matrix at: pixel coordinate put: pixel.
 	pixel calculatePosition
 ]
 
@@ -43,22 +44,25 @@ PECanvas >> clear [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Corvin 6/7/2024 16:14'
+	#'squeak_changestamp' : 'Corvin 6/7/2024 21:46'
 }
 PECanvas >> extent: aPoint [ 
-	super extent: aPoint. self positionOriginPixel
+	super extent: aPoint.
+	self positionOriginPixel.
+	self matrix valuesDo: [ :pixel | pixel calculatePosition ].
 ]
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Corvin 6/4/2024 14:07'
+	#'squeak_changestamp' : 'Corvin 6/7/2024 22:55'
 }
 PECanvas >> initialize [
 	super initialize.
 	originPixel := PEPixel new.
 	originPixel color: Color orange.
 	matrix := Dictionary new.
-	"TODO: Set clipSubMorphs to true"
+	"TODO: Set
+	clipSubMorphs to true"
 	self
 		layoutFrame: (LayoutFrame
 				fractions: (0 @ 0 rect: 1 @ 1));
@@ -66,6 +70,20 @@ PECanvas >> initialize [
 		 setUpBackground;
 		 clipSubmorphs: false;
 		 addMorph: originPixel
+		" setupInitialGrid"
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Corvin 6/7/2024 22:39'
+}
+PECanvas >> longerCanvasEdge [
+	"TODO find better name"
+	| width |
+	self bounds width > self bounds height
+		ifTrue: [width := self bounds width // originPixel extent x]
+		ifFalse: [width := self bounds height // originPixel extent x].
+	^width
 ]
 
 {
@@ -124,6 +142,24 @@ PECanvas >> setUpBackground [
 	theme
 		ifNil: [self color: Preferences defaultWorldColor  ] 
 		ifNotNil: [ self setAsBackground: theme linenblue ]
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Corvin 6/7/2024 23:02'
+}
+PECanvas >> setupInitialGrid [
+	| width |
+	width := 2.
+	width negated
+		to: width
+		do: [:y | width negated
+				to: width
+				do: [:x | 
+					self halt.
+					(x = 0
+							and: [y = 0])
+						ifFalse: [self addPixelAt: x @ y]]]
 ]
 
 {
