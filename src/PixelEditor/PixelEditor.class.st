@@ -65,16 +65,29 @@ PixelEditor class >> register [
 ]
 
 {
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/5/2024 21:47'
+}
+PixelEditor >> addMorphsForUpdating: aCollection [
+	
+	aCollection do: [:each | self containingWindow paneMorphs add: each]
+]
+
+{
 	#category : #toolbuilder,
-	#'squeak_changestamp' : 'GLE 6/3/2024 19:24'
+	#'squeak_changestamp' : 'GLE 6/5/2024 23:43'
 }
 PixelEditor >> buildWith: aBuilder [ 
 	
-	^ aBuilder build: (aBuilder pluggableWindowSpec new model: self;
+	| builder |
+	
+	builder := aBuilder build: (aBuilder pluggableWindowSpec new model: self;
 	 	label: #labelString;
 		extent: self class defaultExtent;
 		children: (self createPanelsWith: aBuilder);
 		yourself).
+	"self addMorphsForUpdating: self containers."
+	^ builder
 ]
 
 {
@@ -131,6 +144,17 @@ PixelEditor >> colorButtonPanel [
 ]
 
 {
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/5/2024 23:39'
+}
+PixelEditor >> containers [
+
+	^ { self canvas. 
+		self colorButtonContainer.
+		self settingsButtonContainer }
+]
+
+{
 	#category : #toolbuilder,
 	#'squeak_changestamp' : 'GLE 6/3/2024 09:57'
 }
@@ -181,6 +205,15 @@ PixelEditor >> createSettingsButtonPanelWithBuilder: aBuilder [
 			 topFraction: 0;
 			 leftFraction: 0;
 			 bottomFraction: 0.2)
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/6/2024 19:06'
+}
+PixelEditor >> formFromCanvas [
+
+	^ Form fromDisplay: (self canvas layer rectangle)
 ]
 
 {

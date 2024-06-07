@@ -161,12 +161,29 @@ PEButtonBuilder >> buildColorButtons: aCanvas color: aColor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 01:11'
+	#'squeak_changestamp' : 'GLE 6/6/2024 19:14'
+}
+PEButtonBuilder >> buildExportButton: aPixelEditor [
+
+	^ PEExportButton new target: aPixelEditor;
+		label: 'Export';
+		extent: (PEButtonBuilder saveButtonSize);
+		yourself
+
+		
+		
+	
+
+	
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/6/2024 19:14'
 }
 PEButtonBuilder >> buildSaveButton: aPixelEditor [
 
 	^ PESaveButton new target: aPixelEditor;
-		action: #save;
 		label: 'Save';
 		extent: (PEButtonBuilder saveButtonSize);
 		yourself
@@ -192,22 +209,23 @@ PEButtonBuilder >> buildSettingsButtonRow: aScreen [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 01:12'
+	#'squeak_changestamp' : 'GLE 6/6/2024 19:15'
 }
 PEButtonBuilder >> buildSettingsButtons: aPixelEditor [
 	
-	^ { self buildSaveButton: aPixelEditor . self buildloadButton: aPixelEditor }
+	^ {	self buildSaveButton: aPixelEditor . 
+		self buildloadButton: aPixelEditor . 
+		self buildExportButton: aPixelEditor }
 	
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 01:11'
+	#'squeak_changestamp' : 'GLE 6/6/2024 19:13'
 }
 PEButtonBuilder >> buildloadButton: aPixelEditor [
 
 	^ PELoadButton new target: aPixelEditor;
-		action: #load;
 		label: 'Load';
 		extent: (PEButtonBuilder saveButtonSize);
 		yourself

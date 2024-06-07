@@ -64,6 +64,15 @@ PECanvas >> initialize [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/6/2024 19:03'
+}
+PECanvas >> layer [
+
+	self submorphs do: [:each | each basicType = #PELayer ifTrue: [^ each]].
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'Corvin 6/1/2024 19:46'
 }
 PECanvas >> placePixel: aCoordinate [ 

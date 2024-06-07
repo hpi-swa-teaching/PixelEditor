@@ -35,13 +35,14 @@ PESettingsButton >> addToJsonString: aCollection [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:41'
+	#'squeak_changestamp' : 'GLE 6/6/2024 18:52'
 }
 PESettingsButton >> checkIfFileExists: aFileName [
 	
-	(StandardFileStream isAFileNamed: (StandardFileStream fullName: aFileName)) 
-		ifFalse: [self writeFile: aFileName stream: (StandardFileStream newFileNamed: aFileName)]
+	(StandardFileStream isAFileNamed: (StandardFileStream fullName: aFileName))
 		ifTrue: [self fileExists: aFileName]
+		ifFalse: [self writeFile: aFileName stream: (StandardFileStream newFileNamed: aFileName)]
+		
 	
 	
 ]

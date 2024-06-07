@@ -197,6 +197,15 @@ PELayer >> pointInSelf: aPoint [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/6/2024 19:05'
+}
+PELayer >> rectangle [
+
+	^ Rectangle origin: self position corner: self bottomRight
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 6/4/2024 00:30'
 }
 PELayer >> standardizedPoint: aPoint [
