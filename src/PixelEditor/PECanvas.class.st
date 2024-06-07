@@ -21,14 +21,6 @@ PECanvas class >> defaultPixelColor [
 ]
 
 {
-	#category : #pixels,
-	#'squeak_changestamp' : 'Corvin 6/4/2024 15:23'
-}
-PECanvas >> addPixel: aCoordinate [ 
-	self matrix at: aCoordinate put: PEPixel new
-]
-
-{
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'Corvin 6/1/2024 12:12'
 }
@@ -38,18 +30,10 @@ PECanvas >> clear [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Corvin 6/3/2024 17:19'
+	#'squeak_changestamp' : 'Corvin 6/7/2024 16:14'
 }
 PECanvas >> extent: aPoint [ 
-	super extent: aPoint. self positionCenterPixel
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'Corvin 6/4/2024 14:19'
-}
-PECanvas >> getPixel: aCoordinate [ 
-	^ self matrix at: aCoordinate ifAbsent: [self addPixel: aCoordinate]
+	super extent: aPoint. self positionOriginPixel
 ]
 
 {
@@ -89,9 +73,9 @@ matrix := aMatrix
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/4/2024 11:22'
+	#'squeak_changestamp' : 'Corvin 6/7/2024 16:14'
 }
-PECanvas >> positionCenterPixel [
+PECanvas >> positionOriginPixel [
 	| canvasCenter pixelCenter newPosition centerOffset |
 	canvasCenter := self bounds center.
 	pixelCenter := originPixel bounds center.
@@ -111,14 +95,6 @@ PECanvas >> setUpBackground [
 	theme
 		ifNil: [self color: Preferences defaultWorldColor  ] 
 		ifNotNil: [ self setAsBackground: theme linenblue ]
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/4/2024 11:44'
-}
-PECanvas >> translateCoordinates: aCoordinate [ 
-	^ originPixel position
 ]
 
 {
