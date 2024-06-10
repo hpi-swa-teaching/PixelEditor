@@ -51,6 +51,15 @@ PERezisingAgent >> step [
 ]
 
 {
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/10/2024 18:05'
+}
+PERezisingAgent >> stepTime [
+
+	^ 50
+]
+
+{
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 6/10/2024 16:54'
 }
