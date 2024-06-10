@@ -56,12 +56,12 @@ PixelEditor class >> openWithCanvas: aCanvas [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/3/2024 09:44'
+	#'squeak_changestamp' : 'LW 6/10/2024 15:51'
 }
 PixelEditor class >> register [
 
 	"register the editor to the apps dropdown"
-	TheWorldMenu registerOpenCommand: {'PixelEditor'. {PixelEditor. #open}}
+	TheWorldMenu registerOpenCommand: {'PixelEditor'. {PESystemWindow new. #createPixelEditor}}
 ]
 
 {

@@ -25,6 +25,15 @@ PESystemWindow class >> initialExtent [
 ]
 
 {
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'LW 6/10/2024 16:06'
+}
+PESystemWindow class >> submitButtonSize [
+
+	^ 200 @ 100
+]
+
+{
 	#category : #accessing,
 	#'squeak_changestamp' : 'LW 5/25/2024 17:37'
 }
@@ -44,11 +53,12 @@ PESystemWindow >> addedText: aString [
 
 {
 	#category : #inputProcessing,
-	#'squeak_changestamp' : 'LW 5/27/2024 12:03'
+	#'squeak_changestamp' : 'LW 6/10/2024 15:54'
 }
 PESystemWindow >> checkSizeCorrectnessfor: aHeight andWith: aWidth andSize: aSize [
 
-	(aHeight isZero) | (aWidth isZero) | (aSize isZero) ifTrue: [^ false] ifFalse: [^ true]
+	(aHeight isZero) | (aWidth isZero) | (aSize isZero)
+		ifTrue: [^ false] ifFalse: [^ true]
 ]
 
 {
@@ -145,7 +155,7 @@ PESystemWindow >> initializeInputLines [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'LW 5/27/2024 12:01'
+	#'squeak_changestamp' : 'LW 6/10/2024 16:09'
 }
 PESystemWindow >> initializeSubmitButton [
 
@@ -154,6 +164,7 @@ PESystemWindow >> initializeSubmitButton [
 		actionSelector: #processHeight:andWidth:andSize:;
 	      arguments: (Array withAll: {self inputLineHeight textInput. self inputLine textInput. self inputLinePixelSize textInput});
 		position: (self inputLinePixelSize position x) @ (self inputLinePixelSize position y + 150)).
+		"extent: (PESystemWindow submitButtonSize) Gelber Rand hier".
 	self addMorph: self submitButton
 
 ]
@@ -260,7 +271,7 @@ PESystemWindow >> inputLines: anArray [
 
 {
 	#category : #inputProcessing,
-	#'squeak_changestamp' : 'GLE 6/3/2024 19:40'
+	#'squeak_changestamp' : 'LW 6/10/2024 16:00'
 }
 PESystemWindow >> processHeight: aHeight andWidth: aWidth andSize: aSize [
 
@@ -270,13 +281,12 @@ PESystemWindow >> processHeight: aHeight andWidth: aWidth andSize: aSize [
 	numericValueWidth := aWidth getNumericValue.
 	numericValuePixelSize := aSize getNumericValue.
 	(self checkSizeCorrectnessfor: numericValueHeight andWith: numericValueWidth andSize: numericValuePixelSize)
-		ifTrue: [PECanvas pixelGridWidth: numericValueHeight andHeight: numericValueWidth. 
+		ifTrue: [PECanvas pixelGridWidth: numericValueWidth andHeight: numericValueHeight. 
 			PEPixel pixelSize: numericValuePixelSize. 
-			pixelEditor := PixelEditor open. 
+			pixelEditor := PixelEditor open.
 			self abandon]
 		ifFalse: [self addedText emphasis: 4. 
 			self addedText changed].
-	pixelEditor resizeColorButtons
 ]
 
 {
