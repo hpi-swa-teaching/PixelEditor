@@ -73,6 +73,19 @@ PEColorButton >> handlesMouseDown: anEvent [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GT 6/10/2024 19:11'
+}
+PEColorButton >> image: anImage [
+
+	self addMorph: (ImageMorph new image: anImage;
+		position: self position;
+		yourself)
+	
+
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/27/2024 10:47'
 }
 PEColorButton >> initialize [

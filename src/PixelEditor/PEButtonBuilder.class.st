@@ -60,11 +60,11 @@ PEButtonBuilder class >> colorButtonSize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GT 5/20/2024 18:43'
+	#'squeak_changestamp' : 'GT 6/10/2024 19:33'
 }
 PEButtonBuilder class >> colorsForButtons [
 
-	^ {Color transparent.
+	^ {Color lightBrown.
 		Color black. 
 		Color blue.
 		Color yellow.
@@ -81,6 +81,15 @@ PEButtonBuilder class >> colorsForButtons [
 PEButtonBuilder class >> saveButtonSize [
 
 	^ 80 @ 50
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GT 6/10/2024 19:11'
+}
+PEButtonBuilder >> assetHandler [
+
+	^ GitAssetLoader for: 'PixelEditor'
 ]
 
 {
@@ -113,6 +122,18 @@ PEButtonBuilder >> buildColorButtons: aCanvas [
 	PEButtonBuilder colorsForButtons do: [:nextColor | 
 		buttonCollection add: (self buildColorButton: aCanvas color: nextColor)].
 	^  buttonCollection
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GT 6/10/2024 19:29'
+}
+PEButtonBuilder >> buildEraserButton: aCanvas [
+
+	^PEColorButton new anObject: aCanvas brush;
+		beTransparent;
+		borderWidth: 0;
+		image: (self assetHandler loadForm: self eraserPath)
 ]
 
 {
@@ -198,4 +219,13 @@ PEButtonBuilder >> buildSettingsButtons: aPixelEditor [
 		self buildExportButton: aPixelEditor.
 		self buildGridButton: aPixelEditor }
 	
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GT 6/10/2024 18:55'
+}
+PEButtonBuilder >> eraserPath [
+
+	^ '/assets/eraser.png'
 ]

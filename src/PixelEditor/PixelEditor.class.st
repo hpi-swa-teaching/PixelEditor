@@ -6,7 +6,8 @@ Class {
 		'colorButtonContainer',
 		'jsonString',
 		'settingsButtonContainer',
-		'systemWindowBounds'
+		'systemWindowBounds',
+		'toolButtonContainer'
 	],
 	#category : #PixelEditor
 }
@@ -57,12 +58,12 @@ PixelEditor class >> openWithCanvas: aCanvas [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/3/2024 09:44'
+	#'squeak_changestamp' : 'GT 6/10/2024 18:11'
 }
 PixelEditor class >> register [
 
 	"register the editor to the apps dropdown"
-	TheWorldMenu registerOpenCommand: {'PixelEditor'. {PixelEditor. #open}}
+	TheWorldMenu registerOpenCommand: {'PixelEditor'. {PESystemWindow new. #createPixelEditor}}
 ]
 
 {
@@ -146,13 +147,14 @@ PixelEditor >> colorButtonPanel [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/5/2024 23:39'
+	#'squeak_changestamp' : 'GT 6/10/2024 19:29'
 }
 PixelEditor >> containers [
 
 	^ { self canvas. 
 		self colorButtonContainer.
-		self settingsButtonContainer }
+		self settingsButtonContainer.
+		"self toolButtonContainer"}
 ]
 
 {
@@ -185,13 +187,14 @@ PixelEditor >> createColorButtonPanelWithBuilder: aBuilder [
 
 {
 	#category : #toolbuilder,
-	#'squeak_changestamp' : 'GLE 6/4/2024 01:16'
+	#'squeak_changestamp' : 'GT 6/10/2024 19:09'
 }
 PixelEditor >> createPanelsWith: aBuilder [
 
 	^ {	self createCanvasPanelWithBuilder: aBuilder.
 		self createColorButtonPanelWithBuilder: aBuilder.
-		self createSettingsButtonPanelWithBuilder: aBuilder}
+		self createSettingsButtonPanelWithBuilder: aBuilder.
+		self createToolPanelWithBuilder: aBuilder}
 ]
 
 {
@@ -206,6 +209,20 @@ PixelEditor >> createSettingsButtonPanelWithBuilder: aBuilder [
 			 topFraction: 0;
 			 leftFraction: 0;
 			 bottomFraction: 0.2)
+]
+
+{
+	#category : #toolbuilder,
+	#'squeak_changestamp' : 'GT 6/10/2024 19:23'
+}
+PixelEditor >> createToolPanelWithBuilder: aBuilder [ 
+
+	^ aBuilder pluggablePanelSpec new model: self;
+		 children: #toolButtonCollection;
+		 frame: (LayoutFrame new rightFraction: 0.5;
+			 topFraction: 0.52;
+			 leftFraction: 0;
+			 bottomFraction: 0.6)
 ]
 
 {
@@ -350,6 +367,41 @@ PixelEditor >> systemWindowBounds [
 }
 PixelEditor >> systemWindowBounds: anObject [
 	systemWindowBounds := anObject
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GT 6/10/2024 19:08'
+}
+PixelEditor >> toolButtonCollection [
+
+	^{ PEButtonBuilder new buildEraserButton: self canvas}
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GT 6/10/2024 19:06'
+}
+PixelEditor >> toolButtonContainer [
+	^ toolButtonContainer
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GT 6/10/2024 19:06'
+}
+PixelEditor >> toolButtonContainer: anObject [
+	toolButtonContainer := anObject
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GT 6/10/2024 19:09'
+}
+PixelEditor >> toolButtonPanel [
+	
+	self toolButtonContainer: (PEButtonRow new addMorphCollection: self toolButtonCollection).
+	^ { self toolButtonContainer }
 ]
 
 {
