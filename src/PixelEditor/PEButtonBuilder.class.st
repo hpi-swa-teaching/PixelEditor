@@ -85,23 +85,13 @@ PEButtonBuilder class >> saveButtonSize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 18:09'
+	#'squeak_changestamp' : 'GLE 6/7/2024 19:21'
 }
-PEButtonBuilder >> buildButtonRows: aScreen [
-
-	self buildSettingsButtonRow: aScreen;
-		buildColorButtonRow: aScreen
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/27/2024 10:57'
-}
-PEButtonBuilder >> buildColorButton: aScreen color: aColor [
+PEButtonBuilder >> buildColorButton: aCanvas color: aColor [
 
 	"The brush added to the end of aScreen submorphs. We can access it by calling last on the submorph 	array of aScreen"
 	
-	^ PEColorButton new anObject: aScreen submorphs last;
+	^ PEColorButton new anObject: aCanvas brush;
 		extent: (PEButtonBuilder colorButtonSize);
 		color: aColor;
 		yourself
@@ -109,22 +99,6 @@ PEButtonBuilder >> buildColorButton: aScreen color: aColor [
 	
 
 	
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 19:43'
-}
-PEButtonBuilder >> buildColorButtonRow: aScreen [
-	
-	| buttonRow |
-	
-	buttonRow := PEButtonRow new. 
-	PEButtonBuilder colorsForButtons do: [:nextColor | 
-		buttonRow addMorphBelow: (self buildColorButton: aScreen color: nextColor)].
-	buttonRow position: PEButtonBuilder colorButtonRowPosition;
-		extent: PEButtonBuilder colorButtonRowExtent.
-	aScreen addMorph: buttonRow
 ]
 
 {
@@ -143,16 +117,16 @@ PEButtonBuilder >> buildColorButtons: aCanvas [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 14:19'
+	#'squeak_changestamp' : 'GLE 6/6/2024 19:14'
 }
-PEButtonBuilder >> buildColorButtons: aCanvas color: aColor [
+PEButtonBuilder >> buildExportButton: aPixelEditor [
 
-	"The brush added to the end of aScreen submorphs. We can access it by calling last on the submorph 	array of aScreen"
-	
-	^ PEColorButton new anObject: aCanvas submorphs last;
-		extent: (PEButtonBuilder colorButtonSize);
-		color: aColor;
+	^ PEExportButton new target: aPixelEditor;
+		label: 'Export';
+		extent: (PEButtonBuilder saveButtonSize);
 		yourself
+
+		
 		
 	
 
@@ -161,12 +135,30 @@ PEButtonBuilder >> buildColorButtons: aCanvas color: aColor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/6/2024 19:14'
+	#'squeak_changestamp' : 'GLE 6/7/2024 20:41'
 }
-PEButtonBuilder >> buildExportButton: aPixelEditor [
+PEButtonBuilder >> buildGridButton: aPixelEditor [
 
-	^ PEExportButton new target: aPixelEditor;
-		label: 'Export';
+	^ PEGridButton new target: aPixelEditor;
+		label: 'Grid';
+		extent: (PEButtonBuilder saveButtonSize);
+		yourself
+
+		
+		
+	
+
+	
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/7/2024 19:16'
+}
+PEButtonBuilder >> buildLoadButton: aPixelEditor [
+
+	^ PELoadButton new target: aPixelEditor;
+		label: 'Load';
 		extent: (PEButtonBuilder saveButtonSize);
 		yourself
 
@@ -197,42 +189,13 @@ PEButtonBuilder >> buildSaveButton: aPixelEditor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/1/2024 12:00'
-}
-PEButtonBuilder >> buildSettingsButtonRow: aScreen [
-	
-	aScreen addMorph: (PEButtonRow new extent: PEButtonBuilder buttonRowExtent;
-		addMorphNext: (self buildSaveButton: aScreen);
-		addMorphNext: (self buildloadButton: aScreen);
-		position: PEButtonBuilder buttonRowPosition)
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/6/2024 19:15'
+	#'squeak_changestamp' : 'GLE 6/7/2024 20:40'
 }
 PEButtonBuilder >> buildSettingsButtons: aPixelEditor [
 	
-	^ {	self buildSaveButton: aPixelEditor . 
-		self buildloadButton: aPixelEditor . 
-		self buildExportButton: aPixelEditor }
-	
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/6/2024 19:13'
-}
-PEButtonBuilder >> buildloadButton: aPixelEditor [
-
-	^ PELoadButton new target: aPixelEditor;
-		label: 'Load';
-		extent: (PEButtonBuilder saveButtonSize);
-		yourself
-
-		
-		
-	
-
+	^ {	self buildSaveButton: aPixelEditor. 
+		self buildLoadButton: aPixelEditor. 
+		self buildExportButton: aPixelEditor.
+		self buildGridButton: aPixelEditor }
 	
 ]

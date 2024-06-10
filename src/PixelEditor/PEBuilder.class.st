@@ -6,13 +6,13 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 10:15'
+	#'squeak_changestamp' : 'GLE 6/7/2024 17:26'
 }
 PEBuilder >> buildPixelEditor [
 
 	|  canvas |
 	
-	self setUpSavingDirectory.
+	self setUpDirectories.
 	canvas := PECanvasBuilder new buildCanvas.
 	PEButtonBuilder new buildButtonRows: canvas.
 	^ canvas
@@ -23,11 +23,11 @@ PEBuilder >> buildPixelEditor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 13:48'
+	#'squeak_changestamp' : 'GLE 6/7/2024 17:27'
 }
 PEBuilder >> buildPixelEditorOld [
 	
-	self setUpSavingDirectory.
+	self setUpDirectories.
 	PEButtonBuilder new buildButtonRows: PECanvasBuilder new buildScreen.
 	
 	
@@ -36,11 +36,11 @@ PEBuilder >> buildPixelEditorOld [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 01:25'
+	#'squeak_changestamp' : 'GLE 6/7/2024 17:27'
 }
 PEBuilder >> buildPixelEditorWithJson: aJson [
 
-	self setUpSavingDirectory.
+	self setUpDirectories.
 	PixelEditor openWithCanvas: (PECanvasBuilder new buildCanvasFromJson: aJson)
 	
 	
@@ -49,13 +49,15 @@ PEBuilder >> buildPixelEditorWithJson: aJson [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 20:39'
+	#'squeak_changestamp' : 'GLE 6/7/2024 17:27'
 }
-PEBuilder >> setUpSavingDirectory [
+PEBuilder >> setUpDirectories [
 	
 	| fileDirectory |
 	
 	fileDirectory := FileDirectory new.
 	(fileDirectory directoryExists:  (FileDirectory  fullPathForURI: '\Saved-Images\'))
-		ifFalse:[fileDirectory createDirectory: '.\Saved-Images']
+		ifFalse:[fileDirectory createDirectory: '.\Saved-Images'].
+	(fileDirectory directoryExists:  (FileDirectory  fullPathForURI: '\Exported-Images\'))
+		ifFalse:[fileDirectory createDirectory: '.\Exported-Images']
 ]

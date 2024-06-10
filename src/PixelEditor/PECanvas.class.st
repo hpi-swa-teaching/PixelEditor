@@ -38,6 +38,15 @@ PECanvas class >> pixelGridWidth: aWidth andHeight: aHeight [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/7/2024 20:43'
+}
+PECanvas >> brush [
+
+	self submorphsDo: [:each | each className = #PEBrush ifTrue:[^ each]]
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'Corvin 6/1/2024 12:12'
 }
 PECanvas >> clear [
@@ -46,40 +55,36 @@ PECanvas >> clear [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 10:18'
+	#'squeak_changestamp' : 'GLE 6/7/2024 20:54'
 }
-PECanvas >> initialize [
-	| width height |
-	super initialize.
-	width := self bounds width.
-	height := self bounds height.
-	self
-		layoutFrame: (LayoutFrame
-				fractions: (0 @ 0 rect: 1 @ 1));
-			beSticky;
-		 setUpBackground";
-		 placePixel: width // 2 @ height // 2;
-		 placePixel: 100 @ 0"
+PECanvas >> fitSubmorphs [
+
+	self layer do: [:each | each fitSubmorphs]
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/6/2024 19:03'
+	#'squeak_changestamp' : 'GLE 6/7/2024 20:49'
+}
+PECanvas >> initialize [
+
+	super initialize.
+	self beSticky;
+		layoutFrame: (LayoutFrame fractions: (0 @ 0 rect: 1 @ 1));
+		setUpBackground
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/7/2024 20:55'
 }
 PECanvas >> layer [
 
-	self submorphs do: [:each | each basicType = #PELayer ifTrue: [^ each]].
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/1/2024 19:46'
-}
-PECanvas >> placePixel: aCoordinate [ 
-	| pixel |
-	pixel := PEPixel new.
-	 pixel position: aCoordinate.
-	self addMorph: pixel
+	| collection |
+	
+	collection := OrderedCollection new.
+	self submorphs do: [:each | each basicType = #PELayer ifTrue: [collection add: each]].
+	^ collection
 ]
 
 {
@@ -93,6 +98,15 @@ PECanvas >> setUpBackground [
 	theme
 		ifNil: [self color: Preferences defaultWorldColor  ] 
 		ifNotNil: [ self setAsBackground: theme linenblue ]
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/10/2024 16:48'
+}
+PECanvas >> update [
+
+	"NotYetImplemented"
 ]
 
 {

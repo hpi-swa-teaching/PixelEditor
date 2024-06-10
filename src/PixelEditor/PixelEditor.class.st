@@ -5,7 +5,8 @@ Class {
 		'canvas',
 		'colorButtonContainer',
 		'jsonString',
-		'settingsButtonContainer'
+		'settingsButtonContainer',
+		'systemWindowBounds'
 	],
 	#category : #PixelEditor
 }
@@ -75,7 +76,7 @@ PixelEditor >> addMorphsForUpdating: aCollection [
 
 {
 	#category : #toolbuilder,
-	#'squeak_changestamp' : 'GLE 6/5/2024 23:43'
+	#'squeak_changestamp' : 'GLE 6/10/2024 18:01'
 }
 PixelEditor >> buildWith: aBuilder [ 
 	
@@ -86,8 +87,8 @@ PixelEditor >> buildWith: aBuilder [
 		extent: self class defaultExtent;
 		children: (self createPanelsWith: aBuilder);
 		yourself).
-	"self addMorphsForUpdating: self containers."
-	^ builder
+		self systemWindow addMorph: (PERezisingAgent new model: self).
+		^ builder
 ]
 
 {
@@ -209,16 +210,16 @@ PixelEditor >> createSettingsButtonPanelWithBuilder: aBuilder [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/6/2024 19:06'
+	#'squeak_changestamp' : 'GLE 6/7/2024 20:57'
 }
 PixelEditor >> formFromCanvas [
 
-	^ Form fromDisplay: (self canvas layer rectangle)
+	^ Form fromDisplay: (self canvas layer at: 1) rectangle
 ]
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'GLE 6/4/2024 01:21'
+	#'squeak_changestamp' : 'GLE 6/10/2024 16:58'
 }
 PixelEditor >> initialize [
 
@@ -333,6 +334,31 @@ PixelEditor >> settingsButtonPanel [
 PixelEditor >> systemWindow [
 
 	self dependents do: [:each | each className = 'PluggableSystemWindow' ifTrue: [^ each]].
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/10/2024 16:45'
+}
+PixelEditor >> systemWindowBounds [
+	^ systemWindowBounds
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/10/2024 16:45'
+}
+PixelEditor >> systemWindowBounds: anObject [
+	systemWindowBounds := anObject
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/10/2024 18:03'
+}
+PixelEditor >> update [
+
+	self containers do: [:each | each update].
 ]
 
 {
