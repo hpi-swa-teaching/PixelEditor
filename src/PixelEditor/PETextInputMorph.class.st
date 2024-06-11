@@ -2,7 +2,6 @@ Class {
 	#name : #PETextInputMorph,
 	#superclass : #PEUI,
 	#instVars : [
-		'textInput',
 		'inputField'
 	],
 	#category : #PixelEditor
@@ -28,37 +27,32 @@ PETextInputMorph class >> inputFieldSize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 5/27/2024 11:30'
+	#'squeak_changestamp' : 'LW 6/11/2024 11:43'
+}
+PETextInputMorph >> getContent [
+
+	^ self inputField text
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'LW 6/10/2024 21:18'
 }
 PETextInputMorph >> initialize [
 
-	self inputField: self initializeInputField;
-		textInput: self initializeTextInput.
-	self inputField addMorph: self textInput
+	self inputField: self initializeInputField.
+	self getContent
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 5/27/2024 11:19'
+	#'squeak_changestamp' : 'LW 6/11/2024 13:48'
 }
 PETextInputMorph >> initializeInputField [
 
-	^ Morph new extent: PETextInputMorph inputFieldSize; 
+	^ PEPluggableTextMorphPlus new extent: PETextInputMorph inputFieldSize; 
 		color: Color veryLightGray; 
-		yourself
-	"Hier besser ein PluggableTextMorph"
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 5/27/2024 11:20'
-}
-PETextInputMorph >> initializeTextInput [
-
-	^ TextMorph new borderWidth: PETextInputMorph borderSize; 
-		borderColor: Color black; 
-		contents: ' '; 
-		extent: self inputField extent; 
+		setText: '';
 		yourself
 ]
 
@@ -105,22 +99,4 @@ PETextInputMorph >> position [
 PETextInputMorph >> position: aPosition [
 
 	self inputField position: aPosition
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'LW 5/23/2024 17:21'
-}
-PETextInputMorph >> textInput [
-
-	^ textInput
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'LW 5/23/2024 17:21'
-}
-PETextInputMorph >> textInput: aText [
-
-	textInput := aText
 ]

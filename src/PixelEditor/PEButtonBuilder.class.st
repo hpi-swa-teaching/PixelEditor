@@ -76,11 +76,11 @@ PEButtonBuilder class >> colorsForButtons [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 17:38'
+	#'squeak_changestamp' : 'LW 6/10/2024 16:02'
 }
-PEButtonBuilder class >> saveButtonSize [
+PEButtonBuilder class >> settingsButtonSize [
 
-	^ 80 @ 50
+	^ 200 @ 100
 ]
 
 {
@@ -138,13 +138,13 @@ PEButtonBuilder >> buildEraserButton: aCanvas [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/6/2024 19:14'
+	#'squeak_changestamp' : 'LW 6/10/2024 16:03'
 }
 PEButtonBuilder >> buildExportButton: aPixelEditor [
 
 	^ PEExportButton new target: aPixelEditor;
 		label: 'Export';
-		extent: (PEButtonBuilder saveButtonSize);
+		extent: (PEButtonBuilder settingsButtonSize);
 		yourself
 
 		
@@ -156,13 +156,14 @@ PEButtonBuilder >> buildExportButton: aPixelEditor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/7/2024 20:41'
+	#'squeak_changestamp' : 'LW 6/10/2024 16:05'
 }
 PEButtonBuilder >> buildGridButton: aPixelEditor [
 
+
 	^ PEGridButton new target: aPixelEditor;
 		label: 'Grid';
-		extent: (PEButtonBuilder saveButtonSize);
+		extent: (PEButtonBuilder settingsButtonSize);
 		yourself
 
 		
@@ -192,13 +193,13 @@ PEButtonBuilder >> buildLoadButton: aPixelEditor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/6/2024 19:14'
+	#'squeak_changestamp' : 'LW 6/10/2024 16:03'
 }
 PEButtonBuilder >> buildSaveButton: aPixelEditor [
 
 	^ PESaveButton new target: aPixelEditor;
 		label: 'Save';
-		extent: (PEButtonBuilder saveButtonSize);
+		extent: (PEButtonBuilder settingsButtonSize);
 		yourself
 
 		
