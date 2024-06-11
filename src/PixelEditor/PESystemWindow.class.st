@@ -6,7 +6,7 @@ Class {
 		'widthInput',
 		'window',
 		'submitButton',
-		'inputLine',
+		'inputLineWidth',
 		'inputLineHeight',
 		'inputLinePixelSize',
 		'inputLines',
@@ -17,20 +17,11 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 5/27/2024 11:36'
-}
-PESystemWindow class >> initialExtent [
-
-	^ 320 @ 300
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/10/2024 16:06'
+	#'squeak_changestamp' : 'LW 6/11/2024 12:05'
 }
 PESystemWindow class >> submitButtonSize [
 
-	^ 200 @ 100
+	^ 200 @ 75
 ]
 
 {
@@ -53,12 +44,26 @@ PESystemWindow >> addedText: aString [
 
 {
 	#category : #inputProcessing,
-	#'squeak_changestamp' : 'LW 6/10/2024 15:54'
+	#'squeak_changestamp' : 'LW 6/11/2024 10:58'
 }
 PESystemWindow >> checkSizeCorrectnessfor: aHeight andWith: aWidth andSize: aSize [
 
-	(aHeight isZero) | (aWidth isZero) | (aSize isZero)
-		ifTrue: [^ false] ifFalse: [^ true]
+	({aHeight. aWidth. aSize} allSatisfy: [:each | each notNil])
+		ifTrue: [^{aHeight. aWidth. aSize} allSatisfy: [:each | each > 0]] ifFalse: [^ false]
+]
+
+{
+	#category : #inputProcessing,
+	#'squeak_changestamp' : 'LW 6/11/2024 12:00'
+}
+PESystemWindow >> createDefaultCanvas [
+
+	|pixelEditor|
+
+	PECanvas pixelGridWidth: 10 andHeight: 10. 
+			PEPixel pixelSize: 100. 
+			pixelEditor := PixelEditor open.
+			self abandon
 ]
 
 {
@@ -102,83 +107,84 @@ PESystemWindow >> heightInput: aHeight [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'LW 5/27/2024 11:37'
+	#'squeak_changestamp' : 'LW 6/11/2024 12:12'
 }
 PESystemWindow >> initialExtent [
 
-	^ PESystemWindow initialExtent
+	^ 250 @ 300
 ]
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'LW 5/27/2024 11:41'
+	#'squeak_changestamp' : 'LW 6/11/2024 11:41'
 }
 PESystemWindow >> initializeInputLineHeight [
 
-	^ PETextInputMorphWithLabel new setLabel: 'Height:'; 
-		position: (self inputLine position x) @ (self inputLine position y + 150); 
+	^ PETextInputMorphWithLabel2 new	setLabel: 'Height:';
+		position: (self inputLineWidth position x) @ (self inputLineWidth position y + 150);
 		yourself
 ]
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'LW 5/27/2024 11:42'
+	#'squeak_changestamp' : 'LW 6/11/2024 11:31'
 }
 PESystemWindow >> initializeInputLinePixelSize [
 
-	^ PETextInputMorphWithLabel new setLabel: 'Pixel size'; 
+	^ PETextInputMorphWithLabel2 new setLabel: 'Pixel size:';
 		position: (self inputLineHeight position x) @ (self inputLineHeight position y + 150); 
 		yourself
 ]
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'LW 5/27/2024 11:40'
+	#'squeak_changestamp' : 'LW 6/11/2024 11:50'
 }
 PESystemWindow >> initializeInputLineWidth [
 
-	^ PETextInputMorphWithLabel new setLabel: 'Width:'; position: 50 @ 100; yourself
+	^ PETextInputMorphWithLabel2 new setLabel: 'Width:';
+		position: 50 @ 100; yourself
 ]
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'LW 5/27/2024 12:00'
+	#'squeak_changestamp' : 'LW 6/11/2024 11:46'
 }
 PESystemWindow >> initializeInputLines [
 
-	self inputLine: self initializeInputLineWidth;
+	self inputLineWidth: self initializeInputLineWidth;
 		inputLineHeight: self initializeInputLineHeight;
 		inputLinePixelSize: self initializeInputLinePixelSize;
-		inputLines: (Array with: self inputLine with: self inputLineHeight with: self inputLinePixelSize).
-	self inputLines do: [:each | self addMorph: each inputField]
+		inputLines: (Array with: self inputLineWidth with: self inputLineHeight with: self inputLinePixelSize).
+	self inputLines do: [:each | self addMorph: each inputField. self addMorph: each label]
 ]
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'LW 6/10/2024 16:09'
+	#'squeak_changestamp' : 'LW 6/11/2024 12:03'
 }
 PESystemWindow >> initializeSubmitButton [
 
 	self submitButton: (PluggableButtonMorph new label: 'Submit size';
+		extent: (PESystemWindow submitButtonSize);
 		target: self;
 		actionSelector: #processHeight:andWidth:andSize:;
-	      arguments: (Array withAll: {self inputLineHeight textInput. self inputLine textInput. self inputLinePixelSize textInput});
+	      arguments: (Array withAll: {(self inputLineHeight getContent). (self inputLineWidth getContent). (self inputLinePixelSize getContent)});
 		position: (self inputLinePixelSize position x) @ (self inputLinePixelSize position y + 150)).
-		"extent: (PESystemWindow submitButtonSize) Gelber Rand hier".
 	self addMorph: self submitButton
 
 ]
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'LW 5/27/2024 10:57'
+	#'squeak_changestamp' : 'LW 6/11/2024 12:04'
 }
 PESystemWindow >> initializeText [
 
 	self addedText: 
 	(StringMorph new 
 		contents: 'Please only use positive natural numbers'; 
-		position: (self submitButton position x) @ (self submitButton position y + 50); 
+		position: (self submitButton position x) @ (self submitButton position y + 100); 
 		color: Color red;
 		fontName: 'Arial' size: 20;
 		extent: 1000 @ 100;
@@ -195,24 +201,6 @@ PESystemWindow >> initializeWindow [
 
 	self setLabel: 'Canvas size'
 	 
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'LW 5/23/2024 17:50'
-}
-PESystemWindow >> inputLine [
-
-	^ inputLine
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'LW 5/23/2024 17:50'
-}
-PESystemWindow >> inputLine: aLine [
-
-	inputLine := aLine
 ]
 
 {
@@ -253,6 +241,24 @@ PESystemWindow >> inputLinePixelSize: aSize [
 
 {
 	#category : #accessing,
+	#'squeak_changestamp' : 'LW 6/10/2024 20:10'
+}
+PESystemWindow >> inputLineWidth [
+
+	^ inputLineWidth
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'LW 6/10/2024 20:10'
+}
+PESystemWindow >> inputLineWidth: aLine [
+
+	inputLineWidth := aLine
+]
+
+{
+	#category : #accessing,
 	#'squeak_changestamp' : 'LW 5/25/2024 17:13'
 }
 PESystemWindow >> inputLines [
@@ -271,22 +277,23 @@ PESystemWindow >> inputLines: anArray [
 
 {
 	#category : #inputProcessing,
-	#'squeak_changestamp' : 'LW 6/10/2024 16:00'
+	#'squeak_changestamp' : 'LW 6/11/2024 12:02'
 }
 PESystemWindow >> processHeight: aHeight andWidth: aWidth andSize: aSize [
 
 	| numericValueHeight 	numericValueWidth numericValuePixelSize pixelEditor |
-		
-	numericValueHeight := aHeight getNumericValue.
-	numericValueWidth := aWidth getNumericValue.
-	numericValuePixelSize := aSize getNumericValue.
+	
+	({aHeight. aWidth. aSize} allSatisfy: [:each | each notEmpty]) ifFalse: [self createDefaultCanvas] ifTrue: [
+	numericValueHeight := (aHeight string) asIntegerIfAllDigits.
+	numericValueWidth := (aWidth string) asIntegerIfAllDigits.
+	numericValuePixelSize := (aSize string) asIntegerIfAllDigits.
 	(self checkSizeCorrectnessfor: numericValueHeight andWith: numericValueWidth andSize: numericValuePixelSize)
 		ifTrue: [PECanvas pixelGridWidth: numericValueWidth andHeight: numericValueHeight. 
 			PEPixel pixelSize: numericValuePixelSize. 
 			pixelEditor := PixelEditor open.
 			self abandon]
 		ifFalse: [self addedText emphasis: 4. 
-			self addedText changed].
+			self addedText changed].]
 ]
 
 {
