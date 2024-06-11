@@ -4,6 +4,9 @@ Class {
 	#instVars : [
 		'anObject'
 	],
+	#classInstVars : [
+		'selectedButton'
+	],
 	#category : #PixelEditor
 }
 
@@ -26,6 +29,24 @@ PEColorButton class >> borderSize [
 ]
 
 {
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/11/2024 14:16'
+}
+PEColorButton class >> selectedButton [
+
+	^ selectedButton
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/11/2024 14:16'
+}
+PEColorButton class >> selectedButton: aButton [
+
+	selectedButton := aButton
+]
+
+{
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 5/17/2024 14:49'
 }
@@ -45,11 +66,13 @@ PEColorButton >> anObject: aObject [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 14:38'
+	#'squeak_changestamp' : 'GLE 6/11/2024 14:16'
 }
 PEColorButton >> doActionLeft [
 
-	self anObject changeSelectedColor: self color
+	self anObject changeSelectedColor: self color.
+	PEColorButton selectedButton: self.
+	
 ]
 
 {

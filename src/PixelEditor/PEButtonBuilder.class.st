@@ -85,6 +85,15 @@ PEButtonBuilder class >> settingsButtonSize [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/11/2024 14:51'
+}
+PEButtonBuilder class >> toolButtonSize [
+
+	^ 100 @ 100
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GT 6/10/2024 19:11'
 }
 PEButtonBuilder >> assetHandler [
@@ -126,13 +135,26 @@ PEButtonBuilder >> buildColorButtons: aCanvas [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GT 6/10/2024 19:29'
+	#'squeak_changestamp' : 'GLE 6/11/2024 14:31'
+}
+PEButtonBuilder >> buildColorPickerButton: aCanvas [
+
+	^PEColorPickerButton new
+		beTransparent;
+		borderWidth: 0;
+		image: (self assetHandler loadForm: self colorBucketPath)
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/11/2024 14:50'
 }
 PEButtonBuilder >> buildEraserButton: aCanvas [
 
 	^PEColorButton new anObject: aCanvas brush;
 		beTransparent;
 		borderWidth: 0;
+		extent: PEButtonBuilder toolButtonSize;
 		image: (self assetHandler loadForm: self eraserPath)
 ]
 
@@ -175,13 +197,13 @@ PEButtonBuilder >> buildGridButton: aPixelEditor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/7/2024 19:16'
+	#'squeak_changestamp' : 'GLE 6/11/2024 13:58'
 }
 PEButtonBuilder >> buildLoadButton: aPixelEditor [
 
 	^ PELoadButton new target: aPixelEditor;
 		label: 'Load';
-		extent: (PEButtonBuilder saveButtonSize);
+		extent: (PEButtonBuilder settingsButtonSize);
 		yourself
 
 		
@@ -220,6 +242,30 @@ PEButtonBuilder >> buildSettingsButtons: aPixelEditor [
 		self buildExportButton: aPixelEditor.
 		self buildGridButton: aPixelEditor }
 	
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/11/2024 14:32'
+}
+PEButtonBuilder >> buildToolButtons: aCanvas [
+
+	^ {self buildEraserButton: aCanvas.
+		self buildColorPickerButton: aCanvas}
+		
+		
+	
+
+	
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/11/2024 14:14'
+}
+PEButtonBuilder >> colorBucketPath [
+
+	^ '/assets/colorBucket.png'
 ]
 
 {

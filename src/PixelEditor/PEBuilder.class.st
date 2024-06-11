@@ -6,6 +6,21 @@ Class {
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/11/2024 14:02'
+}
+PEBuilder class >> setUpDirectories [
+	
+	| fileDirectory |
+	
+	fileDirectory := FileDirectory new.
+	(fileDirectory directoryExists:  (FileDirectory  fullPathForURI: '\Saved-Images\'))
+		ifFalse:[fileDirectory createDirectory: '.\Saved-Images'].
+	(fileDirectory directoryExists:  (FileDirectory  fullPathForURI: '\Exported-Images\'))
+		ifFalse:[fileDirectory createDirectory: '.\Exported-Images']
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 6/7/2024 17:26'
 }
 PEBuilder >> buildPixelEditor [

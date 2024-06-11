@@ -20,15 +20,18 @@ PEButtonRow >> addMorphBelow: aMorph [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 20:42'
+	#'squeak_changestamp' : 'GLE 6/11/2024 14:36'
 }
 PEButtonRow >> addMorphCollection: aMorphCollection [
 
 	| collection |
 	
-	collection := self splitCollection: aMorphCollection.
-	self addMorphCollectionUpper: (collection at: 1);
-		addMorphCollectionLower: (collection at: 2)
+	aMorphCollection size = 2
+		ifTrue: [aMorphCollection do: [:each | self addMorphNext: each]]
+		ifFalse:[
+		collection := self splitCollection: aMorphCollection.
+		self addMorphCollectionUpper: (collection at: 1);
+			addMorphCollectionLower: (collection at: 2)]
 ]
 
 {

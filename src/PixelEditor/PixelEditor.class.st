@@ -32,13 +32,14 @@ PixelEditor class >> defaultLabel [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/3/2024 19:27'
+	#'squeak_changestamp' : 'GLE 6/11/2024 14:02'
 }
 PixelEditor class >> open [
 
 	| instance |
 	
 	instance := self new.
+	PEBuilder setUpDirectories.
 	ToolBuilder open: instance.
 	^ instance
 ]
@@ -147,11 +148,11 @@ PixelEditor >> colorButtonPanel [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GT 6/10/2024 19:29'
+	#'squeak_changestamp' : 'GLE 6/11/2024 14:46'
 }
 PixelEditor >> containers [
 
-	^ { self canvas. 
+	^ { self canvas.
 		self colorButtonContainer.
 		self settingsButtonContainer.
 		"self toolButtonContainer"}
@@ -213,13 +214,13 @@ PixelEditor >> createSettingsButtonPanelWithBuilder: aBuilder [
 
 {
 	#category : #toolbuilder,
-	#'squeak_changestamp' : 'GT 6/10/2024 19:23'
+	#'squeak_changestamp' : 'GLE 6/11/2024 14:37'
 }
 PixelEditor >> createToolPanelWithBuilder: aBuilder [ 
 
 	^ aBuilder pluggablePanelSpec new model: self;
-		 children: #toolButtonCollection;
-		 frame: (LayoutFrame new rightFraction: 0.5;
+		 children: #toolButtonPanel;
+		 frame: (LayoutFrame new rightFraction: 0.33;
 			 topFraction: 0.52;
 			 leftFraction: 0;
 			 bottomFraction: 0.6)
@@ -371,11 +372,11 @@ PixelEditor >> systemWindowBounds: anObject [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GT 6/10/2024 19:08'
+	#'squeak_changestamp' : 'GLE 6/11/2024 14:13'
 }
 PixelEditor >> toolButtonCollection [
 
-	^{ PEButtonBuilder new buildEraserButton: self canvas}
+	^ PEButtonBuilder new buildToolButtons: self canvas
 ]
 
 {

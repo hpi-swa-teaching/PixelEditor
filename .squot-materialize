@@ -13,5 +13,12 @@
 		#path : FSAbsolutePath [
 			'src'
 		]
+	},
+	SquotImageMapper {
+		#path : FSAbsolutePath [
+			'assets',
+			'colorBucket.png'
+		],
+		#encoding : @4
 	}
 ]

@@ -153,13 +153,14 @@ PESettingsButton >> mouseDown: anEvent [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:43'
+	#'squeak_changestamp' : 'GLE 6/11/2024 13:59'
 }
 PESettingsButton >> save [
 
 	| fileName |
 	
-	fileName := PEFileSaver new getUserResponse.
+	fileName := PEFileSaver new setDirectoryTo: (FileDirectory on: (FileStream fullName: 'Saved-Images' ));
+		getUserResponse.
 	fileName isNil
 		ifFalse: [self checkIfFileExists: fileName]
 ]
