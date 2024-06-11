@@ -5,26 +5,64 @@ Class {
 		'brushSelectedColor'
 	],
 	#classInstVars : [
-		'pixelSize'
+		'pixelSize',
+		'borderColor',
+		'borderSize'
 	],
 	#category : #PixelEditor
 }
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/14/2024 13:56'
+	#'squeak_changestamp' : 'GLE 6/7/2024 18:10'
 }
 PEPixel class >> borderColor [
 	
-	^ Color lightGray
+	borderColor 
+		ifNil: [^ Color lightGray]
+		ifNotNil: [^ borderColor]
+		
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/14/2024 13:59'
+	#'squeak_changestamp' : 'GLE 6/7/2024 18:20'
+}
+PEPixel class >> borderColor: aColor [
+	
+	borderColor := aColor.
+	self allInstancesDo: [:each | each borderColor: aColor]
+		
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/7/2024 18:11'
 }
 PEPixel class >> borderSize [
 	
+	borderSize 
+		ifNil: [ ^ 1]
+		ifNotNil: [ ^ borderSize]
+	
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/7/2024 18:11'
+}
+PEPixel class >> borderSize: aSize [
+	
+	borderSize := aSize.
+	self allInstancesDo: [:each | each borderWidth: aSize]
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/7/2024 20:39'
+}
+PEPixel class >> defaultBorderSize [
+
 	^ 1
 ]
 
@@ -57,6 +95,30 @@ PEPixel class >> pixelSize: aSize [
 
 	pixelSize := aSize
 
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/7/2024 18:23'
+}
+PEPixel class >> toggleBorderColor [
+	
+	borderColor = Color transparent
+		ifTrue: [self borderColor: Color lightGray]
+		ifFalse: [self borderColor: Color transparent]
+		
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/7/2024 20:41'
+}
+PEPixel class >> toggleBorderSize [
+	
+	borderSize = 0
+		ifTrue: [self borderSize: self defaultBorderSize]
+		ifFalse: [self borderSize: 0]
+		
 ]
 
 {

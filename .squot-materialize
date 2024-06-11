@@ -1,4 +1,11 @@
 [
+	SquotImageMapper {
+		#path : FSAbsolutePath [
+			'assets',
+			'eraser.png'
+		],
+		#encoding : Class [ #PNGReadWriter ]
+	},
 	SquotTonelMapper {
 		#package : MCPackage {
 			#name : 'PixelEditor'

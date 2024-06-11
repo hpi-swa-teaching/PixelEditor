@@ -104,6 +104,13 @@ PELayer >> createPixelsFromJson: aJson [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/7/2024 20:57'
+}
+PELayer >> fitSubmorphs [
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 6/3/2024 23:37'
 }
 PELayer >> handlesMouseDown: anEvent [

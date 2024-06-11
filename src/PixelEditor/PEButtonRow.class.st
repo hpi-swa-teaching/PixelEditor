@@ -95,7 +95,7 @@ PEButtonRow >> fitSubmorphs [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 20:16'
+	#'squeak_changestamp' : 'GLE 6/10/2024 17:51'
 }
 PEButtonRow >> initialize [
 
@@ -139,4 +139,13 @@ PEButtonRow >> splitCollection: aCollection [
 PEButtonRow >> submorphs: aCollection [
 
 	submorphs := aCollection
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/10/2024 16:48'
+}
+PEButtonRow >> update [
+
+	self extent: self owner extent
 ]

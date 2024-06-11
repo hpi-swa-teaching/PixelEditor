@@ -60,11 +60,11 @@ PEButtonBuilder class >> colorButtonSize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GT 5/20/2024 18:43'
+	#'squeak_changestamp' : 'GT 6/10/2024 19:33'
 }
 PEButtonBuilder class >> colorsForButtons [
 
-	^ {Color transparent.
+	^ {Color lightBrown.
 		Color black. 
 		Color blue.
 		Color yellow.
@@ -85,23 +85,22 @@ PEButtonBuilder class >> settingsButtonSize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 18:09'
+	#'squeak_changestamp' : 'GT 6/10/2024 19:11'
 }
-PEButtonBuilder >> buildButtonRows: aScreen [
+PEButtonBuilder >> assetHandler [
 
-	self buildSettingsButtonRow: aScreen;
-		buildColorButtonRow: aScreen
+	^ GitAssetLoader for: 'PixelEditor'
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/27/2024 10:57'
+	#'squeak_changestamp' : 'GLE 6/7/2024 19:21'
 }
-PEButtonBuilder >> buildColorButton: aScreen color: aColor [
+PEButtonBuilder >> buildColorButton: aCanvas color: aColor [
 
 	"The brush added to the end of aScreen submorphs. We can access it by calling last on the submorph 	array of aScreen"
 	
-	^ PEColorButton new anObject: aScreen submorphs last;
+	^ PEColorButton new anObject: aCanvas brush;
 		extent: (PEButtonBuilder colorButtonSize);
 		color: aColor;
 		yourself
@@ -109,22 +108,6 @@ PEButtonBuilder >> buildColorButton: aScreen color: aColor [
 	
 
 	
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 19:43'
-}
-PEButtonBuilder >> buildColorButtonRow: aScreen [
-	
-	| buttonRow |
-	
-	buttonRow := PEButtonRow new. 
-	PEButtonBuilder colorsForButtons do: [:nextColor | 
-		buttonRow addMorphBelow: (self buildColorButton: aScreen color: nextColor)].
-	buttonRow position: PEButtonBuilder colorButtonRowPosition;
-		extent: PEButtonBuilder colorButtonRowExtent.
-	aScreen addMorph: buttonRow
 ]
 
 {
@@ -143,20 +126,14 @@ PEButtonBuilder >> buildColorButtons: aCanvas [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 14:19'
+	#'squeak_changestamp' : 'GT 6/10/2024 19:29'
 }
-PEButtonBuilder >> buildColorButtons: aCanvas color: aColor [
+PEButtonBuilder >> buildEraserButton: aCanvas [
 
-	"The brush added to the end of aScreen submorphs. We can access it by calling last on the submorph 	array of aScreen"
-	
-	^ PEColorButton new anObject: aCanvas submorphs last;
-		extent: (PEButtonBuilder colorButtonSize);
-		color: aColor;
-		yourself
-		
-	
-
-	
+	^PEColorButton new anObject: aCanvas brush;
+		beTransparent;
+		borderWidth: 0;
+		image: (self assetHandler loadForm: self eraserPath)
 ]
 
 {
@@ -181,6 +158,43 @@ PEButtonBuilder >> buildExportButton: aPixelEditor [
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'LW 6/10/2024 16:05'
 }
+PEButtonBuilder >> buildGridButton: aPixelEditor [
+
+
+	^ PEGridButton new target: aPixelEditor;
+		label: 'Grid';
+		extent: (PEButtonBuilder settingsButtonSize);
+		yourself
+
+		
+		
+	
+
+	
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/7/2024 19:16'
+}
+PEButtonBuilder >> buildLoadButton: aPixelEditor [
+
+	^ PELoadButton new target: aPixelEditor;
+		label: 'Load';
+		extent: (PEButtonBuilder saveButtonSize);
+		yourself
+
+		
+		
+	
+
+	
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'LW 6/10/2024 16:03'
+}
 PEButtonBuilder >> buildSaveButton: aPixelEditor [
 
 	^ PESaveButton new target: aPixelEditor;
@@ -197,42 +211,22 @@ PEButtonBuilder >> buildSaveButton: aPixelEditor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/1/2024 12:00'
-}
-PEButtonBuilder >> buildSettingsButtonRow: aScreen [
-	
-	aScreen addMorph: (PEButtonRow new extent: PEButtonBuilder buttonRowExtent;
-		addMorphNext: (self buildSaveButton: aScreen);
-		addMorphNext: (self buildloadButton: aScreen);
-		position: PEButtonBuilder buttonRowPosition)
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/6/2024 19:15'
+	#'squeak_changestamp' : 'GLE 6/7/2024 20:40'
 }
 PEButtonBuilder >> buildSettingsButtons: aPixelEditor [
 	
-	^ {	self buildSaveButton: aPixelEditor . 
-		self buildloadButton: aPixelEditor . 
-		self buildExportButton: aPixelEditor }
+	^ {	self buildSaveButton: aPixelEditor. 
+		self buildLoadButton: aPixelEditor. 
+		self buildExportButton: aPixelEditor.
+		self buildGridButton: aPixelEditor }
 	
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/10/2024 16:03'
+	#'squeak_changestamp' : 'GT 6/10/2024 18:55'
 }
-PEButtonBuilder >> buildloadButton: aPixelEditor [
+PEButtonBuilder >> eraserPath [
 
-	^ PELoadButton new target: aPixelEditor;
-		label: 'Load';
-		extent: (PEButtonBuilder settingsButtonSize);
-		yourself
-
-		
-		
-	
-
-	
+	^ '/assets/eraser.png'
 ]

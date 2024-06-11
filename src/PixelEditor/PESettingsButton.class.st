@@ -116,13 +116,15 @@ PESettingsButton >> jsonString: anObject [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 01:35'
+	#'squeak_changestamp' : 'GLE 6/7/2024 17:26'
 }
 PESettingsButton >> load [
 	
 	| fileName |
 	
-	fileName := PEFileSaver new windowTitle: 'Load File'; getUserResponse.
+	fileName := PEFileSaver new windowTitle: 'Load File'; 
+		setDirectoryTo: (FileDirectory on: (FileStream fullName: 'Saved-Images' ));
+		getUserResponse.
 	fileName isNil ifFalse: [
 		PEBuilder new buildPixelEditorWithJson: (self loadFile: fileName).
 		self target systemWindow abandon]
