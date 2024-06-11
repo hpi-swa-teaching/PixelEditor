@@ -54,15 +54,13 @@ PESystemWindow >> checkSizeCorrectnessfor: aHeight andWith: aWidth andSize: aSiz
 
 {
 	#category : #inputProcessing,
-	#'squeak_changestamp' : 'LW 6/11/2024 12:00'
+	#'squeak_changestamp' : 'LW 6/11/2024 13:43'
 }
 PESystemWindow >> createDefaultCanvas [
 
-	|pixelEditor|
-
 	PECanvas pixelGridWidth: 10 andHeight: 10. 
 			PEPixel pixelSize: 100. 
-			pixelEditor := PixelEditor open.
+			PixelEditor open.
 			self abandon
 ]
 
@@ -81,31 +79,6 @@ PESystemWindow >> createPixelEditor [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 5/27/2024 11:56'
-}
-PESystemWindow >> createPixelEditorWith: anArray [
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'LW 5/21/2024 22:32'
-}
-PESystemWindow >> heightInput [
-
-	^ heightInput
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'LW 5/21/2024 22:32'
-}
-PESystemWindow >> heightInput: aHeight [
-
-	heightInput := aHeight
-]
-
-{
 	#category : #initialization,
 	#'squeak_changestamp' : 'LW 6/11/2024 12:12'
 }
@@ -116,33 +89,33 @@ PESystemWindow >> initialExtent [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'LW 6/11/2024 11:41'
+	#'squeak_changestamp' : 'LW 6/11/2024 13:38'
 }
 PESystemWindow >> initializeInputLineHeight [
 
-	^ PETextInputMorphWithLabel2 new	setLabel: 'Height:';
+	^ PETextInputMorphWithLabel new	setLabel: 'Height:';
 		position: (self inputLineWidth position x) @ (self inputLineWidth position y + 150);
 		yourself
 ]
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'LW 6/11/2024 11:31'
+	#'squeak_changestamp' : 'LW 6/11/2024 13:38'
 }
 PESystemWindow >> initializeInputLinePixelSize [
 
-	^ PETextInputMorphWithLabel2 new setLabel: 'Pixel size:';
+	^ PETextInputMorphWithLabel new setLabel: 'Pixel size:';
 		position: (self inputLineHeight position x) @ (self inputLineHeight position y + 150); 
 		yourself
 ]
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'LW 6/11/2024 11:50'
+	#'squeak_changestamp' : 'LW 6/11/2024 13:39'
 }
 PESystemWindow >> initializeInputLineWidth [
 
-	^ PETextInputMorphWithLabel2 new setLabel: 'Width:';
+	^ PETextInputMorphWithLabel new setLabel: 'Width:';
 		position: 50 @ 100; yourself
 ]
 
@@ -277,11 +250,13 @@ PESystemWindow >> inputLines: anArray [
 
 {
 	#category : #inputProcessing,
-	#'squeak_changestamp' : 'LW 6/11/2024 12:02'
+	#'squeak_changestamp' : 'LW 6/11/2024 13:44'
 }
 PESystemWindow >> processHeight: aHeight andWidth: aWidth andSize: aSize [
 
-	| numericValueHeight 	numericValueWidth numericValuePixelSize pixelEditor |
+	"Refactoring notwendig hier"
+
+	| numericValueHeight 	numericValueWidth numericValuePixelSize |
 	
 	({aHeight. aWidth. aSize} allSatisfy: [:each | each notEmpty]) ifFalse: [self createDefaultCanvas] ifTrue: [
 	numericValueHeight := (aHeight string) asIntegerIfAllDigits.
@@ -290,7 +265,7 @@ PESystemWindow >> processHeight: aHeight andWidth: aWidth andSize: aSize [
 	(self checkSizeCorrectnessfor: numericValueHeight andWith: numericValueWidth andSize: numericValuePixelSize)
 		ifTrue: [PECanvas pixelGridWidth: numericValueWidth andHeight: numericValueHeight. 
 			PEPixel pixelSize: numericValuePixelSize. 
-			pixelEditor := PixelEditor open.
+			PixelEditor open.
 			self abandon]
 		ifFalse: [self addedText emphasis: 4. 
 			self addedText changed].]
@@ -312,24 +287,6 @@ PESystemWindow >> submitButton [
 PESystemWindow >> submitButton: aButton [
 
 	submitButton := aButton
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'LW 5/21/2024 22:33'
-}
-PESystemWindow >> widthInput [
-
-	^ widthInput
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'LW 5/21/2024 22:33'
-}
-PESystemWindow >> widthInput: aWidth [
-
-	widthInput := aWidth
 ]
 
 {
