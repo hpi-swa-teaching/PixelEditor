@@ -1,0 +1,180 @@
+<mxfile host="65bd71144e">
+    <diagram id="PiLePP59k7EY6XgLMS-A" name="Page-1">
+        <mxGraphModel dx="2014" dy="1843" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="5" style="edgeStyle=none;html=1;endArrow=oval;endFill=1;" edge="1" parent="1" source="2">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1220" y="498" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="2" value="PixelEditor" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="802" y="540" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" style="edgeStyle=none;html=1;endArrow=none;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="6" target="2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="open" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=1 4;" vertex="1" parent="1">
+                    <mxGeometry x="922" y="450" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" style="edgeStyle=none;html=1;endArrow=none;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="7" target="2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="register" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=1 4;" vertex="1" parent="1">
+                    <mxGeometry x="682" y="630" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" style="edgeStyle=none;html=1;endArrow=diamond;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="10" target="11">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" style="edgeStyle=none;html=1;endArrow=diamond;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="10" target="13">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" style="edgeStyle=none;html=1;endArrow=none;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="10" target="15">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="PEBuilder" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1062" y="1042" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="PEButtonBuilder" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="982" y="832" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="PECanvasBuilder" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1222" y="1122" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="setUpSavingDirectory" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=1 4;" vertex="1" parent="1">
+                    <mxGeometry x="1112" y="1212" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="PEButtonText" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="352" y="1302" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="PECanvas" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="932" y="1292" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="PELayer" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1372" y="882" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" style="edgeStyle=none;html=1;endArrow=none;endFill=0;startArrow=async;startFill=1;noEdgeStyle=1;" edge="1" parent="1" source="21" target="19">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="PEPixel" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1182" y="972" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="PEPluggableTextMorph" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="362" y="652" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=none;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="24" target="26">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" style="edgeStyle=none;html=1;startArrow=openAsync;startFill=0;endArrow=none;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="24" target="19">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=none;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="24" target="29">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=none;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="24" target="30">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="PEScreen" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="1542" y="812" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="fileExists" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=1 4;" vertex="1" parent="1">
+                    <mxGeometry x="1532" y="652" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="handlesKeyDown" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=1 4;" vertex="1" parent="1">
+                    <mxGeometry x="1712" y="752" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="handlesMouseDown" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=1 4;" vertex="1" parent="1">
+                    <mxGeometry x="1662" y="942" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="52" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=async;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="33" target="50">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="53" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=async;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="33" target="18">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="54" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=async;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="33" target="21">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="57" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=async;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="33" target="10">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="PESystemWindow" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="942" y="1122" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=diamond;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="34" target="35">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="PETools" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="532" y="1562" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="58" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=async;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="35" target="46">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="PEBrush" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="522" y="1402" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=diamond;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="37" target="38">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=diamond;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="37" target="42">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="45" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=diamond;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="37" target="44">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="47" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=diamond;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="37" target="46">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="49" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=diamond;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="37" target="48">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="51" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=diamond;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="37" target="50">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="PEUI" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="512" y="992" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=diamond;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="38" target="40">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="PEButton" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="642" y="842" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="59" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=async;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="40" target="11">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="PECanvasSizeButton" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="802" y="762" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="42" value="PEButtonRow" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="342" y="922" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="61" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=async;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="44" target="23">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="PEColorButton" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="442" y="792" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="60" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=async;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="46" target="17">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="46" value="PEColorPalette" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="482" y="1222" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" value="PETextInputMorph" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="362" y="1082" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" value="PETextInputMorphWithLabel" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="702" y="1072" width="180" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="56" style="edgeStyle=none;html=1;startArrow=none;startFill=0;endArrow=diamond;endFill=0;noEdgeStyle=1;" edge="1" parent="1" source="55" target="10">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="55" value="Core" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="932" y="972" width="120" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
