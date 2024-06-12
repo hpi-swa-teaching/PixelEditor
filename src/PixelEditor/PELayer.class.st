@@ -130,13 +130,12 @@ PELayer >> handlesMouseStillDown: anEvent [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 23:31'
+	#'squeak_changestamp' : 'GT 6/12/2024 16:19'
 }
 PELayer >> initialize [
 
 	super initialize.
 	self color: Color white;
-		borderWidth: 5;
 		borderColor: Color black;
 		pixelDictionary: Dictionary new.
 	submorphs := OrderedCollection new
