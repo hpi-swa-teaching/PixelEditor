@@ -1,15 +1,55 @@
 Class {
 	#name : #PixelEditorWindowTest,
 	#superclass : #TestCase,
+	#instVars : [
+		'pixelEditor'
+	],
 	#category : #'PixelEditor-Tests'
 }
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/13/2024 11:57'
+	#'squeak_changestamp' : 'GLE 6/13/2024 15:40'
+}
+PixelEditorWindowTest >> abandonPixelEditor [
+
+	self pixelEditor abandon
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/13/2024 15:40'
+}
+PixelEditorWindowTest >> createPixelEditor [
+
+	self pixelEditor: PixelEditor open
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/13/2024 15:38'
+}
+PixelEditorWindowTest >> pixelEditor [
+
+	^ pixelEditor
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/13/2024 15:38'
+}
+PixelEditorWindowTest >> pixelEditor: anObject [
+
+	pixelEditor := anObject
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/13/2024 15:40'
 }
 PixelEditorWindowTest >> testWindowOpen [
 
-	
-	self assert: PixelEditor open systemWindow
+	self createPixelEditor.
+	self assert: (self pixelEditor systemWindow ifNil: [ ^ false ] ifNotNil: [ ^ true]).
+	self abandonPixelEditor
 ]

@@ -21,36 +21,6 @@ PEBuilder class >> setUpDirectories [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/7/2024 17:26'
-}
-PEBuilder >> buildPixelEditor [
-
-	|  canvas |
-	
-	self setUpDirectories.
-	canvas := PECanvasBuilder new buildCanvas.
-	PEButtonBuilder new buildButtonRows: canvas.
-	^ canvas
-	
-	
-	 
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/7/2024 17:27'
-}
-PEBuilder >> buildPixelEditorOld [
-	
-	self setUpDirectories.
-	PEButtonBuilder new buildButtonRows: PECanvasBuilder new buildScreen.
-	
-	
-	 
-]
-
-{
-	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 6/7/2024 17:27'
 }
 PEBuilder >> buildPixelEditorWithJson: aJson [

@@ -2,12 +2,9 @@ Class {
 	#name : #PixelEditor,
 	#superclass : #Model,
 	#instVars : [
-		'canvas',
-		'colorButtonContainer',
 		'jsonString',
-		'settingsButtonContainer',
-		'systemWindowBounds',
-		'toolButtonContainer'
+		'containerDictionary',
+		'containerArray'
 	],
 	#category : #PixelEditor
 }
@@ -68,17 +65,8 @@ PixelEditor class >> register [
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/5/2024 21:47'
-}
-PixelEditor >> addMorphsForUpdating: aCollection [
-	
-	aCollection do: [:each | self containingWindow paneMorphs add: each]
-]
-
-{
 	#category : #toolbuilder,
-	#'squeak_changestamp' : 'GLE 6/10/2024 18:01'
+	#'squeak_changestamp' : 'GLE 6/13/2024 15:35'
 }
 PixelEditor >> buildWith: aBuilder [ 
 	
@@ -87,143 +75,48 @@ PixelEditor >> buildWith: aBuilder [
 	builder := aBuilder build: (aBuilder pluggableWindowSpec new model: self;
 	 	label: #labelString;
 		extent: self class defaultExtent;
-		children: (self createPanelsWith: aBuilder);
+		children: (PEPanelBuilder new createPanelsWithBuilder: aBuilder andPixelEditor: self);
 		yourself).
 		self systemWindow addMorph: (PERezisingAgent new model: self).
+		self containerArray: self containerDictionary asArray.
 		^ builder
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/3/2024 09:44'
+	#'squeak_changestamp' : 'GLE 6/13/2024 15:26'
 }
-PixelEditor >> canvas [
+PixelEditor >> containerArray [
 
-	^ canvas
+	^ containerArray
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/3/2024 09:44'
+	#'squeak_changestamp' : 'GLE 6/13/2024 15:25'
 }
-PixelEditor >> canvas: aPECanvas [
+PixelEditor >> containerArray: anArray [
 
-	canvas := aPECanvas
+	containerArray := anArray
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/3/2024 14:23'
+	#'squeak_changestamp' : 'GLE 6/13/2024 14:53'
 }
-PixelEditor >> colorButtonCollection [
+PixelEditor >> containerDictionary [
 
-	^ PEButtonBuilder new buildColorButtons: self canvas
+	^ containerDictionary
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/3/2024 19:08'
+	#'squeak_changestamp' : 'GLE 6/13/2024 15:19'
 }
-PixelEditor >> colorButtonContainer [
-	^ colorButtonContainer
-]
+PixelEditor >> containerDictionary: aDictionary [
 
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/3/2024 19:08'
-}
-PixelEditor >> colorButtonContainer: anObject [
-	colorButtonContainer := anObject
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/3/2024 19:08'
-}
-PixelEditor >> colorButtonPanel [
-	
-	self colorButtonContainer: (PEButtonRow new addMorphCollection: self colorButtonCollection).
-	^ { self colorButtonContainer }
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/11/2024 14:46'
-}
-PixelEditor >> containers [
-
-	^ { self canvas.
-		self colorButtonContainer.
-		self settingsButtonContainer.
-		"self toolButtonContainer"}
-]
-
-{
-	#category : #toolbuilder,
-	#'squeak_changestamp' : 'GLE 6/3/2024 09:57'
-}
-PixelEditor >> createCanvasPanelWithBuilder: aBuilder [ 
-
-	^ aBuilder pluggablePanelSpec new model: self;
-		 children: #playgroundInCollection;
-		 frame: (LayoutFrame new leftFraction: 0.33;
-			 topFraction: 0;
-			 rightFraction: 1;
-			 bottomFraction: 1)
-]
-
-{
-	#category : #toolbuilder,
-	#'squeak_changestamp' : 'GLE 6/3/2024 14:45'
-}
-PixelEditor >> createColorButtonPanelWithBuilder: aBuilder [ 
-
-	^ aBuilder pluggablePanelSpec new model: self;
-		 children: #colorButtonPanel;
-		 frame: (LayoutFrame new rightFraction: 0.33;
-			 topFraction: 0.66;
-			 leftFraction: 0;
-			 bottomFraction: 1)
-]
-
-{
-	#category : #toolbuilder,
-	#'squeak_changestamp' : 'GT 6/10/2024 19:09'
-}
-PixelEditor >> createPanelsWith: aBuilder [
-
-	^ {	self createCanvasPanelWithBuilder: aBuilder.
-		self createColorButtonPanelWithBuilder: aBuilder.
-		self createSettingsButtonPanelWithBuilder: aBuilder.
-		self createToolPanelWithBuilder: aBuilder}
-]
-
-{
-	#category : #toolbuilder,
-	#'squeak_changestamp' : 'GLE 6/4/2024 01:19'
-}
-PixelEditor >> createSettingsButtonPanelWithBuilder: aBuilder [ 
-
-	^ aBuilder pluggablePanelSpec new model: self;
-		 children: #settingsButtonPanel;
-		 frame: (LayoutFrame new rightFraction: 0.33;
-			 topFraction: 0;
-			 leftFraction: 0;
-			 bottomFraction: 0.2)
-]
-
-{
-	#category : #toolbuilder,
-	#'squeak_changestamp' : 'GLE 6/11/2024 14:37'
-}
-PixelEditor >> createToolPanelWithBuilder: aBuilder [ 
-
-	^ aBuilder pluggablePanelSpec new model: self;
-		 children: #toolButtonPanel;
-		 frame: (LayoutFrame new rightFraction: 0.33;
-			 topFraction: 0.52;
-			 leftFraction: 0;
-			 bottomFraction: 0.6)
+	containerDictionary := aDictionary.
+	self containerArray: aDictionary asArray
 ]
 
 {
@@ -237,13 +130,12 @@ PixelEditor >> formFromCanvas [
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'GLE 6/10/2024 16:58'
+	#'squeak_changestamp' : 'GLE 6/13/2024 15:29'
 }
 PixelEditor >> initialize [
 
 	super initialize.
-	self canvas: PECanvasBuilder new buildCanvas;
-		jsonString: String new
+	self jsonString: String new
 ]
 
 {
@@ -256,10 +148,11 @@ PixelEditor >> jsonString [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:53'
+	#'squeak_changestamp' : 'GLE 6/13/2024 15:31'
 }
-PixelEditor >> jsonString: anObject [
-	jsonString := anObject
+PixelEditor >> jsonString: aJsonString [
+
+	jsonString := aJsonString
 ]
 
 {
@@ -290,59 +183,12 @@ PixelEditor >> open [
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/3/2024 10:02'
+	#category : #'lifecycle hooks',
+	#'squeak_changestamp' : 'GLE 6/13/2024 15:50'
 }
-PixelEditor >> playgroundInCollection [
+PixelEditor >> panels [
 
-	^ {self canvas}
-]
-
-{
-	#category : #toolbuilder,
-	#'squeak_changestamp' : 'GLE 6/3/2024 19:24'
-}
-PixelEditor >> resizeColorButtons [
-
-	self colorButtonContainer position: (self colorButtonContainer owner position);
-		extent: (self colorButtonContainer owner extent).
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/4/2024 01:12'
-}
-PixelEditor >> settingsButtonCollection [
-
-	^ PEButtonBuilder new buildSettingsButtons: self
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/4/2024 01:12'
-}
-PixelEditor >> settingsButtonContainer [
-
-	^ settingsButtonContainer
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/4/2024 01:12'
-}
-PixelEditor >> settingsButtonContainer: anObject [
-
-	settingsButtonContainer := anObject
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/4/2024 01:15'
-}
-PixelEditor >> settingsButtonPanel [
 	
-	self settingsButtonContainer: (PEButtonRow new addMorphCollection: self settingsButtonCollection).
-	^ { self settingsButtonContainer }
 ]
 
 {
@@ -356,62 +202,29 @@ PixelEditor >> systemWindow [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/10/2024 16:45'
+	#'squeak_changestamp' : 'GLE 6/13/2024 15:31'
 }
 PixelEditor >> systemWindowBounds [
+
 	^ systemWindowBounds
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/10/2024 16:45'
+	#'squeak_changestamp' : 'GLE 6/13/2024 15:31'
 }
 PixelEditor >> systemWindowBounds: anObject [
+
 	systemWindowBounds := anObject
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/11/2024 14:13'
-}
-PixelEditor >> toolButtonCollection [
-
-	^ PEButtonBuilder new buildToolButtons: self canvas
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 6/10/2024 19:06'
-}
-PixelEditor >> toolButtonContainer [
-	^ toolButtonContainer
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 6/10/2024 19:06'
-}
-PixelEditor >> toolButtonContainer: anObject [
-	toolButtonContainer := anObject
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 6/10/2024 19:09'
-}
-PixelEditor >> toolButtonPanel [
-	
-	self toolButtonContainer: (PEButtonRow new addMorphCollection: self toolButtonCollection).
-	^ { self toolButtonContainer }
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/10/2024 18:03'
+	#'squeak_changestamp' : 'GLE 6/13/2024 15:31'
 }
 PixelEditor >> update [
 
-	self containers do: [:each | each update].
+	self containerArray do: [:each | each update]
 ]
 
 {

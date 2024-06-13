@@ -135,11 +135,11 @@ PEButtonBuilder >> buildColorButtons: aCanvas [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/11/2024 14:31'
+	#'squeak_changestamp' : 'GLE 6/13/2024 13:48'
 }
 PEButtonBuilder >> buildColorPickerButton: aCanvas [
 
-	^PEColorPickerButton new
+	^ PEColorPickerButton new
 		beTransparent;
 		borderWidth: 0;
 		image: (self assetHandler loadForm: self colorBucketPath)
