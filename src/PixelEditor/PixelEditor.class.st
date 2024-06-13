@@ -43,13 +43,13 @@ PixelEditor class >> open [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/4/2024 01:25'
+	#'squeak_changestamp' : 'GLE 6/13/2024 16:27'
 }
-PixelEditor class >> openWithCanvas: aCanvas [
+PixelEditor class >> openWithJson: aJson [
 
 	| instance |
 	
-	instance := self new canvas: aCanvas.
+	instance := self new jsonString: aJson.
 	ToolBuilder open: instance.
 	^ instance
 ]
@@ -66,7 +66,7 @@ PixelEditor class >> register [
 
 {
 	#category : #toolbuilder,
-	#'squeak_changestamp' : 'GLE 6/13/2024 15:35'
+	#'squeak_changestamp' : 'GLE 6/13/2024 15:57'
 }
 PixelEditor >> buildWith: aBuilder [ 
 	
@@ -75,11 +75,11 @@ PixelEditor >> buildWith: aBuilder [
 	builder := aBuilder build: (aBuilder pluggableWindowSpec new model: self;
 	 	label: #labelString;
 		extent: self class defaultExtent;
-		children: (PEPanelBuilder new createPanelsWithBuilder: aBuilder andPixelEditor: self);
+		children: (self panelsFromBuilder: aBuilder);
 		yourself).
-		self systemWindow addMorph: (PERezisingAgent new model: self).
-		self containerArray: self containerDictionary asArray.
-		^ builder
+	self systemWindow addMorph: (PERezisingAgent new model: self).
+	self containerArray: self containerDictionary asArray.
+	^ builder
 ]
 
 {
@@ -140,9 +140,10 @@ PixelEditor >> initialize [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:53'
+	#'squeak_changestamp' : 'GLE 6/13/2024 15:51'
 }
 PixelEditor >> jsonString [
+
 	^ jsonString
 ]
 
@@ -184,10 +185,17 @@ PixelEditor >> open [
 
 {
 	#category : #'lifecycle hooks',
-	#'squeak_changestamp' : 'GLE 6/13/2024 15:50'
+	#'squeak_changestamp' : 'GLE 6/13/2024 16:06'
 }
-PixelEditor >> panels [
+PixelEditor >> panelsFromBuilder: aBuilder [
 
+	| panels |
+	
+	panels := PEPanelBuilder new.
+	self jsonString = ''
+		ifTrue: [ panels canvas]
+		ifFalse:[ panels canvasFromJson: self jsonString].
+	^ panels createPanelsWithBuilder: aBuilder andPixelEditor: self
 	
 ]
 
