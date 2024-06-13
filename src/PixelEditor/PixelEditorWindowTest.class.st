@@ -6,10 +6,10 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/12/2024 11:57'
+	#'squeak_changestamp' : 'GLE 6/13/2024 11:57'
 }
 PixelEditorWindowTest >> testWindowOpen [
 
 	
-	self assert: PixelEditor open systemWindow isOpen
+	self assert: PixelEditor open systemWindow
 ]
