@@ -9,11 +9,11 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/13/2024 15:40'
+	#'squeak_changestamp' : 'LW 6/13/2024 16:32'
 }
 PixelEditorWindowTest >> abandonPixelEditor [
 
-	self pixelEditor abandon
+	self pixelEditor systemWindow abandon
 ]
 
 {
