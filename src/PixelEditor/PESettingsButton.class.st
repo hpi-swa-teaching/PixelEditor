@@ -9,14 +9,14 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:58'
+	#'squeak_changestamp' : 'GLE 6/13/2024 16:24'
 }
 PESettingsButton >> addToJson [
 	
 	self jsonString: self jsonString, ('"width" : "', PECanvas pixelGridWidth, ' ", ').
 	self jsonString: self jsonString, ('"height" : "', PECanvas pixelGridHeight, ' ", ').
 	self jsonString: self jsonString, ('"pixelSize" : "', PEPixel pixelSize, ' " ').
-	self target canvas submorphs do: [:each | each basicType = #PELayer 
+	(self target containerDictionary at: #canvas) submorphs do: [:each | each basicType = #PELayer 
 		ifTrue: [self addToJsonString: each submorphs]]
 ]
 
@@ -116,7 +116,7 @@ PESettingsButton >> jsonString: anObject [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/7/2024 17:26'
+	#'squeak_changestamp' : 'GLE 6/13/2024 16:27'
 }
 PESettingsButton >> load [
 	
@@ -126,7 +126,7 @@ PESettingsButton >> load [
 		setDirectoryTo: (FileDirectory on: (FileStream fullName: 'Saved-Images' ));
 		getUserResponse.
 	fileName isNil ifFalse: [
-		PEBuilder new buildPixelEditorWithJson: (self loadFile: fileName).
+		PixelEditor openWithJson: (self loadFile: fileName).
 		self target systemWindow abandon]
 	
 	

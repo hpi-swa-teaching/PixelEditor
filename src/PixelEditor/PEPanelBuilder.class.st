@@ -28,6 +28,15 @@ PEPanelBuilder >> canvasAsCollection [
 
 {
 	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/13/2024 16:01'
+}
+PEPanelBuilder >> canvasFromJson: aJsonString [
+
+	self containerDictionary at: #canvas put: (PECanvasBuilder new buildCanvasFromJson: aJsonString)
+]
+
+{
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/13/2024 14:30'
 }
 PEPanelBuilder >> colorButtonCollection [
@@ -96,17 +105,17 @@ PEPanelBuilder >> createColorButtonPanelWithBuilder: aBuilder [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/13/2024 15:16'
+	#'squeak_changestamp' : 'GLE 6/13/2024 16:32'
 }
 PEPanelBuilder >> createPanelsWithBuilder: aBuilder andPixelEditor: aPixelEditor [
 
 	| panels |
 	
-	panels := { self createCanvasPanelWithBuilder: aBuilder."+"
-		self createColorButtonPanelWithBuilder: aBuilder. "+"
+	self pixelEditor: aPixelEditor.
+	panels := { self createCanvasPanelWithBuilder: aBuilder.
+		self createColorButtonPanelWithBuilder: aBuilder.
 		self createSettingsButtonPanelWithBuilder: aBuilder.
 		self createToolPanelWithBuilder: aBuilder }.
-	self pixelEditor: aPixelEditor.
 	aPixelEditor containerDictionary: self containerDictionary.
 	^ panels
 	
@@ -142,14 +151,12 @@ PEPanelBuilder >> createToolPanelWithBuilder: aBuilder [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/13/2024 14:34'
+	#'squeak_changestamp' : 'GLE 6/13/2024 16:03'
 }
 PEPanelBuilder >> initialize [ 
 
 	super initialize.
-	self containerDictionary: Dictionary new;
-		canvas
-		
+	self containerDictionary: Dictionary new
 ]
 
 {
@@ -172,7 +179,7 @@ PEPanelBuilder >> pixelEditor: anObject [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/13/2024 14:38'
+	#'squeak_changestamp' : 'GLE 6/13/2024 16:21'
 }
 PEPanelBuilder >> settingsButtonCollection [
 
