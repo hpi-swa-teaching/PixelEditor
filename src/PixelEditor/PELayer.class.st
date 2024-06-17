@@ -212,7 +212,7 @@ PELayer >> rectangle [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:30'
+	#'squeak_changestamp' : 'GLE 6/16/2024 18:56'
 }
 PELayer >> standardizedPoint: aPoint [
 

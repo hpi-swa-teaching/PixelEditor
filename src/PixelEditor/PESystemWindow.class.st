@@ -44,12 +44,13 @@ PESystemWindow >> addedText: aString [
 
 {
 	#category : #inputProcessing,
-	#'squeak_changestamp' : 'LW 6/11/2024 10:58'
+	#'squeak_changestamp' : 'GLE 6/16/2024 20:33'
 }
 PESystemWindow >> checkSizeCorrectnessfor: aHeight andWith: aWidth andSize: aSize [
 
 	({aHeight. aWidth. aSize} allSatisfy: [:each | each notNil])
-		ifTrue: [^{aHeight. aWidth. aSize} allSatisfy: [:each | each > 0]] ifFalse: [^ false]
+		ifTrue: [^{aHeight. aWidth. aSize} allSatisfy: [:each | each > 0]] 
+		ifFalse: [^ false]
 ]
 
 {
@@ -89,11 +90,11 @@ PESystemWindow >> initialExtent [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'LW 6/11/2024 13:38'
+	#'squeak_changestamp' : 'GLE 6/16/2024 20:34'
 }
 PESystemWindow >> initializeInputLineHeight [
 
-	^ PETextInputMorphWithLabel new	setLabel: 'Height:';
+	^ PETextInputMorphWithLabel new setLabel: 'Height:';
 		position: (self inputLineWidth position x) @ (self inputLineWidth position y + 150);
 		yourself
 ]
@@ -150,15 +151,14 @@ PESystemWindow >> initializeSubmitButton [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'LW 6/11/2024 12:04'
+	#'squeak_changestamp' : 'GLE 6/16/2024 20:35'
 }
 PESystemWindow >> initializeText [
 
 	self addedText: 
-	(StringMorph new 
+	(StringMorph new color: Color red;
 		contents: 'Please only use positive natural numbers'; 
 		position: (self submitButton position x) @ (self submitButton position y + 100); 
-		color: Color red;
 		fontName: 'Arial' size: 20;
 		extent: 1000 @ 100;
 		yourself).

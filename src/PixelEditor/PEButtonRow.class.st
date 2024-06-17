@@ -20,14 +20,17 @@ PEButtonRow >> addMorphBelow: aMorph [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/11/2024 14:36'
+	#'squeak_changestamp' : 'GLE 6/16/2024 20:09'
 }
 PEButtonRow >> addMorphCollection: aMorphCollection [
 
 	| collection |
 	
 	aMorphCollection size = 2
-		ifTrue: [aMorphCollection do: [:each | self addMorphNext: each]]
+		ifTrue: [
+			aMorphCollection do: [:each | 
+					each extent: self extent x / 2 @ self extent y.
+				 	self addMorphNext: each]]
 		ifFalse:[
 		collection := self splitCollection: aMorphCollection.
 		self addMorphCollectionUpper: (collection at: 1);
@@ -81,19 +84,20 @@ PEButtonRow >> extent: anExtent [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 20:50'
+	#'squeak_changestamp' : 'GLE 6/16/2024 20:12'
 }
 PEButtonRow >> fitSubmorphs [
 
 	| collection splitCollection|
 	
 	self submorphs do: [:each | each extent: self newExtent].
-	splitCollection := self splitCollection: self submorphs.
-	collection := splitCollection at: 2.
-	(splitCollection at: 1) addAllFirstTo: collection. 
+	self submorphs size = 2
+		ifTrue: [collection := self submorphs]
+		ifFalse: [splitCollection := self splitCollection: self submorphs.
+			collection := splitCollection at: 2.
+			(splitCollection at: 1) addAllFirstTo: collection].
 	self removeAllMorphs.
-	self addMorphCollection: collection.
-	
+	self addMorphCollection: collection
 ]
 
 {
@@ -110,7 +114,7 @@ PEButtonRow >> initialize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 18:47'
+	#'squeak_changestamp' : 'GLE 6/16/2024 19:11'
 }
 PEButtonRow >> newExtent [
 

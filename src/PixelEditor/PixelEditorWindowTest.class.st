@@ -9,11 +9,11 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/13/2024 15:40'
+	#'squeak_changestamp' : 'GLE 6/16/2024 17:59'
 }
 PixelEditorWindowTest >> abandonPixelEditor [
 
-	self pixelEditor abandon
+	self pixelEditor systemWindow abandon
 ]
 
 {
@@ -45,11 +45,13 @@ PixelEditorWindowTest >> pixelEditor: anObject [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/13/2024 15:40'
+	#'squeak_changestamp' : 'GLE 6/16/2024 18:07'
 }
 PixelEditorWindowTest >> testWindowOpen [
 
+	| test |
 	self createPixelEditor.
-	self assert: (self pixelEditor systemWindow ifNil: [ ^ false ] ifNotNil: [ ^ true]).
-	self abandonPixelEditor
+	self assert: (self pixelEditor systemWindow ifNil: [ test := false ] ifNotNil: [ test := true ]).
+	self abandonPixelEditor.
+	^ test
 ]

@@ -38,19 +38,11 @@ PECanvas class >> pixelGridWidth: aWidth andHeight: aHeight [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/7/2024 20:43'
+	#'squeak_changestamp' : 'GLE 6/16/2024 18:37'
 }
 PECanvas >> brush [
 
-	self submorphsDo: [:each | each className = #PEBrush ifTrue:[^ each]]
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/1/2024 12:12'
-}
-PECanvas >> clear [
-	self removeAllMorphs
+	self submorphsDo: [:each | each className = #PEBrush ifTrue: [^ each]]
 ]
 
 {
@@ -89,9 +81,10 @@ PECanvas >> layer [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/1/2024 12:12'
+	#'squeak_changestamp' : 'GLE 6/16/2024 18:53'
 }
 PECanvas >> setUpBackground [
+
 	| theme |
 	
 	theme := Smalltalk at: #SqueakTheme ifAbsent: nil.

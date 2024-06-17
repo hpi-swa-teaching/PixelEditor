@@ -15,9 +15,14 @@ PEColorPickerButton >> doActionLeft [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/11/2024 14:30'
+	#'squeak_changestamp' : 'GLE 6/16/2024 20:44'
 }
 PEColorPickerButton >> doActionRight [
 
-	PEColorPalette new colorButton: PEColorButton selectedButton
+	| button |
+	
+	button := PEColorButton selectedButton.
+	button color = Color transparent
+		ifTrue:[^ nil]
+		ifFalse: [PEColorPalette new colorButton: button]
 ]

@@ -3,15 +3,14 @@ Class {
 	#superclass : #Model,
 	#instVars : [
 		'jsonString',
-		'containerDictionary',
-		'containerArray'
+		'containerDictionary'
 	],
 	#category : #PixelEditor
 }
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/3/2024 10:04'
+	#'squeak_changestamp' : 'GLE 6/16/2024 19:02'
 }
 PixelEditor class >> defaultExtent [
 
@@ -66,7 +65,7 @@ PixelEditor class >> register [
 
 {
 	#category : #toolbuilder,
-	#'squeak_changestamp' : 'GLE 6/13/2024 15:57'
+	#'squeak_changestamp' : 'GLE 6/16/2024 20:30'
 }
 PixelEditor >> buildWith: aBuilder [ 
 	
@@ -78,26 +77,7 @@ PixelEditor >> buildWith: aBuilder [
 		children: (self panelsFromBuilder: aBuilder);
 		yourself).
 	self systemWindow addMorph: (PERezisingAgent new model: self).
-	self containerArray: self containerDictionary asArray.
 	^ builder
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/13/2024 15:26'
-}
-PixelEditor >> containerArray [
-
-	^ containerArray
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/13/2024 15:25'
-}
-PixelEditor >> containerArray: anArray [
-
-	containerArray := anArray
 ]
 
 {
@@ -111,12 +91,12 @@ PixelEditor >> containerDictionary [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/13/2024 15:19'
+	#'squeak_changestamp' : 'GLE 6/16/2024 20:29'
 }
 PixelEditor >> containerDictionary: aDictionary [
 
 	containerDictionary := aDictionary.
-	self containerArray: aDictionary asArray
+	
 ]
 
 {
@@ -210,29 +190,11 @@ PixelEditor >> systemWindow [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/13/2024 15:31'
-}
-PixelEditor >> systemWindowBounds [
-
-	^ systemWindowBounds
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/13/2024 15:31'
-}
-PixelEditor >> systemWindowBounds: anObject [
-
-	systemWindowBounds := anObject
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/13/2024 15:31'
+	#'squeak_changestamp' : 'GLE 6/16/2024 20:28'
 }
 PixelEditor >> update [
 
-	self containerArray do: [:each | each update]
+	self containerDictionary do: [:each | each update]
 ]
 
 {
