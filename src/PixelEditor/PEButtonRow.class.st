@@ -84,7 +84,7 @@ PEButtonRow >> extent: anExtent [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/16/2024 20:12'
+	#'squeak_changestamp' : 'GLE 6/17/2024 15:45'
 }
 PEButtonRow >> fitSubmorphs [
 
@@ -94,8 +94,8 @@ PEButtonRow >> fitSubmorphs [
 	self submorphs size = 2
 		ifTrue: [collection := self submorphs]
 		ifFalse: [splitCollection := self splitCollection: self submorphs.
-			collection := splitCollection at: 2.
-			(splitCollection at: 1) addAllFirstTo: collection].
+			collection := splitCollection last.
+			(splitCollection first) addAllFirstTo: collection].
 	self removeAllMorphs.
 	self addMorphCollection: collection
 ]

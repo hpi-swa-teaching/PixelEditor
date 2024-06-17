@@ -101,11 +101,11 @@ PixelEditor >> containerDictionary: aDictionary [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/7/2024 20:57'
+	#'squeak_changestamp' : 'GLE 6/17/2024 15:48'
 }
 PixelEditor >> formFromCanvas [
 
-	^ Form fromDisplay: (self canvas layer at: 1) rectangle
+	^ Form fromDisplay: (self containerDictionary at: #canvas) rectangle
 ]
 
 {

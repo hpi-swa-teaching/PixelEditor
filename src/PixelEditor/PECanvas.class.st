@@ -81,6 +81,15 @@ PECanvas >> layer [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/17/2024 15:49'
+}
+PECanvas >> rectangle [
+
+	^ Rectangle origin: self position corner: self bottomRight
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 6/16/2024 18:53'
 }
 PECanvas >> setUpBackground [

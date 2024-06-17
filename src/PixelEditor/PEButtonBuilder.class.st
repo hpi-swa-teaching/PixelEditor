@@ -94,6 +94,22 @@ PEButtonBuilder class >> toolButtonSize [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/17/2024 16:21'
+}
+PEButtonBuilder >> addImage: anImage toMorph: aMorph [
+
+	| image | 
+	
+	image := ImageMorph new image: anImage.
+	image layoutProperties: (LayoutProperties new hResizing: #spaceFill;
+		vResizing: #spaceFill).
+	image layoutPolicy: (TableLayout new layout: image in: aMorph).
+	aMorph addMorph: image
+	
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GT 6/10/2024 19:11'
 }
 PEButtonBuilder >> assetHandler [
@@ -135,27 +151,34 @@ PEButtonBuilder >> buildColorButtons: aCanvas [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/13/2024 13:48'
+	#'squeak_changestamp' : 'GLE 6/17/2024 16:24'
 }
 PEButtonBuilder >> buildColorPickerButton: aCanvas [
 
-	^ PEColorPickerButton new
+	| button |
+	
+	button := PEColorPickerButton new
 		beTransparent;
-		borderWidth: 0;
-		image: (self assetHandler loadForm: self colorBucketPath)
+		borderWidth: 0.
+	self addImage: (self assetHandler loadForm: self colorBucketPath) toMorph: button.
+	^ button
+	
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/11/2024 14:50'
+	#'squeak_changestamp' : 'GLE 6/17/2024 16:22'
 }
 PEButtonBuilder >> buildEraserButton: aCanvas [
 
-	^PEColorButton new anObject: aCanvas brush;
+	| button |
+	
+	button := PEColorButton new anObject: aCanvas brush;
 		beTransparent;
 		borderWidth: 0;
-		extent: PEButtonBuilder toolButtonSize;
-		image: (self assetHandler loadForm: self eraserPath)
+		extent: PEButtonBuilder toolButtonSize.
+	self addImage: (self assetHandler loadForm: self eraserPath) toMorph: button.
+	^ button
 ]
 
 {

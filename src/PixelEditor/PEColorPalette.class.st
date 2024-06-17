@@ -148,13 +148,12 @@ PEColorPalette >> adjustHSV [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 5/27/2024 11:11'
+	#'squeak_changestamp' : 'GLE 6/17/2024 15:54'
 }
 PEColorPalette >> buildAcceptButton [
 
 	^ PluggableButtonMorph new target: self;
 		action: #adjustColor;
-		color: Color yellow;
 		label: 'Accept';
 		extent: PEColorPalette textBoxSize;
 		yourself
@@ -162,13 +161,12 @@ PEColorPalette >> buildAcceptButton [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 5/27/2024 11:11'
+	#'squeak_changestamp' : 'GLE 6/17/2024 15:54'
 }
 PEColorPalette >> buildCloseButton [
 
 	^ PluggableButtonMorph new target: self;
 		action: #abandon;
-		color: Color yellow;
 		label: 'Close';
 		extent: PEColorPalette textBoxSize;
 		yourself

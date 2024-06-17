@@ -96,15 +96,20 @@ PEColorButton >> handlesMouseDown: anEvent [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GT 6/10/2024 19:11'
+	#'squeak_changestamp' : 'GLE 6/17/2024 16:19'
 }
 PEColorButton >> image: anImage [
 
-	self addMorph: (ImageMorph new image: anImage;
+	"| image |
+	image := (ImageMorph new image: anImage;
 		position: self position;
-		yourself)
-	
-
+		layoutProperties: (LayoutProperties new hResizing: #spaceFill; 
+			vResizing: #spaceFill; 
+			yourself);
+		yourself).
+	image layoutPolicy: (TableLayout new layout: image in: self).
+	self addMorph: image
+"
 ]
 
 {
