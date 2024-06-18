@@ -37,26 +37,6 @@ PEColorPalette class >> textBoxSize [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/18/2024 10:28'
-}
-PEColorPalette >> addHSV [
-
-	| buttonRow |
-	
-	self hsvMorph: HSVColorSelectorMorph new.
-	self addMorphNext: self hsvMorph.
-	buttonRow := PEButtonRow new.
-	buttonRow addMorphNext:  self buildAcceptButton;
-	addMorphNext: self buildCloseButton.
-	self addMorphBelow: buttonRow.
-
-	
-
-
-]
-
-{
-	#category : #accessing,
 	#'squeak_changestamp' : 'GT 5/23/2024 11:55'
 }
 PEColorPalette >> addMorphBelow: aMorph [
@@ -89,32 +69,6 @@ PEColorPalette >> adjustColor [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/17/2024 15:54'
-}
-PEColorPalette >> buildAcceptButton [
-
-	^ PluggableButtonMorph new target: self;
-		action: #adjustColor;
-		label: 'Accept';
-		extent: PEColorPalette textBoxSize;
-		yourself
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/17/2024 15:54'
-}
-PEColorPalette >> buildCloseButton [
-
-	^ PluggableButtonMorph new target: self;
-		action: #abandon;
-		label: 'Close';
-		extent: PEColorPalette textBoxSize;
-		yourself
-]
-
-{
-	#category : #accessing,
 	#'squeak_changestamp' : 'GT 5/20/2024 17:01'
 }
 PEColorPalette >> colorButton [
@@ -124,12 +78,11 @@ PEColorPalette >> colorButton [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/17/2024 22:34'
+	#'squeak_changestamp' : 'GLE 6/18/2024 11:12'
 }
 PEColorPalette >> colorButton: anObject [
 	
 	colorButton := anObject.
-	self position: 150 @ (colorButton position y).
 	self hsvMorph selectedColor: (self colorButton color)
 
 	
@@ -147,7 +100,7 @@ PEColorPalette >> hsvMorph [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/17/2024 22:36'
+	#'squeak_changestamp' : 'GLE 6/18/2024 11:05'
 }
 PEColorPalette >> hsvMorph: anHSVMorph [
 
@@ -156,11 +109,10 @@ PEColorPalette >> hsvMorph: anHSVMorph [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/17/2024 22:37'
+	#'squeak_changestamp' : 'GLE 6/18/2024 11:04'
 }
 PEColorPalette >> initialize [
 
 	super initialize.
-	self addHSV;
-		beTransparent
+	self beTransparent
 ]

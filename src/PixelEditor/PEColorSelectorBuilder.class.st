@@ -6,44 +6,43 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/18/2024 10:54'
+	#'squeak_changestamp' : 'GLE 6/18/2024 11:12'
 }
 PEColorSelectorBuilder >> addButtonsTo: aColorPalette [
 
-	| buttonBuilder |
-	
-	buttonBuilder := PEButtonBuilder new.
-	aColorPalette addMorphNext: (buttonBuilder buildAcceptButton: aColorPalette);
-		addMorphNext: (buttonBuilder buildCloseButton: aColorPalette) 
+	aColorPalette addMorphBelow: (PEButtonBuilder new buildColorSelectorButtonRow: aColorPalette)
 
 	
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/18/2024 10:49'
+	#'squeak_changestamp' : 'GLE 6/18/2024 11:05'
 }
 PEColorSelectorBuilder >> addHSVMorphTo: aColorPalette [
 
-	aColorPalette addMorphNext: HSVColorSelectorMorph new. 
+	aColorPalette hsvMorph: HSVColorSelectorMorph new;
+		addMorphNext: aColorPalette hsvMorph
 
 	
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/18/2024 10:50'
+	#'squeak_changestamp' : 'GLE 6/18/2024 11:02'
 }
 PEColorSelectorBuilder >> createColorPalette [
 
-	self addHSVMorphTo: PEColorPalette new
+	^ self createColorSelector: PEColorPalette new
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 20:26'
+	#'squeak_changestamp' : 'GLE 6/18/2024 11:03'
 }
-PEColorSelectorBuilder >> createColorSelector [
+PEColorSelectorBuilder >> createColorSelector: aColorPalette [
 
-	^ PEColorPalette new colorButton: PEColorButton selectedButton
+	self addHSVMorphTo: aColorPalette;
+		addButtonsTo: aColorPalette.
+	^ aColorPalette colorButton: PEColorButton selectedButton
 ]

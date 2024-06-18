@@ -166,13 +166,13 @@ PixelEditor >> open [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/18/2024 10:31'
+	#'squeak_changestamp' : 'GLE 6/18/2024 11:02'
 }
 PixelEditor >> openColorSelector [
 
 	| colorSelector container |
 	
-	colorSelector := PEColorSelectorBuilder new createColorSelector.
+	colorSelector := PEColorSelectorBuilder new createColorPalette.
 	container := self containerDictionary at: #colorSelector.
 	container submorphs 
 		ifEmpty: [container addMorphNext: colorSelector]

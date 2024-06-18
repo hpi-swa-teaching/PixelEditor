@@ -194,6 +194,16 @@ PEButtonBuilder >> buildColorPickerButton: aPixelEditor [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/18/2024 11:07'
+}
+PEButtonBuilder >> buildColorSelectorButtonRow: aColorSelector [
+
+	^ PEButtonRow new addMorphNext: (self buildAcceptButton: aColorSelector);
+			addMorphNext: (self buildCloseButton: aColorSelector)
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 6/17/2024 21:16'
 }
 PEButtonBuilder >> buildEraserButton: aCanvas [
