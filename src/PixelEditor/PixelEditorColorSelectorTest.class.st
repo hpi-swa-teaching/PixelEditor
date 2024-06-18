@@ -62,16 +62,14 @@ PixelEditorColorSelectorTest >> changeColor: aPixel [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/17/2024 13:46'
+	#'squeak_changestamp' : 'GLE 6/17/2024 21:01'
 }
 PixelEditorColorSelectorTest >> changeSelectedColor [
 
 	| brush |
 	brush := self canvas brush.
 	brush changeSelectedColor: Color green.
-	"self color: Color green.
-	self layer submorphsDo: [:each | each className = #PEPixel ifTrue: [
-        each brushSelectedColor: self color]]."
+	self color: Color green.
 ]
 
 {
@@ -206,13 +204,14 @@ PixelEditorColorSelectorTest >> pixelEditor: anObject [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/17/2024 01:08'
+	#'squeak_changestamp' : 'GLE 6/17/2024 21:00'
 }
-PixelEditorColorSelectorTest >> testWindowOpen [
+PixelEditorColorSelectorTest >> testColoring [
 
 	self createPixelEditor.
 	self getCanvas.
 	self changeColor: self pixel.
-	self assert: (((self layer pixelDictionary at: pixel) color = self color) ifFalse: [ ^ false ] ifTrue: [ ^ true]).
+	self assert: ((self layer pixelDictionary at: pixel) color = self color).
 	self abandonPixelEditor
+	
 ]

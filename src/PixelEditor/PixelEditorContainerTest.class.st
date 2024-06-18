@@ -3,7 +3,7 @@ Class {
 	#superclass : #TestCase,
 	#instVars : [
 		'pixelEditor',
-		'containerArray'
+		'containerDictionary'
 	],
 	#category : #'PixelEditor-Tests'
 }
@@ -19,20 +19,11 @@ PixelEditorContainerTest >> abandonPixelEditor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/13/2024 16:11'
+	#'squeak_changestamp' : 'GLE 6/18/2024 10:41'
 }
-PixelEditorContainerTest >> containerArray [
+PixelEditorContainerTest >> containerDictionary [
 
-	^ containerArray
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/13/2024 16:11'
-}
-PixelEditorContainerTest >> containerArray: anArray [
-
-	containerArray := anArray
+	^ self pixelEditor containerDictionary
 ]
 
 {
@@ -46,20 +37,12 @@ PixelEditorContainerTest >> createPixelEditor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/13/2024 16:11'
+	#'squeak_changestamp' : 'GLE 6/18/2024 10:41'
 }
-PixelEditorContainerTest >> getContainerArray [
+PixelEditorContainerTest >> iterateContainerDictionary: aDictionary [
 
-	^ self pixelEditor containerArray
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/13/2024 16:09'
-}
-PixelEditorContainerTest >> iterateContainerArray: anArray [
-
-	^ (anArray allSatisfy: [:each | each submorphs isEmpty not])
+	aDictionary removeKey: #colorSelector.
+	^ (aDictionary allSatisfy: [:each | each submorphs isEmpty not])
 ]
 
 {
@@ -82,14 +65,13 @@ PixelEditorContainerTest >> pixelEditor: anObject [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/13/2024 16:18'
+	#'squeak_changestamp' : 'GLE 6/18/2024 10:41'
 }
 PixelEditorContainerTest >> testContainerContent [
 
 	self createPixelEditor.
-	self containerArray: self getContainerArray.
-	self assert: (self iterateContainerArray: self containerArray).
-	"self pixelEditor abandon"
+	self assert: (self iterateContainerDictionary: self containerDictionary).
+	self abandonPixelEditor
 
 	
 ]

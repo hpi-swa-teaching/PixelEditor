@@ -37,21 +37,11 @@ PEBrush >> brushSelectedColor: aColor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GT 5/20/2024 17:56'
-}
-PEBrush >> changeButtonColor: aButton [
-
-	PEColorPalette new colorButton: aButton
-	
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GT 5/25/2024 17:11'
+	#'squeak_changestamp' : 'GLE 6/17/2024 21:21'
 }
 PEBrush >> changeSelectedColor: aColor [
 
-	self pixelCollection do: [:each | each brushSelectedColor: aColor]
+	PEPixel selectedColor: aColor
 ]
 
 {

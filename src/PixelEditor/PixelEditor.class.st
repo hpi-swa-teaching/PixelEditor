@@ -65,13 +65,14 @@ PixelEditor class >> register [
 
 {
 	#category : #toolbuilder,
-	#'squeak_changestamp' : 'GLE 6/16/2024 20:30'
+	#'squeak_changestamp' : 'GLE 6/17/2024 19:18'
 }
 PixelEditor >> buildWith: aBuilder [ 
 	
 	| builder |
 	
-	builder := aBuilder build: (aBuilder pluggableWindowSpec new model: self;
+	builder := aBuilder 
+		build: (aBuilder pluggableWindowSpec new model: self;
 	 	label: #labelString;
 		extent: self class defaultExtent;
 		children: (self panelsFromBuilder: aBuilder);
@@ -161,6 +162,24 @@ PixelEditor >> onClose [
 PixelEditor >> open [
 
 	^ ToolBuilder open: self
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/18/2024 10:31'
+}
+PixelEditor >> openColorSelector [
+
+	| colorSelector container |
+	
+	colorSelector := PEColorSelectorBuilder new createColorSelector.
+	container := self containerDictionary at: #colorSelector.
+	container submorphs 
+		ifEmpty: [container addMorphNext: colorSelector]
+		ifNotEmpty: [container removeAllMorphs; 
+				addMorphNext: colorSelector]
+	
+	
 ]
 
 {

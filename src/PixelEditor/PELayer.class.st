@@ -33,14 +33,14 @@ PELayer >> colorFromString: aString [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:19'
+	#'squeak_changestamp' : 'GLE 6/17/2024 18:42'
 }
 PELayer >> colorPixels: anEvent [
 
 	| pixelPoint |
 	
 	pixelPoint := self standardizedPoint: (self pointInSelf: anEvent position).
-	(self pixelDictionary at: pixelPoint ifAbsent: [^nil]) changeColor 
+	(self pixelDictionary at: pixelPoint ifAbsent: [^ nil]) changeColor 
 ]
 
 {

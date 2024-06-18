@@ -119,14 +119,40 @@ PEButtonBuilder >> assetHandler [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/7/2024 19:21'
+	#'squeak_changestamp' : 'GLE 6/18/2024 10:52'
 }
-PEButtonBuilder >> buildColorButton: aCanvas color: aColor [
+PEButtonBuilder >> buildAcceptButton: aColorPalette [
 
-	"The brush added to the end of aScreen submorphs. We can access it by calling last on the submorph 	array of aScreen"
+	^ PluggableButtonMorph new target: aColorPalette;
+		action: #adjustColor;
+		label: 'Accept';
+		extent: PEColorPalette textBoxSize;
+		yourself
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/18/2024 10:52'
+}
+PEButtonBuilder >> buildCloseButton: aColorPalette [
+
+	^ PluggableButtonMorph new target: aColorPalette;
+		action: #abandon;
+		label: 'Close';
+		extent: PEColorPalette textBoxSize;
+		yourself
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/17/2024 21:16'
+}
+PEButtonBuilder >> buildColorButton: aCanvas editor: aPixelEditor color: aColor [ 
 	
-	^ PEColorButton new anObject: aCanvas brush;
-		extent: (PEButtonBuilder colorButtonSize);
+	^ PEColorButton new 
+		brush: aCanvas brush;
+		pixelEditor: aPixelEditor; 
+		extent: PEButtonBuilder colorButtonSize;
 		color: aColor;
 		yourself
 		
@@ -137,27 +163,28 @@ PEButtonBuilder >> buildColorButton: aCanvas color: aColor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 14:21'
+	#'squeak_changestamp' : 'GLE 6/17/2024 21:12'
 }
-PEButtonBuilder >> buildColorButtons: aCanvas [
+PEButtonBuilder >> buildColorButtons: aCanvas withTarget: aPixelEditor [
 
 	| buttonCollection |
 	
 	buttonCollection := OrderedCollection new.
 	PEButtonBuilder colorsForButtons do: [:nextColor | 
-		buttonCollection add: (self buildColorButton: aCanvas color: nextColor)].
+		buttonCollection add: (self buildColorButton: aCanvas editor: aPixelEditor color: nextColor)].
 	^  buttonCollection
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 16:24'
+	#'squeak_changestamp' : 'GLE 6/17/2024 21:11'
 }
-PEButtonBuilder >> buildColorPickerButton: aCanvas [
+PEButtonBuilder >> buildColorPickerButton: aPixelEditor [
 
 	| button |
 	
 	button := PEColorPickerButton new
+		pixelEditor: aPixelEditor;
 		beTransparent;
 		borderWidth: 0.
 	self addImage: (self assetHandler loadForm: self colorBucketPath) toMorph: button.
@@ -167,13 +194,14 @@ PEButtonBuilder >> buildColorPickerButton: aCanvas [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 16:22'
+	#'squeak_changestamp' : 'GLE 6/17/2024 21:16'
 }
 PEButtonBuilder >> buildEraserButton: aCanvas [
 
 	| button |
 	
-	button := PEColorButton new anObject: aCanvas brush;
+	button := PEColorButton new 
+		brush: aCanvas brush;
 		beTransparent;
 		borderWidth: 0;
 		extent: PEButtonBuilder toolButtonSize.
@@ -201,10 +229,9 @@ PEButtonBuilder >> buildExportButton: aPixelEditor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/10/2024 16:05'
+	#'squeak_changestamp' : 'GLE 6/17/2024 19:09'
 }
 PEButtonBuilder >> buildGridButton: aPixelEditor [
-
 
 	^ PEGridButton new target: aPixelEditor;
 		label: 'Grid';
@@ -269,12 +296,27 @@ PEButtonBuilder >> buildSettingsButtons: aPixelEditor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/11/2024 14:32'
+	#'squeak_changestamp' : 'GLE 6/17/2024 20:15'
 }
-PEButtonBuilder >> buildToolButtons: aCanvas [
+PEButtonBuilder >> buildToolButtons: aPixelEditor [
+
+	^ {self buildEraserButton: aPixelEditor.
+		self buildColorPickerButton: aPixelEditor}
+		
+		
+	
+
+	
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/17/2024 20:17'
+}
+PEButtonBuilder >> buildToolButtons: aCanvas for: aPixelEditor [
 
 	^ {self buildEraserButton: aCanvas.
-		self buildColorPickerButton: aCanvas}
+		self buildColorPickerButton: aPixelEditor}
 		
 		
 	

@@ -7,7 +7,8 @@ Class {
 	#classInstVars : [
 		'pixelSize',
 		'borderColor',
-		'borderSize'
+		'borderSize',
+		'selectedColor'
 	],
 	#category : #PixelEditor
 }
@@ -99,6 +100,28 @@ PEPixel class >> pixelSize: aSize [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/17/2024 21:18'
+}
+PEPixel class >> selectedColor [
+
+	^ selectedColor
+
+	
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/17/2024 21:18'
+}
+PEPixel class >> selectedColor: aColor [
+
+	selectedColor := aColor
+
+	
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 6/7/2024 18:23'
 }
 PEPixel class >> toggleBorderColor [
@@ -122,32 +145,12 @@ PEPixel class >> toggleBorderSize [
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/25/2024 17:13'
-}
-PEPixel >> brushSelectedColor [
-  
-	^ brushSelectedColor
-  
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/25/2024 17:13'
-}
-PEPixel >> brushSelectedColor: anObject [
-  
-	brushSelectedColor := anObject
-
-]
-
-{
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/3/2024 23:34'
+	#'squeak_changestamp' : 'GLE 6/17/2024 21:19'
 }
 PEPixel >> changeColor [
 
-	self color: self brushSelectedColor
+	self color: PEPixel selectedColor
 ]
 
 {
@@ -164,25 +167,4 @@ PEPixel >> initialize [
 	
 		
 		
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 23:34'
-}
-PEPixel >> mouseDown: anEvent [
-
-	self changeColor
-  
-]
-
-{
-	#category : #initialization,
-	#'squeak_changestamp' : 'Corvin 6/1/2024 20:08'
-}
-PEPixel >> positionPixel: aPosition [ 
-	| x y |
-	x := aPosition x - ( self width / 2).
-	y := aPosition y - ( self height / 2).
-	self position: x@y
 ]

@@ -15,14 +15,9 @@ PEColorPickerButton >> doActionLeft [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/16/2024 20:44'
+	#'squeak_changestamp' : 'GLE 6/17/2024 21:10'
 }
 PEColorPickerButton >> doActionRight [
 
-	| button |
-	
-	button := PEColorButton selectedButton.
-	button color = Color transparent
-		ifTrue:[^ nil]
-		ifFalse: [PEColorPalette new colorButton: button]
+	self pixelEditor openColorSelector
 ]

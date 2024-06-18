@@ -21,6 +21,19 @@ PEBuilder class >> setUpDirectories [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/17/2024 23:31'
+}
+PEBuilder >> buildPixelEditor [
+
+	self setUpDirectories.
+	PixelEditor open
+	
+	
+	 
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 6/7/2024 17:27'
 }
 PEBuilder >> buildPixelEditorWithJson: aJson [

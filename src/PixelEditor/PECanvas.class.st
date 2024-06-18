@@ -38,11 +38,11 @@ PECanvas class >> pixelGridWidth: aWidth andHeight: aHeight [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/16/2024 18:37'
+	#'squeak_changestamp' : 'GLE 6/17/2024 23:27'
 }
 PECanvas >> brush [
 
-	self submorphsDo: [:each | each className = #PEBrush ifTrue: [^ each]]
+	self submorphsDo: [:each | each basicType = #PEBrush ifTrue: [^ each]]
 ]
 
 {

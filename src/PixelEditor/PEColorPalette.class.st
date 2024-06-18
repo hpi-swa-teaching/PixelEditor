@@ -2,12 +2,7 @@ Class {
 	#name : #PEColorPalette,
 	#superclass : #PEUI,
 	#instVars : [
-		'colorRed',
-		'colorBlue',
-		'colorGreen',
-		'textMorphCollection',
 		'colorButton',
-		'chosenColor',
 		'hsvMorph'
 	],
 	#category : #PixelEditor
@@ -33,28 +28,26 @@ PEColorPalette class >> sizeButtonRow [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GT 5/20/2024 16:11'
+	#'squeak_changestamp' : 'GLE 6/18/2024 10:27'
 }
 PEColorPalette class >> textBoxSize [
 
-	^ 70 @ 50
+	^ 96 @ 50
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/25/2024 17:41'
+	#'squeak_changestamp' : 'GLE 6/18/2024 10:28'
 }
 PEColorPalette >> addHSV [
 
 	| buttonRow |
 	
-	hsvMorph := HSVColorSelectorMorph new.
-	self addMorphNext: hsvMorph.
-
-	buttonRow := AlignmentMorph newRow.
-	buttonRow addMorph: self buildCloseButton;
-		addMorph: self buildAcceptButton.
-	
+	self hsvMorph: HSVColorSelectorMorph new.
+	self addMorphNext: self hsvMorph.
+	buttonRow := PEButtonRow new.
+	buttonRow addMorphNext:  self buildAcceptButton;
+	addMorphNext: self buildCloseButton.
 	self addMorphBelow: buttonRow.
 
 	
@@ -86,64 +79,12 @@ PEColorPalette >> addMorphNext: aMorph [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/20/2024 18:07'
-}
-PEColorPalette >> addTextButtonRow [
-
-	| buttonRow |
-	
-	buttonRow := PEButtonRow new extent: PEColorPalette  sizeButtonRow.
-	buttonRow addMorphBelow: (self getTextMorph: 'Red');
-				addMorphBelow: (self getTextMorph: 'Green');
-				addMorphBelow: (self getTextMorph: 'Blue');
-				addMorphBelow: self buildAcceptButton.
-		
-	self addMorphNext: buttonRow
-	
-	
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/20/2024 18:33'
-}
-PEColorPalette >> addTextInputButtonRow [
-
-	| buttonRow |
-	
-	buttonRow := PEButtonRow new extent: PEColorPalette sizeButtonRow.
-	buttonRow addMorphBelow: self getTextInputMorph ;
-				addMorphBelow: self getTextInputMorph;
-				addMorphBelow: self getTextInputMorph;
-				addMorphBelow: self buildCloseButton.
-	
-	self addMorphNext: buttonRow
-	
-	
-
-	
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/25/2024 16:52'
+	#'squeak_changestamp' : 'GLE 6/17/2024 22:31'
 }
 PEColorPalette >> adjustColor [
 
-	chosenColor := self hsvMorph selectedColor.
-    
-	self colorButton color: self chosenColor;
+	self colorButton color: self hsvMorph selectedColor;
 		doActionLeft
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/25/2024 17:33'
-}
-PEColorPalette >> adjustHSV [
-
-	self hsvMorph selectedColor: (self colorButton color)
-
 ]
 
 {
@@ -174,40 +115,6 @@ PEColorPalette >> buildCloseButton [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/25/2024 16:43'
-}
-PEColorPalette >> chosenColor [
-	^ chosenColor
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/25/2024 16:43'
-}
-PEColorPalette >> chosenColor: anObject [
-	chosenColor := anObject
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/20/2024 14:59'
-}
-PEColorPalette >> colorBlue [
-
-	^ colorBlue
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/20/2024 14:59'
-}
-PEColorPalette >> colorBlue: anObject [
-
-	colorBlue := anObject
-]
-
-{
-	#category : #accessing,
 	#'squeak_changestamp' : 'GT 5/20/2024 17:01'
 }
 PEColorPalette >> colorButton [
@@ -217,14 +124,11 @@ PEColorPalette >> colorButton [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/25/2024 17:41'
+	#'squeak_changestamp' : 'GLE 6/17/2024 22:34'
 }
 PEColorPalette >> colorButton: anObject [
-
-	| color |
 	
 	colorButton := anObject.
-	color := colorButton color.
 	self position: 150 @ (colorButton position y).
 	self hsvMorph selectedColor: (self colorButton color)
 
@@ -234,170 +138,29 @@ PEColorPalette >> colorButton: anObject [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/20/2024 15:00'
-}
-PEColorPalette >> colorGreen [
-
-	^ colorGreen
-
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/20/2024 14:59'
-}
-PEColorPalette >> colorGreen: anObject [
-
-	colorGreen := anObject
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/20/2024 15:00'
-}
-PEColorPalette >> colorRed [
-
-	^ colorRed
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/20/2024 15:00'
-}
-PEColorPalette >> colorRed: anObject [
-
-	colorRed := anObject
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/20/2024 16:41'
-}
-PEColorPalette >> doNothing [
-
-	"Nothing"
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/20/2024 15:03'
-}
-PEColorPalette >> getColorFromRGB [
-
-	^Color r: self colorRed g: self colorGreen b: self colorBlue.
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/20/2024 18:10'
-}
-PEColorPalette >> getTextInputMorph [
-
-	| morph textMorph |
-		
-	morph :=  Morph new color: Color lightMagenta;
-		borderWidth: 2;
-		borderColor: Color magenta;
-		extent: PEColorPalette textBoxSize.
-		
-	textMorph := PEPluggableTextMorph new extent: morph extent;
-		yourself.
-	self textMorphCollection addLast: textMorph.
-	
-	^ morph addMorph: textMorph
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/20/2024 16:04'
-}
-PEColorPalette >> getTextMorph: aString [
-
-	| morph |
-	
-	morph :=  Morph new color: Color transparent; 
-		extent: PEColorPalette textBoxSize.
-		
-	^ morph addMorph: (PEButtonText  new contents: aString;
-			extent: morph extent;
-			center: morph center; 
-			yourself)
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/25/2024 16:45'
+	#'squeak_changestamp' : 'GLE 6/17/2024 22:36'
 }
 PEColorPalette >> hsvMorph [
+
 	^ hsvMorph
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/25/2024 16:45'
+	#'squeak_changestamp' : 'GLE 6/17/2024 22:36'
 }
-PEColorPalette >> hsvMorph: anObject [
-	hsvMorph := anObject
+PEColorPalette >> hsvMorph: anHSVMorph [
+
+	hsvMorph := anHSVMorph
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/23/2024 11:23'
+	#'squeak_changestamp' : 'GLE 6/17/2024 22:37'
 }
 PEColorPalette >> initialize [
 
 	super initialize.
 	self addHSV;
-		openInWorld
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/25/2024 16:54'
-}
-PEColorPalette >> rgbAdjustColor [
-
-	self colorRed: ((self textMorphCollection at: 1) textMorph contents asNumber);
-		colorGreen: ((self textMorphCollection at: 2) textMorph contents asNumber);
-		colorBlue: ((self textMorphCollection at: 3) textMorph contents asNumber).
-	
-	self colorButton color: self getColorFromRGB;
-		doActionLeft
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/25/2024 16:57'
-}
-PEColorPalette >> rgbInitialize [
-	
-	self textMorphCollection: OrderedCollection new;
-		addTextButtonRow;
-		addTextInputButtonRow;
-		extent: PEColorPalette colorPaletteExtent;
-		color: Color transparent;	
-		borderWidth: 2;
-		borderColor: Color darkGray;
-		openInWorld;
-		rgbAdjustColor
-
-	
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/20/2024 16:46'
-}
-PEColorPalette >> textMorphCollection [
-
-	^ textMorphCollection
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/20/2024 16:46'
-}
-PEColorPalette >> textMorphCollection: anObject [
-
-	textMorphCollection := anObject
+		beTransparent
 ]

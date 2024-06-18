@@ -2,7 +2,8 @@ Class {
 	#name : #PEColorButton,
 	#superclass : #PEUI,
 	#instVars : [
-		'anObject'
+		'brush',
+		'pixelEditor'
 	],
 	#classInstVars : [
 		'selectedButton'
@@ -48,41 +49,42 @@ PEColorButton class >> selectedButton: aButton [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 14:49'
+	#'squeak_changestamp' : 'GLE 6/17/2024 21:13'
 }
-PEColorButton >> anObject [
+PEColorButton >> brush [
 
-	^ anObject
+	^ brush
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 14:49'
+	#'squeak_changestamp' : 'GLE 6/17/2024 21:14'
 }
-PEColorButton >> anObject: aObject [
+PEColorButton >> brush: aBrush [
 
-	anObject := aObject
+	brush := aBrush
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/11/2024 14:16'
+	#'squeak_changestamp' : 'GLE 6/17/2024 21:14'
 }
 PEColorButton >> doActionLeft [
 
-	self anObject changeSelectedColor: self color.
+	self brush changeSelectedColor: self color.
 	PEColorButton selectedButton: self.
 	
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/27/2024 10:56'
+	#'squeak_changestamp' : 'GLE 6/17/2024 21:27'
 }
 PEColorButton >> doActionRight [
 
-	self anObject changeButtonColor: self
-
+	PEColorButton selectedButton: self.
+	self pixelEditor openColorSelector
+	
 ]
 
 {
@@ -92,24 +94,6 @@ PEColorButton >> doActionRight [
 PEColorButton >> handlesMouseDown: anEvent [
 
 	^ true
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 16:19'
-}
-PEColorButton >> image: anImage [
-
-	"| image |
-	image := (ImageMorph new image: anImage;
-		position: self position;
-		layoutProperties: (LayoutProperties new hResizing: #spaceFill; 
-			vResizing: #spaceFill; 
-			yourself);
-		yourself).
-	image layoutPolicy: (TableLayout new layout: image in: self).
-	self addMorph: image
-"
 ]
 
 {
@@ -131,4 +115,22 @@ PEColorButton >> mouseDown: anEvent [
 
 	anEvent yellowButtonPressed ifTrue: [self doActionRight].
 	anEvent redButtonPressed ifTrue: [self doActionLeft]
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/17/2024 21:14'
+}
+PEColorButton >> pixelEditor [
+
+	^ pixelEditor
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/17/2024 21:14'
+}
+PEColorButton >> pixelEditor: aPixelEditor [
+
+	pixelEditor := aPixelEditor
 ]
