@@ -3,7 +3,8 @@ Class {
 	#superclass : #Model,
 	#instVars : [
 		'jsonString',
-		'containerDictionary'
+		'containerDictionary',
+		'json'
 	],
 	#category : #PixelEditor
 }
@@ -42,13 +43,13 @@ PixelEditor class >> open [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/13/2024 16:27'
+	#'squeak_changestamp' : 'GLE 6/19/2024 16:55'
 }
 PixelEditor class >> openWithJson: aJson [
 
 	| instance |
 	
-	instance := self new jsonString: aJson.
+	instance := self new json: aJson.
 	ToolBuilder open: instance.
 	^ instance
 ]
@@ -111,12 +112,30 @@ PixelEditor >> formFromCanvas [
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'GLE 6/13/2024 15:29'
+	#'squeak_changestamp' : 'GLE 6/19/2024 17:03'
 }
 PixelEditor >> initialize [
 
 	super initialize.
-	self jsonString: String new
+	self jsonString: String new;
+		json: JsonObject new
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/19/2024 16:55'
+}
+PixelEditor >> json [
+	^ json
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/19/2024 16:58'
+}
+PixelEditor >> json: aJson [
+
+	json := aJson
 ]
 
 {
@@ -184,16 +203,16 @@ PixelEditor >> openColorSelector [
 
 {
 	#category : #'lifecycle hooks',
-	#'squeak_changestamp' : 'GLE 6/13/2024 16:06'
+	#'squeak_changestamp' : 'GLE 6/19/2024 16:59'
 }
 PixelEditor >> panelsFromBuilder: aBuilder [
 
 	| panels |
 	
 	panels := PEPanelBuilder new.
-	self jsonString = ''
+	self json isEmpty
 		ifTrue: [ panels canvas]
-		ifFalse:[ panels canvasFromJson: self jsonString].
+		ifFalse:[ panels canvasFromJson: self json].
 	^ panels createPanelsWithBuilder: aBuilder andPixelEditor: self
 	
 ]

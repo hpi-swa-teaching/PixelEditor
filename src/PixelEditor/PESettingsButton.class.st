@@ -9,7 +9,7 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/13/2024 16:24'
+	#'squeak_changestamp' : 'GLE 6/19/2024 16:44'
 }
 PESettingsButton >> addToJson [
 	
@@ -89,15 +89,6 @@ PESettingsButton >> fileExists: aFileName [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:55'
-}
-PESettingsButton >> initialize [
-
-	super initialize.
-]
-
-{
-	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 6/4/2024 00:54'
 }
 PESettingsButton >> jsonString [
@@ -116,7 +107,7 @@ PESettingsButton >> jsonString: anObject [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/13/2024 16:27'
+	#'squeak_changestamp' : 'GLE 6/19/2024 16:49'
 }
 PESettingsButton >> load [
 	

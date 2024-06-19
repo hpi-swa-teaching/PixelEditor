@@ -204,13 +204,13 @@ PEButtonBuilder >> buildColorSelectorButtonRow: aColorSelector [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 21:16'
+	#'squeak_changestamp' : 'GLE 6/19/2024 16:39'
 }
 PEButtonBuilder >> buildEraserButton: aCanvas [
 
 	| button |
 	
-	button := PEColorButton new 
+	button := PEEraser new 
 		brush: aCanvas brush;
 		beTransparent;
 		borderWidth: 0;
