@@ -1,5 +1,5 @@
 Class {
-	#name : #PESystemWindow,
+	#name : #PEInputWindow,
 	#superclass : #SystemWindow,
 	#instVars : [
 		'heightInput',
@@ -19,7 +19,7 @@ Class {
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'LW 6/11/2024 12:05'
 }
-PESystemWindow class >> submitButtonSize [
+PEInputWindow class >> submitButtonSize [
 
 	^ 200 @ 75
 ]
@@ -28,7 +28,7 @@ PESystemWindow class >> submitButtonSize [
 	#category : #accessing,
 	#'squeak_changestamp' : 'LW 5/25/2024 17:37'
 }
-PESystemWindow >> addedText [
+PEInputWindow >> addedText [
 
 	^ addedText
 ]
@@ -37,62 +37,107 @@ PESystemWindow >> addedText [
 	#category : #accessing,
 	#'squeak_changestamp' : 'LW 5/25/2024 17:37'
 }
-PESystemWindow >> addedText: aString [
+PEInputWindow >> addedText: aString [
 
 	addedText := aString
 ]
 
 {
 	#category : #inputProcessing,
-	#'squeak_changestamp' : 'GLE 6/16/2024 20:33'
+	#'squeak_changestamp' : 'GLE 6/21/2024 09:38'
 }
-PESystemWindow >> checkSizeCorrectnessfor: aHeight andWith: aWidth andSize: aSize [
+PEInputWindow >> checkForEmptyValuesIn: aDictionary [
 
-	({aHeight. aWidth. aSize} allSatisfy: [:each | each notNil])
-		ifTrue: [^{aHeight. aWidth. aSize} allSatisfy: [:each | each > 0]] 
-		ifFalse: [^ false]
+	(aDictionary anySatisfy: [:each | each isEmpty])
+		ifFalse: [self checkSizeCorrectnessFor: (self convertToInteger: aDictionary)]
+	
+		
 ]
 
 {
 	#category : #inputProcessing,
-	#'squeak_changestamp' : 'LW 6/11/2024 13:43'
+	#'squeak_changestamp' : 'GLE 6/20/2024 00:08'
 }
-PESystemWindow >> createDefaultCanvas [
+PEInputWindow >> checkSizeCorrectnessFor: aDictionary [
 
-	PECanvas pixelGridWidth: 10 andHeight: 10. 
-			PEPixel pixelSize: 100. 
-			PixelEditor open.
-			self abandon
+	 (aDictionary allSatisfy: [:each | each > 0])
+		ifFalse: [self incorrectValues]
+		ifTrue: [self openPixelEditorWithDictionary: aDictionary]
+	
+		
+]
+
+{
+	#category : #inputProcessing,
+	#'squeak_changestamp' : 'GLE 6/19/2024 23:58'
+}
+PEInputWindow >> convertToInteger: aDictionary [
+
+	^ Dictionary new fillFrom: aDictionary with: [:each | each string asIntegerIfAllDigits]
 ]
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 5/31/2024 11:10'
+	#'squeak_changestamp' : 'GLE 6/20/2024 17:40'
 }
-PESystemWindow >> createPixelEditor [
+PEInputWindow >> createDefaultCanvas [
+
+	PECanvas pixelGridWidth: 10 andHeight: 10;
+		pixelSize: 100.
+	PixelEditor open.
+	self abandon
+]
+
+{
+	#category : #initialization,
+	#'squeak_changestamp' : 'GLE 6/20/2024 19:04'
+}
+PEInputWindow >> createPixelEditor [
 
 	super initialize.
-	self initializeWindow; 
-		initializeInputLines;
+	self initializeInputLines;
 		initializeSubmitButton; "addmorph dann einfach returnen"
-		initializeText.
-	self openInWorld
+		initializeText;
+		borderWidth: 0;
+		openInWorld;
+		setLabel: 'Canvas Size'
+]
+
+{
+	#category : #inputProcessing,
+	#'squeak_changestamp' : 'GLE 6/19/2024 23:38'
+}
+PEInputWindow >> incorrectValues [
+
+	self addedText changed; 
+		emphasis: 4
+		
 ]
 
 {
 	#category : #initialization,
 	#'squeak_changestamp' : 'LW 6/11/2024 12:12'
 }
-PESystemWindow >> initialExtent [
+PEInputWindow >> initialExtent [
 
 	^ 250 @ 300
+]
+
+{
+	#category : #inputProcessing,
+	#'squeak_changestamp' : 'GLE 6/21/2024 09:31'
+}
+PEInputWindow >> initialize [
+
+	super initialize.
+	self openInWorld
 ]
 
 {
 	#category : #initialization,
 	#'squeak_changestamp' : 'GLE 6/16/2024 20:34'
 }
-PESystemWindow >> initializeInputLineHeight [
+PEInputWindow >> initializeInputLineHeight [
 
 	^ PETextInputMorphWithLabel new setLabel: 'Height:';
 		position: (self inputLineWidth position x) @ (self inputLineWidth position y + 150);
@@ -103,7 +148,7 @@ PESystemWindow >> initializeInputLineHeight [
 	#category : #initialization,
 	#'squeak_changestamp' : 'LW 6/11/2024 13:38'
 }
-PESystemWindow >> initializeInputLinePixelSize [
+PEInputWindow >> initializeInputLinePixelSize [
 
 	^ PETextInputMorphWithLabel new setLabel: 'Pixel size:';
 		position: (self inputLineHeight position x) @ (self inputLineHeight position y + 150); 
@@ -112,35 +157,37 @@ PESystemWindow >> initializeInputLinePixelSize [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'LW 6/11/2024 13:39'
+	#'squeak_changestamp' : 'GLE 6/20/2024 19:05'
 }
-PESystemWindow >> initializeInputLineWidth [
+PEInputWindow >> initializeInputLineWidth [
 
 	^ PETextInputMorphWithLabel new setLabel: 'Width:';
-		position: 50 @ 100; yourself
+		position: 50 @ 100; 
+		yourself
 ]
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'LW 6/11/2024 11:46'
+	#'squeak_changestamp' : 'GLE 6/20/2024 19:08'
 }
-PESystemWindow >> initializeInputLines [
+PEInputWindow >> initializeInputLines [
 
 	self inputLineWidth: self initializeInputLineWidth;
 		inputLineHeight: self initializeInputLineHeight;
 		inputLinePixelSize: self initializeInputLinePixelSize;
 		inputLines: (Array with: self inputLineWidth with: self inputLineHeight with: self inputLinePixelSize).
-	self inputLines do: [:each | self addMorph: each inputField. self addMorph: each label]
+	self inputLines do: [:each | self addMorph: each inputField. 
+		self addMorph: each label]
 ]
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'LW 6/11/2024 12:03'
+	#'squeak_changestamp' : 'GLE 6/20/2024 19:03'
 }
-PESystemWindow >> initializeSubmitButton [
+PEInputWindow >> initializeSubmitButton [
 
 	self submitButton: (PluggableButtonMorph new label: 'Submit size';
-		extent: (PESystemWindow submitButtonSize);
+		extent: (PEInputWindow submitButtonSize);
 		target: self;
 		actionSelector: #processHeight:andWidth:andSize:;
 	      arguments: (Array withAll: {(self inputLineHeight getContent). (self inputLineWidth getContent). (self inputLinePixelSize getContent)});
@@ -153,7 +200,7 @@ PESystemWindow >> initializeSubmitButton [
 	#category : #initialization,
 	#'squeak_changestamp' : 'GLE 6/16/2024 20:35'
 }
-PESystemWindow >> initializeText [
+PEInputWindow >> initializeText [
 
 	self addedText: 
 	(StringMorph new color: Color red;
@@ -167,20 +214,10 @@ PESystemWindow >> initializeText [
 ]
 
 {
-	#category : #initialization,
-	#'squeak_changestamp' : 'LW 5/27/2024 10:56'
-}
-PESystemWindow >> initializeWindow [
-
-	self setLabel: 'Canvas size'
-	 
-]
-
-{
 	#category : #accessing,
 	#'squeak_changestamp' : 'LW 5/24/2024 19:40'
 }
-PESystemWindow >> inputLineHeight [
+PEInputWindow >> inputLineHeight [
 
 	^ inputLineHeight
 ]
@@ -189,7 +226,7 @@ PESystemWindow >> inputLineHeight [
 	#category : #accessing,
 	#'squeak_changestamp' : 'LW 5/24/2024 19:40'
 }
-PESystemWindow >> inputLineHeight: aLine [
+PEInputWindow >> inputLineHeight: aLine [
 
 	inputLineHeight := aLine
 ]
@@ -198,7 +235,7 @@ PESystemWindow >> inputLineHeight: aLine [
 	#category : #accessing,
 	#'squeak_changestamp' : 'LW 5/27/2024 11:43'
 }
-PESystemWindow >> inputLinePixelSize [
+PEInputWindow >> inputLinePixelSize [
 
 	^ inputLinePixelSize
 ]
@@ -207,7 +244,7 @@ PESystemWindow >> inputLinePixelSize [
 	#category : #accessing,
 	#'squeak_changestamp' : 'LW 5/27/2024 11:43'
 }
-PESystemWindow >> inputLinePixelSize: aSize [
+PEInputWindow >> inputLinePixelSize: aSize [
 
 	inputLinePixelSize := aSize
 ]
@@ -216,7 +253,7 @@ PESystemWindow >> inputLinePixelSize: aSize [
 	#category : #accessing,
 	#'squeak_changestamp' : 'LW 6/10/2024 20:10'
 }
-PESystemWindow >> inputLineWidth [
+PEInputWindow >> inputLineWidth [
 
 	^ inputLineWidth
 ]
@@ -225,7 +262,7 @@ PESystemWindow >> inputLineWidth [
 	#category : #accessing,
 	#'squeak_changestamp' : 'LW 6/10/2024 20:10'
 }
-PESystemWindow >> inputLineWidth: aLine [
+PEInputWindow >> inputLineWidth: aLine [
 
 	inputLineWidth := aLine
 ]
@@ -234,7 +271,7 @@ PESystemWindow >> inputLineWidth: aLine [
 	#category : #accessing,
 	#'squeak_changestamp' : 'LW 5/25/2024 17:13'
 }
-PESystemWindow >> inputLines [
+PEInputWindow >> inputLines [
 
 	^ inputLines
 ]
@@ -243,39 +280,42 @@ PESystemWindow >> inputLines [
 	#category : #accessing,
 	#'squeak_changestamp' : 'LW 5/25/2024 17:13'
 }
-PESystemWindow >> inputLines: anArray [
+PEInputWindow >> inputLines: anArray [
 
 	inputLines := anArray
 ]
 
 {
-	#category : #inputProcessing,
-	#'squeak_changestamp' : 'LW 6/11/2024 13:44'
+	#category : #initialization,
+	#'squeak_changestamp' : 'GLE 6/20/2024 17:46'
 }
-PESystemWindow >> processHeight: aHeight andWidth: aWidth andSize: aSize [
+PEInputWindow >> openPixelEditorWithDictionary: aDictionary [
 
-	"Refactoring notwendig hier"
+	PECanvas pixelGridWidth: (aDictionary at: 'width')  andHeight: (aDictionary at: 'height');
+		pixelSize: (aDictionary at: 'pixelSize'). 
+	PixelEditor open.
+	self abandon
+]
 
-	| numericValueHeight 	numericValueWidth numericValuePixelSize |
+{
+	#category : #inputProcessing,
+	#'squeak_changestamp' : 'GLE 6/21/2024 09:38'
+}
+PEInputWindow >> processHeight: aHeight andWidth: aWidth andSize: aSize [
+
+	| dictionary |
 	
-	({aHeight. aWidth. aSize} allSatisfy: [:each | each notEmpty]) ifFalse: [self createDefaultCanvas] ifTrue: [
-	numericValueHeight := (aHeight string) asIntegerIfAllDigits.
-	numericValueWidth := (aWidth string) asIntegerIfAllDigits.
-	numericValuePixelSize := (aSize string) asIntegerIfAllDigits.
-	(self checkSizeCorrectnessfor: numericValueHeight andWith: numericValueWidth andSize: numericValuePixelSize)
-		ifTrue: [PECanvas pixelGridWidth: numericValueWidth andHeight: numericValueHeight. 
-			PEPixel pixelSize: numericValuePixelSize. 
-			PixelEditor open.
-			self abandon]
-		ifFalse: [self addedText emphasis: 4. 
-			self addedText changed].]
+	dictionary := Dictionary newFromPairs: { 'width' . aWidth . 'height' . aHeight . 'pixelSize' . aSize }.
+	(dictionary anySatisfy: [:each | each notEmpty])
+		ifFalse: [self createDefaultCanvas] 
+		ifTrue: [self checkForEmptyValuesIn: dictionary]
 ]
 
 {
 	#category : #accessing,
 	#'squeak_changestamp' : 'LW 5/24/2024 20:18'
 }
-PESystemWindow >> submitButton [
+PEInputWindow >> submitButton [
 
 	^ submitButton
 ]
@@ -284,7 +324,7 @@ PESystemWindow >> submitButton [
 	#category : #accessing,
 	#'squeak_changestamp' : 'LW 5/24/2024 20:18'
 }
-PESystemWindow >> submitButton: aButton [
+PEInputWindow >> submitButton: aButton [
 
 	submitButton := aButton
 ]
@@ -293,7 +333,7 @@ PESystemWindow >> submitButton: aButton [
 	#category : #accessing,
 	#'squeak_changestamp' : 'LW 5/23/2024 17:10'
 }
-PESystemWindow >> window [
+PEInputWindow >> window [
 
 	^ window
 ]
@@ -302,7 +342,7 @@ PESystemWindow >> window [
 	#category : #accessing,
 	#'squeak_changestamp' : 'LW 5/23/2024 17:09'
 }
-PESystemWindow >> window: aWindow [
+PEInputWindow >> window: aWindow [
 
 	window := aWindow
 ]

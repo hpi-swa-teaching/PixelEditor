@@ -1,8 +1,9 @@
 Class {
 	#name : #PETextInputMorphWithLabel,
-	#superclass : #PETextInputMorph,
+	#superclass : #Morph,
 	#instVars : [
-		'label'
+		'label',
+		'inputField'
 	],
 	#category : #PixelEditor
 }
@@ -18,12 +19,36 @@ PETextInputMorphWithLabel class >> inputFieldPosition [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/11/2024 11:32'
+	#'squeak_changestamp' : 'LW 6/11/2024 11:43'
+}
+PETextInputMorphWithLabel >> getContent [
+
+	^ self inputField text
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/21/2024 09:36'
 }
 PETextInputMorphWithLabel >> initialize [
 
 	super initialize.
-	self setLabel: ''
+	self 
+		inputField: self initializeInputField;
+		setLabel: '';
+		getContent
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/21/2024 09:20'
+}
+PETextInputMorphWithLabel >> initializeInputField [
+
+	^ PEPluggableTextMorphPlus new extent: self inputFieldSize; 
+		color: Color veryLightGray; 
+		setText: '';
+		yourself
 ]
 
 {
@@ -33,6 +58,42 @@ PETextInputMorphWithLabel >> initialize [
 PETextInputMorphWithLabel >> initializeStringMorph: aLabel [
 
 	^ StringMorph new contents: aLabel; yourself
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'LW 5/23/2024 17:22'
+}
+PETextInputMorphWithLabel >> inputField [
+
+	^ inputField
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'LW 5/23/2024 17:21'
+}
+PETextInputMorphWithLabel >> inputField: aMorph [
+
+	inputField := aMorph
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/21/2024 09:18'
+}
+PETextInputMorphWithLabel >> inputFieldPosition [
+
+	^ 0 @ 50
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/21/2024 09:20'
+}
+PETextInputMorphWithLabel >> inputFieldSize [
+
+	^ 200 @ 50
 ]
 
 {
@@ -55,16 +116,6 @@ PETextInputMorphWithLabel >> label: aLabel [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/11/2024 11:23'
-}
-PETextInputMorphWithLabel >> openInWorld [
-
-	self inputField openInWorld.
-	self label openInWorld
-]
-
-{
-	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'LW 6/11/2024 11:36'
 }
 PETextInputMorphWithLabel >> position [
@@ -74,12 +125,12 @@ PETextInputMorphWithLabel >> position [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/11/2024 13:38'
+	#'squeak_changestamp' : 'GLE 6/21/2024 09:19'
 }
 PETextInputMorphWithLabel >> position: aPosition [
 
 	self label position: aPosition.
-	self inputField position: (self label position + PETextInputMorphWithLabel inputFieldPosition)
+	self inputField position: (self label position + self inputFieldPosition)
 ]
 
 {

@@ -69,37 +69,6 @@ PEPixel class >> defaultBorderSize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 23:16'
-}
-PEPixel class >> defaultPixelSize [
-
-	^ 50
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 23:16'
-}
-PEPixel class >> pixelSize [
-
-	pixelSize 
-		ifNil: [^ self defaultPixelSize]
-		ifNotNil: [^ pixelSize]
-
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 5/24/2024 22:32'
-}
-PEPixel class >> pixelSize: aSize [
-
-	pixelSize := aSize
-
-]
-
-{
-	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 6/17/2024 21:18'
 }
 PEPixel class >> selectedColor [
@@ -155,12 +124,12 @@ PEPixel >> changeColor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/14/2024 14:08'
+	#'squeak_changestamp' : 'GLE 6/20/2024 17:42'
 }
 PEPixel >> initialize [
+
 	super initialize.
 	self color: Color transparent;
-		extent: PEPixel pixelSize @ PEPixel pixelSize;
 		borderWidth: PEPixel borderSize;
 		borderColor: PEPixel borderColor
 		

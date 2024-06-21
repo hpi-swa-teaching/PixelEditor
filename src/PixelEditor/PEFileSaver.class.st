@@ -8,17 +8,6 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/1/2024 12:27'
-}
-PEFileSaver >> initialize [
-
-	super initialize.
-	self windowTitle: 'Save File'
-	
-]
-
-{
 	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/1/2024 12:27'
 }

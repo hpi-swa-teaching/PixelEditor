@@ -15,11 +15,11 @@ PEColorPickerButton >> doActionLeft [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/19/2024 16:34'
+	#'squeak_changestamp' : 'GLE 6/19/2024 22:40'
 }
 PEColorPickerButton >> doActionRight [
 
-	PEColorButton selectedButton color = Color transparent
+	PEColorButton selectedButton color isTransparent
 		ifFalse: [self pixelEditor openColorSelector]
 	
 ]

@@ -1,64 +1,58 @@
 Class {
 	#name : #PECanvasBuilder,
 	#superclass : #PEBuilder,
+	#classInstVars : [
+		'canvasBuilder'
+	],
 	#category : #PixelEditor
 }
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/18/2024 11:51'
+	#'squeak_changestamp' : 'GLE 6/20/2024 11:16'
 }
-PECanvasBuilder >> buildBrushIn: aLayer [
+PECanvasBuilder class >> default [
 
-	^ PEBrush new pixelCollection: aLayer submorphs;
-		changeSelectedColor: Color black.
+	canvasBuilder 
+		ifNil: [ canvasBuilder := PECanvasBuilder new ].
+	^ canvasBuilder
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/18/2024 11:51'
+	#'squeak_changestamp' : 'GLE 6/19/2024 22:55'
 }
 PECanvasBuilder >> buildCanvas [
-
-	| layer brush canvas |
 	
-	canvas := PECanvas new.
-	layer := self buildLayer.
-	brush := self buildBrushIn: layer.
-	^ canvas addMorph: layer; 
-		addMorphBack: brush
+	^ PECanvas new addMorph: self buildLayer
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/18/2024 11:53'
+	#'squeak_changestamp' : 'GLE 6/19/2024 22:55'
 }
 PECanvasBuilder >> buildCanvasFromJson: aJson [
 
-	| layer brush canvas |
-	
-	canvas := PECanvas new.
-	layer := self buildLayerWithJson: aJson.
-	brush := self buildBrushIn: layer.
-	^ canvas addMorph: layer; 
-		addMorphBack: brush
+	^ PECanvas new addMorph: (self buildLayerWithJson: aJson)
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/18/2024 11:39'
+	#'squeak_changestamp' : 'GLE 6/20/2024 17:35'
 }
 PECanvasBuilder >> buildLayer [
 
+	PEPixel selectedColor: Color black.
 	^ self createPixelsIn: PELayer new
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/18/2024 11:49'
+	#'squeak_changestamp' : 'GLE 6/20/2024 17:35'
 }
 PECanvasBuilder >> buildLayerWithJson: aJson [
 
+	PEPixel selectedColor: Color black.
 	self getDimensionsFromJson: aJson.
 	^ self createPixelsFromJson: aJson in: PELayer new
 ]
@@ -81,15 +75,16 @@ PECanvasBuilder >> colorFromString: aString [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/18/2024 12:16'
+	#'squeak_changestamp' : 'GLE 6/20/2024 17:41'
 }
 PECanvasBuilder >> createPixelsFromJson: aJson in: aLayer [
 
 	| pixelSize width height pixelID |
 
+	self flag: 'refactor'.
 	width := PECanvas pixelGridWidth.
 	height := PECanvas pixelGridHeight.
-	pixelSize := PEPixel pixelSize.
+	pixelSize := PECanvas pixelSize.
 	pixelID := aJson size - 3.
 	aLayer extent: (width * pixelSize) @ (height * pixelSize).
 	0 to: (height * pixelSize)-pixelSize by: pixelSize do: [:eachHeight | 
@@ -103,7 +98,7 @@ PECanvasBuilder >> createPixelsFromJson: aJson in: aLayer [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/18/2024 11:39'
+	#'squeak_changestamp' : 'GLE 6/20/2024 17:41'
 }
 PECanvasBuilder >> createPixelsIn: aLayer [
 
@@ -111,7 +106,7 @@ PECanvasBuilder >> createPixelsIn: aLayer [
 	
 	width := PECanvas pixelGridWidth.
 	height := PECanvas pixelGridHeight.
-	pixelSize := PEPixel pixelSize.
+	pixelSize := PECanvas pixelSize.
 	aLayer extent: ( width * pixelSize) @ (height * pixelSize).
 	0 to: (height * pixelSize) - pixelSize by: pixelSize do: [:eachHeight | 
 		0 to: (width * pixelSize) - pixelSize by: pixelSize do: [:eachWidth | 
@@ -122,12 +117,12 @@ PECanvasBuilder >> createPixelsIn: aLayer [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/18/2024 11:47'
+	#'squeak_changestamp' : 'GLE 6/20/2024 17:45'
 }
 PECanvasBuilder >> getDimensionsFromJson: aJson [
 
 	PECanvas pixelGridWidth: (aJson at: 'width') asNumber andHeight: (aJson at: 'height') asNumber.
-	PEPixel pixelSize: (aJson at: 'pixelSize') asNumber
+	PECanvas pixelSize: (aJson at: 'pixelSize') asNumber
 ]
 
 {
@@ -141,13 +136,14 @@ PECanvasBuilder >> insertPixelAt: aPoint in: aLayer [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/18/2024 11:28'
+	#'squeak_changestamp' : 'GLE 6/20/2024 17:43'
 }
 PECanvasBuilder >> insertPixelAt: aPoint withColor: aColor in: aLayer [
 
 	| pixel |
 	pixel := PEPixel new color: aColor; 
-		position: aLayer positionInWorld + aPoint; 
+		position: aLayer positionInWorld + aPoint;
+		extent: PECanvas pixelSize @ PECanvas pixelSize;
 		yourself.
 	aLayer pixelDictionary at: (pixel position) put: pixel.
 	aLayer addMorphFront: pixel

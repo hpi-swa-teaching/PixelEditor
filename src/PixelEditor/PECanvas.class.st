@@ -3,7 +3,8 @@ Class {
 	#superclass : #PasteUpMorph,
 	#classInstVars : [
 		'pixelGridWidth',
-		'pixelGridHeight'
+		'pixelGridHeight',
+		'pixelSize'
 	],
 	#category : #PixelEditor
 }
@@ -38,11 +39,20 @@ PECanvas class >> pixelGridWidth: aWidth andHeight: aHeight [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 23:27'
+	#'squeak_changestamp' : 'GLE 6/20/2024 17:39'
 }
-PECanvas >> brush [
+PECanvas class >> pixelSize [
 
-	self submorphsDo: [:each | each basicType = #PEBrush ifTrue: [^ each]]
+	^ pixelSize
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/20/2024 17:39'
+}
+PECanvas class >> pixelSize: aPixelSize [
+
+	pixelSize := aPixelSize
 ]
 
 {
@@ -56,14 +66,15 @@ PECanvas >> fitSubmorphs [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/7/2024 20:49'
+	#'squeak_changestamp' : 'GLE 6/20/2024 11:22'
 }
 PECanvas >> initialize [
 
 	super initialize.
 	self beSticky;
 		layoutFrame: (LayoutFrame fractions: (0 @ 0 rect: 1 @ 1));
-		setUpBackground
+		borderWidth: 0;
+		beTransparent
 ]
 
 {
@@ -90,25 +101,11 @@ PECanvas >> rectangle [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/16/2024 18:53'
-}
-PECanvas >> setUpBackground [
-
-	| theme |
-	
-	theme := Smalltalk at: #SqueakTheme ifAbsent: nil.
-	theme
-		ifNil: [self color: Preferences defaultWorldColor  ] 
-		ifNotNil: [ self setAsBackground: theme linenblue ]
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/10/2024 16:48'
+	#'squeak_changestamp' : 'GLE 6/21/2024 09:58'
 }
 PECanvas >> update [
 
-	"NotYetImplemented"
+	"TODO"
 ]
 
 {

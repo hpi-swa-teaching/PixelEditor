@@ -29,14 +29,13 @@ PixelEditor class >> defaultLabel [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/11/2024 14:02'
+	#'squeak_changestamp' : 'GLE 6/19/2024 21:57'
 }
 PixelEditor class >> open [
 
 	| instance |
 	
 	instance := self new.
-	PEBuilder setUpDirectories.
 	ToolBuilder open: instance.
 	^ instance
 ]
@@ -56,12 +55,12 @@ PixelEditor class >> openWithJson: aJson [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GT 6/10/2024 18:11'
+	#'squeak_changestamp' : 'GLE 6/20/2024 19:03'
 }
 PixelEditor class >> register [
 
 	"register the editor to the apps dropdown"
-	TheWorldMenu registerOpenCommand: {'PixelEditor'. {PESystemWindow new. #createPixelEditor}}
+	TheWorldMenu registerOpenCommand: {'PixelEditor'. {PEInputWindow new. #createPixelEditor}}
 ]
 
 {
@@ -103,11 +102,17 @@ PixelEditor >> containerDictionary: aDictionary [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/17/2024 15:48'
+	#'squeak_changestamp' : 'GLE 6/20/2024 00:29'
 }
 PixelEditor >> formFromCanvas [
 
-	^ Form fromDisplay: (self containerDictionary at: #canvas) rectangle
+	| canvas |
+	
+	canvas := self containerDictionary at: #canvas.
+	canvas bottomRight < canvas layer first bottomRight
+		ifTrue: [^ Form fromDisplay: canvas rectangle]
+		ifFalse: [^ Form fromDisplay: canvas layer first rectangle]
+	
 ]
 
 {
@@ -185,13 +190,13 @@ PixelEditor >> open [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/18/2024 11:02'
+	#'squeak_changestamp' : 'GLE 6/20/2024 17:59'
 }
 PixelEditor >> openColorSelector [
 
 	| colorSelector container |
 	
-	colorSelector := PEColorSelectorBuilder new createColorPalette.
+	colorSelector := PEColorPaletteBuilder new createColorPalette.
 	container := self containerDictionary at: #colorSelector.
 	container submorphs 
 		ifEmpty: [container addMorphNext: colorSelector]
@@ -228,7 +233,7 @@ PixelEditor >> systemWindow [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/16/2024 20:28'
+	#'squeak_changestamp' : 'GLE 6/21/2024 09:59'
 }
 PixelEditor >> update [
 

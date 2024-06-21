@@ -19,7 +19,7 @@ PEArchitect class >> addFromSystemCategory: aCategory [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/19/2024 16:10'
+	#'squeak_changestamp' : 'GLE 6/20/2024 17:50'
 }
 PEArchitect class >> addToDictionary: aClass [
 
@@ -27,7 +27,7 @@ PEArchitect class >> addToDictionary: aClass [
 	
 	collection := Set new.
 	(SystemNavigation allCallsOnClass: aClass) do: [:each | collection add: each classSymbol].
-	self dictionary at: aClass className put: collection
+	self dictionary at: aClass class put: collection
 ]
 
 {

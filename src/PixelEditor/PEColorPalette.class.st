@@ -109,7 +109,7 @@ PEColorPalette >> hsvMorph: anHSVMorph [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/18/2024 11:04'
+	#'squeak_changestamp' : 'GLE 6/20/2024 18:55'
 }
 PEColorPalette >> initialize [
 

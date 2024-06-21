@@ -177,7 +177,7 @@ PEButtonRow >> submorphs: aCollection [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 18:57'
+	#'squeak_changestamp' : 'GLE 6/21/2024 09:58'
 }
 PEButtonRow >> update [
 

@@ -1,6 +1,9 @@
 Class {
 	#name : #PEButtonBuilder,
 	#superclass : #PEBuilder,
+	#classInstVars : [
+		'buttonBuilder'
+	],
 	#category : #PixelEditor
 }
 
@@ -76,6 +79,17 @@ PEButtonBuilder class >> colorsForButtons [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/20/2024 11:14'
+}
+PEButtonBuilder class >> default [
+
+	buttonBuilder 
+		ifNil: [ buttonBuilder := PEButtonBuilder new ].
+	^ buttonBuilder
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'LW 6/10/2024 16:02'
 }
 PEButtonBuilder class >> settingsButtonSize [
@@ -119,38 +133,37 @@ PEButtonBuilder >> assetHandler [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/18/2024 10:52'
+	#'squeak_changestamp' : 'GLE 6/20/2024 17:57'
 }
 PEButtonBuilder >> buildAcceptButton: aColorPalette [
 
 	^ PluggableButtonMorph new target: aColorPalette;
 		action: #adjustColor;
 		label: 'Accept';
-		extent: PEColorPalette textBoxSize;
+		extent: self colorPickerButtonSize;
 		yourself
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/18/2024 10:52'
+	#'squeak_changestamp' : 'GLE 6/20/2024 17:57'
 }
 PEButtonBuilder >> buildCloseButton: aColorPalette [
 
 	^ PluggableButtonMorph new target: aColorPalette;
 		action: #abandon;
 		label: 'Close';
-		extent: PEColorPalette textBoxSize;
+		extent: self colorPickerButtonSize;
 		yourself
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 21:16'
+	#'squeak_changestamp' : 'GLE 6/19/2024 23:10'
 }
-PEButtonBuilder >> buildColorButton: aCanvas editor: aPixelEditor color: aColor [ 
+PEButtonBuilder >> buildColorButtonWithTarget: aPixelEditor andColor: aColor [ 
 	
 	^ PEColorButton new 
-		brush: aCanvas brush;
 		pixelEditor: aPixelEditor; 
 		extent: PEButtonBuilder colorButtonSize;
 		color: aColor;
@@ -163,16 +176,16 @@ PEButtonBuilder >> buildColorButton: aCanvas editor: aPixelEditor color: aColor 
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 21:12'
+	#'squeak_changestamp' : 'GLE 6/20/2024 11:03'
 }
-PEButtonBuilder >> buildColorButtons: aCanvas withTarget: aPixelEditor [
+PEButtonBuilder >> buildColorButtonsWithTarget: aPixelEditor [
 
 	| buttonCollection |
 	
 	buttonCollection := OrderedCollection new.
 	PEButtonBuilder colorsForButtons do: [:nextColor | 
-		buttonCollection add: (self buildColorButton: aCanvas editor: aPixelEditor color: nextColor)].
-	^  buttonCollection
+		buttonCollection add: (self buildColorButtonWithTarget: aPixelEditor andColor: nextColor)].
+	^  PEButtonRow new addMorphCollection: buttonCollection
 ]
 
 {
@@ -194,24 +207,55 @@ PEButtonBuilder >> buildColorPickerButton: aPixelEditor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/18/2024 11:07'
+	#'squeak_changestamp' : 'GLE 6/20/2024 18:55'
 }
 PEButtonBuilder >> buildColorSelectorButtonRow: aColorSelector [
 
+	aColorSelector colorButton: PEColorButton selectedButton.   
 	^ PEButtonRow new addMorphNext: (self buildAcceptButton: aColorSelector);
 			addMorphNext: (self buildCloseButton: aColorSelector)
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/19/2024 16:39'
+	#'squeak_changestamp' : 'GLE 6/20/2024 11:12'
+}
+PEButtonBuilder >> buildEmptyButtonRow [
+
+	^ PEButtonRow new
+
+		
+		
+	
+
+	
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/20/2024 11:07'
+}
+PEButtonBuilder >> buildEraserButton [
+
+	| button |
+	
+	button := PEEraser new
+		beTransparent;
+		borderWidth: 0;
+		extent: PEButtonBuilder toolButtonSize.
+	self addImage: (self assetHandler loadForm: self eraserPath) toMorph: button.
+	^ button
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/19/2024 22:44'
 }
 PEButtonBuilder >> buildEraserButton: aCanvas [
 
 	| button |
 	
-	button := PEEraser new 
-		brush: aCanvas brush;
+	button := PEEraser new
 		beTransparent;
 		borderWidth: 0;
 		extent: PEButtonBuilder toolButtonSize.
@@ -293,40 +337,27 @@ PEButtonBuilder >> buildSaveButton: aPixelEditor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/7/2024 20:40'
+	#'squeak_changestamp' : 'GLE 6/20/2024 11:11'
 }
 PEButtonBuilder >> buildSettingsButtons: aPixelEditor [
 	
-	^ {	self buildSaveButton: aPixelEditor. 
-		self buildLoadButton: aPixelEditor. 
-		self buildExportButton: aPixelEditor.
-		self buildGridButton: aPixelEditor }
+	^ PEButtonRow new addMorphCollection: 
+		{ self buildSaveButton: aPixelEditor. 
+		   self buildLoadButton: aPixelEditor. 
+		   self buildExportButton: aPixelEditor.
+		   self buildGridButton: aPixelEditor }
 	
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 20:15'
+	#'squeak_changestamp' : 'GLE 6/20/2024 11:10'
 }
 PEButtonBuilder >> buildToolButtons: aPixelEditor [
 
-	^ {self buildEraserButton: aPixelEditor.
-		self buildColorPickerButton: aPixelEditor}
-		
-		
-	
-
-	
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 20:17'
-}
-PEButtonBuilder >> buildToolButtons: aCanvas for: aPixelEditor [
-
-	^ {self buildEraserButton: aCanvas.
-		self buildColorPickerButton: aPixelEditor}
+	^ PEButtonRow new addMorphCollection: 
+		{ self buildEraserButton. 
+		   self buildColorPickerButton: aPixelEditor }
 		
 		
 	
@@ -341,6 +372,15 @@ PEButtonBuilder >> buildToolButtons: aCanvas for: aPixelEditor [
 PEButtonBuilder >> colorBucketPath [
 
 	^ '/assets/colorBucket.png'
+]
+
+{
+	#category : #'button sizes',
+	#'squeak_changestamp' : 'GLE 6/20/2024 17:56'
+}
+PEButtonBuilder >> colorPickerButtonSize [
+
+	^ 96 @ 50
 ]
 
 {
