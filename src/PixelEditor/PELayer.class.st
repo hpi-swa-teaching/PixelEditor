@@ -8,7 +8,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #miscellaneous,
 	#'squeak_changestamp' : 'GLE 5/16/2024 10:41'
 }
 PELayer >> basicType [
@@ -17,7 +17,7 @@ PELayer >> basicType [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'input handling',
 	#'squeak_changestamp' : 'GLE 6/17/2024 18:42'
 }
 PELayer >> colorPixels: anEvent [
@@ -29,14 +29,14 @@ PELayer >> colorPixels: anEvent [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:35'
+	#category : #'input handling',
+	#'squeak_changestamp' : 'GLE 6/20/2024 17:42'
 }
 PELayer >> correctPoint: aMousePoint regarding: aPixelPoint [
 
 	| pixelSize |
 	
-	pixelSize := PEPixel pixelSize.
+	pixelSize := PECanvas pixelSize.
 	aMousePoint x < aPixelPoint x "mouse is to the left of pixel on the x axis"
 		ifTrue: [
 			aMousePoint y < aPixelPoint y "mouse is above the pixel on the y axis"
@@ -49,14 +49,14 @@ PELayer >> correctPoint: aMousePoint regarding: aPixelPoint [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #resizing,
 	#'squeak_changestamp' : 'GLE 6/7/2024 20:57'
 }
 PELayer >> fitSubmorphs [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'input handling',
 	#'squeak_changestamp' : 'GLE 6/3/2024 23:37'
 }
 PELayer >> handlesMouseDown: anEvent [
@@ -65,7 +65,7 @@ PELayer >> handlesMouseDown: anEvent [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'input handling',
 	#'squeak_changestamp' : 'GLE 6/3/2024 23:54'
 }
 PELayer >> handlesMouseStillDown: anEvent [
@@ -75,13 +75,14 @@ PELayer >> handlesMouseStillDown: anEvent [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/18/2024 11:28'
+	#category : #initialization,
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:57'
 }
 PELayer >> initialize [
 
 	super initialize.
-	self color: Color white;
+	self 
+		color: Color white;
 		borderColor: Color black;
 		pixelDictionary: Dictionary new.
 	
@@ -89,7 +90,7 @@ PELayer >> initialize [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'input handling',
 	#'squeak_changestamp' : 'GLE 6/3/2024 23:54'
 }
 PELayer >> mouseDown: anEvent [
@@ -116,7 +117,7 @@ PELayer >> pixelDictionary: anObject [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'input handling',
 	#'squeak_changestamp' : 'GLE 6/3/2024 23:50'
 }
 PELayer >> pointInSelf: aPoint [
@@ -125,7 +126,7 @@ PELayer >> pointInSelf: aPoint [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #miscellaneous,
 	#'squeak_changestamp' : 'GLE 6/6/2024 19:05'
 }
 PELayer >> rectangle [
@@ -134,14 +135,14 @@ PELayer >> rectangle [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/16/2024 18:56'
+	#category : #'input handling',
+	#'squeak_changestamp' : 'GLE 6/20/2024 17:42'
 }
 PELayer >> standardizedPoint: aPoint [
 
 	| pixelSize xCoordinate yCoordinate |
 	
-	pixelSize := PEPixel pixelSize.
+	pixelSize := PECanvas pixelSize.
 	(aPoint x \\ pixelSize) >= (pixelSize / 2)
 		ifFalse: [xCoordinate := pixelSize * (aPoint x // pixelSize)]
 		ifTrue: [xCoordinate := pixelSize * ((aPoint x // pixelSize) +1)].

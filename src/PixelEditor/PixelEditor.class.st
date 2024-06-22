@@ -29,14 +29,13 @@ PixelEditor class >> defaultLabel [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/11/2024 14:02'
+	#'squeak_changestamp' : 'GLE 6/19/2024 21:57'
 }
 PixelEditor class >> open [
 
 	| instance |
 	
 	instance := self new.
-	PEBuilder setUpDirectories.
 	ToolBuilder open: instance.
 	^ instance
 ]
@@ -56,28 +55,24 @@ PixelEditor class >> openWithJson: aJson [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GT 6/10/2024 18:11'
+	#'squeak_changestamp' : 'GLE 6/20/2024 19:03'
 }
 PixelEditor class >> register [
 
 	"register the editor to the apps dropdown"
-	TheWorldMenu registerOpenCommand: {'PixelEditor'. {PESystemWindow new. #createPixelEditor}}
+	TheWorldMenu registerOpenCommand: {'PixelEditor'. {PEInputWindow new. #createPixelEditor}}
 ]
 
 {
 	#category : #toolbuilder,
-	#'squeak_changestamp' : 'GLE 6/17/2024 19:18'
+	#'squeak_changestamp' : 'GLE 6/22/2024 16:29'
 }
 PixelEditor >> buildWith: aBuilder [ 
 	
 	| builder |
 	
-	builder := aBuilder 
-		build: (aBuilder pluggableWindowSpec new model: self;
-	 	label: #labelString;
-		extent: self class defaultExtent;
-		children: (self panelsFromBuilder: aBuilder);
-		yourself).
+	self setUpCanvas.
+	builder := PEPanelBuilder default createWindowPanelWithBuilder: aBuilder andModel: self.
 	self systemWindow addMorph: (PERezisingAgent new model: self).
 	^ builder
 ]
@@ -103,29 +98,46 @@ PixelEditor >> containerDictionary: aDictionary [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/17/2024 15:48'
+	#'squeak_changestamp' : 'GLE 6/22/2024 16:08'
+}
+PixelEditor >> defaultExtent [
+
+	^ 800@600
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/20/2024 00:29'
 }
 PixelEditor >> formFromCanvas [
 
-	^ Form fromDisplay: (self containerDictionary at: #canvas) rectangle
+	| canvas |
+	
+	canvas := self containerDictionary at: #canvas.
+	canvas bottomRight < canvas layer first bottomRight
+		ifTrue: [^ Form fromDisplay: canvas rectangle]
+		ifFalse: [^ Form fromDisplay: canvas layer first rectangle]
+	
 ]
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'GLE 6/19/2024 17:03'
+	#'squeak_changestamp' : 'GLE 6/22/2024 14:07'
 }
 PixelEditor >> initialize [
 
 	super initialize.
-	self jsonString: String new;
+	self 
+		jsonString: String new;
 		json: JsonObject new
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/19/2024 16:55'
+	#'squeak_changestamp' : 'GLE 6/22/2024 14:07'
 }
 PixelEditor >> json [
+
 	^ json
 ]
 
@@ -185,36 +197,35 @@ PixelEditor >> open [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/18/2024 11:02'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:29'
 }
 PixelEditor >> openColorSelector [
 
 	| colorSelector container |
 	
-	colorSelector := PEColorSelectorBuilder new createColorPalette.
+	colorSelector := PEColorPaletteBuilder new createColorPalette.
 	container := self containerDictionary at: #colorSelector.
 	container submorphs 
 		ifEmpty: [container addMorphNext: colorSelector]
-		ifNotEmpty: [container removeAllMorphs; 
+		ifNotEmpty: [container 
+				removeAllMorphs; 
 				addMorphNext: colorSelector]
 	
 	
 ]
 
 {
-	#category : #'lifecycle hooks',
-	#'squeak_changestamp' : 'GLE 6/19/2024 16:59'
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/22/2024 16:23'
 }
-PixelEditor >> panelsFromBuilder: aBuilder [
+PixelEditor >> setUpCanvas [
 
-	| panels |
+	| panelBuilder |
 	
-	panels := PEPanelBuilder new.
+	panelBuilder := PEPanelBuilder default.
 	self json isEmpty
-		ifTrue: [ panels canvas]
-		ifFalse:[ panels canvasFromJson: self json].
-	^ panels createPanelsWithBuilder: aBuilder andPixelEditor: self
-	
+		ifTrue: [ panelBuilder canvas]
+		ifFalse:[ panelBuilder canvasFromJson: self json].
 ]
 
 {
@@ -228,7 +239,7 @@ PixelEditor >> systemWindow [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/16/2024 20:28'
+	#'squeak_changestamp' : 'GLE 6/21/2024 09:59'
 }
 PixelEditor >> update [
 
@@ -237,14 +248,9 @@ PixelEditor >> update [
 
 {
 	#category : #styles,
-	#'squeak_changestamp' : 'GLE 6/3/2024 09:44'
+	#'squeak_changestamp' : 'GLE 6/22/2024 14:09'
 }
 PixelEditor >> windowColorToUse [
 
-	^ Color colorFrom: (Model useColorfulWindows
-				ifTrue: [self userInterfaceTheme customWindowColor
-						ifNil: [Color r: 0.8 g: 0.65 b: 0.35 alpha: 1.0]]
-				ifFalse: [self userInterfaceTheme uniformWindowColor
-						ifNil: [Color veryVeryLightGray]])	
-
+	^ Color veryVeryLightGray
 ]

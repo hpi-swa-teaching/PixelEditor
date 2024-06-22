@@ -5,16 +5,30 @@ Class {
 		'containerDictionary',
 		'pixelEditor'
 	],
+	#classInstVars : [
+		'panelBuilder'
+	],
 	#category : #PixelEditor
 }
 
 {
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/20/2024 12:07'
+}
+PEPanelBuilder class >> default [
+
+	panelBuilder
+		ifNil: [ panelBuilder := PEPanelBuilder new ].
+	^ panelBuilder
+]
+
+{
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/13/2024 14:27'
+	#'squeak_changestamp' : 'GLE 6/20/2024 11:18'
 }
 PEPanelBuilder >> canvas [
 
-	self containerDictionary at: #canvas put: PECanvasBuilder new buildCanvas
+	self containerDictionary at: #canvas put: PECanvasBuilder default buildCanvas
 ]
 
 {
@@ -28,45 +42,44 @@ PEPanelBuilder >> canvasAsCollection [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/13/2024 16:01'
+	#'squeak_changestamp' : 'GLE 6/20/2024 11:18'
 }
 PEPanelBuilder >> canvasFromJson: aJsonString [
 
-	self containerDictionary at: #canvas put: (PECanvasBuilder new buildCanvasFromJson: aJsonString)
+	self containerDictionary at: #canvas put: (PECanvasBuilder default buildCanvasFromJson: aJsonString)
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/17/2024 21:06'
-}
-PEPanelBuilder >> colorButtonCollection [
-
-	^ PEButtonBuilder new 
-		buildColorButtons: (self containerDictionary at: #canvas) withTarget: self pixelEditor
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/13/2024 14:47'
+	#'squeak_changestamp' : 'GLE 6/20/2024 11:04'
 }
 PEPanelBuilder >> colorButtonPanel [
 	
 	| colorButtons |
 	
-	colorButtons := PEButtonRow new addMorphCollection: self colorButtonCollection.
+	colorButtons := self colorButtonRow.
 	self containerDictionary at: #colorButtons put: colorButtons.
 	^ { colorButtons }
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/17/2024 20:05'
+	#'squeak_changestamp' : 'GLE 6/20/2024 11:18'
+}
+PEPanelBuilder >> colorButtonRow [
+
+	^ PEButtonBuilder default buildColorButtonsWithTarget: self pixelEditor
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/20/2024 11:15'
 }
 PEPanelBuilder >> colorSelectorPanel [
 
 	| colorSelector |
 	
-	colorSelector := PEButtonRow new. 
+	colorSelector := PEButtonBuilder default buildEmptyButtonRow.
 	self containerDictionary at: #colorSelector put: colorSelector.
 	^ { colorSelector }
 ]
@@ -91,13 +104,15 @@ PEPanelBuilder >> containerDictionary: anObject [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/13/2024 13:57'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:46'
 }
 PEPanelBuilder >> createCanvasPanelWithBuilder: aBuilder [ 
 
-	^ aBuilder pluggablePanelSpec new model: self;
-		 children: #canvasAsCollection;
-		 frame: (LayoutFrame new leftFraction: 0.33;
+	^ aBuilder pluggablePanelSpec new 
+		model: self;
+		children: #canvasAsCollection;
+		frame: (LayoutFrame new 
+			leftFraction: 0.33;
 			 topFraction: 0;
 			 rightFraction: 1;
 			 bottomFraction: 1)
@@ -105,77 +120,99 @@ PEPanelBuilder >> createCanvasPanelWithBuilder: aBuilder [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/13/2024 14:47'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:46'
 }
 PEPanelBuilder >> createColorButtonPanelWithBuilder: aBuilder [ 
 
-	^ aBuilder pluggablePanelSpec new model: self;
-		 children: #colorButtonPanel;
-		 frame: (LayoutFrame new rightFraction: 0.33;
-			 topFraction: 0.66;
-			 leftFraction: 0;
-			 bottomFraction: 1)
+	^ aBuilder pluggablePanelSpec new 
+		model: self;
+		children: #colorButtonPanel;
+		frame: (LayoutFrame new 
+			rightFraction: 0.33;
+			topFraction: 0.66;
+			leftFraction: 0;
+			bottomFraction: 1)
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 20:04'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:47'
 }
 PEPanelBuilder >> createColorSelectorPanelWithBuilder: aBuilder [ 
 
-	^ aBuilder pluggablePanelSpec new model: self;
-		 children: #colorSelectorPanel;
-		 frame: (LayoutFrame new rightFraction: 0.33;
-			 topFraction: 0.2;
-			 leftFraction: 0;
-			 bottomFraction: 0.5)
+	^ aBuilder pluggablePanelSpec new 
+		model: self;
+		children: #colorSelectorPanel;
+		frame: (LayoutFrame new 
+			rightFraction: 0.33;
+			topFraction: 0.2;
+			leftFraction: 0;
+			bottomFraction: 0.5)
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 20:04'
+	#'squeak_changestamp' : 'GLE 6/22/2024 16:28'
 }
-PEPanelBuilder >> createPanelsWithBuilder: aBuilder andPixelEditor: aPixelEditor [
+PEPanelBuilder >> createPanelsWithBuilder: aBuilder [
 
 	| panels |
-	
-	self pixelEditor: aPixelEditor.
+
 	panels := { self createCanvasPanelWithBuilder: aBuilder.
 		self createColorButtonPanelWithBuilder: aBuilder.
 		self createSettingsButtonPanelWithBuilder: aBuilder.
 		self createToolPanelWithBuilder: aBuilder.
 		self createColorSelectorPanelWithBuilder: aBuilder }.
-	aPixelEditor containerDictionary: self containerDictionary.
+	self pixelEditor containerDictionary: self containerDictionary.
 	^ panels
 	
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/13/2024 14:31'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:47'
 }
 PEPanelBuilder >> createSettingsButtonPanelWithBuilder: aBuilder [ 
 
-	^ aBuilder pluggablePanelSpec new model: self;
-		 children: #settingsButtonPanel;
-		 frame: (LayoutFrame new rightFraction: 0.33;
-			 topFraction: 0;
-			 leftFraction: 0;
-			 bottomFraction: 0.2)
+	^ aBuilder pluggablePanelSpec new 
+		model: self;
+		children: #settingsButtonPanel;
+		frame: (LayoutFrame new 
+			rightFraction: 0.33;
+			topFraction: 0;
+			leftFraction: 0;
+			bottomFraction: 0.2)
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 19:58'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:48'
 }
 PEPanelBuilder >> createToolPanelWithBuilder: aBuilder [ 
 
-	^ aBuilder pluggablePanelSpec new model: self;
-		 children: #toolButtonPanel;
-		 frame: (LayoutFrame new rightFraction: 0.33;
-			 topFraction: 0.5;
-			 leftFraction: 0;
-			 bottomFraction: 0.66)
+	^ aBuilder pluggablePanelSpec new 
+		model: self;
+		children: #toolButtonPanel;
+		frame: (LayoutFrame new 
+			rightFraction: 0.33;
+			topFraction: 0.5;
+			leftFraction: 0;
+			bottomFraction: 0.66)
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/22/2024 16:14'
+}
+PEPanelBuilder >> createWindowPanelWithBuilder: aBuilder andModel: aPixelEditor [
+
+	self pixelEditor: aPixelEditor.
+	^ aBuilder build: (aBuilder pluggableWindowSpec new 
+		model: aPixelEditor;
+	 	label: #labelString;
+		extent: self pixelEditorExtent;
+		children: (self createPanelsWithBuilder: aBuilder);
+		yourself).
 ]
 
 {
@@ -208,44 +245,53 @@ PEPanelBuilder >> pixelEditor: anObject [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/13/2024 16:21'
+	#'squeak_changestamp' : 'GLE 6/22/2024 16:10'
 }
-PEPanelBuilder >> settingsButtonCollection [
+PEPanelBuilder >> pixelEditorExtent [
 
-	^ PEButtonBuilder new buildSettingsButtons: self pixelEditor
+	 ^ 800 @ 600
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/13/2024 14:33'
+	#'squeak_changestamp' : 'GLE 6/20/2024 11:19'
+}
+PEPanelBuilder >> settingsButtonCollection [
+
+	^ PEButtonBuilder default buildSettingsButtons: self pixelEditor
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/20/2024 11:11'
 }
 PEPanelBuilder >> settingsButtonPanel [
 	
 	| settingsButtons |
 	
-	settingsButtons := PEButtonRow new addMorphCollection: self settingsButtonCollection.
+	settingsButtons := self settingsButtonCollection.
 	self containerDictionary at: #settingsButtons put: settingsButtons.
 	^ { settingsButtons }
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 20:21'
+	#'squeak_changestamp' : 'GLE 6/20/2024 11:19'
 }
 PEPanelBuilder >> toolButtonCollection [
 
-	^ PEButtonBuilder new buildToolButtons: (self containerDictionary at: #canvas) for: self pixelEditor
+	^ PEButtonBuilder default buildToolButtons: self pixelEditor
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/13/2024 14:44'
+	#'squeak_changestamp' : 'GLE 6/20/2024 11:10'
 }
 PEPanelBuilder >> toolButtonPanel [
 	
 	| toolButtons |
 	
-	toolButtons := PEButtonRow new addMorphCollection: self toolButtonCollection.
+	toolButtons := self toolButtonCollection.
 	self containerDictionary at: #toolButtons put: toolButtons.
 	^ { toolButtons }
 ]

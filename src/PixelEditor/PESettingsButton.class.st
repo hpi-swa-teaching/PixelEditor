@@ -8,133 +8,39 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/19/2024 16:44'
+	#category : #'user interface',
+	#'squeak_changestamp' : 'GLE 6/21/2024 16:32'
 }
-PESettingsButton >> addToJson [
-	
-	self jsonString: self jsonString, ('"width" : "', PECanvas pixelGridWidth, ' ", ').
-	self jsonString: self jsonString, ('"height" : "', PECanvas pixelGridHeight, ' ", ').
-	self jsonString: self jsonString, ('"pixelSize" : "', PEPixel pixelSize, ' " ').
-	(self target containerDictionary at: #canvas) submorphs do: [:each | each basicType = #PELayer 
-		ifTrue: [self addToJsonString: each submorphs]]
+PESettingsButton >> basicType [
+
+	^ #PESettingsButton
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:41'
-}
-PESettingsButton >> addToJsonString: aCollection [
-
-	| pixelID |
-	pixelID := 1.
-	aCollection do: [:each | 
-		self jsonString: (self jsonString, ', "', pixelID, '" : ', (self colorForJson: each color)).
-		pixelID := pixelID + 1]
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/6/2024 18:52'
+	#category : #'user interface',
+	#'squeak_changestamp' : 'GLE 6/20/2024 12:10'
 }
 PESettingsButton >> checkIfFileExists: aFileName [
 	
 	(StandardFileStream isAFileNamed: (StandardFileStream fullName: aFileName))
-		ifTrue: [self fileExists: aFileName]
-		ifFalse: [self writeFile: aFileName stream: (StandardFileStream newFileNamed: aFileName)]
+		ifTrue: [ PEUserInputBuilder default fileExists: aFileName sentFrom: self ]
+		ifFalse: [ self writeFile: aFileName stream: (StandardFileStream newFileNamed: aFileName) ]
 		
 	
 	
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:41'
+	#category : #'user interface',
+	#'squeak_changestamp' : 'GLE 6/19/2024 21:29'
 }
-PESettingsButton >> colorForJson: aColor [
-
-	| stringRed stringGreen stringBlue |
-	aColor = Color transparent ifTrue: [^ '"#r# : #-1#"'].
-	stringRed := '"#r# : #', aColor privateRed, '#'.
-	stringGreen :=  ', #g# : #', aColor privateGreen, '#'. 
-	stringBlue := ', #b# : #', aColor privateBlue, '#"'.
-	^ stringRed, stringGreen, stringBlue
+PESettingsButton >> directory [
+	
+	self subclassResponsibility
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:41'
-}
-PESettingsButton >> doNothing [
-
-	"Nothing"
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 01:22'
-}
-PESettingsButton >> fileExists: aFileName [
-
-	| UserInputBox |
-	
-	UserInputBox := UserDialogBoxMorph new.
-	UserInputBox label: 'File exists already. Do you want to replace it?';
-		openInWorld.
-	UserInputBox createAcceptButton action: [
-		self writeFile: aFileName stream: (StandardFileStream forceNewFileNamed: aFileName).
-		UserInputBox delete].
-	UserInputBox createCancelButton action: [UserInputBox delete]
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:54'
-}
-PESettingsButton >> jsonString [
-
-	^ self target jsonString
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:54'
-}
-PESettingsButton >> jsonString: anObject [
-
-	self target jsonString: anObject
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/19/2024 16:49'
-}
-PESettingsButton >> load [
-	
-	| fileName |
-	
-	fileName := PEFileSaver new windowTitle: 'Load File'; 
-		setDirectoryTo: (FileDirectory on: (FileStream fullName: 'Saved-Images' ));
-		getUserResponse.
-	fileName isNil ifFalse: [
-		PixelEditor openWithJson: (self loadFile: fileName).
-		self target systemWindow abandon]
-	
-	
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:43'
-}
-PESettingsButton >> loadFile: afileName [
-	
-	^ Json readFromString: (self stringFromStream: (StandardFileStream oldFileNamed: afileName))
-	
-]
-
-{
-	#category : #'as yet unclassified',
+	#category : #'input handling',
 	#'squeak_changestamp' : 'GLE 6/4/2024 00:53'
 }
 PESettingsButton >> mouseDown: anEvent [
@@ -143,42 +49,19 @@ PESettingsButton >> mouseDown: anEvent [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/11/2024 13:59'
+	#category : #'user interface',
+	#'squeak_changestamp' : 'GLE 6/20/2024 12:09'
 }
-PESettingsButton >> save [
+PESettingsButton >> openFileSaverDialog [
 
-	| fileName |
-	
-	fileName := PEFileSaver new setDirectoryTo: (FileDirectory on: (FileStream fullName: 'Saved-Images' ));
-		getUserResponse.
-	fileName isNil
-		ifFalse: [self checkIfFileExists: fileName]
+	^ PEUserInputBuilder default fileSaverDialogWithTitle: self windowTitle andDirectory: self directory
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:43'
+	#category : #'user interface',
+	#'squeak_changestamp' : 'GLE 6/19/2024 21:29'
 }
-PESettingsButton >> stringFromStream: aStream [
+PESettingsButton >> windowTitle [
 
-	| string |
-	
-	string := '{'.
-	[aStream atEnd] whileFalse: [string := string, aStream next].
-	^ string, '}'
-	
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:43'
-}
-PESettingsButton >> writeFile: aFileName stream: aFileStream [
-
-	self addToJson.
-	aFileStream nextPutAll: self jsonString; 
-		close.
-	self jsonString: ''
-	
+	self subclassResponsibility
 ]

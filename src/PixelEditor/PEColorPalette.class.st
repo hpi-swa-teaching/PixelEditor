@@ -9,33 +9,6 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GT 5/20/2024 16:10'
-}
-PEColorPalette class >> colorPaletteExtent [
-
-	^ 150 @ 150
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GT 5/20/2024 16:08'
-}
-PEColorPalette class >> sizeButtonRow [
-
-	^ 80 @ 150
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/18/2024 10:27'
-}
-PEColorPalette class >> textBoxSize [
-
-	^ 96 @ 50
-]
-
-{
 	#category : #accessing,
 	#'squeak_changestamp' : 'GT 5/23/2024 11:55'
 }
@@ -59,11 +32,12 @@ PEColorPalette >> addMorphNext: aMorph [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/17/2024 22:31'
+	#'squeak_changestamp' : 'GLE 6/22/2024 14:05'
 }
 PEColorPalette >> adjustColor [
 
-	self colorButton color: self hsvMorph selectedColor;
+	self colorButton 
+		color: self hsvMorph selectedColor;
 		doActionLeft
 ]
 
@@ -109,7 +83,7 @@ PEColorPalette >> hsvMorph: anHSVMorph [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/18/2024 11:04'
+	#'squeak_changestamp' : 'GLE 6/20/2024 18:55'
 }
 PEColorPalette >> initialize [
 

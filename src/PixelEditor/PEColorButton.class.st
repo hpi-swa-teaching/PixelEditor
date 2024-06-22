@@ -49,41 +49,25 @@ PEColorButton class >> selectedButton: aButton [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 21:13'
-}
-PEColorButton >> brush [
-
-	^ brush
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 21:14'
-}
-PEColorButton >> brush: aBrush [
-
-	brush := aBrush
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 21:14'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:35'
 }
 PEColorButton >> doActionLeft [
 
-	self brush changeSelectedColor: self color.
-	PEColorButton selectedButton: self.
+	PEPixel selectedColor: self color.
+	self class selectedButton: self.
 	
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 21:27'
+	#'squeak_changestamp' : 'GLE 6/22/2024 14:04'
 }
 PEColorButton >> doActionRight [
 
-	PEColorButton selectedButton: self.
+	self doActionLeft.
+	self class selectedButton: self.
 	self pixelEditor openColorSelector
+	
 	
 ]
 
@@ -98,12 +82,13 @@ PEColorButton >> handlesMouseDown: anEvent [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/27/2024 10:47'
+	#'squeak_changestamp' : 'GLE 6/22/2024 14:03'
 }
 PEColorButton >> initialize [
 	
 	super initialize.
-	self borderColor: PEColorButton borderColor;
+	self 
+		borderColor: PEColorButton borderColor;
 		borderWidth: PEColorButton borderSize.
 ]
 

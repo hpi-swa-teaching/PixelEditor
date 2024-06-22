@@ -1,6 +1,6 @@
 Class {
 	#name : #PERezisingAgent,
-	#superclass : #PEUI,
+	#superclass : #Morph,
 	#instVars : [
 		'model',
 		'systemWindow',
@@ -10,7 +10,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialization,
 	#'squeak_changestamp' : 'GLE 6/17/2024 19:13'
 }
 PERezisingAgent >> initialize [
@@ -20,7 +20,7 @@ PERezisingAgent >> initialize [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/10/2024 16:53'
 }
 PERezisingAgent >> model [
@@ -29,18 +29,18 @@ PERezisingAgent >> model [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/10/2024 17:59'
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/19/2024 22:51'
 }
 PERezisingAgent >> model: aModel [
 
-	self systemWindow: aModel systemWindow .
+	self systemWindow: aModel systemWindow.
 	model := aModel.
 	self startStepping
 ]
 
 {
-	#category : #accessing,
+	#category : #step,
 	#'squeak_changestamp' : 'GLE 6/10/2024 17:56'
 }
 PERezisingAgent >> step [
@@ -51,7 +51,7 @@ PERezisingAgent >> step [
 ]
 
 {
-	#category : #accessing,
+	#category : #step,
 	#'squeak_changestamp' : 'GLE 6/10/2024 18:05'
 }
 PERezisingAgent >> stepTime [
@@ -60,7 +60,7 @@ PERezisingAgent >> stepTime [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/10/2024 16:54'
 }
 PERezisingAgent >> systemWindow [
@@ -69,7 +69,7 @@ PERezisingAgent >> systemWindow [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/10/2024 16:54'
 }
 PERezisingAgent >> systemWindow: aSystemWindow [
