@@ -1,22 +1,12 @@
 Class {
 	#name : #PixelEditorResizingTest,
-	#superclass : #TestCase,
+	#superclass : #PixelEditorTest,
 	#instVars : [
-		'pixelEditor',
 		'settingsButtons',
 		'colorButtons'
 	],
 	#category : #'PixelEditor-Tests'
 }
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'ThB 6/21/2024 17:45'
-}
-PixelEditorResizingTest >> abandonPixelEditor [
-
-	self pixelEditor systemWindow abandon
-]
 
 {
 	#category : #accessing,
@@ -36,66 +26,66 @@ PixelEditorResizingTest >> colorButtons: anObject [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'ThB 6/21/2024 17:44'
+	#'squeak_changestamp' : 'GLE 6/22/2024 12:55'
 }
-PixelEditorResizingTest >> createPixelEditor [
+PixelEditorResizingTest >> getSettingsAndColorButtons [
 
-	self pixelEditor: PixelEditor open
+	self 
+		settingsButtons: (self pixelEditor containerDictionary at: #settingsButtons);
+		colorButtons: (self pixelEditor containerDictionary at: #colorButtons)
+		
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'ThB 6/21/2024 17:44'
+	#'squeak_changestamp' : 'GLE 6/22/2024 12:49'
 }
-PixelEditorResizingTest >> pixelEditor [
-	^ pixelEditor
-]
+PixelEditorResizingTest >> rightSize [
 
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'ThB 6/21/2024 17:47'
-}
-PixelEditorResizingTest >> pixelEditor: aPixelEditor [
-	pixelEditor := aPixelEditor
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'ThB 6/21/2024 18:32'
-}
-PixelEditorResizingTest >> setUp [
-
-	self createPixelEditor.
+	^ (self settingsButtons bounds origin = self settingsButtons owner bounds origin)
+		and: (self colorButtons bounds origin = self colorButtons owner bounds origin)
 	
-	settingsButtons := pixelEditor containerDictionary at: #settingsButtons.
-	colorButtons := pixelEditor containerDictionary at: #colorButtons.
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'ThB 6/21/2024 18:31'
+	#'squeak_changestamp' : 'GLE 6/22/2024 12:53'
 }
-PixelEditorResizingTest >> settingButtons [
-	^ settingButtons
+PixelEditorResizingTest >> setBounds [
+
+	self settingsButtons owner bounds: (0@0 corner: 100@100).
+	self colorButtons owner bounds: (0@0 corner: 100@100).
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'ThB 6/21/2024 18:31'
+	#'squeak_changestamp' : 'GLE 6/22/2024 12:50'
 }
-PixelEditorResizingTest >> settingButtons: anObject [
-	settingButtons := anObject
+PixelEditorResizingTest >> settingsButtons [
+
+	^ settingsButtons
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'ThB 6/21/2024 18:32'
+	#'squeak_changestamp' : 'GLE 6/22/2024 12:50'
+}
+PixelEditorResizingTest >> settingsButtons: anObject [
+
+	settingsButtons := anObject
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/22/2024 12:56'
 }
 PixelEditorResizingTest >> testResizingAgent [
-	
-	settingsButtons owner bounds: (0@0 corner: 100@100).
-	colorButtons owner bounds: (0@0 corner: 100@100).
 
-	self assert: (settingsButtons bounds origin = settingsButtons owner bounds origin).
-	self assert: (colorButtons bounds origin = colorButtons owner bounds origin).
+	self 
+		createPixelEditor;
+		getSettingsAndColorButtons;
+		setBounds.
+	self assert: self rightSize.
+	self abandonPixelEditor
+	
 ]

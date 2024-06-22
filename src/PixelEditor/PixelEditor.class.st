@@ -65,14 +65,14 @@ PixelEditor class >> register [
 
 {
 	#category : #toolbuilder,
-	#'squeak_changestamp' : 'GLE 6/17/2024 19:18'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:28'
 }
 PixelEditor >> buildWith: aBuilder [ 
 	
 	| builder |
 	
-	builder := aBuilder 
-		build: (aBuilder pluggableWindowSpec new model: self;
+	builder := aBuilder build: (aBuilder pluggableWindowSpec new 
+		model: self;
 	 	label: #labelString;
 		extent: self class defaultExtent;
 		children: (self panelsFromBuilder: aBuilder);
@@ -117,20 +117,22 @@ PixelEditor >> formFromCanvas [
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'GLE 6/19/2024 17:03'
+	#'squeak_changestamp' : 'GLE 6/22/2024 14:07'
 }
 PixelEditor >> initialize [
 
 	super initialize.
-	self jsonString: String new;
+	self 
+		jsonString: String new;
 		json: JsonObject new
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/19/2024 16:55'
+	#'squeak_changestamp' : 'GLE 6/22/2024 14:07'
 }
 PixelEditor >> json [
+
 	^ json
 ]
 
@@ -190,7 +192,7 @@ PixelEditor >> open [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/20/2024 17:59'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:29'
 }
 PixelEditor >> openColorSelector [
 
@@ -200,7 +202,8 @@ PixelEditor >> openColorSelector [
 	container := self containerDictionary at: #colorSelector.
 	container submorphs 
 		ifEmpty: [container addMorphNext: colorSelector]
-		ifNotEmpty: [container removeAllMorphs; 
+		ifNotEmpty: [container 
+				removeAllMorphs; 
 				addMorphNext: colorSelector]
 	
 	
@@ -242,14 +245,9 @@ PixelEditor >> update [
 
 {
 	#category : #styles,
-	#'squeak_changestamp' : 'GLE 6/3/2024 09:44'
+	#'squeak_changestamp' : 'GLE 6/22/2024 14:09'
 }
 PixelEditor >> windowColorToUse [
 
-	^ Color colorFrom: (Model useColorfulWindows
-				ifTrue: [self userInterfaceTheme customWindowColor
-						ifNil: [Color r: 0.8 g: 0.65 b: 0.35 alpha: 1.0]]
-				ifFalse: [self userInterfaceTheme uniformWindowColor
-						ifNil: [Color veryVeryLightGray]])	
-
+	^ Color veryVeryLightGray
 ]

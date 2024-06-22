@@ -20,15 +20,16 @@ PEButtonRow >> addMorphBelow: aMorph [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 20:51'
+	#'squeak_changestamp' : 'GLE 6/22/2024 14:02'
 }
 PEButtonRow >> addMorphCollection: aMorphCollection [
 
 	| dictionary symbol |
 	
 	dictionary := Dictionary new.
-	dictionary at: 1 put: #addOneMorph:.
-	dictionary at: 2 put: #addTwoMorphs:.
+	dictionary 
+		at: 1 put: #addOneMorph:;
+		at: 2 put: #addTwoMorphs:.
 	symbol := dictionary at: aMorphCollection size ifAbsent: #addMorphCollectionAsSubmorphs:.
 	self perform: symbol with: aMorphCollection.
 ]
@@ -130,12 +131,13 @@ PEButtonRow >> fitSubmorphs [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 19:47'
+	#'squeak_changestamp' : 'GLE 6/22/2024 14:03'
 }
 PEButtonRow >> initialize [
 
 	super initialize. 
-	self borderWidth: 2;
+	self 
+		borderWidth: 2;
 		beTransparent
 ]
 
@@ -164,15 +166,6 @@ PEButtonRow >> splitCollection: aCollection [
 		ifFalse: [lowerCollection add: each].
 		counter := counter + 1].
 	^ {	upperCollection . lowerCollection }
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 20:16'
-}
-PEButtonRow >> submorphs: aCollection [
-
-	submorphs := aCollection
 ]
 
 {

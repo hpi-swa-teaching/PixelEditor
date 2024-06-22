@@ -66,12 +66,13 @@ PECanvas >> fitSubmorphs [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/20/2024 11:22'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:42'
 }
 PECanvas >> initialize [
 
 	super initialize.
-	self beSticky;
+	self 
+		beSticky;
 		layoutFrame: (LayoutFrame fractions: (0 @ 0 rect: 1 @ 1));
 		borderWidth: 0;
 		beTransparent

@@ -75,13 +75,12 @@ PECanvasBuilder >> colorFromString: aString [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/20/2024 17:41'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:42'
 }
 PECanvasBuilder >> createPixelsFromJson: aJson in: aLayer [
 
 	| pixelSize width height pixelID |
 
-	self flag: 'refactor'.
 	width := PECanvas pixelGridWidth.
 	height := PECanvas pixelGridHeight.
 	pixelSize := PECanvas pixelSize.
@@ -136,12 +135,13 @@ PECanvasBuilder >> insertPixelAt: aPoint in: aLayer [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/20/2024 17:43'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:45'
 }
 PECanvasBuilder >> insertPixelAt: aPoint withColor: aColor in: aLayer [
 
 	| pixel |
-	pixel := PEPixel new color: aColor; 
+	pixel := PEPixel new 
+		color: aColor; 
 		position: aLayer positionInWorld + aPoint;
 		extent: PECanvas pixelSize @ PECanvas pixelSize;
 		yourself.

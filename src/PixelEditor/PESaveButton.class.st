@@ -6,13 +6,14 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/20/2024 17:42'
+	#'squeak_changestamp' : 'GLE 6/22/2024 14:00'
 }
 PESaveButton >> addToJson [
 	
-	self jsonString: self jsonString, ('"width" : "', PECanvas pixelGridWidth, ' ", ').
-	self jsonString: self jsonString, ('"height" : "', PECanvas pixelGridHeight, ' ", ').
-	self jsonString: self jsonString, ('"pixelSize" : "', PECanvas pixelSize, ' " ').
+	self 
+		jsonString: (self jsonString, '"width" : "', PECanvas pixelGridWidth, ' ", ');
+		jsonString: (self jsonString, '"height" : "', PECanvas pixelGridHeight, ' ", ');
+		jsonString: (self jsonString, '"pixelSize" : "', PECanvas pixelSize, ' " ').
 	(self target containerDictionary at: #canvas) submorphs do: [:each | each basicType = #PELayer 
 		ifTrue: [self addToJsonString: each submorphs]]
 ]
@@ -113,12 +114,13 @@ PESaveButton >> windowTitle [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:43'
+	#'squeak_changestamp' : 'GLE 6/22/2024 14:01'
 }
 PESaveButton >> writeFile: aFileName stream: aFileStream [
 
 	self addToJson.
-	aFileStream nextPutAll: self jsonString; 
+	aFileStream 
+		nextPutAll: self jsonString; 
 		close.
 	self jsonString: ''
 	

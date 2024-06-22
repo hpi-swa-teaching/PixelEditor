@@ -15,29 +15,6 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/7/2024 18:10'
-}
-PEPixel class >> borderColor [
-	
-	borderColor 
-		ifNil: [^ Color lightGray]
-		ifNotNil: [^ borderColor]
-		
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/7/2024 18:20'
-}
-PEPixel class >> borderColor: aColor [
-	
-	borderColor := aColor.
-	self allInstancesDo: [:each | each borderColor: aColor]
-		
-]
-
-{
-	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 6/7/2024 18:11'
 }
 PEPixel class >> borderSize [
@@ -91,18 +68,6 @@ PEPixel class >> selectedColor: aColor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/7/2024 18:23'
-}
-PEPixel class >> toggleBorderColor [
-	
-	borderColor = Color transparent
-		ifTrue: [self borderColor: Color lightGray]
-		ifFalse: [self borderColor: Color transparent]
-		
-]
-
-{
-	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 6/7/2024 20:41'
 }
 PEPixel class >> toggleBorderSize [
@@ -115,23 +80,24 @@ PEPixel class >> toggleBorderSize [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/17/2024 21:19'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:35'
 }
 PEPixel >> changeColor [
 
-	self color: PEPixel selectedColor
+	self color: self class selectedColor
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/20/2024 17:42'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:40'
 }
 PEPixel >> initialize [
 
 	super initialize.
-	self color: Color transparent;
-		borderWidth: PEPixel borderSize;
-		borderColor: PEPixel borderColor
+	self 
+		color: Color transparent;
+		borderWidth: self class borderSize;
+		borderColor: Color lightGray
 		
 	
 		

@@ -51,15 +51,6 @@ PEPanelBuilder >> canvasFromJson: aJsonString [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/20/2024 11:18'
-}
-PEPanelBuilder >> colorButtonCollection [
-
-	^ PEButtonBuilder default buildColorButtonsWithTarget: self pixelEditor
-]
-
-{
-	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/20/2024 11:04'
 }
 PEPanelBuilder >> colorButtonPanel [
@@ -113,13 +104,15 @@ PEPanelBuilder >> containerDictionary: anObject [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/13/2024 13:57'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:46'
 }
 PEPanelBuilder >> createCanvasPanelWithBuilder: aBuilder [ 
 
-	^ aBuilder pluggablePanelSpec new model: self;
-		 children: #canvasAsCollection;
-		 frame: (LayoutFrame new leftFraction: 0.33;
+	^ aBuilder pluggablePanelSpec new 
+		model: self;
+		children: #canvasAsCollection;
+		frame: (LayoutFrame new 
+			leftFraction: 0.33;
 			 topFraction: 0;
 			 rightFraction: 1;
 			 bottomFraction: 1)
@@ -127,30 +120,34 @@ PEPanelBuilder >> createCanvasPanelWithBuilder: aBuilder [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/13/2024 14:47'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:46'
 }
 PEPanelBuilder >> createColorButtonPanelWithBuilder: aBuilder [ 
 
-	^ aBuilder pluggablePanelSpec new model: self;
-		 children: #colorButtonPanel;
-		 frame: (LayoutFrame new rightFraction: 0.33;
-			 topFraction: 0.66;
-			 leftFraction: 0;
-			 bottomFraction: 1)
+	^ aBuilder pluggablePanelSpec new 
+		model: self;
+		children: #colorButtonPanel;
+		frame: (LayoutFrame new 
+			rightFraction: 0.33;
+			topFraction: 0.66;
+			leftFraction: 0;
+			bottomFraction: 1)
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 20:04'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:47'
 }
 PEPanelBuilder >> createColorSelectorPanelWithBuilder: aBuilder [ 
 
-	^ aBuilder pluggablePanelSpec new model: self;
-		 children: #colorSelectorPanel;
-		 frame: (LayoutFrame new rightFraction: 0.33;
-			 topFraction: 0.2;
-			 leftFraction: 0;
-			 bottomFraction: 0.5)
+	^ aBuilder pluggablePanelSpec new 
+		model: self;
+		children: #colorSelectorPanel;
+		frame: (LayoutFrame new 
+			rightFraction: 0.33;
+			topFraction: 0.2;
+			leftFraction: 0;
+			bottomFraction: 0.5)
 ]
 
 {
@@ -174,30 +171,34 @@ PEPanelBuilder >> createPanelsWithBuilder: aBuilder andPixelEditor: aPixelEditor
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/13/2024 14:31'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:47'
 }
 PEPanelBuilder >> createSettingsButtonPanelWithBuilder: aBuilder [ 
 
-	^ aBuilder pluggablePanelSpec new model: self;
-		 children: #settingsButtonPanel;
-		 frame: (LayoutFrame new rightFraction: 0.33;
-			 topFraction: 0;
-			 leftFraction: 0;
-			 bottomFraction: 0.2)
+	^ aBuilder pluggablePanelSpec new 
+		model: self;
+		children: #settingsButtonPanel;
+		frame: (LayoutFrame new 
+			rightFraction: 0.33;
+			topFraction: 0;
+			leftFraction: 0;
+			bottomFraction: 0.2)
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 19:58'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:48'
 }
 PEPanelBuilder >> createToolPanelWithBuilder: aBuilder [ 
 
-	^ aBuilder pluggablePanelSpec new model: self;
-		 children: #toolButtonPanel;
-		 frame: (LayoutFrame new rightFraction: 0.33;
-			 topFraction: 0.5;
-			 leftFraction: 0;
-			 bottomFraction: 0.66)
+	^ aBuilder pluggablePanelSpec new 
+		model: self;
+		children: #toolButtonPanel;
+		frame: (LayoutFrame new 
+			rightFraction: 0.33;
+			topFraction: 0.5;
+			leftFraction: 0;
+			bottomFraction: 0.66)
 ]
 
 {

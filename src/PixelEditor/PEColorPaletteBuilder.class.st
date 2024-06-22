@@ -31,11 +31,12 @@ PEColorPaletteBuilder >> addButtonsTo: aColorPalette [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/18/2024 11:05'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:45'
 }
 PEColorPaletteBuilder >> addHSVMorphTo: aColorPalette [
 
-	aColorPalette hsvMorph: HSVColorSelectorMorph new;
+	aColorPalette 
+		hsvMorph: HSVColorSelectorMorph new;
 		addMorphNext: aColorPalette hsvMorph
 
 	
@@ -52,11 +53,12 @@ PEColorPaletteBuilder >> createColorPalette [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/20/2024 18:56'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:45'
 }
 PEColorPaletteBuilder >> createColorSelector: aColorPalette [
 
-	self addHSVMorphTo: aColorPalette;
+	self 
+		addHSVMorphTo: aColorPalette;
 		addButtonsTo: aColorPalette.
 	^ aColorPalette
 ]

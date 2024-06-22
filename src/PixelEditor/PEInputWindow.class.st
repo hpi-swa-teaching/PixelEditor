@@ -16,15 +16,6 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/11/2024 12:05'
-}
-PEInputWindow class >> submitButtonSize [
-
-	^ 200 @ 75
-]
-
-{
 	#category : #accessing,
 	#'squeak_changestamp' : 'LW 5/25/2024 17:37'
 }
@@ -78,11 +69,12 @@ PEInputWindow >> convertToInteger: aDictionary [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/20/2024 17:40'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:49'
 }
 PEInputWindow >> createDefaultCanvas [
 
-	PECanvas pixelGridWidth: 10 andHeight: 10;
+	PECanvas 
+		pixelGridWidth: 10 andHeight: 10;
 		pixelSize: 100.
 	PixelEditor open.
 	self abandon
@@ -90,12 +82,13 @@ PEInputWindow >> createDefaultCanvas [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/20/2024 19:04'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:49'
 }
 PEInputWindow >> createPixelEditor [
 
 	super initialize.
-	self initializeInputLines;
+	self 
+		initializeInputLines;
 		initializeSubmitButton; "addmorph dann einfach returnen"
 		initializeText;
 		borderWidth: 0;
@@ -105,11 +98,12 @@ PEInputWindow >> createPixelEditor [
 
 {
 	#category : #inputProcessing,
-	#'squeak_changestamp' : 'GLE 6/19/2024 23:38'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:49'
 }
 PEInputWindow >> incorrectValues [
 
-	self addedText changed; 
+	self addedText 
+		changed; 
 		emphasis: 4
 		
 ]
@@ -135,62 +129,68 @@ PEInputWindow >> initialize [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/16/2024 20:34'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:50'
 }
 PEInputWindow >> initializeInputLineHeight [
 
-	^ PETextInputMorphWithLabel new setLabel: 'Height:';
+	^ PETextInputMorphWithLabel new 
+		setLabel: 'Height:';
 		position: (self inputLineWidth position x) @ (self inputLineWidth position y + 150);
 		yourself
 ]
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'LW 6/11/2024 13:38'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:50'
 }
 PEInputWindow >> initializeInputLinePixelSize [
 
-	^ PETextInputMorphWithLabel new setLabel: 'Pixel size:';
+	^ PETextInputMorphWithLabel new 
+		setLabel: 'Pixel size:';
 		position: (self inputLineHeight position x) @ (self inputLineHeight position y + 150); 
 		yourself
 ]
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/20/2024 19:05'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:50'
 }
 PEInputWindow >> initializeInputLineWidth [
 
-	^ PETextInputMorphWithLabel new setLabel: 'Width:';
+	^ PETextInputMorphWithLabel new 
+		setLabel: 'Width:';
 		position: 50 @ 100; 
 		yourself
 ]
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/20/2024 19:08'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:51'
 }
 PEInputWindow >> initializeInputLines [
 
-	self inputLineWidth: self initializeInputLineWidth;
+	self 
+		inputLineWidth: self initializeInputLineWidth;
 		inputLineHeight: self initializeInputLineHeight;
 		inputLinePixelSize: self initializeInputLinePixelSize;
-		inputLines: (Array with: self inputLineWidth with: self inputLineHeight with: self inputLinePixelSize).
-	self inputLines do: [:each | self addMorph: each inputField. 
-		self addMorph: each label]
+		inputLines: { self inputLineWidth . self inputLineHeight . self inputLinePixelSize }.
+	self inputLines do: [:each | self 
+		addMorph: (each inputField); 
+		addMorph: each label]
 ]
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/20/2024 19:03'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:53'
 }
 PEInputWindow >> initializeSubmitButton [
 
-	self submitButton: (PluggableButtonMorph new label: 'Submit size';
-		extent: (PEInputWindow submitButtonSize);
+	self submitButton: (PluggableButtonMorph new 
+		label: 'Submit size';
+		extent: self submitButtonSize;
 		target: self;
 		actionSelector: #processHeight:andWidth:andSize:;
-	      arguments: (Array withAll: {(self inputLineHeight getContent). (self inputLineWidth getContent). (self inputLinePixelSize getContent)});
+	      arguments: {self inputLineHeight getContent . self inputLineWidth getContent . self inputLinePixelSize getContent};
 		position: (self inputLinePixelSize position x) @ (self inputLinePixelSize position y + 150)).
 	self addMorph: self submitButton
 
@@ -198,12 +198,13 @@ PEInputWindow >> initializeSubmitButton [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/16/2024 20:35'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:54'
 }
 PEInputWindow >> initializeText [
 
 	self addedText: 
-	(StringMorph new color: Color red;
+	(StringMorph new 
+		color: Color red;
 		contents: 'Please only use positive natural numbers'; 
 		position: (self submitButton position x) @ (self submitButton position y + 100); 
 		fontName: 'Arial' size: 20;
@@ -327,6 +328,15 @@ PEInputWindow >> submitButton [
 PEInputWindow >> submitButton: aButton [
 
 	submitButton := aButton
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:38'
+}
+PEInputWindow >> submitButtonSize [
+
+	^ 200 @ 75
 ]
 
 {

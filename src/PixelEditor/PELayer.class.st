@@ -76,12 +76,13 @@ PELayer >> handlesMouseStillDown: anEvent [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/18/2024 11:28'
+	#'squeak_changestamp' : 'GLE 6/22/2024 13:57'
 }
 PELayer >> initialize [
 
 	super initialize.
-	self color: Color white;
+	self 
+		color: Color white;
 		borderColor: Color black;
 		pixelDictionary: Dictionary new.
 	

@@ -41,11 +41,12 @@ PETextInputMorphWithLabel >> initialize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/21/2024 09:20'
+	#'squeak_changestamp' : 'GLE 6/22/2024 14:01'
 }
 PETextInputMorphWithLabel >> initializeInputField [
 
-	^ PEPluggableTextMorphPlus new extent: self inputFieldSize; 
+	^ PEPluggableTextMorphPlus new 
+		extent: self inputFieldSize; 
 		color: Color veryLightGray; 
 		setText: '';
 		yourself
