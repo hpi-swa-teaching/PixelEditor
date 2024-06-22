@@ -65,18 +65,14 @@ PixelEditor class >> register [
 
 {
 	#category : #toolbuilder,
-	#'squeak_changestamp' : 'GLE 6/22/2024 13:28'
+	#'squeak_changestamp' : 'GLE 6/22/2024 16:29'
 }
 PixelEditor >> buildWith: aBuilder [ 
 	
 	| builder |
 	
-	builder := aBuilder build: (aBuilder pluggableWindowSpec new 
-		model: self;
-	 	label: #labelString;
-		extent: self class defaultExtent;
-		children: (self panelsFromBuilder: aBuilder);
-		yourself).
+	self setUpCanvas.
+	builder := PEPanelBuilder default createWindowPanelWithBuilder: aBuilder andModel: self.
 	self systemWindow addMorph: (PERezisingAgent new model: self).
 	^ builder
 ]
@@ -98,6 +94,15 @@ PixelEditor >> containerDictionary: aDictionary [
 
 	containerDictionary := aDictionary.
 	
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/22/2024 16:08'
+}
+PixelEditor >> defaultExtent [
+
+	^ 800@600
 ]
 
 {
@@ -210,19 +215,17 @@ PixelEditor >> openColorSelector [
 ]
 
 {
-	#category : #'lifecycle hooks',
-	#'squeak_changestamp' : 'GLE 6/19/2024 16:59'
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 6/22/2024 16:23'
 }
-PixelEditor >> panelsFromBuilder: aBuilder [
+PixelEditor >> setUpCanvas [
 
-	| panels |
+	| panelBuilder |
 	
-	panels := PEPanelBuilder new.
+	panelBuilder := PEPanelBuilder default.
 	self json isEmpty
-		ifTrue: [ panels canvas]
-		ifFalse:[ panels canvasFromJson: self json].
-	^ panels createPanelsWithBuilder: aBuilder andPixelEditor: self
-	
+		ifTrue: [ panelBuilder canvas]
+		ifFalse:[ panelBuilder canvasFromJson: self json].
 ]
 
 {

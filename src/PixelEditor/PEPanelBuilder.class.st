@@ -152,19 +152,18 @@ PEPanelBuilder >> createColorSelectorPanelWithBuilder: aBuilder [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 20:04'
+	#'squeak_changestamp' : 'GLE 6/22/2024 16:28'
 }
-PEPanelBuilder >> createPanelsWithBuilder: aBuilder andPixelEditor: aPixelEditor [
+PEPanelBuilder >> createPanelsWithBuilder: aBuilder [
 
 	| panels |
-	
-	self pixelEditor: aPixelEditor.
+
 	panels := { self createCanvasPanelWithBuilder: aBuilder.
 		self createColorButtonPanelWithBuilder: aBuilder.
 		self createSettingsButtonPanelWithBuilder: aBuilder.
 		self createToolPanelWithBuilder: aBuilder.
 		self createColorSelectorPanelWithBuilder: aBuilder }.
-	aPixelEditor containerDictionary: self containerDictionary.
+	self pixelEditor containerDictionary: self containerDictionary.
 	^ panels
 	
 ]
@@ -202,6 +201,21 @@ PEPanelBuilder >> createToolPanelWithBuilder: aBuilder [
 ]
 
 {
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/22/2024 16:14'
+}
+PEPanelBuilder >> createWindowPanelWithBuilder: aBuilder andModel: aPixelEditor [
+
+	self pixelEditor: aPixelEditor.
+	^ aBuilder build: (aBuilder pluggableWindowSpec new 
+		model: aPixelEditor;
+	 	label: #labelString;
+		extent: self pixelEditorExtent;
+		children: (self createPanelsWithBuilder: aBuilder);
+		yourself).
+]
+
+{
 	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/13/2024 16:03'
 }
@@ -227,6 +241,15 @@ PEPanelBuilder >> pixelEditor [
 PEPanelBuilder >> pixelEditor: anObject [
 
 	pixelEditor := anObject
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/22/2024 16:10'
+}
+PEPanelBuilder >> pixelEditorExtent [
+
+	 ^ 800 @ 600
 ]
 
 {
