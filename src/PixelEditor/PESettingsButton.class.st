@@ -9,6 +9,15 @@ Class {
 
 {
 	#category : #'user interface',
+	#'squeak_changestamp' : 'GLE 6/21/2024 16:32'
+}
+PESettingsButton >> basicType [
+
+	^ #PESettingsButton
+]
+
+{
+	#category : #'user interface',
 	#'squeak_changestamp' : 'GLE 6/20/2024 12:10'
 }
 PESettingsButton >> checkIfFileExists: aFileName [

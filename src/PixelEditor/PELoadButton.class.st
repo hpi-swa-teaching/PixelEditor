@@ -6,6 +6,15 @@ Class {
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/21/2024 16:33'
+}
+PELoadButton >> basicType [
+
+	^ #PELoadButton
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 6/19/2024 21:32'
 }
 PELoadButton >> directory [ 
@@ -24,7 +33,7 @@ PELoadButton >> doAction [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/19/2024 21:33'
+	#'squeak_changestamp' : 'GLE 6/21/2024 16:36'
 }
 PELoadButton >> load [
 	
@@ -32,8 +41,8 @@ PELoadButton >> load [
 	
 	fileName := self openFileSaverDialog getUserResponse.
 	fileName isNil ifFalse: [
-		PixelEditor openWithJson: (self loadFile: fileName).
-		self target systemWindow abandon]
+		self target systemWindow abandon.
+		PixelEditor openWithJson: (self loadFile: fileName)]
 	
 	
 ]
@@ -45,6 +54,21 @@ PELoadButton >> load [
 PELoadButton >> loadFile: afileName [
 	
 	^ Json readFromString: (self stringFromStream: (StandardFileStream oldFileNamed: afileName))
+	
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/21/2024 16:37'
+}
+PELoadButton >> loadWith: aFileName [
+	
+	"for testing purposes"
+	
+	aFileName isNil ifFalse: [
+		self target systemWindow abandon.
+		^ PixelEditor openWithJson: (self loadFile: aFileName)]
+	
 	
 ]
 

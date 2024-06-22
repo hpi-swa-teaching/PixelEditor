@@ -1,8 +1,7 @@
 Class {
 	#name : #PixelEditorColorSelectorTest,
-	#superclass : #TestCase,
+	#superclass : #PixelEditorTest,
 	#instVars : [
-		'pixelEditor',
 		'pixel',
 		'color',
 		'canvas',
@@ -10,15 +9,6 @@ Class {
 	],
 	#category : #'PixelEditor-Tests'
 }
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/17/2024 00:19'
-}
-PixelEditorColorSelectorTest >> abandonPixelEditor [
-
-	self pixelEditor systemWindow abandon
-]
 
 {
 	#category : #'as yet unclassified',
@@ -62,13 +52,11 @@ PixelEditorColorSelectorTest >> changeColor: aPixel [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 21:01'
+	#'squeak_changestamp' : 'GLE 6/21/2024 15:04'
 }
 PixelEditorColorSelectorTest >> changeSelectedColor [
 
-	| brush |
-	brush := self canvas brush.
-	brush changeSelectedColor: Color green.
+	PEPixel selectedColor: Color green.
 	self color: Color green.
 ]
 
@@ -99,30 +87,39 @@ PixelEditorColorSelectorTest >> colorPixel [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/16/2024 23:46'
-}
-PixelEditorColorSelectorTest >> createPixelEditor [
-
-	self pixelEditor: PixelEditor open
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/17/2024 00:55'
+	#'squeak_changestamp' : 'GLE 6/21/2024 14:16'
 }
 PixelEditorColorSelectorTest >> getCanvas [
 
 	self canvas: (self pixelEditor containerDictionary at: #canvas).
-	self getLayer: (self pixelEditor containerDictionary at: #canvas)
+	self getLayer: (self pixelEditor containerDictionary at: #canvas) layer
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/17/2024 01:04'
+	#'squeak_changestamp' : 'GLE 6/21/2024 16:10'
 }
-PixelEditorColorSelectorTest >> getLayer: aCanvas [
+PixelEditorColorSelectorTest >> getColorButton [
+
+	^ (self pixelEditor containerDictionary at: #colorButtons) submorphs first
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/21/2024 16:09'
+}
+PixelEditorColorSelectorTest >> getColorSelector [
+
+	^ self pixelEditor containerDictionary at: #colorSelector
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/21/2024 15:08'
+}
+PixelEditorColorSelectorTest >> getLayer: aLayer [
 	
-	self layer: (aCanvas layer) first.
+	self layer: aLayer first.
 	self getPixelDictionary: self layer
 
 	
@@ -186,20 +183,30 @@ PixelEditorColorSelectorTest >> pixel: aColor [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/16/2024 23:39'
+	#'squeak_changestamp' : 'GLE 6/21/2024 16:16'
 }
-PixelEditorColorSelectorTest >> pixelEditor [
+PixelEditorColorSelectorTest >> testColorSelector [
 
-	^ pixelEditor
+	| colorSelector |
+
+	self createPixelEditor.
+	self getColorButton doActionRight.
+	colorSelector := self getColorSelector submorphs first.
+	colorSelector adjustColor.
+	self assert: (colorSelector hsvMorph selectedColor = PEColorButton selectedButton color).
+	self abandonPixelEditor
 ]
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/16/2024 23:40'
+	#'squeak_changestamp' : 'GLE 6/21/2024 16:11'
 }
-PixelEditorColorSelectorTest >> pixelEditor: anObject [
+PixelEditorColorSelectorTest >> testColorSelectorOpen [
 
-	pixelEditor := anObject
+	self createPixelEditor.
+	self getColorButton doActionRight.
+	self assert: (self getColorSelector hasSubmorphs).
+	self abandonPixelEditor
 ]
 
 {

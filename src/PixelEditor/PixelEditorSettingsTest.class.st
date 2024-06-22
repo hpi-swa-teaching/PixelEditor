@@ -1,0 +1,68 @@
+Class {
+	#name : #PixelEditorSettingsTest,
+	#superclass : #PixelEditorTest,
+	#category : #'PixelEditor-Tests'
+}
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/21/2024 16:37'
+}
+PixelEditorSettingsTest >> getJsonFile [
+
+	^ self assetHandler loadFile: 'jsonTestFile'
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/21/2024 16:48'
+}
+PixelEditorSettingsTest >> getLoadButton [
+
+	self getSettingsButtonContainer submorphs do: 
+		[:each | each basicType = #PELoadButton ifTrue: [^ each]].
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/21/2024 16:49'
+}
+PixelEditorSettingsTest >> getSaveButton [
+
+	self getSettingsButtonContainer submorphs do: 
+		[:each | each basicType = #PESaveButton ifTrue: [^ each]].
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/21/2024 16:47'
+}
+PixelEditorSettingsTest >> getSettingsButtonContainer [
+
+	^ self pixelEditor containerDictionary at: #settingsButtons
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/21/2024 16:48'
+}
+PixelEditorSettingsTest >> testWindowLoading [
+	
+	self createPixelEditor.
+	self pixelEditor: (self getLoadButton loadWith: self getJsonFile).
+	self assert: (self pixelEditor systemWindow ifNil: [ false ] ifNotNil: [ true ]).
+	self abandonPixelEditor.
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/21/2024 16:56'
+}
+PixelEditorSettingsTest >> testWindowSaving [
+	
+	self createPixelEditor.
+	self getSaveButton addToJson;
+		writeFile: 'SavingTest' stream: (StandardFileStream forceNewFileNamed: 'SavingTest').
+	self assert: (StandardFileStream isAFileNamed: (StandardFileStream fullName: 'SavingTest')).
+	self abandonPixelEditor.
+]

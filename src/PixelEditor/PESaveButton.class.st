@@ -32,6 +32,15 @@ PESaveButton >> addToJsonString: aCollection [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 6/21/2024 16:50'
+}
+PESaveButton >> basicType [
+
+	^ #PESaveButton
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 6/4/2024 00:41'
 }
 PESaveButton >> colorForJson: aColor [
