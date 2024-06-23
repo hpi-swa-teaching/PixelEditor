@@ -128,11 +128,11 @@ PixelEditorColorSelectorTest >> getPixel [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/17/2024 00:35'
+	#'squeak_changestamp' : 'LW 6/23/2024 12:59'
 }
 PixelEditorColorSelectorTest >> getPixel: aDictionary [
 
-	self pixel: (aDictionary keys) first
+	self pixel: (aDictionary keys) atRandom
 ]
 
 {
