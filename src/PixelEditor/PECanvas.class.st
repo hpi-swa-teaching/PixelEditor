@@ -17,10 +17,10 @@ PECanvas >> clear [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Corvin 6/3/2024 17:19'
+	#'squeak_changestamp' : 'Corvin 6/23/2024 18:49'
 }
 PECanvas >> extent: aPoint [ 
-	super extent: aPoint. self positionCenterPixel
+	super extent: aPoint. self positionOriginPixel
 ]
 
 {
@@ -42,15 +42,15 @@ PECanvas >> initialize [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/4/2024 11:22'
+	#'squeak_changestamp' : 'Corvin 6/23/2024 18:48'
 }
-PECanvas >> positionCenterPixel [
+PECanvas >> positionOriginPixel [
 	| canvasCenter pixelCenter newPosition centerOffset |
 	canvasCenter := self bounds center.
 	pixelCenter := originPixel bounds center.
 	centerOffset := originPixel extent // 2 negated.
 	newPosition := canvasCenter + centerOffset.
-	originPixel position: newPosition.
+	originPixel position: newPosition
 ]
 
 {
