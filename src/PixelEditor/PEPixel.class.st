@@ -6,6 +6,14 @@ Class {
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Corvin 6/23/2024 20:07'
+}
+PEPixel class >> defaultPixelColor [
+	^Color white
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'Corvin 6/23/2024 18:41'
 }
 PEPixel class >> defaultPixelSize [
@@ -32,10 +40,11 @@ PEPixel >> handlesMouseStillDown: aEvTrue [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'Corvin 6/23/2024 18:40'
+	#'squeak_changestamp' : 'Corvin 6/23/2024 20:07'
 }
 PEPixel >> initialize [
 	super initialize.
 	self extent: self class defaultPixelSize;
-	sticky: true.
+		 sticky: true;
+		color: self class defaultPixelColor.
 ]
