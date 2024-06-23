@@ -2,6 +2,7 @@ Class {
 	#name : #PEPixel,
 	#superclass : #Morph,
 	#instVars : [
+		'coordinate',
 		'originPixel'
 	],
 	#category : #PixelEditor
@@ -17,11 +18,35 @@ PEPixel class >> defaultPixelColor [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Corvin 6/23/2024 20:20'
+}
+PEPixel class >> defaultPixelCoordinate [
+	^ 0 @ 0
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'Corvin 6/23/2024 18:41'
 }
 PEPixel class >> defaultPixelSize [
 
  	^ 100 @ 100
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Corvin 6/23/2024 20:22'
+}
+PEPixel >> coordinate [
+	^ coordinate
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Corvin 6/23/2024 20:21'
+}
+PEPixel >> coordinate: aCoordinate [ 
+	coordinate := aCoordinate
 ]
 
 {
