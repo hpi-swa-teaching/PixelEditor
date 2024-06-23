@@ -118,16 +118,6 @@ PEInputWindow >> initialExtent [
 ]
 
 {
-	#category : #inputProcessing,
-	#'squeak_changestamp' : 'GLE 6/21/2024 09:31'
-}
-PEInputWindow >> initialize [
-
-	super initialize.
-	self openInWorld
-]
-
-{
 	#category : #initialization,
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:50'
 }
