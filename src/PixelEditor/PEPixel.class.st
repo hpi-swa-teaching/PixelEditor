@@ -1,6 +1,9 @@
 Class {
 	#name : #PEPixel,
 	#superclass : #Morph,
+	#instVars : [
+		'originPixel'
+	],
 	#category : #PixelEditor
 }
 
@@ -47,4 +50,20 @@ PEPixel >> initialize [
 	self extent: self class defaultPixelSize;
 		 sticky: true;
 		color: self class defaultPixelColor.
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Corvin 6/23/2024 20:12'
+}
+PEPixel >> originPixel [
+^ originPixel
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Corvin 6/23/2024 20:11'
+}
+PEPixel >> originPixel: aPixel [
+originPixel := aPixel
 ]
