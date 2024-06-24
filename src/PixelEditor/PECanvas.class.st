@@ -41,6 +41,14 @@ PECanvas >> initialize [
 ]
 
 {
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Corvin 6/24/2024 09:45'
+}
+PECanvas >> mouseDown: anEvent [
+anEvent hand newMouseFocus: self.
+]
+
+{
 	#category : #accessing,
 	#'squeak_changestamp' : 'Corvin 6/24/2024 00:11'
 }
