@@ -35,14 +35,27 @@ PEInputWindow >> addedText: aString [
 
 {
 	#category : #inputProcessing,
-	#'squeak_changestamp' : 'GLE 6/21/2024 09:38'
+	#'squeak_changestamp' : 'GLE 6/24/2024 19:22'
 }
 PEInputWindow >> checkForEmptyValuesIn: aDictionary [
 
 	(aDictionary anySatisfy: [:each | each isEmpty])
-		ifFalse: [self checkSizeCorrectnessFor: (self convertToInteger: aDictionary)]
+		ifFalse: [self checkForStringValuesIn: aDictionary]
 	
 		
+]
+
+{
+	#category : #initialization,
+	#'squeak_changestamp' : 'GLE 6/24/2024 19:21'
+}
+PEInputWindow >> checkForStringValuesIn: aDictionary [
+
+	| dictionary |
+
+	dictionary := (self convertToInteger: aDictionary).
+	(dictionary anySatisfy: [:each | each isNil])
+		ifFalse: [self checkSizeCorrectnessFor: dictionary]
 ]
 
 {
