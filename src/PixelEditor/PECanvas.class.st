@@ -9,6 +9,19 @@ Class {
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Corvin 6/24/2024 00:10'
+}
+PECanvas >> addPixelAt: aCoordinate [ 
+	| pixel |
+	pixel := PEPixel new.
+	pixel coordinate: aCoordinate;
+		 originPixel: self originPixel.
+	self addMorph: pixel.
+	pixel calculatePosition
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'Corvin 6/1/2024 12:12'
 }
 PECanvas >> clear [
@@ -25,7 +38,7 @@ PECanvas >> extent: aPoint [
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Corvin 6/4/2024 11:22'
+	#'squeak_changestamp' : 'Corvin 6/24/2024 00:14'
 }
 PECanvas >> initialize [
 	super initialize.
