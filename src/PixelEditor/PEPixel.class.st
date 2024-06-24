@@ -62,19 +62,20 @@ PEPixel >> coordinate: aCoordinate [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'Corvin 6/23/2024 18:51'
+	#'squeak_changestamp' : 'Corvin 6/24/2024 10:01'
 }
-PEPixel >> handlesMouseDown: aEvent [ 
+PEPixel >> handlesMouseDown: anEvent [ 
+	anEvent hand newMouseFocus: self.
 	^ true
 ]
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'Corvin 6/23/2024 18:50'
+	#'squeak_changestamp' : 'Corvin 6/24/2024 10:01'
 }
-PEPixel >> handlesMouseStillDown: aEvTrue [
+PEPixel >> handlesMouseStillDown: anEvent [ 
 	self color: Color blue.
-	^true
+	^ true
 ]
 
 {
