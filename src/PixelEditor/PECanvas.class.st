@@ -37,8 +37,24 @@ PECanvas >> extent: aPoint [
 ]
 
 {
+	#category : #'events-processing',
+	#'squeak_changestamp' : 'Corvin 6/24/2024 23:42'
+}
+PECanvas >> handlesMouseDown: anEvent [ 
+	^ true
+]
+
+{
+	#category : #'events-processing',
+	#'squeak_changestamp' : 'Corvin 6/24/2024 16:45'
+}
+PECanvas >> handlesMouseStillDown: anEvent [
+^true
+]
+
+{
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Corvin 6/24/2024 00:14'
+	#'squeak_changestamp' : 'Corvin 6/24/2024 23:39'
 }
 PECanvas >> initialize [
 	super initialize.
@@ -54,11 +70,21 @@ PECanvas >> initialize [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/24/2024 09:45'
+	#category : #'events-processing',
+	#'squeak_changestamp' : 'Corvin 6/24/2024 23:38'
 }
-PECanvas >> mouseDown: anEvent [
-anEvent hand newMouseFocus: self.
+PECanvas >> mouseDown: anEvent [ 
+	anEvent hand newMouseFocus: self.
+]
+
+{
+	#category : #'events-processing',
+	#'squeak_changestamp' : 'Corvin 6/24/2024 23:16'
+}
+PECanvas >> mouseStillDown: anEvent [ 
+	self
+		submorphsDo: [:each | (each bounds containsPoint: anEvent position)
+				ifTrue: [each color: Color yellow]].
 ]
 
 {
