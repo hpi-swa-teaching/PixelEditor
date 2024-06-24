@@ -41,6 +41,14 @@ PECanvas >> initialize [
 ]
 
 {
+	#category : #accessing,
+	#'squeak_changestamp' : 'Corvin 6/24/2024 00:11'
+}
+PECanvas >> originPixel [
+^ originPixel
+]
+
+{
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'Corvin 6/23/2024 18:48'
 }
