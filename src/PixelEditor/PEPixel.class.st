@@ -35,13 +35,13 @@ PEPixel class >> defaultPixelSize [
 
 {
 	#category : #positioning,
-	#'squeak_changestamp' : 'Corvin 6/23/2024 20:17'
+	#'squeak_changestamp' : 'Corvin 6/25/2024 11:01'
 }
 PEPixel >> calculatePosition [
-| x y |
+	| x y |
 	x := self originPixel position x + (self coordinate x * originPixel extent x).
 	y := self originPixel position y - (self coordinate y * originPixel extent y).
-	self position: x @ y.
+	self position: x @ y
 ]
 
 {

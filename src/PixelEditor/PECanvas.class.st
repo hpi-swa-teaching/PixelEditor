@@ -10,6 +10,14 @@ Class {
 }
 
 {
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Corvin 6/25/2024 10:26'
+}
+PECanvas class >> defaultPixelGrid [
+	^ 10 @ 10
+]
+
+{
 	#category : #accessing,
 	#'squeak_changestamp' : 'Corvin 6/25/2024 10:16'
 }
@@ -28,12 +36,12 @@ PECanvas >> activeTool: aBoolean [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/25/2024 10:06'
+	#'squeak_changestamp' : 'Corvin 6/25/2024 10:59'
 }
 PECanvas >> addPixelAt: aCoordinate [ 
 	| pixel |
-	(self pixelCollection keys includes: aCoordinate) ifTrue: [ ^ nil ].
-
+	(self pixelCollection keys includes: aCoordinate)
+		ifTrue: [^ nil].
 	pixel := PEPixel new.
 	pixel coordinate: aCoordinate;
 		 originPixel: self originPixel.
@@ -52,10 +60,13 @@ PECanvas >> clear [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'Corvin 6/23/2024 18:49'
+	#'squeak_changestamp' : 'Corvin 6/25/2024 10:47'
 }
 PECanvas >> extent: aPoint [ 
-	super extent: aPoint. self positionOriginPixel
+	super extent: aPoint.
+	self positionOriginPixel.
+	self pixelCollection
+		do: [:each | each calculatePosition]
 ]
 
 {
@@ -76,22 +87,40 @@ PECanvas >> handlesMouseMove: anEvent [
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Corvin 6/25/2024 10:16'
+	#'squeak_changestamp' : 'Corvin 6/25/2024 11:05'
 }
 PECanvas >> initialize [
 	super initialize.
-	originPixel := PEPixel new.
-	originPixel color: Color orange.
+	self originPixel: PEPixel new.
+	self originPixel color: Color orange;
+		 originPixel: self originPixel;
+		coordinate: 0@0.
 	pixelCollection := Dictionary new.
 	pixelCollection at: 0 @ 0 put: originPixel.
-	activeTool:= false.
+	activeTool := false.
 	self
 		layoutFrame: (LayoutFrame
 				fractions: (0 @ 0 rect: 1 @ 1));
 		 beSticky;
 		 setUpBackground;
 		 clipSubmorphs: false;
-		 addMorph: originPixel
+		 addMorph: originPixel;
+		 initializeDefaultGrid
+]
+
+{
+	#category : #'initialize-release',
+	#'squeak_changestamp' : 'Corvin 6/25/2024 11:11'
+}
+PECanvas >> initializeDefaultGrid [
+	| height width |
+	width := self class defaultPixelGrid x.
+	height := self class defaultPixelGrid y.
+	0
+		to: width
+		do: [:x | 0
+				to: height
+				do: [:y | self addPixelAt: (x - (width // 2)) @ (y - (height // 2))]]
 ]
 
 {
@@ -151,6 +180,14 @@ PECanvas >> originPixel [
 
 {
 	#category : #accessing,
+	#'squeak_changestamp' : 'Corvin 6/25/2024 10:34'
+}
+PECanvas >> originPixel: aPixel [
+originPixel := aPixel
+]
+
+{
+	#category : #accessing,
 	#'squeak_changestamp' : 'Corvin 6/25/2024 09:56'
 }
 PECanvas >> pixelCollection [
@@ -184,7 +221,7 @@ PECanvas >> setUpBackground [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'dropping/grabbing',
 	#'squeak_changestamp' : 'Corvin 6/1/2024 12:12'
 }
 PECanvas >> wantsDroppedMorph: aMorph event: evt [
