@@ -86,15 +86,24 @@ PECanvas >> handlesMouseMove: anEvent [
 ]
 
 {
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Corvin 6/25/2024 11:22'
+}
+PECanvas >> hidePixelBorders [
+	self pixelCollection
+		do: [:each | each hidePixelBorder]
+]
+
+{
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Corvin 6/25/2024 11:05'
+	#'squeak_changestamp' : 'Corvin 6/25/2024 11:13'
 }
 PECanvas >> initialize [
 	super initialize.
 	self originPixel: PEPixel new.
 	self originPixel color: Color orange;
 		 originPixel: self originPixel;
-		coordinate: 0@0.
+		 coordinate: 0 @ 0.
 	pixelCollection := Dictionary new.
 	pixelCollection at: 0 @ 0 put: originPixel.
 	activeTool := false.
@@ -103,7 +112,7 @@ PECanvas >> initialize [
 				fractions: (0 @ 0 rect: 1 @ 1));
 		 beSticky;
 		 setUpBackground;
-		 clipSubmorphs: false;
+		 clipSubmorphs: true;
 		 addMorph: originPixel;
 		 initializeDefaultGrid
 ]
@@ -138,13 +147,11 @@ PECanvas >> mapPositionToCoordinate: aPosition [
 
 {
 	#category : #'events-processing',
-	#'squeak_changestamp' : 'Corvin 6/25/2024 10:17'
+	#'squeak_changestamp' : 'Corvin 6/25/2024 11:14'
 }
 PECanvas >> mouseDown: anEvent [ 
 	anEvent hand newMouseFocus: self.
-	self
-		addPixelAt: (self mapPositionToCoordinate: anEvent position).
-	self activeTool: true.
+	self activeTool: true
 ]
 
 {
@@ -218,6 +225,14 @@ PECanvas >> setUpBackground [
 	theme
 		ifNil: [self color: Preferences defaultWorldColor  ] 
 		ifNotNil: [ self setAsBackground: theme linenblue ]
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Corvin 6/25/2024 11:21'
+}
+PECanvas >> showPixelBorders [
+	self pixelCollection do: [:each | each showPixelBorder]
 ]
 
 {

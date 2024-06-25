@@ -61,14 +61,23 @@ PEPixel >> coordinate: aCoordinate [
 ]
 
 {
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Corvin 6/25/2024 11:23'
+}
+PEPixel >> hidePixelBorder [
+	self borderWidth: 0
+]
+
+{
 	#category : #initialization,
-	#'squeak_changestamp' : 'Corvin 6/23/2024 20:07'
+	#'squeak_changestamp' : 'Corvin 6/25/2024 11:19'
 }
 PEPixel >> initialize [
 	super initialize.
 	self extent: self class defaultPixelSize;
 		 sticky: true;
-		color: self class defaultPixelColor.
+		 color: self class defaultPixelColor;
+		 showPixelBorder
 ]
 
 {
@@ -85,4 +94,13 @@ PEPixel >> originPixel [
 }
 PEPixel >> originPixel: aPixel [
 originPixel := aPixel
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Corvin 6/25/2024 11:19'
+}
+PEPixel >> showPixelBorder [
+	self borderColor: Color veryVeryLightGray;
+		 borderWidth: 1
 ]
