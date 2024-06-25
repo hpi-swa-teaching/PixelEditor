@@ -10,7 +10,7 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/24/2024 00:10'
+	#'squeak_changestamp' : 'Corvin 6/25/2024 09:58'
 }
 PECanvas >> addPixelAt: aCoordinate [ 
 	| pixel |
@@ -18,6 +18,7 @@ PECanvas >> addPixelAt: aCoordinate [
 	pixel coordinate: aCoordinate;
 		 originPixel: self originPixel.
 	self addMorph: pixel.
+	self pixelCollection at: aCoordinate put: pixel.
 	pixel calculatePosition
 ]
 
@@ -55,13 +56,14 @@ PECanvas >> handlesMouseStillDown: anEvent [
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Corvin 6/25/2024 09:55'
+	#'squeak_changestamp' : 'Corvin 6/25/2024 10:01'
 }
 PECanvas >> initialize [
 	super initialize.
 	originPixel := PEPixel new.
 	originPixel color: Color orange.
 	pixelCollection := Dictionary new.
+	pixelCollection at: 0@0 put: originPixel.
 	self
 		layoutFrame: (LayoutFrame
 				fractions: (0 @ 0 rect: 1 @ 1));
