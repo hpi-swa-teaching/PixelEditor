@@ -10,10 +10,12 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/25/2024 09:58'
+	#'squeak_changestamp' : 'Corvin 6/25/2024 10:06'
 }
 PECanvas >> addPixelAt: aCoordinate [ 
 	| pixel |
+	(self pixelCollection keys includes: aCoordinate) ifTrue: [ ^ nil ].
+
 	pixel := PEPixel new.
 	pixel coordinate: aCoordinate;
 		 originPixel: self originPixel.
