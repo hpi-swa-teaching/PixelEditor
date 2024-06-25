@@ -3,7 +3,8 @@ Class {
 	#superclass : #Model,
 	#instVars : [
 		'canvas',
-		'hColorSelector'
+		'hColorSelector',
+		'aColorSelector'
 	],
 	#category : #PixelEditor
 }
@@ -46,14 +47,30 @@ PixelEditor class >> register [
 ]
 
 {
+	#category : #accessing,
+	#'squeak_changestamp' : 'Corvin 6/25/2024 12:03'
+}
+PixelEditor >> aColorSelector [
+	^ aColorSelector
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Corvin 6/25/2024 12:04'
+}
+PixelEditor >> aColorSelector: aAColorSelector [ 
+	aColorSelector := aAColorSelector
+]
+
+{
 	#category : #toolbuilder,
-	#'squeak_changestamp' : 'Corvin 6/25/2024 11:53'
+	#'squeak_changestamp' : 'Corvin 6/25/2024 12:22'
 }
 PixelEditor >> buildWith: aBuilder [ 
 	^ aBuilder build: (aBuilder pluggableWindowSpec new model: self;
 			 label: #labelString;
 			 extent: self class defaultExtent;
-			 children: {self createCanvasPanelWithBuilder: aBuilder. self createHColorSeclectorPanelWithBuilder: aBuilder};
+			 children: {self createCanvasPanelWithBuilder: aBuilder. self createToolPanelWithBuilder:  aBuilder};
 			 yourself)
 ]
 
@@ -82,6 +99,14 @@ PixelEditor >> canvasInCollection [
 ]
 
 {
+	#category : #accessing,
+	#'squeak_changestamp' : 'Corvin 6/25/2024 12:04'
+}
+PixelEditor >> colorSelectorsInCollection [
+	^ {self hColorSelector. self aColorSelector}
+]
+
+{
 	#category : #toolbuilder,
 	#'squeak_changestamp' : 'Corvin 6/2/2024 16:54'
 }
@@ -96,14 +121,14 @@ PixelEditor >> createCanvasPanelWithBuilder: aBuilder [
 
 {
 	#category : #toolbuilder,
-	#'squeak_changestamp' : 'Corvin 6/25/2024 11:52'
+	#'squeak_changestamp' : 'Corvin 6/25/2024 12:21'
 }
-PixelEditor >> createHColorSeclectorPanelWithBuilder: aBuilder [ 
+PixelEditor >> createToolPanelWithBuilder: aBuilder [ 
 	^ aBuilder pluggablePanelSpec new model: self;
-		 children: #hColorSelectorInCollection;
+		 children: {};
 		 frame: (LayoutFrame new leftFraction: 0;
 			 topFraction: 0;
-			 rightFraction: 0.66;
+			 rightFraction: 0.33;
 			 bottomFraction: 1)
 ]
 
@@ -124,21 +149,14 @@ PixelEditor >> hColorSelector: aHColorSelector [
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'Corvin 6/25/2024 11:51'
-}
-PixelEditor >> hColorSelectorInCollection [
-^{self hColorSelector}
-]
-
-{
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Corvin 6/25/2024 11:51'
+	#'squeak_changestamp' : 'Corvin 6/25/2024 12:04'
 }
 PixelEditor >> initialize [
 	super initialize.
 	canvas := PECanvas new.
 	hColorSelector := HColorSelectorMorph new.
+	aColorSelector := AColorSelectorMorph new.
 ]
 
 {
