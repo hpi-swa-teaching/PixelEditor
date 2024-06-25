@@ -97,12 +97,15 @@ PECanvas >> mouseDown: anEvent [
 
 {
 	#category : #'events-processing',
-	#'squeak_changestamp' : 'Corvin 6/24/2024 23:16'
+	#'squeak_changestamp' : 'Corvin 6/25/2024 10:00'
 }
 PECanvas >> mouseStillDown: anEvent [ 
-	self
-		submorphsDo: [:each | (each bounds containsPoint: anEvent position)
-				ifTrue: [each color: Color yellow]].
+	| pixel |
+	pixel := self pixelCollection
+				at: (self mapPositionToCoordinate: anEvent position).
+	pixel ifNotNil: [
+		pixel color: Color black
+		]
 ]
 
 {
