@@ -2,7 +2,8 @@ Class {
 	#name : #PECanvas,
 	#superclass : #PasteUpMorph,
 	#instVars : [
-		'originPixel'
+		'originPixel',
+		'pixelCollection'
 	],
 	#category : #PixelEditor
 }
@@ -54,12 +55,13 @@ PECanvas >> handlesMouseStillDown: anEvent [
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Corvin 6/24/2024 23:39'
+	#'squeak_changestamp' : 'Corvin 6/25/2024 09:55'
 }
 PECanvas >> initialize [
 	super initialize.
 	originPixel := PEPixel new.
 	originPixel color: Color orange.
+	pixelCollection := Dictionary new.
 	self
 		layoutFrame: (LayoutFrame
 				fractions: (0 @ 0 rect: 1 @ 1));
@@ -70,11 +72,25 @@ PECanvas >> initialize [
 ]
 
 {
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'Corvin 6/25/2024 09:51'
+}
+PECanvas >> mapPositionToCoordinate: aPosition [ 
+	| pixelSize originPosition coordinateX coordinateY |
+	originPosition := self originPixel position.
+	pixelSize := self originPixel extent x.
+	coordinateX := aPosition x - originPosition x // pixelSize.
+	coordinateY := aPosition y - originPosition y // pixelSize.
+	^ coordinateX @ (coordinateY negated)
+]
+
+{
 	#category : #'events-processing',
-	#'squeak_changestamp' : 'Corvin 6/24/2024 23:38'
+	#'squeak_changestamp' : 'Corvin 6/25/2024 09:48'
 }
 PECanvas >> mouseDown: anEvent [ 
 	anEvent hand newMouseFocus: self.
+	self addPixelAt: (self mapPositionToCoordinate: anEvent position).
 ]
 
 {
@@ -93,6 +109,14 @@ PECanvas >> mouseStillDown: anEvent [
 }
 PECanvas >> originPixel [
 ^ originPixel
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Corvin 6/25/2024 09:56'
+}
+PECanvas >> pixelCollection [
+^pixelCollection
 ]
 
 {
