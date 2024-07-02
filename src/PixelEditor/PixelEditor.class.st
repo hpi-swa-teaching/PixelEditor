@@ -109,12 +109,12 @@ PixelEditor >> createToolPanelWithBuilder: aBuilder [
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Corvin 7/2/2024 11:32'
+	#'squeak_changestamp' : 'Corvin 7/2/2024 11:41'
 }
 PixelEditor >> initialize [
 	super initialize.
 	canvas := PECanvas new.
-	toolPanel := PEWidgetToMorphAdapter new.
+	toolPanel := PEToolPanel new
 ]
 
 {
