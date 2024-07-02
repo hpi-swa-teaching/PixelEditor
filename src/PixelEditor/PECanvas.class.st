@@ -1,6 +1,6 @@
 Class {
 	#name : #PECanvas,
-	#superclass : #PasteUpMorph,
+	#superclass : #PEWidgetToMorphAdapter,
 	#instVars : [
 		'originPixel',
 		'pixelCollection',
@@ -51,14 +51,6 @@ PECanvas >> addPixelAt: aCoordinate [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/1/2024 12:12'
-}
-PECanvas >> clear [
-	self removeAllMorphs
-]
-
-{
 	#category : #accessing,
 	#'squeak_changestamp' : 'Corvin 6/25/2024 10:47'
 }
@@ -96,7 +88,7 @@ PECanvas >> hidePixelBorders [
 
 {
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Corvin 6/25/2024 11:13'
+	#'squeak_changestamp' : 'Corvin 7/2/2024 11:25'
 }
 PECanvas >> initialize [
 	super initialize.
@@ -108,11 +100,6 @@ PECanvas >> initialize [
 	pixelCollection at: 0 @ 0 put: originPixel.
 	activeTool := false.
 	self
-		layoutFrame: (LayoutFrame
-				fractions: (0 @ 0 rect: 1 @ 1));
-		 beSticky;
-		 setUpBackground;
-		 clipSubmorphs: true;
 		 addMorph: originPixel;
 		 initializeDefaultGrid
 ]
@@ -216,30 +203,8 @@ PECanvas >> positionOriginPixel [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/1/2024 12:12'
-}
-PECanvas >> setUpBackground [
-	| theme |
-	
-	theme := Smalltalk at: #SqueakTheme ifAbsent: nil.
-	theme
-		ifNil: [self color: Preferences defaultWorldColor  ] 
-		ifNotNil: [ self setAsBackground: theme linenblue ]
-]
-
-{
-	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'Corvin 6/25/2024 11:21'
 }
 PECanvas >> showPixelBorders [
 	self pixelCollection do: [:each | each showPixelBorder]
-]
-
-{
-	#category : #'dropping/grabbing',
-	#'squeak_changestamp' : 'Corvin 6/1/2024 12:12'
-}
-PECanvas >> wantsDroppedMorph: aMorph event: evt [
-
-	^ false
 ]
