@@ -2,7 +2,8 @@ Class {
 	#name : #PixelEditor,
 	#superclass : #Model,
 	#instVars : [
-		'canvas'
+		'canvas',
+		'toolPanel'
 	],
 	#category : #PixelEditor
 }
@@ -46,13 +47,13 @@ PixelEditor class >> register [
 
 {
 	#category : #toolbuilder,
-	#'squeak_changestamp' : 'Corvin 6/1/2024 12:21'
+	#'squeak_changestamp' : 'Corvin 7/2/2024 11:34'
 }
 PixelEditor >> buildWith: aBuilder [ 
 	^ aBuilder build: (aBuilder pluggableWindowSpec new model: self;
 			 label: #labelString;
 			 extent: self class defaultExtent;
-			 children: {self createCanvasPanelWithBuilder: aBuilder};
+			 children: {self createCanvasPanelWithBuilder: aBuilder. self createToolPanelWithBuilder: aBuilder};
 			 yourself)
 ]
 
@@ -94,12 +95,26 @@ PixelEditor >> createCanvasPanelWithBuilder: aBuilder [
 ]
 
 {
+	#category : #toolbuilder,
+	#'squeak_changestamp' : 'Corvin 7/2/2024 11:34'
+}
+PixelEditor >> createToolPanelWithBuilder: aBuilder [ 
+	^ aBuilder pluggablePanelSpec new model: self;
+		 children: #toolPanelInCollection;
+		 frame: (LayoutFrame new leftFraction: 0;
+			 topFraction: 0;
+			 rightFraction: 0.33;
+			 bottomFraction: 1)
+]
+
+{
 	#category : #'initialize-release',
-	#'squeak_changestamp' : 'Corvin 6/3/2024 17:11'
+	#'squeak_changestamp' : 'Corvin 7/2/2024 11:32'
 }
 PixelEditor >> initialize [
 	super initialize.
 	canvas := PECanvas new.
+	toolPanel := PEWidgetToMorphAdapter new.
 ]
 
 {
@@ -111,11 +126,20 @@ PixelEditor >> labelString [
 ]
 
 {
-	#category : #canvas,
+	#category : #accessing,
 	#'squeak_changestamp' : 'Corvin 6/2/2024 17:00'
 }
 PixelEditor >> nameCanvasMorph [
 	^ canvas name: 'canvas';
+		 yourself
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Corvin 7/2/2024 11:32'
+}
+PixelEditor >> nameToolPanelMorph [
+	^ toolPanel name: 'tool panel';
 		 yourself
 ]
 
@@ -134,6 +158,30 @@ PixelEditor >> onClose [
 }
 PixelEditor >> open [
 	^ ToolBuilder open: self
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Corvin 7/2/2024 11:30'
+}
+PixelEditor >> toolPanel [
+	^ toolPanel
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Corvin 7/2/2024 11:31'
+}
+PixelEditor >> toolPanel: aPEWidgetToMorphAdapter [ 
+	toolPanel := aPEWidgetToMorphAdapter
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'Corvin 7/2/2024 11:31'
+}
+PixelEditor >> toolPanelInCollection [
+	^ {self toolPanel}
 ]
 
 {
