@@ -20,6 +20,16 @@ PEUserInputBuilder class >> default [
 
 {
 	#category : #'file access',
+	#'squeak_changestamp' : 'LW 7/4/2024 11:38'
+}
+PEUserInputBuilder >> createInputWindowPanel: aBuilder andModel: anInputWindow [
+
+	^ PEPanelBuilder default 
+		createInputWindowPanelWithBuilder: aBuilder andModel: anInputWindow
+]
+
+{
+	#category : #'file access',
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:28'
 }
 PEUserInputBuilder >> fileExists: aFileName sentFrom: aSaveButton [

@@ -54,11 +54,13 @@ PETextInputMorphWithLabel >> initializeInputField [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 5/27/2024 11:24'
+	#'squeak_changestamp' : 'LW 7/4/2024 11:24'
 }
 PETextInputMorphWithLabel >> initializeStringMorph: aLabel [
 
-	^ StringMorph new contents: aLabel; yourself
+	^ StringMorph new 
+		contents: aLabel; 
+		yourself
 ]
 
 {

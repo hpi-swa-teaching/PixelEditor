@@ -16,6 +16,28 @@ Class {
 }
 
 {
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'LW 7/4/2024 11:41'
+}
+PEInputWindow class >> defaultLabel [
+
+	^ 'Input Window'
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'LW 7/4/2024 11:40'
+}
+PEInputWindow class >> open [
+
+	| instance |
+	
+	instance := self new.
+	ToolBuilder open: instance.
+	^ instance
+]
+
+{
 	#category : #accessing,
 	#'squeak_changestamp' : 'LW 5/25/2024 17:37'
 }
@@ -31,6 +53,15 @@ PEInputWindow >> addedText [
 PEInputWindow >> addedText: aString [
 
 	addedText := aString
+]
+
+{
+	#category : #inputProcessing,
+	#'squeak_changestamp' : 'LW 7/4/2024 11:39'
+}
+PEInputWindow >> buildWith: aBuilder [ 
+	
+	^ PEUserInputBuilder default createInputWindowPanel: aBuilder andModel: self
 ]
 
 {
@@ -287,6 +318,15 @@ PEInputWindow >> inputLines [
 PEInputWindow >> inputLines: anArray [
 
 	inputLines := anArray
+]
+
+{
+	#category : #initialization,
+	#'squeak_changestamp' : 'LW 7/4/2024 11:41'
+}
+PEInputWindow >> labelString [
+
+	^ self class defaultLabel
 ]
 
 {

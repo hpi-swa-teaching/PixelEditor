@@ -103,7 +103,7 @@ PEPanelBuilder >> containerDictionary: anObject [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'canvas panel',
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:46'
 }
 PEPanelBuilder >> createCanvasPanelWithBuilder: aBuilder [ 
@@ -119,8 +119,8 @@ PEPanelBuilder >> createCanvasPanelWithBuilder: aBuilder [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/22/2024 13:46'
+	#category : #'color panel',
+	#'squeak_changestamp' : 'LW 7/4/2024 11:11'
 }
 PEPanelBuilder >> createColorButtonPanelWithBuilder: aBuilder [ 
 
@@ -135,7 +135,7 @@ PEPanelBuilder >> createColorButtonPanelWithBuilder: aBuilder [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'color panel',
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:47'
 }
 PEPanelBuilder >> createColorSelectorPanelWithBuilder: aBuilder [ 
@@ -148,6 +148,49 @@ PEPanelBuilder >> createColorSelectorPanelWithBuilder: aBuilder [
 			topFraction: 0.2;
 			leftFraction: 0;
 			bottomFraction: 0.5)
+]
+
+{
+	#category : #'input panels',
+	#'squeak_changestamp' : 'LW 7/4/2024 11:42'
+}
+PEPanelBuilder >> createHeightPanelWithBuilder: aBuilder [ 
+
+	^ aBuilder pluggablePanelSpec new 
+		model: self;
+		children: (self heightInput);
+		frame: (LayoutFrame new 
+			rightFraction: 0.5;
+			topFraction: 0.2;
+			leftFraction: 0;
+			bottomFraction: 0.6)
+]
+
+{
+	#category : #'input panels',
+	#'squeak_changestamp' : 'LW 7/4/2024 11:33'
+}
+PEPanelBuilder >> createInputPanelsWithBuilder: aBuilder [
+
+	| panels |
+
+	panels := { self createHeightPanelWithBuilder: aBuilder.}.
+		
+	^ panels
+]
+
+{
+	#category : #'input panels',
+	#'squeak_changestamp' : 'LW 7/4/2024 11:34'
+}
+PEPanelBuilder >> createInputWindowPanelWithBuilder: aBuilder andModel: anInputWindow [
+
+	^ aBuilder build: (aBuilder pluggableWindowSpec new 
+		model: anInputWindow;
+	 	label: #labelString;
+		extent: self inputWindowExtent;
+		children: (self createInputPanelsWithBuilder: aBuilder);
+		yourself).
 ]
 
 {
@@ -169,7 +212,7 @@ PEPanelBuilder >> createPanelsWithBuilder: aBuilder [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'settings panel',
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:47'
 }
 PEPanelBuilder >> createSettingsButtonPanelWithBuilder: aBuilder [ 
@@ -185,7 +228,7 @@ PEPanelBuilder >> createSettingsButtonPanelWithBuilder: aBuilder [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'tool panel',
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:48'
 }
 PEPanelBuilder >> createToolPanelWithBuilder: aBuilder [ 
@@ -216,6 +259,25 @@ PEPanelBuilder >> createWindowPanelWithBuilder: aBuilder andModel: aPixelEditor 
 ]
 
 {
+	#category : #'input panels',
+	#'squeak_changestamp' : 'LW 7/4/2024 11:26'
+}
+PEPanelBuilder >> heightInput [
+
+	^ { PETextInputMorphWithLabel new setLabel: 'Height:' }
+	
+]
+
+{
+	#category : #'input panels',
+	#'squeak_changestamp' : 'LW 7/4/2024 11:19'
+}
+PEPanelBuilder >> heightInputAndLabel: aBuilder [
+
+	^ { self }
+]
+
+{
 	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/13/2024 16:03'
 }
@@ -223,6 +285,15 @@ PEPanelBuilder >> initialize [
 
 	super initialize.
 	self containerDictionary: Dictionary new
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'LW 7/4/2024 11:09'
+}
+PEPanelBuilder >> inputWindowExtent [
+
+	^ 250 @ 300
 ]
 
 {
@@ -253,7 +324,7 @@ PEPanelBuilder >> pixelEditorExtent [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'settings panel',
 	#'squeak_changestamp' : 'GLE 6/20/2024 11:19'
 }
 PEPanelBuilder >> settingsButtonCollection [
@@ -262,7 +333,7 @@ PEPanelBuilder >> settingsButtonCollection [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'settings panel',
 	#'squeak_changestamp' : 'GLE 6/20/2024 11:11'
 }
 PEPanelBuilder >> settingsButtonPanel [
@@ -275,7 +346,7 @@ PEPanelBuilder >> settingsButtonPanel [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'tool panel',
 	#'squeak_changestamp' : 'GLE 6/20/2024 11:19'
 }
 PEPanelBuilder >> toolButtonCollection [
@@ -284,7 +355,7 @@ PEPanelBuilder >> toolButtonCollection [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'tool panel',
 	#'squeak_changestamp' : 'GLE 6/20/2024 11:10'
 }
 PEPanelBuilder >> toolButtonPanel [
