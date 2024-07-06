@@ -8,14 +8,41 @@ Class {
 }
 
 {
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:14'
+}
+PEColorPaletteBuilder class >> colorSelectorBuilder [
+
+	^ colorSelectorBuilder
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:14'
+}
+PEColorPaletteBuilder class >> colorSelectorBuilder: aColorSelector [
+
+	^ colorSelectorBuilder := aColorSelector
+]
+
+{
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/20/2024 17:59'
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:15'
 }
 PEColorPaletteBuilder class >> default [
 
-	colorSelectorBuilder
-		ifNil: [ colorSelectorBuilder := PEColorPaletteBuilder new ].
-	^ colorSelectorBuilder
+	self colorSelectorBuilder
+		ifNil: [ self reset ].
+	^ self colorSelectorBuilder
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:15'
+}
+PEColorPaletteBuilder class >> reset [
+
+	self colorSelectorBuilder: self new
 ]
 
 {

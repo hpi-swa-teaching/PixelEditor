@@ -3,7 +3,8 @@ Class {
 	#superclass : #PEBuilder,
 	#instVars : [
 		'containerDictionary',
-		'pixelEditor'
+		'pixelEditor',
+		'inputWindow'
 	],
 	#classInstVars : [
 		'panelBuilder'
@@ -13,13 +14,40 @@ Class {
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/20/2024 12:07'
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:16'
 }
 PEPanelBuilder class >> default [
 
-	panelBuilder
-		ifNil: [ panelBuilder := PEPanelBuilder new ].
+	self panelBuilder
+		ifNil: [ self reset ].
+	^ self panelBuilder
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:16'
+}
+PEPanelBuilder class >> panelBuilder [
+
 	^ panelBuilder
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:16'
+}
+PEPanelBuilder class >> panelBuilder: aPanelBuilder [
+
+	^ panelBuilder := aPanelBuilder
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:15'
+}
+PEPanelBuilder class >> reset [
+
+	self panelBuilder: self new
 ]
 
 {
@@ -152,39 +180,40 @@ PEPanelBuilder >> createColorSelectorPanelWithBuilder: aBuilder [
 
 {
 	#category : #'input panels',
-	#'squeak_changestamp' : 'LW 7/4/2024 11:42'
+	#'squeak_changestamp' : 'GLE 7/6/2024 14:15'
 }
 PEPanelBuilder >> createHeightPanelWithBuilder: aBuilder [ 
 
 	^ aBuilder pluggablePanelSpec new 
 		model: self;
-		children: (self heightInput);
+		children: #heightInput;
 		frame: (LayoutFrame new 
 			rightFraction: 0.5;
-			topFraction: 0.2;
+			topFraction: 0.15;
 			leftFraction: 0;
-			bottomFraction: 0.6)
+			bottomFraction: 0)
 ]
 
 {
 	#category : #'input panels',
-	#'squeak_changestamp' : 'LW 7/4/2024 11:33'
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:20'
 }
 PEPanelBuilder >> createInputPanelsWithBuilder: aBuilder [
 
-	| panels |
 
-	panels := { self createHeightPanelWithBuilder: aBuilder.}.
-		
-	^ panels
+	^ {	self createHeightPanelWithBuilder: aBuilder.
+		self createWidthPanelWithBuilder: aBuilder.
+		self createPixelSizePanelWithBuilder: aBuilder.
+		self createSubmitButtonPanelWithBuilder: aBuilder}
 ]
 
 {
 	#category : #'input panels',
-	#'squeak_changestamp' : 'LW 7/4/2024 11:34'
+	#'squeak_changestamp' : 'GLE 7/6/2024 14:42'
 }
 PEPanelBuilder >> createInputWindowPanelWithBuilder: aBuilder andModel: anInputWindow [
 
+	self inputWindow: anInputWindow.
 	^ aBuilder build: (aBuilder pluggableWindowSpec new 
 		model: anInputWindow;
 	 	label: #labelString;
@@ -212,6 +241,22 @@ PEPanelBuilder >> createPanelsWithBuilder: aBuilder [
 ]
 
 {
+	#category : #'input panels',
+	#'squeak_changestamp' : 'GLE 7/6/2024 14:40'
+}
+PEPanelBuilder >> createPixelSizePanelWithBuilder: aBuilder [ 
+
+	^ aBuilder pluggablePanelSpec new 
+		model: self;
+		children: #pixelSizeInput;
+		frame: (LayoutFrame new 
+			rightFraction: 0.5;
+			topFraction: 0.65;
+			leftFraction: 0;
+			bottomFraction: 0)
+]
+
+{
 	#category : #'settings panel',
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:47'
 }
@@ -225,6 +270,22 @@ PEPanelBuilder >> createSettingsButtonPanelWithBuilder: aBuilder [
 			topFraction: 0;
 			leftFraction: 0;
 			bottomFraction: 0.2)
+]
+
+{
+	#category : #'input panels',
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:20'
+}
+PEPanelBuilder >> createSubmitButtonPanelWithBuilder: aBuilder [ 
+
+	^ aBuilder pluggablePanelSpec new 
+		model: self;
+		children: #submitButton;
+		frame: (LayoutFrame new 
+			rightFraction: 0.5;
+			topFraction: 0.8;
+			leftFraction: 0;
+			bottomFraction: 0)
 ]
 
 {
@@ -244,6 +305,22 @@ PEPanelBuilder >> createToolPanelWithBuilder: aBuilder [
 ]
 
 {
+	#category : #'input panels',
+	#'squeak_changestamp' : 'GLE 7/6/2024 14:39'
+}
+PEPanelBuilder >> createWidthPanelWithBuilder: aBuilder [ 
+
+	^ aBuilder pluggablePanelSpec new 
+		model: self;
+		children: #widthInput;
+		frame: (LayoutFrame new 
+			rightFraction: 0.5;
+			topFraction: 0.4;
+			leftFraction: 0;
+			bottomFraction: 0)
+]
+
+{
 	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 6/22/2024 16:14'
 }
@@ -260,21 +337,12 @@ PEPanelBuilder >> createWindowPanelWithBuilder: aBuilder andModel: aPixelEditor 
 
 {
 	#category : #'input panels',
-	#'squeak_changestamp' : 'LW 7/4/2024 11:26'
+	#'squeak_changestamp' : 'GLE 7/6/2024 14:39'
 }
 PEPanelBuilder >> heightInput [
 
-	^ { PETextInputMorphWithLabel new setLabel: 'Height:' }
+	^ { PEUserInputBuilder default inputFieldWithLabel: 'Height:' }
 	
-]
-
-{
-	#category : #'input panels',
-	#'squeak_changestamp' : 'LW 7/4/2024 11:19'
-}
-PEPanelBuilder >> heightInputAndLabel: aBuilder [
-
-	^ { self }
 ]
 
 {
@@ -285,6 +353,22 @@ PEPanelBuilder >> initialize [
 
 	super initialize.
 	self containerDictionary: Dictionary new
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 7/6/2024 14:42'
+}
+PEPanelBuilder >> inputWindow [
+	^ inputWindow
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 7/6/2024 14:42'
+}
+PEPanelBuilder >> inputWindow: anObject [
+	inputWindow := anObject
 ]
 
 {
@@ -324,6 +408,16 @@ PEPanelBuilder >> pixelEditorExtent [
 ]
 
 {
+	#category : #'input panels',
+	#'squeak_changestamp' : 'GLE 7/6/2024 14:40'
+}
+PEPanelBuilder >> pixelSizeInput [
+
+	^ { PEUserInputBuilder default inputFieldWithLabel: 'Pixel Size:' }
+	
+]
+
+{
 	#category : #'settings panel',
 	#'squeak_changestamp' : 'GLE 6/20/2024 11:19'
 }
@@ -346,6 +440,15 @@ PEPanelBuilder >> settingsButtonPanel [
 ]
 
 {
+	#category : #'input panels',
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:19'
+}
+PEPanelBuilder >> submitButton [
+
+	^ { PEButtonBuilder default buildInputSubmitButtonWithTarget: self inputWindow }
+]
+
+{
 	#category : #'tool panel',
 	#'squeak_changestamp' : 'GLE 6/20/2024 11:19'
 }
@@ -365,4 +468,14 @@ PEPanelBuilder >> toolButtonPanel [
 	toolButtons := self toolButtonCollection.
 	self containerDictionary at: #toolButtons put: toolButtons.
 	^ { toolButtons }
+]
+
+{
+	#category : #'input panels',
+	#'squeak_changestamp' : 'GLE 7/6/2024 14:40'
+}
+PEPanelBuilder >> widthInput [
+
+	^ { PEUserInputBuilder default inputFieldWithLabel: 'Width:' }
+	
 ]

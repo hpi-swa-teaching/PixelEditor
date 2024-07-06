@@ -55,12 +55,12 @@ PixelEditor class >> openWithJson: aJson [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/20/2024 19:03'
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:51'
 }
 PixelEditor class >> register [
 
 	"register the editor to the apps dropdown"
-	TheWorldMenu registerOpenCommand: {'PixelEditor'. {PEInputWindow new. #createPixelEditor}}
+	TheWorldMenu registerOpenCommand: {'PixelEditor'. {PEInputWindow. #open}}
 ]
 
 {

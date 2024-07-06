@@ -8,14 +8,41 @@ Class {
 }
 
 {
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:13'
+}
+PECanvasBuilder class >> canvasBuilder [
+
+	^ canvasBuilder
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:13'
+}
+PECanvasBuilder class >> canvasBuilder: aCanvasBuilder [
+
+	^ canvasBuilder := aCanvasBuilder
+]
+
+{
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/20/2024 11:16'
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:14'
 }
 PECanvasBuilder class >> default [
 
-	canvasBuilder 
-		ifNil: [ canvasBuilder := PECanvasBuilder new ].
-	^ canvasBuilder
+	self canvasBuilder 
+		ifNil: [ self canvasBuilder: self new ].
+	^ self canvasBuilder
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:13'
+}
+PECanvasBuilder class >> reset [
+
+	self canvasBuilder: self new
 ]
 
 {

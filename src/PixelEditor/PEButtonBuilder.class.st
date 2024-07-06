@@ -8,14 +8,41 @@ Class {
 }
 
 {
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:11'
+}
+PEButtonBuilder class >> buttonBuilder [
+
+	^ buttonBuilder
+]
+
+{
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:12'
+}
+PEButtonBuilder class >> buttonBuilder: aButtonBuilder [
+
+	^ buttonBuilder := aButtonBuilder
+]
+
+{
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/20/2024 11:14'
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:14'
 }
 PEButtonBuilder class >> default [
 
-	buttonBuilder 
-		ifNil: [ buttonBuilder := PEButtonBuilder new ].
-	^ buttonBuilder
+	self buttonBuilder 
+		ifNil: [ self buttonBuilder: self new ].
+	^ self buttonBuilder
+]
+
+{
+	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:13'
+}
+PEButtonBuilder class >> reset [
+
+	self buttonBuilder: PEButtonBuilder new
 ]
 
 {
@@ -202,6 +229,23 @@ PEButtonBuilder >> buildGridButton: aPixelEditor [
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:10'
+}
+PEButtonBuilder >> buildInputSubmitButtonWithTarget: anInputWindow [
+
+	^ PluggableButtonMorph new 
+		label: 'Submit size';
+		extent: self submitButtonSize;
+		target: anInputWindow;
+		action: #processValues
+		
+	
+
+	
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:34'
 }
 PEButtonBuilder >> buildLoadButton: aPixelEditor [
@@ -327,6 +371,15 @@ PEButtonBuilder >> eraserPath [
 PEButtonBuilder >> settingsButtonSize [
 
 	^ 200 @ 100
+]
+
+{
+	#category : #'button sizes',
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:20'
+}
+PEButtonBuilder >> submitButtonSize [
+
+	^ 200 @ 75
 ]
 
 {

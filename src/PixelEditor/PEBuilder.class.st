@@ -6,6 +6,15 @@ Class {
 
 {
 	#category : #'as yet unclassified',
+	#'squeak_changestamp' : 'GLE 7/6/2024 15:17'
+}
+PEBuilder class >> reset [
+
+	self subclasses do: [:each | each reset]
+]
+
+{
+	#category : #'as yet unclassified',
 	#'squeak_changestamp' : 'GLE 6/19/2024 21:57'
 }
 PEBuilder >> initialize [
