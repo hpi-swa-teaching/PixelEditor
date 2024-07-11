@@ -8,19 +8,19 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 18:33'
+	#category : #submorphs,
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:16'
 }
 PEButtonRow >> addMorphBelow: aMorph [
 
 	self submorphs isEmpty
-		ifTrue: [self addMorph: aMorph] 
-		ifFalse: [self addMorphBack: (aMorph position: 0 @ (self submorphs last bottomRight y))] 
+		ifTrue: [ self addMorph: aMorph ] 
+		ifFalse: [ self addMorphBack: (aMorph position: 0 @ (self submorphs last bottomRight y)) ] 
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/22/2024 14:02'
+	#category : #submorphs,
+	#'squeak_changestamp' : 'GLE 7/11/2024 10:13'
 }
 PEButtonRow >> addMorphCollection: aMorphCollection [
 
@@ -31,11 +31,11 @@ PEButtonRow >> addMorphCollection: aMorphCollection [
 		at: 1 put: #addOneMorph:;
 		at: 2 put: #addTwoMorphs:.
 	symbol := dictionary at: aMorphCollection size ifAbsent: #addMorphCollectionAsSubmorphs:.
-	self perform: symbol with: aMorphCollection.
+	self perform: symbol with: aMorphCollection
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #submorphs,
 	#'squeak_changestamp' : 'GLE 6/17/2024 20:40'
 }
 PEButtonRow >> addMorphCollectionAsSubmorphs: aMorphCollection [
@@ -48,42 +48,44 @@ PEButtonRow >> addMorphCollectionAsSubmorphs: aMorphCollection [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 18:29'
+	#category : #submorphs,
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:17'
 }
 PEButtonRow >> addMorphCollectionLower: aMorphCollection [
 
 	| counter upperMorph |
 	
 	counter := 1.
-	aMorphCollection do: [:each | upperMorph := self submorphs at: counter.
+	aMorphCollection do: [:each | 
+		upperMorph := self submorphs at: counter.
 		self addMorphBack: (each position: (upperMorph bottomLeft x) @ (upperMorph bottomLeft y)).
-		counter := counter + 1]
+		counter := counter + 1 ]
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 18:18'
+	#category : #submorphs,
+	#'squeak_changestamp' : 'GLE 7/11/2024 10:13'
 }
 PEButtonRow >> addMorphCollectionUpper: aMorphCollection [
 
-	aMorphCollection do: [:each | self addMorphNext: each].
+	aMorphCollection do: [:each | self addMorphNext: each ]
 
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/3/2024 18:58'
+	#category : #submorphs,
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:18'
 }
 PEButtonRow >> addMorphNext: aMorph [
 
 	self submorphs isEmpty
-		ifTrue: [self addMorph: (aMorph position: self position)] 
-		ifFalse: [self addMorphBack: (aMorph position: (self submorphs last bottomRight x) @ self position y)] 
+		ifTrue: [self addMorph: (aMorph position: self position) ] 
+		ifFalse: [ 
+			self addMorphBack: (aMorph position: (self submorphs last bottomRight x) @ self position y) ] 
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #submorphs,
 	#'squeak_changestamp' : 'GLE 6/17/2024 20:51'
 }
 PEButtonRow >> addOneMorph: aMorphCollection [
@@ -92,17 +94,18 @@ PEButtonRow >> addOneMorph: aMorphCollection [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 20:36'
+	#category : #submorphs,
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:18'
 }
 PEButtonRow >> addTwoMorphs: aMorphCollection [
 
-	aMorphCollection do: [:each | self addMorphNext: each.
-		each extent: self extent x / 2 @ self extent y]
+	aMorphCollection do: [:each | 
+		self addMorphNext: each.
+		each extent: self extent x / 2 @ self extent y ]
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'update cycle',
 	#'squeak_changestamp' : 'GLE 6/3/2024 20:21'
 }
 PEButtonRow >> extent: anExtent [
@@ -112,8 +115,8 @@ PEButtonRow >> extent: anExtent [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/17/2024 20:29'
+	#category : #submorphs,
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:19'
 }
 PEButtonRow >> fitSubmorphs [
 
@@ -121,16 +124,16 @@ PEButtonRow >> fitSubmorphs [
 	
 	self submorphs do: [:each | each extent: self newExtent].
 	self submorphs size <= 2
-		ifTrue: [collection := self submorphs]
-		ifFalse: [splitCollection := self splitCollection: self submorphs.
+		ifTrue: [ collection := self submorphs ]
+		ifFalse: [ splitCollection := self splitCollection: self submorphs.
 			collection := splitCollection last.
-			(splitCollection first) addAllFirstTo: collection].
+			(splitCollection first) addAllFirstTo: collection ].
 	self removeAllMorphs.
 	self addMorphCollection: collection
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 6/22/2024 14:03'
 }
 PEButtonRow >> initialize [
@@ -142,7 +145,7 @@ PEButtonRow >> initialize [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'update cycle',
 	#'squeak_changestamp' : 'GLE 6/16/2024 19:11'
 }
 PEButtonRow >> newExtent [
@@ -151,7 +154,7 @@ PEButtonRow >> newExtent [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #submorphs,
 	#'squeak_changestamp' : 'GLE 6/3/2024 20:41'
 }
 PEButtonRow >> splitCollection: aCollection [
@@ -169,7 +172,7 @@ PEButtonRow >> splitCollection: aCollection [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'update cycle',
 	#'squeak_changestamp' : 'GLE 6/21/2024 09:58'
 }
 PEButtonRow >> update [

@@ -5,17 +5,17 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/21/2024 16:49'
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 7/11/2024 11:53'
 }
 PixelEditorSettingsTest >> getSaveButton [
 
 	self getSettingsButtonContainer submorphs do: 
-		[:each | each basicType = #PESaveButton ifTrue: [^ each]].
+		[:each | each basicType = #PESaveButton ifTrue: [ ^ each ]].
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/21/2024 16:47'
 }
 PixelEditorSettingsTest >> getSettingsButtonContainer [
@@ -24,8 +24,8 @@ PixelEditorSettingsTest >> getSettingsButtonContainer [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/21/2024 16:56'
+	#category : #testing,
+	#'squeak_changestamp' : 'GLE 7/11/2024 11:53'
 }
 PixelEditorSettingsTest >> testWindowSaving [
 	
@@ -33,5 +33,5 @@ PixelEditorSettingsTest >> testWindowSaving [
 	self getSaveButton addToJson;
 		writeFile: 'SavingTest' stream: (StandardFileStream forceNewFileNamed: 'SavingTest').
 	self assert: (StandardFileStream isAFileNamed: (StandardFileStream fullName: 'SavingTest')).
-	self abandonPixelEditor.
+	self abandonPixelEditor
 ]

@@ -11,7 +11,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'LW 6/17/2024 13:48'
 }
 PixelEditorColorSelectorTest >> canvas [
@@ -21,7 +21,7 @@ PixelEditorColorSelectorTest >> canvas [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'LW 6/17/2024 00:47'
 }
 PixelEditorColorSelectorTest >> canvas: aCanvas [
@@ -31,7 +31,7 @@ PixelEditorColorSelectorTest >> canvas: aCanvas [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #testing,
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:09'
 }
 PixelEditorColorSelectorTest >> changeColor [
@@ -41,17 +41,17 @@ PixelEditorColorSelectorTest >> changeColor [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/21/2024 15:04'
+	#category : #testing,
+	#'squeak_changestamp' : 'GLE 7/11/2024 11:47'
 }
 PixelEditorColorSelectorTest >> changeSelectedColor [
 
 	PEPixel selectedColor: Color green.
-	self color: Color green.
+	self color: Color green
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'LW 6/17/2024 00:17'
 }
 PixelEditorColorSelectorTest >> color [
@@ -60,7 +60,7 @@ PixelEditorColorSelectorTest >> color [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'LW 6/17/2024 00:59'
 }
 PixelEditorColorSelectorTest >> color: aColor [
@@ -69,14 +69,7 @@ PixelEditorColorSelectorTest >> color: aColor [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/16/2024 23:47'
-}
-PixelEditorColorSelectorTest >> colorPixel [
-]
-
-{
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:04'
 }
 PixelEditorColorSelectorTest >> getCanvasAndLayer [
@@ -86,7 +79,7 @@ PixelEditorColorSelectorTest >> getCanvasAndLayer [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/21/2024 16:10'
 }
 PixelEditorColorSelectorTest >> getColorButton [
@@ -95,7 +88,7 @@ PixelEditorColorSelectorTest >> getColorButton [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/21/2024 16:09'
 }
 PixelEditorColorSelectorTest >> getColorSelector [
@@ -104,7 +97,7 @@ PixelEditorColorSelectorTest >> getColorSelector [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/21/2024 15:08'
 }
 PixelEditorColorSelectorTest >> getLayer: aLayer [
@@ -118,7 +111,7 @@ PixelEditorColorSelectorTest >> getLayer: aLayer [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:05'
 }
 PixelEditorColorSelectorTest >> getPixel [
@@ -127,7 +120,7 @@ PixelEditorColorSelectorTest >> getPixel [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'LW 6/23/2024 12:59'
 }
 PixelEditorColorSelectorTest >> getPixel: aDictionary [
@@ -136,7 +129,7 @@ PixelEditorColorSelectorTest >> getPixel: aDictionary [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'LW 6/17/2024 01:06'
 }
 PixelEditorColorSelectorTest >> getPixelDictionary: aLayer [
@@ -145,7 +138,7 @@ PixelEditorColorSelectorTest >> getPixelDictionary: aLayer [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'LW 6/17/2024 01:02'
 }
 PixelEditorColorSelectorTest >> layer [
@@ -154,7 +147,7 @@ PixelEditorColorSelectorTest >> layer [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'LW 6/17/2024 01:02'
 }
 PixelEditorColorSelectorTest >> layer: aLayer [
@@ -163,7 +156,7 @@ PixelEditorColorSelectorTest >> layer: aLayer [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #testing,
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:13'
 }
 PixelEditorColorSelectorTest >> openColorSelector [
@@ -172,7 +165,7 @@ PixelEditorColorSelectorTest >> openColorSelector [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'LW 6/17/2024 00:15'
 }
 PixelEditorColorSelectorTest >> pixel [
@@ -181,7 +174,7 @@ PixelEditorColorSelectorTest >> pixel [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'LW 6/17/2024 00:17'
 }
 PixelEditorColorSelectorTest >> pixel: aColor [
@@ -190,7 +183,7 @@ PixelEditorColorSelectorTest >> pixel: aColor [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/22/2024 12:58'
 }
 PixelEditorColorSelectorTest >> pixelDictionary [
@@ -199,7 +192,7 @@ PixelEditorColorSelectorTest >> pixelDictionary [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #testing,
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:03'
 }
 PixelEditorColorSelectorTest >> simulateMouseEvent [
@@ -208,7 +201,7 @@ PixelEditorColorSelectorTest >> simulateMouseEvent [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #testing,
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:14'
 }
 PixelEditorColorSelectorTest >> testColorSelector [
@@ -224,7 +217,7 @@ PixelEditorColorSelectorTest >> testColorSelector [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #testing,
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:14'
 }
 PixelEditorColorSelectorTest >> testColorSelectorOpen [
@@ -237,7 +230,7 @@ PixelEditorColorSelectorTest >> testColorSelectorOpen [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #testing,
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:12'
 }
 PixelEditorColorSelectorTest >> testColoring [

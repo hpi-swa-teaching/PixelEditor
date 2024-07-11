@@ -11,7 +11,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 7/6/2024 15:16'
 }
 PEUserInputBuilder class >> default [
@@ -22,7 +22,7 @@ PEUserInputBuilder class >> default [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 7/6/2024 15:16'
 }
 PEUserInputBuilder class >> reset [
@@ -49,7 +49,7 @@ PEUserInputBuilder class >> userInputBuilder: aUserInputBuilder [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'input panel',
 	#'squeak_changestamp' : 'GLE 7/6/2024 15:04'
 }
 PEUserInputBuilder >> createInputWindowPanel: aBuilder andModel: anInputWindow [
@@ -63,7 +63,7 @@ PEUserInputBuilder >> createInputWindowPanel: aBuilder andModel: anInputWindow [
 
 {
 	#category : #'file access',
-	#'squeak_changestamp' : 'GLE 7/6/2024 16:48'
+	#'squeak_changestamp' : 'GLE 7/11/2024 10:16'
 }
 PEUserInputBuilder >> fileExists: aFileName sentFrom: aSaveButton [
 
@@ -75,7 +75,7 @@ PEUserInputBuilder >> fileExists: aFileName sentFrom: aSaveButton [
 		openInWorld.
 	UserInputBox createAcceptButton action: [UserInputBox delete.
 		aSaveButton writeFile: aFileName stream: (StandardFileStream forceNewFileNamed: aFileName)].
-	UserInputBox createCancelButton action: [UserInputBox delete].
+	UserInputBox createCancelButton action: [UserInputBox delete]
 	
 ]
 
@@ -91,7 +91,7 @@ PEUserInputBuilder >> fileSaverDialogWithTitle: aWindowTitle andDirectory: aDire
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'input field',
 	#'squeak_changestamp' : 'GLE 7/6/2024 14:23'
 }
 PEUserInputBuilder >> formattedAlignmentMorph [
@@ -103,7 +103,7 @@ PEUserInputBuilder >> formattedAlignmentMorph [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 7/6/2024 14:20'
 }
 PEUserInputBuilder >> initialize [
@@ -114,7 +114,7 @@ PEUserInputBuilder >> initialize [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'input field',
 	#'squeak_changestamp' : 'GLE 7/6/2024 14:09'
 }
 PEUserInputBuilder >> inputField [
@@ -145,7 +145,7 @@ PEUserInputBuilder >> inputFieldDictionary: aDictionary [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'input field',
 	#'squeak_changestamp' : 'GLE 7/6/2024 14:10'
 }
 PEUserInputBuilder >> inputFieldSize [
@@ -154,7 +154,7 @@ PEUserInputBuilder >> inputFieldSize [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'input field',
 	#'squeak_changestamp' : 'GLE 7/6/2024 14:34'
 }
 PEUserInputBuilder >> inputFieldWithLabel: aLabel [
@@ -166,7 +166,7 @@ PEUserInputBuilder >> inputFieldWithLabel: aLabel [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'input field',
 	#'squeak_changestamp' : 'GLE 7/6/2024 14:05'
 }
 PEUserInputBuilder >> label: aLabel [
@@ -175,8 +175,8 @@ PEUserInputBuilder >> label: aLabel [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 7/6/2024 16:43'
+	#category : #'error message',
+	#'squeak_changestamp' : 'GLE 7/11/2024 11:02'
 }
 PEUserInputBuilder >> wrongValues [
 
@@ -185,5 +185,5 @@ PEUserInputBuilder >> wrongValues [
 		openInWorld; 
 		position: World center; 
 		title: 'Error'; 
-		createButton: 'I will comply' value: [self cascadeReceiver delete] color: Color lightOrange
+		createButton: 'I will comply' value: [ self cascadeReceiver delete ] color: Color lightOrange
 ]

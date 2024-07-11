@@ -5,7 +5,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #testing,
 	#'squeak_changestamp' : 'GLE 6/21/2024 16:40'
 }
 PixelEditorWindowTest >> testWindowOpen [

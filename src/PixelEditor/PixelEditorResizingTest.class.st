@@ -10,17 +10,19 @@ Class {
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'ThB 6/21/2024 18:31'
+	#'squeak_changestamp' : 'GLE 7/11/2024 11:52'
 }
 PixelEditorResizingTest >> colorButtons [
+
 	^ colorButtons
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'ThB 6/21/2024 18:31'
+	#'squeak_changestamp' : 'GLE 7/11/2024 11:52'
 }
 PixelEditorResizingTest >> colorButtons: anObject [
+
 	colorButtons := anObject
 ]
 
@@ -37,7 +39,7 @@ PixelEditorResizingTest >> getSettingsAndColorButtons [
 ]
 
 {
-	#category : #accessing,
+	#category : #testing,
 	#'squeak_changestamp' : 'GLE 6/22/2024 12:49'
 }
 PixelEditorResizingTest >> rightSize [
@@ -48,7 +50,7 @@ PixelEditorResizingTest >> rightSize [
 ]
 
 {
-	#category : #accessing,
+	#category : #testing,
 	#'squeak_changestamp' : 'GLE 6/22/2024 12:53'
 }
 PixelEditorResizingTest >> setBounds [
@@ -76,7 +78,7 @@ PixelEditorResizingTest >> settingsButtons: anObject [
 ]
 
 {
-	#category : #accessing,
+	#category : #testing,
 	#'squeak_changestamp' : 'GLE 6/22/2024 12:56'
 }
 PixelEditorResizingTest >> testResizingAgent [

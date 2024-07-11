@@ -5,7 +5,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 7/6/2024 15:17'
 }
 PEBuilder class >> reset [
@@ -14,7 +14,7 @@ PEBuilder class >> reset [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 6/19/2024 21:57'
 }
 PEBuilder >> initialize [
@@ -24,16 +24,16 @@ PEBuilder >> initialize [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/19/2024 21:57'
+	#category : #initialize,
+	#'squeak_changestamp' : 'GLE 7/11/2024 10:23'
 }
 PEBuilder >> setUpDirectories [
 	
 	| fileDirectory |
 	
 	fileDirectory := FileDirectory new.
-	(fileDirectory directoryExists:  (FileDirectory  fullPathForURI: '\Saved-Images\'))
-		ifFalse:[fileDirectory createDirectory: '.\Saved-Images'].
+	(fileDirectory directoryExists:  (FileDirectory fullPathForURI: '\Saved-Images\'))
+		ifFalse:[ fileDirectory createDirectory: '.\Saved-Images' ].
 	(fileDirectory directoryExists:  (FileDirectory  fullPathForURI: '\Exported-Images\'))
-		ifFalse:[fileDirectory createDirectory: '.\Exported-Images']
+		ifFalse:[ fileDirectory createDirectory: '.\Exported-Images' ]
 ]

@@ -5,7 +5,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #contents,
 	#'squeak_changestamp' : 'GLE 7/6/2024 15:40'
 }
 PEPluggableTextMorphPlus >> string [
@@ -14,7 +14,7 @@ PEPluggableTextMorphPlus >> string [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #miscellaneous,
 	#'squeak_changestamp' : 'LW 6/10/2024 18:47'
 }
 PEPluggableTextMorphPlus >> vScrollBarPolicy [
@@ -23,7 +23,7 @@ PEPluggableTextMorphPlus >> vScrollBarPolicy [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #miscellaneous,
 	#'squeak_changestamp' : 'LW 6/10/2024 19:34'
 }
 PEPluggableTextMorphPlus >> wantsFrameAdornments [

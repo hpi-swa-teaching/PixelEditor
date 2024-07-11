@@ -5,8 +5,8 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/22/2024 14:00'
+	#category : #saving,
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:15'
 }
 PESaveButton >> addToJson [
 	
@@ -15,24 +15,25 @@ PESaveButton >> addToJson [
 		jsonString: (self jsonString, '"height" : "', PECanvas pixelGridHeight, ' ", ');
 		jsonString: (self jsonString, '"pixelSize" : "', PECanvas pixelSize, ' " ').
 	(self target containerDictionary at: #canvas) submorphs do: [:each | each basicType = #PELayer 
-		ifTrue: [self addToJsonString: each submorphs]]
+		ifTrue: [ self addToJsonString: each submorphs ]]
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:41'
+	#category : #saving,
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:15'
 }
 PESaveButton >> addToJsonString: aCollection [
 
 	| pixelID |
+	
 	pixelID := 1.
 	aCollection do: [:each | 
 		self jsonString: (self jsonString, ', "', pixelID, '" : ', (self colorForJson: each color)).
-		pixelID := pixelID + 1]
+		pixelID := pixelID + 1 ]
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/21/2024 16:50'
 }
 PESaveButton >> basicType [
@@ -41,7 +42,7 @@ PESaveButton >> basicType [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #saving,
 	#'squeak_changestamp' : 'GLE 6/4/2024 00:41'
 }
 PESaveButton >> colorForJson: aColor [
@@ -55,7 +56,7 @@ PESaveButton >> colorForJson: aColor [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #saving,
 	#'squeak_changestamp' : 'GLE 6/19/2024 21:34'
 }
 PESaveButton >> directory [
@@ -64,7 +65,7 @@ PESaveButton >> directory [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'on click',
 	#'squeak_changestamp' : 'GLE 6/4/2024 01:07'
 }
 PESaveButton >> doAction [
@@ -73,7 +74,7 @@ PESaveButton >> doAction [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/4/2024 00:54'
 }
 PESaveButton >> jsonString [
@@ -82,7 +83,7 @@ PESaveButton >> jsonString [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/4/2024 00:54'
 }
 PESaveButton >> jsonString: anObject [
@@ -91,8 +92,8 @@ PESaveButton >> jsonString: anObject [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/19/2024 21:35'
+	#category : #saving,
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:16'
 }
 PESaveButton >> save [
 
@@ -100,11 +101,11 @@ PESaveButton >> save [
 	
 	fileName := self openFileSaverDialog getUserResponse.
 	fileName isNil
-		ifFalse: [self checkIfFileExists: fileName]
+		ifFalse: [ self checkIfFileExists: fileName ]
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'ui label',
 	#'squeak_changestamp' : 'GLE 6/19/2024 21:34'
 }
 PESaveButton >> windowTitle [
@@ -113,7 +114,7 @@ PESaveButton >> windowTitle [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #saving,
 	#'squeak_changestamp' : 'GLE 6/22/2024 14:01'
 }
 PESaveButton >> writeFile: aFileName stream: aFileStream [

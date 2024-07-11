@@ -41,12 +41,12 @@ PERezisingAgent >> model: aModel [
 
 {
 	#category : #step,
-	#'squeak_changestamp' : 'GLE 6/10/2024 17:56'
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:12'
 }
 PERezisingAgent >> step [
 
 	self systemWindowBounds = self systemWindow bounds
-		ifFalse: [self model update].
+		ifFalse: [ self model update ].
 	self systemWindowBounds: self systemWindow bounds
 ]
 
@@ -88,9 +88,9 @@ PERezisingAgent >> systemWindowBounds [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/10/2024 16:56'
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:13'
 }
-PERezisingAgent >> systemWindowBounds: anObject [
+PERezisingAgent >> systemWindowBounds: windowBounds [
 
-	systemWindowBounds := anObject
+	systemWindowBounds := windowBounds
 ]

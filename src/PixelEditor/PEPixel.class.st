@@ -14,29 +14,29 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/7/2024 18:11'
+	#category : #grid,
+	#'squeak_changestamp' : 'GLE 7/7/2024 15:47'
 }
 PEPixel class >> borderSize [
 	
 	borderSize 
-		ifNil: [ ^ 1]
-		ifNotNil: [ ^ borderSize]
+		ifNil: [ ^ self defaultBorderSize ]
+		ifNotNil: [ ^ borderSize ]
 	
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/7/2024 18:11'
+	#category : #grid,
+	#'squeak_changestamp' : 'GLE 7/7/2024 15:46'
 }
 PEPixel class >> borderSize: aSize [
 	
 	borderSize := aSize.
-	self allInstancesDo: [:each | each borderWidth: aSize]
+	self allInstancesDo: [:each | each borderWidth: aSize ]
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/7/2024 20:39'
 }
 PEPixel class >> defaultBorderSize [
@@ -45,7 +45,7 @@ PEPixel class >> defaultBorderSize [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/17/2024 21:18'
 }
 PEPixel class >> selectedColor [
@@ -56,7 +56,7 @@ PEPixel class >> selectedColor [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/17/2024 21:18'
 }
 PEPixel class >> selectedColor: aColor [
@@ -67,7 +67,7 @@ PEPixel class >> selectedColor: aColor [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #grid,
 	#'squeak_changestamp' : 'GLE 6/7/2024 20:41'
 }
 PEPixel class >> toggleBorderSize [
@@ -79,7 +79,7 @@ PEPixel class >> toggleBorderSize [
 ]
 
 {
-	#category : #initialization,
+	#category : #drawing,
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:35'
 }
 PEPixel >> changeColor [
@@ -88,7 +88,7 @@ PEPixel >> changeColor [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:40'
 }
 PEPixel >> initialize [

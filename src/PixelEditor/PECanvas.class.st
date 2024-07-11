@@ -10,7 +10,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 5/17/2024 21:06'
 }
 PECanvas class >> pixelGridHeight [
@@ -19,7 +19,7 @@ PECanvas class >> pixelGridHeight [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 5/17/2024 21:06'
 }
 PECanvas class >> pixelGridWidth [
@@ -28,7 +28,7 @@ PECanvas class >> pixelGridWidth [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 5/17/2024 21:07'
 }
 PECanvas class >> pixelGridWidth: aWidth andHeight: aHeight [
@@ -38,7 +38,7 @@ PECanvas class >> pixelGridWidth: aWidth andHeight: aHeight [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/20/2024 17:39'
 }
 PECanvas class >> pixelSize [
@@ -47,7 +47,7 @@ PECanvas class >> pixelSize [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/20/2024 17:39'
 }
 PECanvas class >> pixelSize: aPixelSize [
@@ -56,16 +56,16 @@ PECanvas class >> pixelSize: aPixelSize [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/7/2024 20:54'
+	#category : #'update cycle',
+	#'squeak_changestamp' : 'GLE 7/11/2024 11:23'
 }
 PECanvas >> fitSubmorphs [
 
-	self layer do: [:each | each fitSubmorphs]
+	self layer do: [:each | each fitSubmorphs ]
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:42'
 }
 PECanvas >> initialize [
@@ -79,20 +79,20 @@ PECanvas >> initialize [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/7/2024 20:55'
+	#category : #accessing,
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:06'
 }
 PECanvas >> layer [
 
 	| collection |
 	
 	collection := OrderedCollection new.
-	self submorphs do: [:each | each basicType = #PELayer ifTrue: [collection add: each]].
+	self submorphs do: [:each | each basicType = #PELayer ifTrue: [ collection add: each ]].
 	^ collection
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #bounds,
 	#'squeak_changestamp' : 'GLE 6/17/2024 15:49'
 }
 PECanvas >> rectangle [
@@ -101,20 +101,10 @@ PECanvas >> rectangle [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'update cycle',
 	#'squeak_changestamp' : 'GLE 6/21/2024 09:58'
 }
 PECanvas >> update [
 
 	"TODO"
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'Corvin 6/1/2024 12:12'
-}
-PECanvas >> wantsDroppedMorph: aMorph event: evt [
-
-	^ false
-  
 ]

@@ -5,7 +5,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #'on click',
 	#'squeak_changestamp' : 'GLE 6/11/2024 14:18'
 }
 PEColorPickerButton >> doActionLeft [
@@ -14,12 +14,12 @@ PEColorPickerButton >> doActionLeft [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/23/2024 14:06'
+	#category : #'on click',
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:19'
 }
 PEColorPickerButton >> doActionRight [
 
 	PEColorButton selectedButton color isTransparent
-		ifFalse: [self pixelEditor openColorSelector]
+		ifFalse: [ self pixelEditor openColorSelector ]
 	
 ]

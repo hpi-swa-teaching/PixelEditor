@@ -26,7 +26,7 @@ PECanvasBuilder class >> canvasBuilder: aCanvasBuilder [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 7/6/2024 15:14'
 }
 PECanvasBuilder class >> default [
@@ -37,7 +37,7 @@ PECanvasBuilder class >> default [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 7/6/2024 15:13'
 }
 PECanvasBuilder class >> reset [
@@ -46,7 +46,7 @@ PECanvasBuilder class >> reset [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'building canvas, layer',
 	#'squeak_changestamp' : 'GLE 6/19/2024 22:55'
 }
 PECanvasBuilder >> buildCanvas [
@@ -55,7 +55,7 @@ PECanvasBuilder >> buildCanvas [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'building canvas, layer',
 	#'squeak_changestamp' : 'GLE 6/19/2024 22:55'
 }
 PECanvasBuilder >> buildCanvasFromJson: aJson [
@@ -64,7 +64,7 @@ PECanvasBuilder >> buildCanvasFromJson: aJson [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'building canvas, layer',
 	#'squeak_changestamp' : 'GLE 6/20/2024 17:35'
 }
 PECanvasBuilder >> buildLayer [
@@ -74,7 +74,7 @@ PECanvasBuilder >> buildLayer [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'building canvas, layer',
 	#'squeak_changestamp' : 'GLE 6/20/2024 17:35'
 }
 PECanvasBuilder >> buildLayerWithJson: aJson [
@@ -85,8 +85,8 @@ PECanvasBuilder >> buildLayerWithJson: aJson [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/18/2024 11:41'
+	#category : #'json input',
+	#'squeak_changestamp' : 'GLE 7/11/2024 10:18'
 }
 PECanvasBuilder >> colorFromString: aString [
 
@@ -96,13 +96,13 @@ PECanvasBuilder >> colorFromString: aString [
 	json := Json readFromString: formattedString.
 	"-1 is the symbol for transparent Color"
 	(json at: 'r') = '-1' ifTrue: [^ Color transparent]. 
-	^ Color r: (json at: 'r') asNumber g: (json at: 'g') asNumber b: (json at: 'b') asNumber range: 1023.
+	^ Color r: (json at: 'r') asNumber g: (json at: 'g') asNumber b: (json at: 'b') asNumber range: 1023
 
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/22/2024 13:42'
+	#category : #'creating/inserting pixel',
+	#'squeak_changestamp' : 'GLE 7/11/2024 10:20'
 }
 PECanvasBuilder >> createPixelsFromJson: aJson in: aLayer [
 
@@ -111,20 +111,19 @@ PECanvasBuilder >> createPixelsFromJson: aJson in: aLayer [
 	width := PECanvas pixelGridWidth.
 	height := PECanvas pixelGridHeight.
 	pixelSize := PECanvas pixelSize.
-	pixelID := aJson size - 3.
+	pixelID := aJson size - 3. "Json saves x number of pixels + 3 elements (width, pixelSize, height)"
 	aLayer extent: (width * pixelSize) @ (height * pixelSize).
-	0 to: (height * pixelSize)-pixelSize by: pixelSize do: [:eachHeight | 
+	0 to: (height * pixelSize) - pixelSize by: pixelSize do: [:eachHeight | 
 		0 to: (width * pixelSize) - pixelSize by: pixelSize do: [:eachWidth | 
 			self insertPixelAt: eachWidth @ eachHeight 
-			withColor: (self colorFromString: (aJson at: (pixelID stringForReadout)))
-			in: aLayer.
-			pixelID := pixelID - 1]].
+			withColor: (self colorFromString: (aJson at: (pixelID stringForReadout))) in: aLayer.
+			pixelID := pixelID - 1 ]].
 	^ aLayer
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/20/2024 17:41'
+	#category : #'creating/inserting pixel',
+	#'squeak_changestamp' : 'GLE 7/11/2024 10:22'
 }
 PECanvasBuilder >> createPixelsIn: aLayer [
 
@@ -136,13 +135,13 @@ PECanvasBuilder >> createPixelsIn: aLayer [
 	aLayer extent: ( width * pixelSize) @ (height * pixelSize).
 	0 to: (height * pixelSize) - pixelSize by: pixelSize do: [:eachHeight | 
 		0 to: (width * pixelSize) - pixelSize by: pixelSize do: [:eachWidth | 
-			self insertPixelAt: eachWidth @ eachHeight in: aLayer]].
+			self insertPixelAt: eachWidth @ eachHeight in: aLayer ]].
 	^ aLayer
 	
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'json input',
 	#'squeak_changestamp' : 'GLE 6/20/2024 17:45'
 }
 PECanvasBuilder >> getDimensionsFromJson: aJson [
@@ -152,7 +151,7 @@ PECanvasBuilder >> getDimensionsFromJson: aJson [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'creating/inserting pixel',
 	#'squeak_changestamp' : 'GLE 6/18/2024 11:28'
 }
 PECanvasBuilder >> insertPixelAt: aPoint in: aLayer [
@@ -161,7 +160,7 @@ PECanvasBuilder >> insertPixelAt: aPoint in: aLayer [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'creating/inserting pixel',
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:45'
 }
 PECanvasBuilder >> insertPixelAt: aPoint withColor: aColor in: aLayer [

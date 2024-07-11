@@ -13,7 +13,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 7/6/2024 15:16'
 }
 PEPanelBuilder class >> default [
@@ -42,7 +42,7 @@ PEPanelBuilder class >> panelBuilder: aPanelBuilder [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 7/6/2024 15:15'
 }
 PEPanelBuilder class >> reset [
@@ -123,11 +123,11 @@ PEPanelBuilder >> containerDictionary [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/13/2024 14:18'
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:02'
 }
-PEPanelBuilder >> containerDictionary: anObject [
+PEPanelBuilder >> containerDictionary: aDictionary [
 
-	containerDictionary := anObject
+	containerDictionary := aDictionary
 ]
 
 {
@@ -209,7 +209,7 @@ PEPanelBuilder >> createInputPanelsWithBuilder: aBuilder [
 
 {
 	#category : #'input panels',
-	#'squeak_changestamp' : 'GLE 7/6/2024 14:42'
+	#'squeak_changestamp' : 'GLE 7/11/2024 10:17'
 }
 PEPanelBuilder >> createInputWindowPanelWithBuilder: aBuilder andModel: anInputWindow [
 
@@ -219,11 +219,11 @@ PEPanelBuilder >> createInputWindowPanelWithBuilder: aBuilder andModel: anInputW
 	 	label: #labelString;
 		extent: self inputWindowExtent;
 		children: (self createInputPanelsWithBuilder: aBuilder);
-		yourself).
+		yourself)
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'panel initialization',
 	#'squeak_changestamp' : 'GLE 6/22/2024 16:28'
 }
 PEPanelBuilder >> createPanelsWithBuilder: aBuilder [
@@ -321,8 +321,8 @@ PEPanelBuilder >> createWidthPanelWithBuilder: aBuilder [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/22/2024 16:14'
+	#category : #'panel initialization',
+	#'squeak_changestamp' : 'GLE 7/11/2024 10:17'
 }
 PEPanelBuilder >> createWindowPanelWithBuilder: aBuilder andModel: aPixelEditor [
 
@@ -332,7 +332,7 @@ PEPanelBuilder >> createWindowPanelWithBuilder: aBuilder andModel: aPixelEditor 
 	 	label: #labelString;
 		extent: self pixelEditorExtent;
 		children: (self createPanelsWithBuilder: aBuilder);
-		yourself).
+		yourself)
 ]
 
 {
@@ -357,22 +357,24 @@ PEPanelBuilder >> initialize [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 7/6/2024 14:42'
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:03'
 }
 PEPanelBuilder >> inputWindow [
+
 	^ inputWindow
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 7/6/2024 14:42'
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:03'
 }
-PEPanelBuilder >> inputWindow: anObject [
-	inputWindow := anObject
+PEPanelBuilder >> inputWindow: anInputWindow [
+
+	inputWindow := anInputWindow
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #extent,
 	#'squeak_changestamp' : 'LW 7/4/2024 11:09'
 }
 PEPanelBuilder >> inputWindowExtent [
@@ -391,15 +393,15 @@ PEPanelBuilder >> pixelEditor [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/13/2024 14:37'
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:03'
 }
-PEPanelBuilder >> pixelEditor: anObject [
+PEPanelBuilder >> pixelEditor: aPixelEditor [
 
-	pixelEditor := anObject
+	pixelEditor := aPixelEditor
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #extent,
 	#'squeak_changestamp' : 'GLE 6/22/2024 16:10'
 }
 PEPanelBuilder >> pixelEditorExtent [

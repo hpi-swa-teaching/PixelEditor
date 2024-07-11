@@ -18,19 +18,19 @@ PELayer >> basicType [
 
 {
 	#category : #'input handling',
-	#'squeak_changestamp' : 'GLE 6/17/2024 18:42'
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:08'
 }
 PELayer >> colorPixels: anEvent [
 
 	| pixelPoint |
 	
 	pixelPoint := self standardizedPoint: (self pointInSelf: anEvent position).
-	(self pixelDictionary at: pixelPoint ifAbsent: [^ nil]) changeColor 
+	(self pixelDictionary at: pixelPoint ifAbsent: [^ nil ]) changeColor 
 ]
 
 {
 	#category : #'input handling',
-	#'squeak_changestamp' : 'GLE 6/20/2024 17:42'
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:10'
 }
 PELayer >> correctPoint: aMousePoint regarding: aPixelPoint [
 
@@ -40,19 +40,21 @@ PELayer >> correctPoint: aMousePoint regarding: aPixelPoint [
 	aMousePoint x < aPixelPoint x "mouse is to the left of pixel on the x axis"
 		ifTrue: [
 			aMousePoint y < aPixelPoint y "mouse is above the pixel on the y axis"
-				ifTrue: [ ^ (aPixelPoint x - pixelSize) @ (aPixelPoint y - pixelSize)].
-			^ (aPixelPoint x - pixelSize) @ aPixelPoint y]
+				ifTrue: [ ^ (aPixelPoint x - pixelSize) @ (aPixelPoint y - pixelSize) ]
+				ifFalse: [ ^ (aPixelPoint x - pixelSize) @ aPixelPoint y ]]
 		ifFalse: [ 
 			aMousePoint y < aPixelPoint y 
-				ifTrue: [^ (aPixelPoint x) @ (aPixelPoint y - pixelSize)] ].
+				ifTrue: [ ^ (aPixelPoint x) @ (aPixelPoint y - pixelSize) ]].
 	^ aPixelPoint
 ]
 
 {
 	#category : #resizing,
-	#'squeak_changestamp' : 'GLE 6/7/2024 20:57'
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:11'
 }
 PELayer >> fitSubmorphs [
+
+	"TODO"
 ]
 
 {
@@ -76,7 +78,7 @@ PELayer >> handlesMouseStillDown: anEvent [
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/22/2024 13:57'
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:11'
 }
 PELayer >> initialize [
 
@@ -84,7 +86,7 @@ PELayer >> initialize [
 	self 
 		color: Color white;
 		borderColor: Color black;
-		pixelDictionary: Dictionary new.
+		pixelDictionary: Dictionary new
 	
 	
 ]
@@ -109,11 +111,11 @@ PELayer >> pixelDictionary [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:06'
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:11'
 }
-PELayer >> pixelDictionary: anObject [
+PELayer >> pixelDictionary: aDictionary [
 
-	pixelDictionary := anObject
+	pixelDictionary := aDictionary
 ]
 
 {
@@ -136,7 +138,7 @@ PELayer >> rectangle [
 
 {
 	#category : #'input handling',
-	#'squeak_changestamp' : 'GLE 6/20/2024 17:42'
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:12'
 }
 PELayer >> standardizedPoint: aPoint [
 
@@ -144,11 +146,11 @@ PELayer >> standardizedPoint: aPoint [
 	
 	pixelSize := PECanvas pixelSize.
 	(aPoint x \\ pixelSize) >= (pixelSize / 2)
-		ifFalse: [xCoordinate := pixelSize * (aPoint x // pixelSize)]
-		ifTrue: [xCoordinate := pixelSize * ((aPoint x // pixelSize) +1)].
+		ifFalse: [ xCoordinate := pixelSize * (aPoint x // pixelSize) ]
+		ifTrue: [ xCoordinate := pixelSize * ((aPoint x // pixelSize) +1) ].
 	(aPoint y \\ pixelSize) >= (pixelSize / 2)
-		ifFalse: [yCoordinate := pixelSize * (aPoint y // pixelSize)]
-		ifTrue: [yCoordinate := pixelSize * ((aPoint y // pixelSize) + 1)].
+		ifFalse: [ yCoordinate := pixelSize * (aPoint y // pixelSize) ]
+		ifTrue: [ yCoordinate := pixelSize * ((aPoint y // pixelSize) + 1) ].
 	^ self correctPoint: aPoint regarding: (xCoordinate @ yCoordinate)
 	
 ]

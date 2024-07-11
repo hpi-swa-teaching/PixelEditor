@@ -9,29 +9,29 @@ Class {
 }
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/23/2024 11:55'
+	#category : #submorphs,
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:19'
 }
 PEColorPalette >> addMorphBelow: aMorph [
 
 	self submorphs isEmpty
-		ifTrue: [self addMorph: aMorph] 
-		ifFalse: [self addMorphBack: (aMorph position: 0 @ (self submorphs last bounds corner y))] 
+		ifTrue: [ self addMorph: aMorph ] 
+		ifFalse: [ self addMorphBack: (aMorph position: 0 @ (self submorphs last bounds corner y)) ] 
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'GT 5/23/2024 18:07'
+	#category : #submorphs,
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:19'
 }
 PEColorPalette >> addMorphNext: aMorph [
 
 	self submorphs isEmpty
-		ifTrue: [self addMorph: aMorph] 
-		ifFalse: [self addMorphBack: (aMorph position: (self submorphs last bounds corner x) @ 0)] 
+		ifTrue: [ self addMorph: aMorph ] 
+		ifFalse: [ self addMorphBack: (aMorph position: (self submorphs last bounds corner x) @ 0) ] 
 ]
 
 {
-	#category : #accessing,
+	#category : #'change color',
 	#'squeak_changestamp' : 'GLE 6/22/2024 14:05'
 }
 PEColorPalette >> adjustColor [
@@ -52,11 +52,11 @@ PEColorPalette >> colorButton [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/18/2024 11:12'
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:20'
 }
-PEColorPalette >> colorButton: anObject [
+PEColorPalette >> colorButton: aColorButton [
 	
-	colorButton := anObject.
+	colorButton := aColorButton.
 	self hsvMorph selectedColor: (self colorButton color)
 
 	
@@ -82,7 +82,7 @@ PEColorPalette >> hsvMorph: anHSVMorph [
 ]
 
 {
-	#category : #accessing,
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 6/20/2024 18:55'
 }
 PEColorPalette >> initialize [

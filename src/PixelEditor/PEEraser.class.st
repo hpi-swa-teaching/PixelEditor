@@ -5,7 +5,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #'on click',
 	#'squeak_changestamp' : 'GLE 6/19/2024 16:38'
 }
 PEEraser >> doActionRight [

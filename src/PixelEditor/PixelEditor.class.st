@@ -10,16 +10,7 @@ Class {
 }
 
 {
-	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 6/16/2024 19:02'
-}
-PixelEditor class >> defaultExtent [
-
-	^ 800@600
-]
-
-{
-	#category : #initialization,
+	#category : #label,
 	#'squeak_changestamp' : 'GLE 6/3/2024 09:44'
 }
 PixelEditor class >> defaultLabel [
@@ -88,26 +79,26 @@ PixelEditor >> containerDictionary [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/16/2024 20:29'
+	#'squeak_changestamp' : 'GLE 7/11/2024 10:12'
 }
 PixelEditor >> containerDictionary: aDictionary [
 
-	containerDictionary := aDictionary.
+	containerDictionary := aDictionary
 	
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/22/2024 16:08'
+	#category : #miscellaneous,
+	#'squeak_changestamp' : 'GLE 7/11/2024 11:43'
 }
 PixelEditor >> defaultExtent [
 
-	^ 800@600
+	^ 800 @ 600
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/20/2024 00:29'
+	#category : #exporting,
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:20'
 }
 PixelEditor >> formFromCanvas [
 
@@ -115,13 +106,13 @@ PixelEditor >> formFromCanvas [
 	
 	canvas := self containerDictionary at: #canvas.
 	canvas bottomRight < canvas layer first bottomRight
-		ifTrue: [^ Form fromDisplay: canvas rectangle]
-		ifFalse: [^ Form fromDisplay: canvas layer first rectangle]
+		ifTrue: [ ^ Form fromDisplay: canvas rectangle ]
+		ifFalse: [ ^ Form fromDisplay: canvas layer first rectangle ]
 	
 ]
 
 {
-	#category : #'initialize-release',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 6/22/2024 14:07'
 }
 PixelEditor >> initialize [
@@ -179,15 +170,15 @@ PixelEditor >> labelString [
 
 {
 	#category : #'lifecycle hooks',
-	#'squeak_changestamp' : 'Corvin 5/28/2024 11:02'
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:20'
 }
 PixelEditor >> onClose [
-	"TODO"
+
 	^ ''
 ]
 
 {
-	#category : #'initialize-release',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 6/3/2024 09:44'
 }
 PixelEditor >> open [
@@ -196,8 +187,8 @@ PixelEditor >> open [
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/22/2024 13:29'
+	#category : #'color selector',
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:21'
 }
 PixelEditor >> openColorSelector [
 
@@ -206,17 +197,18 @@ PixelEditor >> openColorSelector [
 	colorSelector := PEColorPaletteBuilder new createColorPalette.
 	container := self containerDictionary at: #colorSelector.
 	container submorphs 
-		ifEmpty: [container addMorphNext: colorSelector]
-		ifNotEmpty: [container 
+		ifEmpty: [ container addMorphNext: colorSelector ]
+		ifNotEmpty: [ 
+			container 
 				removeAllMorphs; 
-				addMorphNext: colorSelector]
+				addMorphNext: colorSelector ]
 	
 	
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/22/2024 16:23'
+	#category : #initialize,
+	#'squeak_changestamp' : 'GLE 7/11/2024 10:12'
 }
 PixelEditor >> setUpCanvas [
 
@@ -224,26 +216,26 @@ PixelEditor >> setUpCanvas [
 	
 	panelBuilder := PEPanelBuilder default.
 	self json isEmpty
-		ifTrue: [ panelBuilder canvas]
-		ifFalse:[ panelBuilder canvasFromJson: self json].
+		ifTrue: [ panelBuilder canvas ]
+		ifFalse:[ panelBuilder canvasFromJson: self json ]
 ]
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/4/2024 01:36'
+	#'squeak_changestamp' : 'GLE 7/11/2024 10:12'
 }
 PixelEditor >> systemWindow [
 
-	self dependents do: [:each | each className = 'PluggableSystemWindow' ifTrue: [^ each]].
+	self dependents do: [:each | each className = 'PluggableSystemWindow' ifTrue: [ ^ each ]]
 ]
 
 {
-	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/21/2024 09:59'
+	#category : #'update cycle',
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:21'
 }
 PixelEditor >> update [
 
-	self containerDictionary do: [:each | each update]
+	self containerDictionary do: [:each | each update ]
 ]
 
 {

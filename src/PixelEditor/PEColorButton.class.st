@@ -12,24 +12,6 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 14:55'
-}
-PEColorButton class >> borderColor [
-
-	^ Color black
-]
-
-{
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/17/2024 19:37'
-}
-PEColorButton class >> borderSize [
-
-	^ 1
-]
-
-{
 	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/11/2024 14:16'
 }
@@ -48,18 +30,18 @@ PEColorButton class >> selectedButton: aButton [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/22/2024 13:35'
+	#category : #'on click',
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:19'
 }
 PEColorButton >> doActionLeft [
 
 	PEPixel selectedColor: self color.
-	self class selectedButton: self.
+	self class selectedButton: self
 	
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'on click',
 	#'squeak_changestamp' : 'GLE 6/22/2024 14:04'
 }
 PEColorButton >> doActionRight [
@@ -72,7 +54,7 @@ PEColorButton >> doActionRight [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'on click',
 	#'squeak_changestamp' : 'GLE 5/17/2024 14:57'
 }
 PEColorButton >> handlesMouseDown: anEvent [
@@ -81,29 +63,29 @@ PEColorButton >> handlesMouseDown: anEvent [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/22/2024 14:03'
+	#category : #initialize,
+	#'squeak_changestamp' : 'GLE 7/11/2024 11:42'
 }
 PEColorButton >> initialize [
 	
 	super initialize.
 	self 
-		borderColor: PEColorButton borderColor;
-		borderWidth: PEColorButton borderSize.
+		borderColor: Color black;
+		borderWidth: 1
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 5/27/2024 10:54'
+	#category : #'on click',
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:19'
 }
 PEColorButton >> mouseDown: anEvent [
 
-	anEvent yellowButtonPressed ifTrue: [self doActionRight].
-	anEvent redButtonPressed ifTrue: [self doActionLeft]
+	anEvent yellowButtonPressed ifTrue: [ self doActionRight ].
+	anEvent redButtonPressed ifTrue: [ self doActionLeft ]
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/17/2024 21:14'
 }
 PEColorButton >> pixelEditor [
@@ -112,7 +94,7 @@ PEColorButton >> pixelEditor [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/17/2024 21:14'
 }
 PEColorButton >> pixelEditor: aPixelEditor [

@@ -26,7 +26,7 @@ PEColorPaletteBuilder class >> colorSelectorBuilder: aColorSelector [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 7/6/2024 15:15'
 }
 PEColorPaletteBuilder class >> default [
@@ -37,7 +37,7 @@ PEColorPaletteBuilder class >> default [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 7/6/2024 15:15'
 }
 PEColorPaletteBuilder class >> reset [
@@ -46,7 +46,7 @@ PEColorPaletteBuilder class >> reset [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 6/20/2024 11:19'
 }
 PEColorPaletteBuilder >> addButtonsTo: aColorPalette [
@@ -57,7 +57,7 @@ PEColorPaletteBuilder >> addButtonsTo: aColorPalette [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:45'
 }
 PEColorPaletteBuilder >> addHSVMorphTo: aColorPalette [
@@ -70,7 +70,7 @@ PEColorPaletteBuilder >> addHSVMorphTo: aColorPalette [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 6/18/2024 11:02'
 }
 PEColorPaletteBuilder >> createColorPalette [
@@ -79,7 +79,7 @@ PEColorPaletteBuilder >> createColorPalette [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:45'
 }
 PEColorPaletteBuilder >> createColorSelector: aColorPalette [

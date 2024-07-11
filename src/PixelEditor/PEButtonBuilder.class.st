@@ -26,7 +26,7 @@ PEButtonBuilder class >> buttonBuilder: aButtonBuilder [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 7/6/2024 15:14'
 }
 PEButtonBuilder class >> default [
@@ -37,7 +37,7 @@ PEButtonBuilder class >> default [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 7/6/2024 15:13'
 }
 PEButtonBuilder class >> reset [
@@ -46,7 +46,7 @@ PEButtonBuilder class >> reset [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #images,
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:25'
 }
 PEButtonBuilder >> addImage: anImage toMorph: aMorph [
@@ -63,7 +63,7 @@ PEButtonBuilder >> addImage: anImage toMorph: aMorph [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #images,
 	#'squeak_changestamp' : 'GT 6/10/2024 19:11'
 }
 PEButtonBuilder >> assetHandler [
@@ -72,7 +72,7 @@ PEButtonBuilder >> assetHandler [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'color selector/palette buttons',
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:43'
 }
 PEButtonBuilder >> buildAcceptButton: aColorPalette [
@@ -86,7 +86,7 @@ PEButtonBuilder >> buildAcceptButton: aColorPalette [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'color selector/palette buttons',
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:43'
 }
 PEButtonBuilder >> buildCloseButton: aColorPalette [
@@ -100,7 +100,7 @@ PEButtonBuilder >> buildCloseButton: aColorPalette [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #' color buttons',
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:34'
 }
 PEButtonBuilder >> buildColorButtonWithTarget: aPixelEditor andColor: aColor [ 
@@ -117,7 +117,7 @@ PEButtonBuilder >> buildColorButtonWithTarget: aPixelEditor andColor: aColor [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #' color buttons',
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:40'
 }
 PEButtonBuilder >> buildColorButtonsWithTarget: aPixelEditor [
@@ -131,7 +131,7 @@ PEButtonBuilder >> buildColorButtonsWithTarget: aPixelEditor [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'color selector/palette buttons',
 	#'squeak_changestamp' : 'GLE 6/17/2024 21:11'
 }
 PEButtonBuilder >> buildColorPickerButton: aPixelEditor [
@@ -148,7 +148,7 @@ PEButtonBuilder >> buildColorPickerButton: aPixelEditor [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'color selector/palette buttons',
 	#'squeak_changestamp' : 'GLE 6/20/2024 18:55'
 }
 PEButtonBuilder >> buildColorSelectorButtonRow: aColorSelector [
@@ -159,7 +159,7 @@ PEButtonBuilder >> buildColorSelectorButtonRow: aColorSelector [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'color selector/palette buttons',
 	#'squeak_changestamp' : 'GLE 6/20/2024 11:12'
 }
 PEButtonBuilder >> buildEmptyButtonRow [
@@ -174,7 +174,7 @@ PEButtonBuilder >> buildEmptyButtonRow [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'tool buttons',
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:34'
 }
 PEButtonBuilder >> buildEraserButton [
@@ -190,7 +190,7 @@ PEButtonBuilder >> buildEraserButton [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'settings buttons',
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:34'
 }
 PEButtonBuilder >> buildExportButton: aPixelEditor [
@@ -209,7 +209,7 @@ PEButtonBuilder >> buildExportButton: aPixelEditor [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'settings buttons',
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:34'
 }
 PEButtonBuilder >> buildGridButton: aPixelEditor [
@@ -228,8 +228,8 @@ PEButtonBuilder >> buildGridButton: aPixelEditor [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 7/6/2024 15:10'
+	#category : #'input window buttons',
+	#'squeak_changestamp' : 'GLE 7/7/2024 17:56'
 }
 PEButtonBuilder >> buildInputSubmitButtonWithTarget: anInputWindow [
 
@@ -237,7 +237,8 @@ PEButtonBuilder >> buildInputSubmitButtonWithTarget: anInputWindow [
 		label: 'Submit size';
 		extent: self submitButtonSize;
 		target: anInputWindow;
-		action: #processValues
+		action: #processValues;
+		yourself
 		
 	
 
@@ -245,7 +246,7 @@ PEButtonBuilder >> buildInputSubmitButtonWithTarget: anInputWindow [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'settings buttons',
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:34'
 }
 PEButtonBuilder >> buildLoadButton: aPixelEditor [
@@ -264,7 +265,7 @@ PEButtonBuilder >> buildLoadButton: aPixelEditor [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'settings buttons',
 	#'squeak_changestamp' : 'GLE 6/22/2024 13:35'
 }
 PEButtonBuilder >> buildSaveButton: aPixelEditor [
@@ -283,7 +284,7 @@ PEButtonBuilder >> buildSaveButton: aPixelEditor [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'settings buttons',
 	#'squeak_changestamp' : 'GLE 6/20/2024 11:11'
 }
 PEButtonBuilder >> buildSettingsButtons: aPixelEditor [
@@ -297,7 +298,7 @@ PEButtonBuilder >> buildSettingsButtons: aPixelEditor [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'tool buttons',
 	#'squeak_changestamp' : 'GLE 6/20/2024 11:10'
 }
 PEButtonBuilder >> buildToolButtons: aPixelEditor [
@@ -313,7 +314,7 @@ PEButtonBuilder >> buildToolButtons: aPixelEditor [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #images,
 	#'squeak_changestamp' : 'GLE 6/11/2024 14:14'
 }
 PEButtonBuilder >> colorBucketPath [
@@ -340,23 +341,23 @@ PEButtonBuilder >> colorPickerButtonSize [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GT 6/10/2024 19:33'
+	#category : #' color buttons',
+	#'squeak_changestamp' : 'GLE 7/11/2024 10:23'
 }
 PEButtonBuilder >> colorsForButtons [
 
-	^ {Color lightBrown.
-		Color black. 
-		Color blue.
-		Color yellow.
-		Color red.
-		Color green.
-		Color magenta.
-		Color cyan}
+	^ { Color lightBrown.
+		 Color black. 
+		 Color blue.
+		 Color yellow.
+		 Color red.
+		 Color green.
+		 Color magenta.
+		 Color cyan }
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #images,
 	#'squeak_changestamp' : 'GT 6/10/2024 18:55'
 }
 PEButtonBuilder >> eraserPath [

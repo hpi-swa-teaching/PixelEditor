@@ -8,7 +8,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/18/2024 10:41'
 }
 PixelEditorContainerTest >> containerDictionary [
@@ -17,7 +17,7 @@ PixelEditorContainerTest >> containerDictionary [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #testing,
 	#'squeak_changestamp' : 'GLE 6/18/2024 10:41'
 }
 PixelEditorContainerTest >> iterateContainerDictionary: aDictionary [
@@ -27,7 +27,7 @@ PixelEditorContainerTest >> iterateContainerDictionary: aDictionary [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #testing,
 	#'squeak_changestamp' : 'GLE 6/18/2024 10:41'
 }
 PixelEditorContainerTest >> testContainerContent [

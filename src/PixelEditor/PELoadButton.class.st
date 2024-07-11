@@ -5,7 +5,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #accessing,
 	#'squeak_changestamp' : 'GLE 6/21/2024 16:33'
 }
 PELoadButton >> basicType [
@@ -14,7 +14,7 @@ PELoadButton >> basicType [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #loading,
 	#'squeak_changestamp' : 'GLE 6/19/2024 21:32'
 }
 PELoadButton >> directory [ 
@@ -23,7 +23,7 @@ PELoadButton >> directory [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'on click',
 	#'squeak_changestamp' : 'GLE 6/6/2024 19:12'
 }
 PELoadButton >> doAction [
@@ -32,23 +32,24 @@ PELoadButton >> doAction [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/22/2024 14:33'
+	#category : #loading,
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:15'
 }
 PELoadButton >> load [
 	
 	| fileName |
 	
 	fileName := self openFileSaverDialog getUserResponse.
-	fileName isNil ifFalse: [
-		self target systemWindow abandon.
-		PixelEditor openWithJson: (self loadFile: fileName)]
+	fileName isNil 
+		ifFalse: [
+			self target systemWindow abandon.
+			PixelEditor openWithJson: (self loadFile: fileName) ] 
 	
 	
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #loading,
 	#'squeak_changestamp' : 'GLE 6/4/2024 00:43'
 }
 PELoadButton >> loadFile: afileName [
@@ -58,21 +59,21 @@ PELoadButton >> loadFile: afileName [
 ]
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'GLE 6/4/2024 00:43'
+	#category : #loading,
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:15'
 }
 PELoadButton >> stringFromStream: aStream [
 
 	| string |
 	
 	string := '{'.
-	[aStream atEnd] whileFalse: [string := string, aStream next].
+	[ aStream atEnd ] whileFalse: [ string := string, aStream next ].
 	^ string, '}'
 	
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #'ui label',
 	#'squeak_changestamp' : 'GLE 6/19/2024 21:32'
 }
 PELoadButton >> windowTitle [

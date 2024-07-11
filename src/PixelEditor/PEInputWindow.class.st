@@ -17,16 +17,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 7/4/2024 11:41'
-}
-PEInputWindow class >> defaultLabel [
-
-	^ 'Input Window'
-]
-
-{
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'LW 7/4/2024 11:40'
 }
 PEInputWindow class >> open [
@@ -50,12 +41,12 @@ PEInputWindow >> buildWith: aBuilder [
 
 {
 	#category : #inputProcessing,
-	#'squeak_changestamp' : 'GLE 7/6/2024 16:09'
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:06'
 }
 PEInputWindow >> checkForEmptyValuesIn: aDictionary [
 
-	(aDictionary anySatisfy: [:each | each isEmpty])
-		ifFalse: [ self checkForStringValuesIn: aDictionary]
+	(aDictionary anySatisfy: [:each | each isEmpty ])
+		ifFalse: [ self checkForStringValuesIn: aDictionary ]
 		ifTrue: [ PEUserInputBuilder default wrongValues ]
 	
 		
@@ -63,14 +54,14 @@ PEInputWindow >> checkForEmptyValuesIn: aDictionary [
 
 {
 	#category : #inputProcessing,
-	#'squeak_changestamp' : 'GLE 7/6/2024 16:13'
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:07'
 }
 PEInputWindow >> checkForStringValuesIn: aDictionary [
 
 	| dictionary |
 
 	dictionary := aDictionary collect: #asIntegerIfAllDigits.
-	(dictionary anySatisfy: [:each | each isNil])
+	(dictionary anySatisfy: [:each | each isNil ])
 		ifFalse: [ self checkSizeCorrectnessFor: dictionary ]
 		ifTrue: [ PEUserInputBuilder default wrongValues ]
 ]
@@ -89,6 +80,15 @@ PEInputWindow >> checkSizeCorrectnessFor: aDictionary [
 ]
 
 {
+	#category : #release,
+	#'squeak_changestamp' : 'GLE 7/11/2024 11:48'
+}
+PEInputWindow >> close [
+
+	self window closeBoxHit
+]
+
+{
 	#category : #initialization,
 	#'squeak_changestamp' : 'GLE 7/6/2024 16:36'
 }
@@ -99,6 +99,15 @@ PEInputWindow >> createDefaultCanvas [
 		pixelSize: 100.
 	PixelEditor open.
 	self window closeBoxHit
+]
+
+{
+	#category : #initialization,
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:07'
+}
+PEInputWindow >> defaultLabel [
+
+	^ 'Input Window'
 ]
 
 {
@@ -121,37 +130,37 @@ PEInputWindow >> inputFieldDictionary: aDictionary [
 
 {
 	#category : #inputProcessing,
-	#'squeak_changestamp' : 'GLE 7/6/2024 16:24'
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:07'
 }
 PEInputWindow >> labelString [
 
-	^ self class defaultLabel
+	^ self defaultLabel
 ]
 
 {
 	#category : #initialization,
-	#'squeak_changestamp' : 'GLE 7/6/2024 16:36'
+	#'squeak_changestamp' : 'GLE 7/11/2024 11:49'
 }
 PEInputWindow >> openPixelEditorWithDictionary: aDictionary [
 
 	PECanvas pixelGridWidth: (aDictionary at: 'Width:')  andHeight: (aDictionary at: 'Height:');
 		pixelSize: (aDictionary at: 'Pixel Size:'). 
 	PixelEditor open.
-	self window closeBoxHit
+	self close
 ]
 
 {
 	#category : #inputProcessing,
-	#'squeak_changestamp' : 'GLE 7/6/2024 16:36'
+	#'squeak_changestamp' : 'GLE 7/7/2024 18:08'
 }
 PEInputWindow >> processValues [
 
 	| dictionary |
 	
 	dictionary := self inputFieldDictionary collect: #string.
-	(dictionary anySatisfy: [:each | each notEmpty])
-		ifFalse: [self createDefaultCanvas] 
-		ifTrue: [self checkForEmptyValuesIn: dictionary]
+	(dictionary anySatisfy: [:each | each notEmpty ])
+		ifFalse: [ self createDefaultCanvas ] 
+		ifTrue: [ self checkForEmptyValuesIn: dictionary ]
 		
 ]
 

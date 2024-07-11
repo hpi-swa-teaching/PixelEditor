@@ -8,7 +8,7 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 6/21/2024 15:22'
 }
 PixelEditorTest >> abandonPixelEditor [
@@ -26,7 +26,7 @@ PixelEditorTest >> assetHandler [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #initialize,
 	#'squeak_changestamp' : 'GLE 6/21/2024 15:22'
 }
 PixelEditorTest >> createPixelEditor [

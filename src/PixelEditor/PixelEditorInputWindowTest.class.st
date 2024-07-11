@@ -5,18 +5,18 @@ Class {
 }
 
 {
-	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/23/2024 13:28'
+	#category : #release,
+	#'squeak_changestamp' : 'GLE 7/11/2024 11:49'
 }
 PixelEditorInputWindowTest >> abandonInputWindow [
 
-	PEInputWindow allInstances do: [:each | each abandon]
+	PEInputWindow allInstances do: [:each | each close]
 
 	
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #testing,
 	#'squeak_changestamp' : 'LW 6/23/2024 13:24'
 }
 PixelEditorInputWindowTest >> checkForInputWindow [
@@ -26,22 +26,22 @@ PixelEditorInputWindowTest >> checkForInputWindow [
 
 {
 	#category : #'as yet unclassified',
-	#'squeak_changestamp' : 'LW 6/23/2024 13:18'
+	#'squeak_changestamp' : 'GLE 7/11/2024 11:52'
 }
 PixelEditorInputWindowTest >> simulateCommandClick [
 
 	| command window selector |
 	
 	PixelEditor register.
-	command := (TheWorldMenu registeredOpenCommands detect: [:each | each first = 'PixelEditor']).
+	command := (TheWorldMenu registeredOpenCommands detect: [:each | each first = 'PixelEditor' ]).
 	command ifNotNil: [
 		window := command second first.
 		selector := command second second.
-		window perform: selector]
+		window perform: selector ]
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #testing,
 	#'squeak_changestamp' : 'LW 6/23/2024 13:29'
 }
 PixelEditorInputWindowTest >> testInputWindowOpen [
