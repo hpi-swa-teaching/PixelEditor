@@ -98,12 +98,12 @@ PixelEditorColorSelectorTest >> getColorSelector [
 
 {
 	#category : #accessing,
-	#'squeak_changestamp' : 'GLE 6/21/2024 15:08'
+	#'squeak_changestamp' : 'GLE 7/11/2024 13:32'
 }
 PixelEditorColorSelectorTest >> getLayer: aLayer [
 	
 	self layer: aLayer first.
-	self getPixelDictionary: self layer
+	
 
 	
 
@@ -117,24 +117,6 @@ PixelEditorColorSelectorTest >> getLayer: aLayer [
 PixelEditorColorSelectorTest >> getPixel [
 
 	^ self layer pixelDictionary values first
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'LW 6/23/2024 12:59'
-}
-PixelEditorColorSelectorTest >> getPixel: aDictionary [
-
-	self pixel: (aDictionary keys) atRandom
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'LW 6/17/2024 01:06'
-}
-PixelEditorColorSelectorTest >> getPixelDictionary: aLayer [
-
-	self getPixel: (aLayer pixelDictionary)
 ]
 
 {
@@ -162,24 +144,6 @@ PixelEditorColorSelectorTest >> layer: aLayer [
 PixelEditorColorSelectorTest >> openColorSelector [
 
 	self getColorButton doActionRight
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'LW 6/17/2024 00:15'
-}
-PixelEditorColorSelectorTest >> pixel [
-
-	^ pixel
-]
-
-{
-	#category : #accessing,
-	#'squeak_changestamp' : 'LW 6/17/2024 00:17'
-}
-PixelEditorColorSelectorTest >> pixel: aColor [
-
-	pixel := aColor
 ]
 
 {
