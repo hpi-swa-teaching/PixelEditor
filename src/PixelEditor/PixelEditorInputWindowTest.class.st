@@ -25,7 +25,7 @@ PixelEditorInputWindowTest >> checkForInputWindow [
 ]
 
 {
-	#category : #'as yet unclassified',
+	#category : #testing,
 	#'squeak_changestamp' : 'GLE 7/11/2024 11:52'
 }
 PixelEditorInputWindowTest >> simulateCommandClick [

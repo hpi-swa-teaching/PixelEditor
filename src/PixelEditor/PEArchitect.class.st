@@ -8,7 +8,7 @@ Class {
 }
 
 {
-	#category : #'find dependences',
+	#category : #'find dependencies',
 	#'squeak_changestamp' : 'GLE 7/11/2024 11:44'
 }
 PEArchitect class >> addFromSystemCategory: aCategory [
@@ -18,7 +18,7 @@ PEArchitect class >> addFromSystemCategory: aCategory [
 ]
 
 {
-	#category : #'find dependences',
+	#category : #'find dependencies',
 	#'squeak_changestamp' : 'GLE 7/11/2024 11:45'
 }
 PEArchitect class >> addToDictionary: aClass [
