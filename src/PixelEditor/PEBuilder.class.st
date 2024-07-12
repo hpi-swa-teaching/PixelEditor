@@ -44,16 +44,16 @@ PEBuilder >> setUpDirectories [
 
 {
 	#category : #initialize,
-	#'squeak_changestamp' : 'GLE 7/12/2024 13:56'
+	#'squeak_changestamp' : 'GLE 7/12/2024 14:20'
 }
 PEBuilder >> setUpMacDirectories [
 	
 	| fileDirectory |
 	
 	fileDirectory := FileDirectory default.
-	(fileDirectory directoryExists:  (fileDirectory fullPathFor: '/Saved-Images/'))
+	(fileDirectory directoryExists:  (fileDirectory fullPathFor: 'Saved-Images'))
 		ifFalse: [ fileDirectory createDirectory: './Saved-Images' ].
-	(fileDirectory directoryExists:  (fileDirectory fullPathFor: '/Exported-Images/'))
+	(fileDirectory directoryExists:  (fileDirectory fullPathFor: 'Exported-Images'))
 		ifFalse: [ fileDirectory createDirectory: './Exported-Images' ]
 ]
 
