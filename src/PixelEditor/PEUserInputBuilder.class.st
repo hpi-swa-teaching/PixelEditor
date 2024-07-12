@@ -1,3 +1,14 @@
+"
+A PEUserInputBuilder is building every user prompt.
+
+
+Instance Variables
+	inputFieldDictionary:		Dictionary new
+
+inputFieldDictionary
+	- We save the inputFields we create for the inputWindow in this dictionary to access them
+
+"
 Class {
 	#name : #PEUserInputBuilder,
 	#superclass : #PEBuilder,
@@ -7,7 +18,8 @@ Class {
 	#classInstVars : [
 		'userInputBuilder'
 	],
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:08'
 }
 
 {

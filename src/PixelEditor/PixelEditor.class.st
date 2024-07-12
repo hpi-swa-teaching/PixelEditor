@@ -1,3 +1,21 @@
+"
+A PixelEditor is initiating the building of the PixelEditor through the open method class side.
+
+Instance Variables
+	containerDictionary:		type: Dictionary new
+	json:						type: Json new
+	jsonString:					type: String new
+
+containerDictionary
+	- We save every panel in this dictionary so we can access these elements.
+
+json
+	- Holds the Json object.
+
+jsonString
+	- Holds the saved json string.
+
+"
 Class {
 	#name : #PixelEditor,
 	#superclass : #Model,
@@ -6,7 +24,8 @@ Class {
 		'containerDictionary',
 		'json'
 	],
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 12:05'
 }
 
 {
@@ -98,7 +117,7 @@ PixelEditor >> defaultExtent [
 
 {
 	#category : #exporting,
-	#'squeak_changestamp' : 'GLE 7/7/2024 18:20'
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:40'
 }
 PixelEditor >> formFromCanvas [
 
@@ -106,8 +125,8 @@ PixelEditor >> formFromCanvas [
 	
 	canvas := self containerDictionary at: #canvas.
 	canvas bottomRight < canvas layer first bottomRight
-		ifTrue: [ ^ Form fromDisplay: canvas rectangle ]
-		ifFalse: [ ^ Form fromDisplay: canvas layer first rectangle ]
+		ifTrue: [ ^ Form fromDisplay: canvas bounds ]
+		ifFalse: [ ^ Form fromDisplay: canvas layer first bounds ]
 	
 ]
 

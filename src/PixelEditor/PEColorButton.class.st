@@ -1,14 +1,24 @@
+"
+A PEColorButton is used for changing the selected color to its own color. With right click you open a colorPalette morph.
+
+Instance Variables
+	pixelEditor:		type: PixelEditor new
+
+pixelEditor
+	- We save the PixelEditor so we can create a colorPalette on right click.
+
+"
 Class {
 	#name : #PEColorButton,
 	#superclass : #PEUI,
 	#instVars : [
-		'brush',
 		'pixelEditor'
 	],
 	#classInstVars : [
 		'selectedButton'
 	],
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:59'
 }
 
 {

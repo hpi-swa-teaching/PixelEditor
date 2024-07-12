@@ -1,10 +1,22 @@
+"
+A PELayer holds every pixel and handles mouseDown events on the canvas in order to paint. 
+When the mouseDown: or handlesMouseStillDown: event is triggered we get the position of the mouse through the event. We then standardize the point and correct it to the nearest pixel coordinate. The corrected point is then used to access the pixel through the dictionary and sends the changeColor method to the pixel.
+
+Instance Variables
+	pixelDictionary:		type: Dictionary new
+
+pixelDictionary
+	- We save every pixel in this Dictionary. The pixel's coordinates relative to the position of the layer is the key to access the pixel.
+
+"
 Class {
 	#name : #PELayer,
 	#superclass : #Morph,
 	#instVars : [
 		'pixelDictionary'
 	],
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:35'
 }
 
 {
@@ -125,15 +137,6 @@ PELayer >> pixelDictionary: aDictionary [
 PELayer >> pointInSelf: aPoint [
 
 	^ aPoint - self position
-]
-
-{
-	#category : #miscellaneous,
-	#'squeak_changestamp' : 'GLE 6/6/2024 19:05'
-}
-PELayer >> rectangle [
-
-	^ Rectangle origin: self position corner: self bottomRight
 ]
 
 {

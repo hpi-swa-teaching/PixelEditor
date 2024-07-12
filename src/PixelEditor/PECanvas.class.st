@@ -1,3 +1,8 @@
+"
+A PECanvas is a Container that holds the layer.
+
+
+"
 Class {
 	#name : #PECanvas,
 	#superclass : #PasteUpMorph,
@@ -6,7 +11,8 @@ Class {
 		'pixelGridHeight',
 		'pixelSize'
 	],
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:41'
 }
 
 {
@@ -89,15 +95,6 @@ PECanvas >> layer [
 	collection := OrderedCollection new.
 	self submorphs do: [:each | each basicType = #PELayer ifTrue: [ collection add: each ]].
 	^ collection
-]
-
-{
-	#category : #bounds,
-	#'squeak_changestamp' : 'GLE 6/17/2024 15:49'
-}
-PECanvas >> rectangle [
-
-	^ Rectangle origin: self position corner: self bottomRight
 ]
 
 {

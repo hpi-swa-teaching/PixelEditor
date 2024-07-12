@@ -1,7 +1,14 @@
+"
+A PEPluggableTextMorphPlus is a PluggableTextMorphPlus with some modifications so we do not get the orange triangle in the upper right corner when editing the text and you cant scroll.
+
+Instance Variables
+
+"
 Class {
 	#name : #PEPluggableTextMorphPlus,
 	#superclass : #PluggableTextMorphPlus,
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:38'
 }
 
 {

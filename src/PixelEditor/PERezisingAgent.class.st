@@ -1,3 +1,21 @@
+"
+A PERezisingAgent is comparing the previous saved size of the PixelEditor's window to the current size. If it has changed it sends the update method to PixelEditor which in turn sends it to the PEButtonRows which then layout their submorphs accordingly.
+
+Instance Variables
+	model:						type: PixelEditor new
+	systemWindow:			type: PluggableSystemWindow new
+	systemWindowBounds:	type:  Bounds new
+
+model
+	- We save the PixelEditor to send the update method to.
+
+systemWindow
+	- We save the systemWindow to get the windows bounds.
+
+systemWindowBounds
+	- We save the old bounds to compare it to the current bounds.
+
+"
 Class {
 	#name : #PERezisingAgent,
 	#superclass : #Morph,
@@ -6,7 +24,8 @@ Class {
 		'systemWindow',
 		'systemWindowBounds'
 	],
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:45'
 }
 
 {

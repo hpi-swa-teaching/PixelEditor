@@ -1,29 +1,37 @@
+"
+A PEInputWindow is processing the user input when creating the PixelEditor. 
+
+Instance Variables
+	inputFieldDictionary:		type: Dictionary new
+	window:					type: PluggableSystemWindow new
+
+inputFieldDictionary
+	- In this dictionary we save the inputFields to access them and read their values. The dictionary is created in the PEUserInputBuilder and passed on to the inputWindow.
+
+window
+	- We save the window so we can close the InputWindow. The window is created by the builder in PEUserInputBuilder and is passed on to the inputWindow.
+
+"
 Class {
 	#name : #PEInputWindow,
 	#superclass : #SystemWindow,
 	#instVars : [
-		'heightInput',
-		'widthInput',
 		'window',
-		'submitButton',
-		'inputLineWidth',
-		'inputLineHeight',
-		'inputLinePixelSize',
-		'inputLines',
-		'addedText',
 		'inputFieldDictionary'
 	],
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:18'
 }
 
 {
 	#category : #initialize,
-	#'squeak_changestamp' : 'LW 7/4/2024 11:40'
+	#'squeak_changestamp' : 'GLE 7/12/2024 14:00'
 }
 PEInputWindow class >> open [
 
 	| instance |
 	
+	PEBuilder reset.
 	instance := self new.
 	ToolBuilder open: instance.
 	^ instance

@@ -1,10 +1,17 @@
+"
+A PEColorPaletteBuilder is building the PEColorPalette, which consists of an HSVMorph, an accept button and a cancel button.
+
+Instance Variables
+
+"
 Class {
 	#name : #PEColorPaletteBuilder,
 	#superclass : #PEBuilder,
 	#classInstVars : [
 		'colorSelectorBuilder'
 	],
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:02'
 }
 
 {

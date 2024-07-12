@@ -1,10 +1,13 @@
+"
+A PEButtonRow is a container that holds mostly buttons and computes the correct layout and size of its submorphs when its bounds change.
+
+
+"
 Class {
 	#name : #PEButtonRow,
 	#superclass : #PEUI,
-	#instVars : [
-		'yCoordinate'
-	],
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:56'
 }
 
 {

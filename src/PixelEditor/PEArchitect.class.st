@@ -1,10 +1,18 @@
+"
+A PEArchitect is used to find dependencies between classes.
+Call "" PEArchitect addFromSystemCategory: 'The Package you want to test' "" to get the dependencies.
+
+Instance Variables
+
+"
 Class {
 	#name : #PEArchitect,
 	#superclass : #Object,
 	#classInstVars : [
 		'dictionary'
 	],
-	#category : #'PixelEditor-Structure'
+	#category : #'PixelEditor-Structure',
+	#'squeak_changestamp' : 'GLE 7/12/2024 10:55'
 }
 
 {

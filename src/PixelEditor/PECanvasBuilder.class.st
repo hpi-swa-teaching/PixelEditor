@@ -1,10 +1,16 @@
+"
+A PECanvasBuilder is building the PELayer, PECanvas and all the pixels and adds them as submorphs to the layer.
+Instance Variables
+
+"
 Class {
 	#name : #PECanvasBuilder,
 	#superclass : #PEBuilder,
 	#classInstVars : [
 		'canvasBuilder'
 	],
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:01'
 }
 
 {

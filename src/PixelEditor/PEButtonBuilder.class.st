@@ -1,10 +1,18 @@
+"
+A PEButtonBuilder is building every button that is used in the PixelEditor application.
+The Buttons are added to PEButtonRow objects that layout their submorphs accordingly to size.
+
+Instance Variables
+
+"
 Class {
 	#name : #PEButtonBuilder,
 	#superclass : #PEBuilder,
 	#classInstVars : [
 		'buttonBuilder'
 	],
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:02'
 }
 
 {

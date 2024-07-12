@@ -1,10 +1,21 @@
+"
+A PEFileSaver is a FileSaverDialog with a custom title.
+
+Instance Variables
+	windowTitle:		String new
+
+windowTitle
+	- Is used to set the title of the FileSaverDialog.
+
+"
 Class {
 	#name : #PEFileSaver,
 	#superclass : #FileSaverDialog,
 	#instVars : [
 		'windowTitle'
 	],
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:12'
 }
 
 {

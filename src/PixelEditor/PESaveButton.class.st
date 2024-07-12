@@ -1,7 +1,14 @@
+"
+A PESaveButton is saving the drawing in a JSON string. Because we want JSON objects inside of our JSON object we use # as markers that get converted to "" at runtime.
+
+Instance Variables
+
+"
 Class {
 	#name : #PESaveButton,
 	#superclass : #PESettingsButton,
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:54'
 }
 
 {

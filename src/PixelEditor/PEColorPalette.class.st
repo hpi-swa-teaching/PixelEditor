@@ -1,3 +1,16 @@
+"
+A PEColorPalette is changing the color of the color button.
+Instance Variables
+	colorButton:		type: PEColorButton new
+	hsvMorph:			type: HSVMorph new
+
+colorButton
+	- We save the colorButton so we can change its color when the accept button is clicked.
+
+hsvMorph
+	- We save the HSVMorph so we can access its color to then change the color buttons color.
+
+"
 Class {
 	#name : #PEColorPalette,
 	#superclass : #PEUI,
@@ -5,7 +18,8 @@ Class {
 		'colorButton',
 		'hsvMorph'
 	],
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 12:01'
 }
 
 {

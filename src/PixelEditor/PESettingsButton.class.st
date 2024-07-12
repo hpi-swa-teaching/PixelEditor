@@ -1,10 +1,14 @@
+"
+A PESettingsButton implements file logic for save, load and export buttons.
+
+Instance Variables
+
+"
 Class {
 	#name : #PESettingsButton,
 	#superclass : #PluggableButtonMorph,
-	#instVars : [
-		'jsonString'
-	],
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:47'
 }
 
 {

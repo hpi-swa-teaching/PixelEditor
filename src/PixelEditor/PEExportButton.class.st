@@ -1,7 +1,14 @@
+"
+A PEExportButton is converting an area on screen defined by a rectangle to a .png image. We use the bounds of either the layer or the canvas depending on which is smaller so we only see the pixels.
+
+
+
+"
 Class {
 	#name : #PEExportButton,
 	#superclass : #PESettingsButton,
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:49'
 }
 
 {

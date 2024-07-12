@@ -1,3 +1,23 @@
+"
+A PEPanelBuilder is building all the panels for the builder which calls the buildWith: method in PixelEditor.
+The PEPanelBuilder accesses the PECanvasBuilder and PEButtonBuilder to build the canvas and buttons.
+The PEButtonRows and the canvas are then added to a dictionary which we pass on to PixelEditor so that the PixelEditor instance can access them. 
+
+Instance Variables
+	containerDictionary:		type: Dictionary new 
+	inputWindow:				type: PEInputWindow new
+	pixelEditor:					type: PixelEditor new
+
+containerDictionary
+	- In this dictionary we save the PEButtonRows and the canvas.
+
+inputWindow
+	- We need a reference to inputWindow for the submit button as the target.
+
+pixelEditor
+	- We need a reference to PixelEditor for multiple buttons as the target.
+
+"
 Class {
 	#name : #PEPanelBuilder,
 	#superclass : #PEBuilder,
@@ -9,7 +29,8 @@ Class {
 	#classInstVars : [
 		'panelBuilder'
 	],
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:10'
 }
 
 {

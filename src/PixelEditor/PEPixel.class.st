@@ -1,16 +1,19 @@
+"
+A PEPixel is a singular pixel. The selected color is saved class side.
+
+
+"
 Class {
 	#name : #PEPixel,
 	#superclass : #Morph,
-	#instVars : [
-		'brushSelectedColor'
-	],
 	#classInstVars : [
 		'pixelSize',
 		'borderColor',
 		'borderSize',
 		'selectedColor'
 	],
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:37'
 }
 
 {

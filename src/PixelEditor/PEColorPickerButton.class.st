@@ -1,7 +1,13 @@
+"
+A PEColorPickerButton is only for opening the colorPalette.
+
+
+"
 Class {
 	#name : #PEColorPickerButton,
 	#superclass : #PEColorButton,
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:58'
 }
 
 {

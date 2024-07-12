@@ -1,7 +1,11 @@
+"
+A PEEraser is changing the selected color to transparent when clicked.
+"
 Class {
 	#name : #PEEraser,
 	#superclass : #PEColorButton,
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:59'
 }
 
 {

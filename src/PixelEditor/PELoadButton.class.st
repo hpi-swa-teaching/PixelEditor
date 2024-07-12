@@ -1,7 +1,13 @@
+"
+A PELoadButton is loading a string from a file and converting it to a JSON.
+
+
+"
 Class {
 	#name : #PELoadButton,
 	#superclass : #PESettingsButton,
-	#category : #PixelEditor
+	#category : #PixelEditor,
+	#'squeak_changestamp' : 'GLE 7/12/2024 11:51'
 }
 
 {
