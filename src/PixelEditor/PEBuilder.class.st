@@ -33,11 +33,11 @@ PEBuilder >> initialize [
 
 {
 	#category : #initialize,
-	#'squeak_changestamp' : 'GLE 7/12/2024 13:55'
+	#'squeak_changestamp' : 'GLE 7/12/2024 14:45'
 }
 PEBuilder >> setUpDirectories [
 	
-	Smalltalk platformName = 'Win 32'
+	Smalltalk platformName = 'Win32'
 		ifTrue: [ self setUpWindowsDirectories ]
 		ifFalse: [ self setUpMacDirectories ]
 ]
