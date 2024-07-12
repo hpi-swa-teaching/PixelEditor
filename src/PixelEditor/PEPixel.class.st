@@ -7,8 +7,6 @@ Class {
 	#name : #PEPixel,
 	#superclass : #Morph,
 	#classInstVars : [
-		'pixelSize',
-		'borderColor',
 		'borderSize',
 		'selectedColor'
 	],
